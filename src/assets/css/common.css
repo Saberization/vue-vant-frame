@@ -297,23 +297,3 @@ th {
 input[type=search] {
   font-size: 14px;
 }
-
-.mint-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9999;
-}
-
-.mt-content {
-  padding-top: 50px;
-}
-
-.mint-tab-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}

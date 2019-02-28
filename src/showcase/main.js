@@ -1,12 +1,19 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import Router from '../router/router';
-import Navigation from './navigation';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import routes from '@router/router'
+import Navigation from './navigation'
+import '@assets/css/common.css';
 
-console.log(Router);
+Vue.use(VueRouter)
+
+Vue.config.devtools = true
+Vue.config.productionTip = false
+
+const router = new VueRouter({
+  routes
+})
 
 new Vue({
-  render(h) {
-    h(Navigation);
-  }
-}).$mount('#app');
+  router,
+  render: h => h(Navigation)
+}).$mount('#app')

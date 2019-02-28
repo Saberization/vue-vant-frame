@@ -6,6 +6,9 @@
 import { Button } from 'vant';
 
 export default {
-  name: 'Button'
+  name: 'Button',
+  components: {
+    'van-button': Button
+  }
 }
 </script>
