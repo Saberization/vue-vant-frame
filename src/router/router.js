@@ -14,6 +14,6 @@ const routes = [{
 }, {
   path: '/cell',
   component: Cell
-}];
+}]
 
-export default routes;
+export default routes

@@ -52,15 +52,15 @@
 import { Collapse, CollapseItem } from 'vant'
 
 export default {
-  name: "Navigation",
+  name: 'Navigation',
   components: {
-    "van-collapse": Collapse,
-    "van-collapse-item": CollapseItem
+    'van-collapse': Collapse,
+    'van-collapse-item': CollapseItem
   },
-  data() {
+  data () {
     return {
-      activeNames: ["1"]
-    };
+      activeNames: ['1']
+    }
   }
 }
 </script>
