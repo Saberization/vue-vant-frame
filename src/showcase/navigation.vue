@@ -4,45 +4,12 @@
 
     <van-collapse v-model="activeNames">
       <van-collapse-item
-        title="基础组件"
-        name="1"
+        v-for="(v, i) in menu"
+        :title="v.title"
+        :name="i + 1"
+        :key="i"
       >
-        提供多样店铺模板，快速搭建网上商城
-      </van-collapse-item>
-
-      <van-collapse-item
-        title="表单组件"
-        name="2"
-      >
-        网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
-      </van-collapse-item>
-
-      <van-collapse-item
-        title="反馈组件"
-        name="3"
-      >
-        网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
-      </van-collapse-item>
-
-      <van-collapse-item
-        title="展示组件"
-        name="4"
-      >
-        网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
-      </van-collapse-item>
-
-      <van-collapse-item
-        title="导航组件"
-        name="5"
-      >
-        网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
-      </van-collapse-item>
-
-      <van-collapse-item
-        title="业务组件"
-        name="6"
-      >
-        网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
+        <van-cell v-for="(_v, _i) in v.children" :key="_i" :title="_v.title"></van-cell>
       </van-collapse-item>
     </van-collapse>
   </div>
@@ -50,16 +17,145 @@
 
 <script>
 import { Collapse, CollapseItem } from 'vant'
+import Cell from '@components/cell'
 
 export default {
   name: 'Navigation',
   components: {
     'van-collapse': Collapse,
-    'van-collapse-item': CollapseItem
+    'van-collapse-item': CollapseItem,
+    'van-cell': Cell
   },
   data () {
     return {
-      activeNames: ['1']
+      activeNames: ['1'],
+      menu: [{
+        title: '基础组件',
+        children: [{
+          title: 'Button 按钮',
+          to: '/button'
+        }, {
+          title: 'Cell 单元格',
+          to: '/cell'
+        }, {
+          title: 'CellGroup 单元格组'
+        }, {
+          title: 'Icon 图标'
+        }, {
+          title: 'Layout 布局'
+        }, {
+          title: 'Popup 弹出层'
+        }]
+      }, {
+        title: '表单组件',
+        children: [{
+          title: 'Checkbox 复选框'
+        }, {
+          title: 'DatetimePicker 时间选择'
+        }, {
+          title: 'Field 输入框'
+        }, {
+          title: 'NumberKeyboard 数字键盘'
+        }, {
+          title: 'PasswordInput 密码输入框'
+        }, {
+          title: 'Picker 选择器'
+        }, {
+          title: 'Radio 单选框'
+        }, {
+          title: 'Rate 评分'
+        }, {
+          title: 'Search 搜索'
+        }, {
+          title: 'Slider 滑块'
+        }, {
+          title: 'Stepper 步进器'
+        }, {
+          title: 'Switch 开关'
+        }, {
+          title: 'SwitchCell 开关单元格'
+        }, {
+          title: 'Uploader 图片上传'
+        }]
+      }, {
+        title: '反馈组件',
+        children: [{
+          title: 'Actionsheet 上拉菜单'
+        }, {
+          title: 'Dialog 弹出框'
+        }, {
+          title: 'Loading 加载'
+        }, {
+          title: 'Notify 消息通知'
+        }, {
+          title: 'PullRefresh 下拉刷新'
+        }, {
+          title: 'SwipeCell 滑动单元格'
+        }, {
+          title: 'Toast 轻提示'
+        }]
+      }, {
+        title: '展示组件',
+        children: [{
+          title: 'Circle 环形进度条'
+        }, {
+          title: 'Collapse 折叠面板'
+        }, {
+          title: 'ImagePreview 图片预览'
+        }, {
+          title: 'LazyLoad 图片懒加载'
+        }, {
+          title: 'List 列表'
+        }, {
+          title: 'NoticeBar 通告栏'
+        }, {
+          title: 'Panel 面板'
+        }, {
+          title: 'Progress 进度条'
+        }, {
+          title: 'Steps 步骤条'
+        }, {
+          title: 'Swipe 轮播'
+        }, {
+          title: 'Tag 标记'
+        }]
+      }, {
+        title: '导航组件',
+        children: [{
+          title: 'Badge 徽章'
+        }, {
+          title: 'NavBar 导航栏'
+        }, {
+          title: 'Pagination 分页'
+        }, {
+          title: 'Tab 标签页'
+        }, {
+          title: 'Tabbar 标签页'
+        }, {
+          title: 'TreeSelect 分类选择'
+        }]
+      }, {
+        title: '业务组件',
+        children: [{
+          title: 'AddressEdit 地址编辑'
+        }, {
+          title: 'AddressList 地址列表'
+        }, {
+          title: 'Area 省市区选择'
+        }, {
+          title: 'Card 商品卡片'
+        }, {
+          title: 'Contact 联系人'
+        }, {
+          title: 'Coupon 优惠券'
+        }, {
+          title: 'GoodsAction 商品导航'
+        }, {
+          title: 'SubmitBar 提交订单栏'
+        }, {
+          title: 'Sku 商品规格'
+        }]
+      }]
     }
   }
 }
@@ -73,18 +169,27 @@ export default {
     text-align: center;
     margin-top: 10px;
     margin-bottom: 20px;
+    color: #455a64;
   }
 
   .van-collapse-item {
     margin-bottom: 20px;
   }
+  
+  .van-collapse-item__content {
+    padding: 0;
+  }
 
-  .van-cell {
+  .van-collapse-item__title {
     padding-top: 18px;
     padding-bottom: 18px;
   }
 
   .van-cell__title {
+    font-size: 14px;
+  }
+
+  .van-collapse-item__title > .van-cell__title > span {
     font-size: 16px;
   }
 }
