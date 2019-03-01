@@ -35,21 +35,20 @@
 </template>
 
 <script>
-import { Cell, CellGroup } from 'vant'
+import { Cell } from 'vant'
 
 export default {
   name: 'Cell',
   components: {
-    'van-cell': Cell,
-    'van-cell-group': CellGroup
+    'van-cell': Cell
   },
   props: {
     icon: String,
     title: {
-      default: ''
+      default: null
     },
     value: {
-      default: ''
+      default: null
     },
     label: String,
     size: String,
@@ -83,13 +82,13 @@ export default {
     },
     arrowDirection: String,
     titleClass: {
-      default: ''
+      default: null
     },
     valueClass: {
-      default: ''
+      default: null
     },
     labelClass: {
-      default: ''
+      default: null
     }
   }
 }

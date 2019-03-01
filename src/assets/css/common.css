@@ -296,3 +296,30 @@ th {
 input[type=search] {
   font-size: 14px;
 }
+
+.cell-title {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  color: rgba(69, 90, 100, .6);
+  font-size: 14px;
+}
+
+.van-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.van-content {
+  position: absolute;
+  top: 46px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}

@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import routes from '@router/router'
-import Navigation from './navigation'
-import '@assets/css/common.css';
+import Showcase from './showcase'
+import '@assets/css/common.css'
 
 Vue.use(VueRouter)
 
@@ -15,5 +15,5 @@ const router = new VueRouter({
 
 new Vue({
   router,
-  render: h => h(Navigation)
+  render: h => h(Showcase)
 }).$mount('#app')

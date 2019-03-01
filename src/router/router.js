@@ -1,6 +1,7 @@
 import Navigation from '@showcase/navigation'
 import Button from '@showcase/button'
 import Cell from '@showcase/cell'
+import Header from '@showcase/header'
 
 const routes = [{
   path: '*',
@@ -14,6 +15,9 @@ const routes = [{
 }, {
   path: '/cell',
   component: Cell
+}, {
+  path: '/header',
+  component: Header
 }]
 
 export default routes
