@@ -1,4 +1,3 @@
-import Navigation from '@showcase/navigation'
 import Button from '@showcase/button'
 import Cell from '@showcase/cell'
 import Header from '@showcase/header'
@@ -8,7 +7,7 @@ const routes = [{
   redirect: '/navigation'
 }, {
   path: '/navigation',
-  component: Navigation
+  component: require('@showcase/navigation')
 }, {
   path: '/button',
   component: Button
