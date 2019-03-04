@@ -6,6 +6,7 @@ import Tab from '@showcase/tab'
 import Icon from '@showcase/icon'
 import Layout from '@showcase/layout'
 import Popup from '@showcase/popup'
+import Badge from '@showcase/badge'
 
 const routes = [{
   path: '*',
@@ -34,6 +35,9 @@ const routes = [{
 }, {
   path: '/popup',
   component: Popup
+}, {
+  path: '/badge',
+  component: Badge
 }]
 
 export default routes

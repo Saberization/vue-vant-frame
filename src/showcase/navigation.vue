@@ -178,7 +178,8 @@ export default {
           title: '导航组件',
           children: [
             {
-              title: 'Badge 徽章'
+              title: 'Badge 徽章',
+              to: '/badge'
             },
             {
               title: 'Header 导航栏',
