@@ -5,6 +5,7 @@ import Header from '@showcase/header'
 import Tab from '@showcase/tab'
 import Icon from '@showcase/icon'
 import Layout from '@showcase/layout'
+import Popup from '@showcase/popup'
 
 const routes = [{
   path: '*',
@@ -30,6 +31,9 @@ const routes = [{
 }, {
   path: '/layout',
   component: Layout
+}, {
+  path: '/popup',
+  component: Popup
 }]
 
 export default routes

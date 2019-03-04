@@ -55,7 +55,8 @@ export default {
               to: '/layout'
             },
             {
-              title: 'Popup 弹出层'
+              title: 'Popup 弹出层',
+              to: '/popup'
             }
           ]
         },
