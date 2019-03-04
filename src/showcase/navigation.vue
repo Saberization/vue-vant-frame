@@ -22,14 +22,14 @@
 
 <script>
 import { Collapse, CollapseItem } from 'vant'
-import Cell from '@components/cell'
+import vanCell from '@components/cell'
 
 export default {
   name: 'Navigation',
   components: {
     'van-collapse': Collapse,
     'van-collapse-item': CollapseItem,
-    'van-cell': Cell
+    vanCell
   },
   data () {
     return {
@@ -185,7 +185,8 @@ export default {
               title: 'Pagination 分页'
             },
             {
-              title: 'Tab 标签页'
+              title: 'Tab 标签页',
+              to: '/tab'
             },
             {
               title: 'Tabbar 标签页'

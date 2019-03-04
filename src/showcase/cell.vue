@@ -70,16 +70,16 @@
 </template>
 
 <script>
-import Header from '@components/header'
-import CellGroup from '@components/cellgroup'
-import Cell from '@components/cell'
+import vanHeader from '@components/header'
+import vanCellGroup from '@components/cellgroup'
+import vanCell from '@components/cell'
 
 export default {
   name: 'Cell',
   components: {
-    'van-cell': Cell,
-    'van-header': Header,
-    'van-cell-group': CellGroup
+    vanCell,
+    vanHeader,
+    vanCellGroup
   }
 }
 </script>

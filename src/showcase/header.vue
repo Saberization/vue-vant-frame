@@ -28,13 +28,13 @@
 </template>
 
 <script>
-import Header from '@components/header'
+import vanHeader from '@components/header'
 import { Toast } from 'vant'
 
 export default {
   name: 'Header',
   components: {
-    'van-header': Header
+    vanHeader
   },
   methods: {
     onClickLeft () {

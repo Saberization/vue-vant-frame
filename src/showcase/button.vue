@@ -77,14 +77,14 @@
 </template>
 
 <script>
-import Header from '@components/header'
-import Button from '@components/button'
+import vanHeader from '@components/header'
+import vanButton from '@components/button'
 
 export default {
   name: 'Button',
   components: {
-    'van-button': Button,
-    'van-header': Header
+    vanHeader,
+    vanButton
   }
 }
 </script>
