@@ -80,9 +80,12 @@
 
       <h4 class="cell-title">自定义标签</h4>
       <van-tabs>
-        <van-tab v-for="index in 2" :key="index">
+        <van-tab
+          v-for="index in 2"
+          :key="index"
+        >
           <div slot="title">
-            <!-- <van-icon name="more-o" />选项 -->选项 {{ index }}
+            <van-icon name="more-o" />选项 {{ index }}
           </div>
           <div class="tab-content">内容 {{ index }}</div>
         </van-tab>
@@ -90,7 +93,7 @@
 
       <h4 class="cell-title">切换动画</h4>
       <van-tabs animated>
-         <van-tab
+        <van-tab
           v-for="index in 12"
           :key="index"
           :title="'选项 ' + index"
@@ -101,7 +104,7 @@
 
       <h4 class="cell-title">滑动切换</h4>
       <van-tabs swipeable>
-         <van-tab
+        <van-tab
           v-for="index in 12"
           :key="index"
           :title="'选项 ' + index"
@@ -115,6 +118,7 @@
 
 <script>
 import vanHeader from '@components/header'
+import vanIcon from '@components/icon'
 import { Tab, Tabs, Toast } from 'vant'
 
 export default {
@@ -122,7 +126,8 @@ export default {
   components: {
     vanHeader,
     'van-tab': Tab,
-    'van-tabs': Tabs
+    'van-tabs': Tabs,
+    vanIcon
   },
   data () {
     return {
@@ -150,5 +155,9 @@ export default {
 }
 .van-tabs {
   margin-bottom: 20px;
+}
+.van-icon {
+  margin-right: 5px;
+  vertical-align: -2px;
 }
 </style>

@@ -22,6 +22,7 @@
         @click-left="onClickLeft"
         style="top: 160px;"
       >
+        <van-icon name="search" slot="right"></van-icon>
       </van-header>
     </div>
   </div>
@@ -29,12 +30,14 @@
 
 <script>
 import vanHeader from '@components/header'
+import vanIcon from '@components/icon'
 import { Toast } from 'vant'
 
 export default {
   name: 'Header',
   components: {
-    vanHeader
+    vanHeader,
+    vanIcon
   },
   methods: {
     onClickLeft () {
