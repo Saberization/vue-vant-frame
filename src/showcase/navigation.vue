@@ -47,7 +47,8 @@ export default {
               to: '/cell'
             },
             {
-              title: 'Icon 图标'
+              title: 'Icon 图标',
+              to: '/icon'
             },
             {
               title: 'Layout 布局'
