@@ -51,7 +51,8 @@ export default {
               to: '/icon'
             },
             {
-              title: 'Layout 布局'
+              title: 'Layout 布局',
+              to: '/layout'
             },
             {
               title: 'Popup 弹出层'

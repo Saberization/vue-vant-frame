@@ -4,6 +4,7 @@ import Cell from '@showcase/cell'
 import Header from '@showcase/header'
 import Tab from '@showcase/tab'
 import Icon from '@showcase/icon'
+import Layout from '@showcase/layout'
 
 const routes = [{
   path: '*',
@@ -26,6 +27,9 @@ const routes = [{
 }, {
   path: '/icon',
   component: Icon
+}, {
+  path: '/layout',
+  component: Layout
 }]
 
 export default routes
