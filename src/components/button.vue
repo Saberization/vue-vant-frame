@@ -33,7 +33,7 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'primary'
+      default: 'default'
     },
     size: {
       type: String,
@@ -84,7 +84,7 @@ export default {
     }
   },
   methods: {
-    onClickBtn() {
+    onClickBtn () {
       this.$emit('click')
     }
   }
