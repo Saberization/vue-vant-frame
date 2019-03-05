@@ -2,7 +2,6 @@
   <div class="container">
     <van-header
       title="Tab 标签页"
-      left-text="返回"
       left-arrow
     ></van-header>
 

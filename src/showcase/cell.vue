@@ -3,7 +3,6 @@
     <van-header
       title="Cell 单元格"
       :left-arrow="true"
-      left-text="返回"
     ></van-header>
 
     <div class="van-content">

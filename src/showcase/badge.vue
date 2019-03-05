@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <van-header title="Badge 徽章" left-arrow left-text="返回"></van-header>
+    <van-header title="Badge 徽章" left-arrow></van-header>
     <div class="van-content">
       <h4 class="cell-title">基础用法</h4>
       <div class="van-doc-demo-block">

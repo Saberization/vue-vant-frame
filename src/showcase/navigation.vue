@@ -194,7 +194,8 @@ export default {
               to: '/tab'
             },
             {
-              title: 'Tabbar 标签页'
+              title: 'Tabbar 标签页',
+              to: '/tabbar'
             },
             {
               title: 'TreeSelect 分类选择'

@@ -3,7 +3,6 @@
     <van-header
       title="Icon 图标"
       left-arrow
-      left-text="返回"
     ></van-header>
     <div class="van-content">
       <van-tabs color="rgb(25, 137, 250)">

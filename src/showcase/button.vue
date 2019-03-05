@@ -2,7 +2,6 @@
   <div class="container">
     <van-header
       title="Button 按钮"
-      left-text="返回"
       :left-arrow="true"
     ></van-header>
 

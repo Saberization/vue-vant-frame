@@ -3,7 +3,6 @@
     <van-header
       title="Pagination 分页"
       left-arrow
-      left-text="返回"
     ></van-header>
     <div class="van-content">
       <h4 class="cell-title">基础用法</h4>
