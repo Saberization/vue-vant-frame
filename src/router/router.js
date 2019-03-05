@@ -7,6 +7,7 @@ import Icon from '@showcase/icon'
 import Layout from '@showcase/layout'
 import Popup from '@showcase/popup'
 import Badge from '@showcase/badge'
+import Pagination from '@showcase/pagination'
 
 const routes = [{
   path: '*',
@@ -38,6 +39,9 @@ const routes = [{
 }, {
   path: '/badge',
   component: Badge
+}, {
+  path: '/pagination',
+  component: Pagination
 }]
 
 export default routes

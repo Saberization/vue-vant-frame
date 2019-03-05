@@ -186,7 +186,8 @@ export default {
               to: '/header'
             },
             {
-              title: 'Pagination 分页'
+              title: 'Pagination 分页',
+              to: '/pagination'
             },
             {
               title: 'Tab 标签页',

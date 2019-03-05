@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <van-header title="Popup 弹出层" left-arrow left-text="返回"></van-header>
+    <van-header
+      title="Popup 弹出层"
+      left-arrow
+      left-text="返回"
+    ></van-header>
     <div class="van-content">
       <h4 class="cell-title">基础用法</h4>
       <van-button @click="onClickCenterPopup">弹出 Popup</van-button>
@@ -11,11 +15,27 @@
       <van-button @click="onClickRightPopup">右侧弹出</van-button>
     </div>
 
-    <van-popup v-model="show" :position="position" :overlay="overlay">
-      <div v-if="position === ''" class="position-center">内容</div>
-      <div v-else-if="position === 'top'" class="position-top">内容</div>
-      <div v-else-if="position === 'bottom'" class="position-bottom">内容</div>
-      <div v-else class="position-right">
+    <van-popup
+      v-model="show"
+      :position="position"
+      :overlay="overlay"
+    >
+      <div
+        v-if="position === ''"
+        class="position-center"
+      >内容</div>
+      <div
+        v-else-if="position === 'top'"
+        class="position-top"
+      >内容</div>
+      <div
+        v-else-if="position === 'bottom'"
+        class="position-bottom"
+      >内容</div>
+      <div
+        v-else
+        class="position-right"
+      >
         <van-button @click="closePopup">关闭弹层</van-button>
       </div>
     </van-popup>
@@ -34,7 +54,7 @@ export default {
     vanHeader,
     vanButton
   },
-  data() {
+  data () {
     return {
       show: false,
       position: '',
@@ -50,8 +70,8 @@ export default {
       this.position = 'bottom'
 
       setTimeout(() => {
-        this.show = false;
-      }, 1000);
+        this.show = false
+      }, 1000)
     },
     onClickTopPopup () {
       this.show = true
@@ -59,14 +79,14 @@ export default {
       this.position = 'top'
 
       setTimeout(() => {
-        this.show = false;
-      }, 1000);
+        this.show = false
+      }, 1000)
     },
     onClickRightPopup () {
       this.show = true
       this.position = 'right'
     },
-    closePopup() {
+    closePopup () {
       this.show = false
       this.overlay = true
     }
@@ -75,31 +95,31 @@ export default {
 </script>
 
 <style scoped>
-  .van-content {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  .van-button {
-    margin-right: 10px;
-  }
-  .position-center {
-    width: 150px;
-    height: 50px;
-    padding: 10px;
-  }
-  .position-top,
-  .position-bottom {
-    color: #fff;
-    border-radius: 0;
-    line-height: 20px;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-  }
-  .van-popup--right {
-    width: 70%;
-    height: 100%;
-  }
-  .position-right {
-    padding: 20px;
-  }
+.van-content {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.van-button {
+  margin-right: 10px;
+}
+.position-center {
+  width: 150px;
+  height: 50px;
+  padding: 10px;
+}
+.position-top,
+.position-bottom {
+  color: #fff;
+  border-radius: 0;
+  line-height: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+}
+.van-popup--right {
+  width: 70%;
+  height: 100%;
+}
+.position-right {
+  padding: 20px;
+}
 </style>

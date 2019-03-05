@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     onChange (key) {
-      this.activeKey = key;
+      this.activeKey = key
     }
   }
 }
@@ -58,6 +58,7 @@ export default {
 }
 
 .van-doc-demo-block {
+  padding: 20px;
   background-color: #fff;
 }
 

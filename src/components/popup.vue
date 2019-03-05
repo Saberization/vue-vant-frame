@@ -62,13 +62,13 @@ export default {
       default: false
     }
   },
-  data() {
+  data () {
     return {
       visible: false
     }
   },
   watch: {
-    show(value) {
+    show (value) {
       this.visible = value
     }
   },
