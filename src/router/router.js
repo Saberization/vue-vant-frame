@@ -10,6 +10,7 @@ import Badge from '@showcase/badge'
 import Pagination from '@showcase/pagination'
 import Tabbar from '@showcase/tabbar'
 import Treeselect from '@showcase/treeselect'
+import Checkbox from '@showcase/checkbox'
 
 const routes = [{
   path: '*',
@@ -50,6 +51,9 @@ const routes = [{
 }, {
   path: '/treeselect',
   component: Treeselect
+}, {
+  path: '/checkbox',
+  component: Checkbox
 }]
 
 export default routes

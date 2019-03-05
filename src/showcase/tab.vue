@@ -136,10 +136,10 @@ export default {
   },
   methods: {
     onClickDisabled (index, title) {
-      Toast(title + '已被禁用')
+      Toast(`${title} 已被禁用`)
     },
     onClick (index, title) {
-      Toast('当前选中 ' + title)
+      Toast(`当前选中 ${title}`)
     }
   }
 }

@@ -17,6 +17,7 @@
     :title-class="titleClass"
     :value-class="valueClass"
     :label-class="labelClass"
+    @click="onClick"
   >
     <slot
       name="title"
@@ -89,6 +90,11 @@ export default {
     },
     labelClass: {
       default: null
+    }
+  },
+  methods: {
+    onClick () {
+      this.$emit('click')
     }
   }
 }

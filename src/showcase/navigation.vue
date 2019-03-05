@@ -64,7 +64,8 @@ export default {
           title: '表单组件',
           children: [
             {
-              title: 'Checkbox 复选框'
+              title: 'Checkbox 复选框',
+              to: '/checkbox'
             },
             {
               title: 'DatetimePicker 时间选择'

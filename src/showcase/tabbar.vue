@@ -85,7 +85,7 @@ export default {
   },
   methods: {
     onChangeTabbar (active) {
-      Toast('当前点击index：' + active)
+      Toast(`当前点击index： ${active}`)
     }
   }
 }

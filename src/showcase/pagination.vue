@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     onChangePage () {
-      Toast('当前第 ' + this.currentPage + ' 页')
+      Toast(`当前第 ${this.currentPage} 页`)
     }
   }
 }
