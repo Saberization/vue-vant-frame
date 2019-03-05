@@ -164,14 +164,11 @@ export default {
       this.showPopup = false
       if (type === 'datetime') {
         this.$emit('confirm', `${appendZero(value.getFullYear())}-${appendZero(value.getMonth() + 1)}-${appendZero(value.getDate())} ${appendZero(value.getHours())}:${appendZero(value.getMinutes())}`)
-      }
-      else if (type === 'date') {
+      } else if (type === 'date') {
         this.$emit('confirm', `${appendZero(value.getFullYear())}-${appendZero(value.getMonth() + 1)}-${appendZero(value.getDate())}`)
-      }
-      else if (type === 'year-month') {
+      } else if (type === 'year-month') {
         this.$emit('confirm', `${appendZero(value.getFullYear())}-${appendZero(value.getMonth() + 1)}`)
-      }
-      else if (type === 'time') {
+      } else if (type === 'time') {
         this.$emit('confirm', value)
       }
     },

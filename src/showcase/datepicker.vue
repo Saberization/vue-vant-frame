@@ -99,13 +99,13 @@ export default {
     onCancel () {
       Console.log('点击取消按钮')
     },
-    formatter(type, value) {
+    formatter (type, value) {
       if (type === 'year') {
-        return `${value}年`;
+        return `${value}年`
       } else if (type === 'month') {
         return `${value}月`
       }
-      return value;
+      return value
     }
   }
 }
