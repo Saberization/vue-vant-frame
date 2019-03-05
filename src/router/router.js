@@ -11,6 +11,7 @@ import Pagination from '@showcase/pagination'
 import Tabbar from '@showcase/tabbar'
 import Treeselect from '@showcase/treeselect'
 import Checkbox from '@showcase/checkbox'
+import DatetimePicker from '@showcase/datepicker'
 
 const routes = [{
   path: '*',
@@ -54,6 +55,9 @@ const routes = [{
 }, {
   path: '/checkbox',
   component: Checkbox
+}, {
+  path: '/datepicker',
+  component: DatetimePicker
 }]
 
 export default routes

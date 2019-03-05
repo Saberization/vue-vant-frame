@@ -68,7 +68,8 @@ export default {
               to: '/checkbox'
             },
             {
-              title: 'DatetimePicker 时间选择'
+              title: 'DatetimePicker 时间选择',
+              to: '/datepicker'
             },
             {
               title: 'Field 输入框'
