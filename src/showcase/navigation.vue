@@ -198,7 +198,8 @@ export default {
               to: '/tabbar'
             },
             {
-              title: 'TreeSelect 分类选择'
+              title: 'TreeSelect 分类选择',
+              to: '/treeselect'
             }
           ]
         },

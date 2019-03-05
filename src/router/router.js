@@ -9,6 +9,7 @@ import Popup from '@showcase/popup'
 import Badge from '@showcase/badge'
 import Pagination from '@showcase/pagination'
 import Tabbar from '@showcase/tabbar'
+import Treeselect from '@showcase/treeselect'
 
 const routes = [{
   path: '*',
@@ -46,6 +47,9 @@ const routes = [{
 }, {
   path: '/tabbar',
   component: Tabbar
+}, {
+  path: '/treeselect',
+  component: Treeselect
 }]
 
 export default routes
