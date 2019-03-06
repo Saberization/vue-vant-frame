@@ -15,6 +15,7 @@ import DatetimePicker from '@showcase/datepicker'
 import Field from '@showcase/field'
 import NumberKeyboard from '@showcase/numberkeyboard'
 import PasswordInput from '@showcase/passwordinput'
+import Picker from '@showcase/picker'
 
 const routes = [{
   path: '*',
@@ -70,6 +71,9 @@ const routes = [{
 }, {
   path: '/passwordinput',
   component: PasswordInput
+}, {
+  path: '/picker',
+  component: Picker
 }]
 
 export default routes

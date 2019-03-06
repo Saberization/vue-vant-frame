@@ -2,6 +2,7 @@
   <van-popup
     v-model="showPopup"
     position="bottom"
+    :overlay="overlay"
     :overlay-class="overlayClass"
     :overlay-style="overlayStyle"
     :transition="transition"
