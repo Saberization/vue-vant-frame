@@ -76,13 +76,16 @@ export default {
               to: '/field'
             },
             {
-              title: 'NumberKeyboard 数字键盘'
+              title: 'NumberKeyboard 数字键盘',
+              to: '/numberkeyboard'
             },
             {
-              title: 'PasswordInput 密码输入框'
+              title: 'PasswordInput 密码输入框',
+              to: '/passwordinput'
             },
             {
-              title: 'Picker 选择器'
+              title: 'Picker 选择器',
+              to: '/picker'
             },
             {
               title: 'Radio 单选框'

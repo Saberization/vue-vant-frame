@@ -13,6 +13,8 @@ import Treeselect from '@showcase/treeselect'
 import Checkbox from '@showcase/checkbox'
 import DatetimePicker from '@showcase/datepicker'
 import Field from '@showcase/field'
+import NumberKeyboard from '@showcase/numberkeyboard'
+import PasswordInput from '@showcase/passwordinput'
 
 const routes = [{
   path: '*',
@@ -62,6 +64,12 @@ const routes = [{
 }, {
   path: '/field',
   component: Field
+}, {
+  path: '/numberkeyboard',
+  component: NumberKeyboard
+}, {
+  path: '/passwordinput',
+  component: PasswordInput
 }]
 
 export default routes
