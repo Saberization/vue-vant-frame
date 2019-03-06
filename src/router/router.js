@@ -12,6 +12,7 @@ import Tabbar from '@showcase/tabbar'
 import Treeselect from '@showcase/treeselect'
 import Checkbox from '@showcase/checkbox'
 import DatetimePicker from '@showcase/datepicker'
+import Field from '@showcase/field'
 
 const routes = [{
   path: '*',
@@ -58,6 +59,9 @@ const routes = [{
 }, {
   path: '/datepicker',
   component: DatetimePicker
+}, {
+  path: '/field',
+  component: Field
 }]
 
 export default routes

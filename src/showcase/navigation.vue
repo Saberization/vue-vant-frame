@@ -72,7 +72,8 @@ export default {
               to: '/datepicker'
             },
             {
-              title: 'Field 输入框'
+              title: 'Field 输入框',
+              to: '/field'
             },
             {
               title: 'NumberKeyboard 数字键盘'
