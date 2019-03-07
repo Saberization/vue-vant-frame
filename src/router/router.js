@@ -16,6 +16,7 @@ import Field from '@showcase/field'
 import NumberKeyboard from '@showcase/numberkeyboard'
 import PasswordInput from '@showcase/passwordinput'
 import Picker from '@showcase/picker'
+import Radio from '@showcase/radio'
 
 const routes = [{
   path: '*',
@@ -74,6 +75,9 @@ const routes = [{
 }, {
   path: '/picker',
   component: Picker
+}, {
+  path: '/radio',
+  component: Radio
 }]
 
 export default routes

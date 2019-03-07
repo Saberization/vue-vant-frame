@@ -88,7 +88,8 @@ export default {
               to: '/picker'
             },
             {
-              title: 'Radio 单选框'
+              title: 'Radio 单选框',
+              to: '/radio'
             },
             {
               title: 'Rate 评分'

@@ -67,7 +67,7 @@ export default {
     },
     clickable: {
       type: Boolean,
-      default: false
+      default: true
     },
     isLink: {
       type: Boolean,
