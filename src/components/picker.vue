@@ -130,9 +130,18 @@ export default {
       this.$emit('changeVisible', this.showPopup)
     },
     onConfirm (value, index) {
-      console.log(value, index);
+      if (Array.isArray(value)) {
+        let result = ''
+
+        value.forEach(e => {
+          result += `${e.text} `
+        })
+
+        this.$emit('confirm', result)
+      } else {
+        this.$emit('confirm', value)
+      }
       this.showPopup = false
-      this.$emit('confirm', value)
       this.onChangeVisible()
     },
     onCancel () {
@@ -140,7 +149,19 @@ export default {
       this.onChangeVisible()
     },
     onChange (picker, values) {
+      const $picker = this.$refs.picker
 
+      if (Array.isArray(values) && values.length >= 1) {
+        const children = values[0].children
+
+        picker.setColumnValues(1, children)
+        if (values.length === 3) {
+          const col2Index = $picker.getColumnIndex(1)
+          const col2Values = $picker.getColumnValues(1)
+
+          picker.setColumnValues(2, col2Values[col2Index].children)
+        }
+      }
     }
   },
   created () {
@@ -155,15 +176,32 @@ export default {
         const children = e.children
         if (children && children.length >= 1) {
           columns1Values.push(e)
-          columns2Values = children
-        }
-        else {
+          if (i === 0) {
+            columns2Values = children
+
+            const _children = children[0].children
+            if (Array.isArray(_children)) {
+              columns3Values = _children
+            }
+          }
+        } else {
           this.pickerData.push(e)
         }
       })
 
       // 两列
-      if (columns2Values.length >= 1) {
+      if (columns3Values.length >= 1) {
+        this.pickerData = [{
+          values: columns1Values,
+          className: 'column1'
+        }, {
+          values: columns2Values,
+          className: 'column2'
+        }, {
+          values: columns3Values,
+          className: 'column3'
+        }]
+      } else if (columns2Values.length >= 1) {
         this.pickerData = [{
           values: columns1Values,
           className: 'column1'
@@ -171,10 +209,6 @@ export default {
           values: columns2Values,
           className: 'column2'
         }]
-      }
-      // 三列
-      else if (columns3Values.length >= 1) {
-        
       }
     }
   }
