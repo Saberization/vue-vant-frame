@@ -92,7 +92,8 @@ export default {
               to: '/radio'
             },
             {
-              title: 'Rate 评分'
+              title: 'Rate 评分',
+              to: '/rate'
             },
             {
               title: 'Search 搜索'
