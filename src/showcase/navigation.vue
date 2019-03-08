@@ -125,7 +125,8 @@ export default {
           title: '反馈组件',
           children: [
             {
-              title: 'Actionsheet 上拉菜单'
+              title: 'Actionsheet 上拉菜单',
+              to: '/actionsheet'
             },
             {
               title: 'Dialog 弹出框'

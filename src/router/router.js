@@ -24,6 +24,7 @@ import Stepper from '@showcase/stepper'
 import Switch from '@showcase/switch'
 import SwitchCell from '@showcase/switchcell'
 import Uploader from '@showcase/uploader'
+import ActionSheet from '@showcase/actionsheet'
 
 const routes = [{
   path: '*',
@@ -106,6 +107,9 @@ const routes = [{
 }, {
   path: '/uploader',
   component: Uploader
+}, {
+  path: '/actionsheet',
+  component: ActionSheet
 }]
 
 export default routes
