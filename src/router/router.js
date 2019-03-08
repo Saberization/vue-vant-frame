@@ -18,6 +18,7 @@ import PasswordInput from '@showcase/passwordinput'
 import Picker from '@showcase/picker'
 import Radio from '@showcase/radio'
 import Rate from '@showcase/rate'
+import Search from '@showcase/search'
 
 const routes = [{
   path: '*',
@@ -82,6 +83,9 @@ const routes = [{
 }, {
   path: '/rate',
   component: Rate
+}, {
+  path: '/search',
+  component: Search
 }]
 
 export default routes

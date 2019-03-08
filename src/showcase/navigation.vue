@@ -96,7 +96,8 @@ export default {
               to: '/rate'
             },
             {
-              title: 'Search 搜索'
+              title: 'Search 搜索',
+              to: '/search'
             },
             {
               title: 'Slider 滑块'
