@@ -129,7 +129,8 @@ export default {
               to: '/actionsheet'
             },
             {
-              title: 'Dialog 弹出框'
+              title: 'Dialog 弹出框',
+              to: '/dialog'
             },
             {
               title: 'Loading 加载'

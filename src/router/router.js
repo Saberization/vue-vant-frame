@@ -25,6 +25,7 @@ import Switch from '@showcase/switch'
 import SwitchCell from '@showcase/switchcell'
 import Uploader from '@showcase/uploader'
 import ActionSheet from '@showcase/actionsheet'
+import Dialog from '@showcase/dialog'
 
 const routes = [{
   path: '*',
@@ -110,6 +111,9 @@ const routes = [{
 }, {
   path: '/actionsheet',
   component: ActionSheet
+}, {
+  path: '/dialog',
+  component: Dialog
 }]
 
 export default routes
