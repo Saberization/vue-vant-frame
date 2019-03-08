@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <van-header
-      title="基础用法"
+      title="Notify 消息提示"
       left-arrow
     ></van-header>
     <div class="van-content">

@@ -144,10 +144,12 @@ export default {
               title: 'PullRefresh 下拉刷新'
             },
             {
-              title: 'SwipeCell 滑动单元格'
+              title: 'SwipeCell 滑动单元格',
+              to: '/swipecell'
             },
             {
-              title: 'Toast 轻提示'
+              title: 'Toast 轻提示',
+              to: '/toast'
             }
           ]
         },

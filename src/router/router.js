@@ -28,6 +28,8 @@ import ActionSheet from '@showcase/actionsheet'
 import Dialog from '@showcase/dialog'
 import Loading from '@showcase/loading'
 import Notify from '@showcase/notify'
+import Toast from '@showcase/toast'
+import SwipeCell from '@showcase/swipecell'
 
 const routes = [{
   path: '*',
@@ -122,6 +124,12 @@ const routes = [{
 }, {
   path: '/notify',
   component: Notify
+}, {
+  path: '/toast',
+  component: Toast
+}, {
+  path: '/swipecell',
+  component: SwipeCell
 }]
 
 export default routes
