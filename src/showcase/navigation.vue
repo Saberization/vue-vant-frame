@@ -33,7 +33,7 @@ export default {
   },
   data () {
     return {
-      activeNames: ['1'],
+      activeNames: [1, 2, 3, 4, 5, 6],
       menu: [
         {
           title: '基础组件',
@@ -100,16 +100,20 @@ export default {
               to: '/search'
             },
             {
-              title: 'Slider 滑块'
+              title: 'Slider 滑块',
+              to: '/slider'
             },
             {
-              title: 'Stepper 步进器'
+              title: 'Stepper 步进器',
+              to: '/stepper'
             },
             {
-              title: 'Switch 开关'
+              title: 'Switch 开关',
+              to: '/switch'
             },
             {
-              title: 'SwitchCell 开关单元格'
+              title: 'SwitchCell 开关单元格',
+              to: '/switchcell'
             },
             {
               title: 'Uploader 图片上传'

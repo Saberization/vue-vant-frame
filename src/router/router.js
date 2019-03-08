@@ -19,6 +19,10 @@ import Picker from '@showcase/picker'
 import Radio from '@showcase/radio'
 import Rate from '@showcase/rate'
 import Search from '@showcase/search'
+import Slider from '@showcase/slider'
+import Stepper from '@showcase/stepper'
+import Switch from '@showcase/switch'
+import SwitchCell from '@showcase/switchcell'
 
 const routes = [{
   path: '*',
@@ -86,6 +90,18 @@ const routes = [{
 }, {
   path: '/search',
   component: Search
+}, {
+  path: '/slider',
+  component: Slider
+}, {
+  path: '/stepper',
+  component: Stepper
+}, {
+  path: '/switch',
+  component: Switch
+}, {
+  path: '/switchcell',
+  component: SwitchCell
 }]
 
 export default routes

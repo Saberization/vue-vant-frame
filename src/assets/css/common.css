@@ -299,8 +299,12 @@ input[type=search] {
   font-size: 14px;
 }
 
+.cell-title:first-child {
+  margin-top: 10px;
+}
+
 .cell-title {
-  margin-top: 15px;
+  margin-top: 30px;
   margin-bottom: 10px;
   padding-left: 10px;
   color: rgba(69, 90, 100, .6);
