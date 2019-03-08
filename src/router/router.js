@@ -23,6 +23,7 @@ import Slider from '@showcase/slider'
 import Stepper from '@showcase/stepper'
 import Switch from '@showcase/switch'
 import SwitchCell from '@showcase/switchcell'
+import Uploader from '@showcase/uploader'
 
 const routes = [{
   path: '*',
@@ -102,6 +103,9 @@ const routes = [{
 }, {
   path: '/switchcell',
   component: SwitchCell
+}, {
+  path: '/uploader',
+  component: Uploader
 }]
 
 export default routes

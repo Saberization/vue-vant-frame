@@ -116,7 +116,8 @@ export default {
               to: '/switchcell'
             },
             {
-              title: 'Uploader 图片上传'
+              title: 'Uploader 图片上传',
+              to: '/uploader'
             }
           ]
         },
