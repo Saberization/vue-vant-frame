@@ -26,6 +26,8 @@ import SwitchCell from '@showcase/switchcell'
 import Uploader from '@showcase/uploader'
 import ActionSheet from '@showcase/actionsheet'
 import Dialog from '@showcase/dialog'
+import Loading from '@showcase/loading'
+import Notify from '@showcase/notify'
 
 const routes = [{
   path: '*',
@@ -114,6 +116,12 @@ const routes = [{
 }, {
   path: '/dialog',
   component: Dialog
+}, {
+  path: '/loading',
+  component: Loading
+}, {
+  path: '/notify',
+  component: Notify
 }]
 
 export default routes

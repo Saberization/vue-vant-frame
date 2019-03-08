@@ -133,10 +133,12 @@ export default {
               to: '/dialog'
             },
             {
-              title: 'Loading 加载'
+              title: 'Loading 加载',
+              to: '/loading'
             },
             {
-              title: 'Notify 消息通知'
+              title: 'Notify 消息通知',
+              to: '/notify'
             },
             {
               title: 'PullRefresh 下拉刷新'
