@@ -34,6 +34,7 @@ import PullRefresh from '@showcase/pullrefresh'
 import Circle from '@showcase/circle'
 import Collapse from '@showcase/collapse'
 import ImagePreview from '@showcase/imagepreview'
+import LazyLoad from '@showcase/lazyload'
 
 const routes = [{
   path: '*',
@@ -146,6 +147,9 @@ const routes = [{
 }, {
   path: '/imagepreview',
   component: ImagePreview
+}, {
+  path: '/lazyload',
+  component: LazyLoad
 }]
 
 export default routes

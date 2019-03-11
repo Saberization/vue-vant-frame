@@ -170,7 +170,8 @@ export default {
               to: '/imagepreview'
             },
             {
-              title: 'LazyLoad 图片懒加载'
+              title: 'LazyLoad 图片懒加载',
+              to: '/lazyload'
             },
             {
               title: 'List 列表'
