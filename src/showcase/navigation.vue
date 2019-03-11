@@ -166,7 +166,8 @@ export default {
               to: '/collapse'
             },
             {
-              title: 'ImagePreview 图片预览'
+              title: 'ImagePreview 图片预览',
+              to: '/imagepreview'
             },
             {
               title: 'LazyLoad 图片懒加载'

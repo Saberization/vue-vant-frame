@@ -33,6 +33,7 @@ import SwipeCell from '@showcase/swipecell'
 import PullRefresh from '@showcase/pullrefresh'
 import Circle from '@showcase/circle'
 import Collapse from '@showcase/collapse'
+import ImagePreview from '@showcase/imagepreview'
 
 const routes = [{
   path: '*',
@@ -142,6 +143,9 @@ const routes = [{
 }, {
   path: '/collapse',
   component: Collapse
+}, {
+  path: '/imagepreview',
+  component: ImagePreview
 }]
 
 export default routes
