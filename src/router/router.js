@@ -31,6 +31,8 @@ import Notify from '@showcase/notify'
 import Toast from '@showcase/toast'
 import SwipeCell from '@showcase/swipecell'
 import PullRefresh from '@showcase/pullrefresh'
+import Circle from '@showcase/circle'
+import Collapse from '@showcase/collapse'
 
 const routes = [{
   path: '*',
@@ -134,6 +136,12 @@ const routes = [{
 }, {
   path: '/pullrefresh',
   component: PullRefresh
+}, {
+  path: '/circle',
+  component: Circle
+}, {
+  path: '/collapse',
+  component: Collapse
 }]
 
 export default routes

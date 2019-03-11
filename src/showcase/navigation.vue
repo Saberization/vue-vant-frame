@@ -158,10 +158,12 @@ export default {
           title: '展示组件',
           children: [
             {
-              title: 'Circle 环形进度条'
+              title: 'Circle 环形进度条',
+              to: '/circle'
             },
             {
-              title: 'Collapse 折叠面板'
+              title: 'Collapse 折叠面板',
+              to: '/collapse'
             },
             {
               title: 'ImagePreview 图片预览'
