@@ -1,4 +1,7 @@
-import { request, requestAll } from './request';
+import {
+  request,
+  requestAll
+} from './request'
 
 /**
  * 打开页面
@@ -10,9 +13,8 @@ const openPage = function (url) {
 
   if (typeof pathname === 'string') {
     if (url.indexOf('http') !== -1) {
-      location.href = url;
-    }
-    else {
+      location.href = url
+    } else {
       let pathArr = pathname.split('/')
 
       pathArr.length = pathArr.length - 1

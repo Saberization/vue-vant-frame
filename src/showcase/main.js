@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import routes from '@router/router'
 import Showcase from './showcase'
 import '@assets/css/common.css'
+import 'vant/lib/icon/local.css'
 
 Vue.use(VueRouter)
 

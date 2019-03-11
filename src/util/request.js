@@ -34,7 +34,7 @@ let createInterceptors = function () {
   })
 }
 
-function request(options) {
+function request (options) {
   options = Util.extend(defaultSettings, options)
   params = {
     url: options.url,
@@ -45,9 +45,9 @@ function request(options) {
     withCredentials: options.withCredentials
   }
 
-  const contentType = options.contentType,
-    headers = options.headers,
-    isAutoProxy = options.isAutoProxy
+  const contentType = options.contentType
+  const headers = options.headers
+  const isAutoProxy = options.isAutoProxy
 
   for (let key in headers) {
     setHeader(key, headers[key])
@@ -65,7 +65,7 @@ function request(options) {
   return axios(params)
 }
 
-function requestAll() {
+function requestAll () {
   return axios.all([].slice.call(arguments))
 }
 

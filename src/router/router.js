@@ -30,6 +30,7 @@ import Loading from '@showcase/loading'
 import Notify from '@showcase/notify'
 import Toast from '@showcase/toast'
 import SwipeCell from '@showcase/swipecell'
+import PullRefresh from '@showcase/pullrefresh'
 
 const routes = [{
   path: '*',
@@ -130,6 +131,9 @@ const routes = [{
 }, {
   path: '/swipecell',
   component: SwipeCell
+}, {
+  path: '/pullrefresh',
+  component: PullRefresh
 }]
 
 export default routes

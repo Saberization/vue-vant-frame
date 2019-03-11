@@ -141,7 +141,8 @@ export default {
               to: '/notify'
             },
             {
-              title: 'PullRefresh 下拉刷新'
+              title: 'PullRefresh 下拉刷新',
+              to: '/pullrefresh'
             },
             {
               title: 'SwipeCell 滑动单元格',
