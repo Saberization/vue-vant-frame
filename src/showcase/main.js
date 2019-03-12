@@ -6,7 +6,9 @@ import '@assets/css/common.css'
 import 'vant/lib/icon/local.css'
 import { Lazyload } from 'vant'
 
-Vue.use(VueRouter).use(Lazyload, {lazyComponent: true})
+Vue.use(VueRouter).use(Lazyload, {
+  lazyComponent: true
+})
 
 Vue.config.devtools = true
 Vue.config.productionTip = false
