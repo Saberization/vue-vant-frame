@@ -35,6 +35,7 @@ import Circle from '@showcase/circle'
 import Collapse from '@showcase/collapse'
 import ImagePreview from '@showcase/imagepreview'
 import LazyLoad from '@showcase/lazyload'
+import NoticeBar from '@showcase/noticebar'
 
 const routes = [{
   path: '*',
@@ -150,6 +151,9 @@ const routes = [{
 }, {
   path: '/lazyload',
   component: LazyLoad
+}, {
+  path: '/noticebar',
+  component: NoticeBar
 }]
 
 export default routes

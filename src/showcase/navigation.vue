@@ -177,7 +177,8 @@ export default {
               title: 'List 列表'
             },
             {
-              title: 'NoticeBar 通告栏'
+              title: 'NoticeBar 通告栏',
+              to: '/noticebar'
             },
             {
               title: 'Panel 面板'
