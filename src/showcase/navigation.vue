@@ -181,7 +181,8 @@ export default {
               to: '/noticebar'
             },
             {
-              title: 'Panel 面板'
+              title: 'Panel 面板',
+              to: '/panel'
             },
             {
               title: 'Progress 进度条'

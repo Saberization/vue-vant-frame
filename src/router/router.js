@@ -36,6 +36,7 @@ import Collapse from '@showcase/collapse'
 import ImagePreview from '@showcase/imagepreview'
 import LazyLoad from '@showcase/lazyload'
 import NoticeBar from '@showcase/noticebar'
+import Panel from '@showcase/panel'
 
 const routes = [{
   path: '*',
@@ -154,6 +155,9 @@ const routes = [{
 }, {
   path: '/noticebar',
   component: NoticeBar
+}, {
+  path: '/panel',
+  component: Panel
 }]
 
 export default routes

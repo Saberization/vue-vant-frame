@@ -295,6 +295,26 @@ th {
   padding: 0
 }
 
+.l {
+  float: left;
+}
+
+.r {
+  float: right;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden
+}
+
+.clearfix {
+  *+height: 1%;
+}
+
 input[type=search] {
   font-size: 14px;
 }
