@@ -185,7 +185,8 @@ export default {
               to: '/panel'
             },
             {
-              title: 'Progress 进度条'
+              title: 'Progress 进度条',
+              to: '/progress'
             },
             {
               title: 'Steps 步骤条'

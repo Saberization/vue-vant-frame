@@ -37,6 +37,7 @@ import ImagePreview from '@showcase/imagepreview'
 import LazyLoad from '@showcase/lazyload'
 import NoticeBar from '@showcase/noticebar'
 import Panel from '@showcase/panel'
+import Progress from '@showcase/progress'
 
 const routes = [{
   path: '*',
@@ -158,6 +159,9 @@ const routes = [{
 }, {
   path: '/panel',
   component: Panel
+}, {
+  path: '/progress',
+  component: Progress
 }]
 
 export default routes
