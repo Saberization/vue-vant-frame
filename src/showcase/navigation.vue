@@ -189,7 +189,8 @@ export default {
               to: '/progress'
             },
             {
-              title: 'Steps 步骤条'
+              title: 'Steps 步骤条',
+              to: '/step'
             },
             {
               title: 'Swipe 轮播'

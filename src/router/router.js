@@ -38,6 +38,7 @@ import LazyLoad from '@showcase/lazyload'
 import NoticeBar from '@showcase/noticebar'
 import Panel from '@showcase/panel'
 import Progress from '@showcase/progress'
+import Step from '@showcase/step'
 
 const routes = [{
   path: '*',
@@ -162,6 +163,9 @@ const routes = [{
 }, {
   path: '/progress',
   component: Progress
+}, {
+  path: '/step',
+  component: Step
 }]
 
 export default routes
