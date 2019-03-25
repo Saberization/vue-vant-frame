@@ -243,7 +243,8 @@ export default {
               to: '/addressedit'
             },
             {
-              title: 'AddressList 地址列表'
+              title: 'AddressList 地址列表',
+              to: '/addresslist'
             },
             {
               title: 'Area 省市区选择'
