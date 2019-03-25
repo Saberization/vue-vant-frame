@@ -44,6 +44,7 @@ import Tag from '@showcase/tag'
 import InlineStyle from '@showcase/inlinestyle'
 import AddressEdit from '@showcase/addressedit'
 import AddressList from '@showcase/addresslist'
+import Area from '@showcase/area'
 
 const routes = [{
   path: '*',
@@ -186,6 +187,9 @@ const routes = [{
 }, {
   path: '/addresslist',
   component: AddressList
+}, {
+  path: '/area',
+  component: Area
 }]
 
 export default routes

@@ -1,3 +1,4 @@
+/* eslint-disable */
 const cityData3 = [{
 	value: '110000',
 	text: '北京市',

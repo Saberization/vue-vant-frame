@@ -247,7 +247,8 @@ export default {
               to: '/addresslist'
             },
             {
-              title: 'Area 省市区选择'
+              title: 'Area 省市区选择',
+              to: '/area'
             },
             {
               title: 'Card 商品卡片'

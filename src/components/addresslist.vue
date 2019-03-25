@@ -85,9 +85,6 @@ export default {
     onSelectDisabled (item, index) {
       this.$emit('select-disabled', item, index)
     }
-  },
-  created () {
-    console.log(this.addrid) 
   }
 }
 </script>
