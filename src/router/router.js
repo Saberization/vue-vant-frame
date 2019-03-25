@@ -40,6 +40,7 @@ import Panel from '@showcase/panel'
 import Progress from '@showcase/progress'
 import Step from '@showcase/step'
 import Gallery from '@showcase/gallery'
+import Tag from '@showcase/tag'
 
 const routes = [{
   path: '*',
@@ -170,6 +171,9 @@ const routes = [{
 }, {
   path: '/gallery',
   component: Gallery
+}, {
+  path: '/tag',
+  component: Tag
 }]
 
 export default routes

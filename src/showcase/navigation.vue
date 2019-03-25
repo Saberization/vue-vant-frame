@@ -197,7 +197,8 @@ export default {
               to: '/gallery'
             },
             {
-              title: 'Tag 标记'
+              title: 'Tag 标记',
+              to: '/tag'
             },
             {
               title: '内置样式'
