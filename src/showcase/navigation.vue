@@ -193,7 +193,8 @@ export default {
               to: '/step'
             },
             {
-              title: 'Swipe 轮播'
+              title: 'Gallery 轮播',
+              to: '/gallery'
             },
             {
               title: 'Tag 标记'

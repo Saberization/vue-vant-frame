@@ -39,6 +39,7 @@ import NoticeBar from '@showcase/noticebar'
 import Panel from '@showcase/panel'
 import Progress from '@showcase/progress'
 import Step from '@showcase/step'
+import Gallery from '@showcase/gallery'
 
 const routes = [{
   path: '*',
@@ -166,6 +167,9 @@ const routes = [{
 }, {
   path: '/step',
   component: Step
+}, {
+  path: '/gallery',
+  component: Gallery
 }]
 
 export default routes

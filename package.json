@@ -9,7 +9,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "vant": "^1.6.7",
+    "vant": "^1.6.11",
     "vue": "^2.6.6",
     "vue-router": "^3.0.2",
     "vuex": "^3.0.1"
