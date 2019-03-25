@@ -42,6 +42,7 @@ import Step from '@showcase/step'
 import Gallery from '@showcase/gallery'
 import Tag from '@showcase/tag'
 import InlineStyle from '@showcase/inlinestyle'
+import AddressEdit from '@showcase/addressedit'
 
 const routes = [{
   path: '*',
@@ -178,6 +179,9 @@ const routes = [{
 }, {
   path: '/inlinestyle',
   component: InlineStyle
+}, {
+  path: '/addressedit',
+  component: AddressEdit
 }]
 
 export default routes

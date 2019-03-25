@@ -12,6 +12,7 @@
     :width="width"
     :height="height"
     @change="onChange"
+    ref="swipe"
   >
     <van-swipe-item v-for="(value, index) in data" :key="index" :guid="value.guid" @click="onClick">
       <img v-if="value.pic && value.pic.length >= 1 && !lazyload" :src="value.pic" alt="" class="van-swipe-item__img">
@@ -88,6 +89,9 @@ export default {
     },
     onClick () {
       this.$emit('click', event.target.parentElement.getAttribute('guid'))
+    },
+    swipeTo (index) {
+      this.$refs.swipe.swipeTo(index)
     }
   }
 }

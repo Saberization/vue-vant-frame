@@ -239,7 +239,8 @@ export default {
           title: '业务组件',
           children: [
             {
-              title: 'AddressEdit 地址编辑'
+              title: 'AddressEdit 地址编辑',
+              to: '/addressedit'
             },
             {
               title: 'AddressList 地址列表'
