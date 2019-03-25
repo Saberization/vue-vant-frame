@@ -201,7 +201,8 @@ export default {
               to: '/tag'
             },
             {
-              title: '内置样式'
+              title: '内置样式',
+              to: '/inlinestyle'
             }
           ]
         },

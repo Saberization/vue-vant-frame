@@ -41,6 +41,7 @@ import Progress from '@showcase/progress'
 import Step from '@showcase/step'
 import Gallery from '@showcase/gallery'
 import Tag from '@showcase/tag'
+import InlineStyle from '@showcase/inlinestyle'
 
 const routes = [{
   path: '*',
@@ -174,6 +175,9 @@ const routes = [{
 }, {
   path: '/tag',
   component: Tag
+}, {
+  path: '/inlinestyle',
+  component: InlineStyle
 }]
 
 export default routes
