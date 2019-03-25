@@ -97,36 +97,36 @@ export default {
           this.visibleFade = true
           setTimeout(() => {
             this.visibleFade = false
-          }, 600);
-          break;
+          }, 600)
+          break
 
         case 'SlideUp':
           this.visibleSlideUp = true
           setTimeout(() => {
             this.visibleSlideUp = false
-          }, 600);
-          break;
+          }, 600)
+          break
 
         case 'SlideDown':
           this.visibleSlideDown = true
           setTimeout(() => {
             this.visibleSlideDown = false
-          }, 600);
-          break;
+          }, 600)
+          break
 
         case 'SlideLeft':
           this.visibleSlideLeft = true
           setTimeout(() => {
             this.visibleSlideLeft = false
-          }, 600);
-          break;
+          }, 600)
+          break
 
         case 'SlideRight':
           this.visibleSlideRight = true
           setTimeout(() => {
             this.visibleSlideRight = false
-          }, 600);
-          break;
+          }, 600)
+          break
       }
     }
   }
@@ -144,4 +144,3 @@ export default {
     background-color: #1989fa;
   }
 </style>
-

@@ -40,7 +40,9 @@
       "plugin:vue/essential",
       "@vue/standard"
     ],
-    "rules": {},
+    "rules": {
+      
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

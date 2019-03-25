@@ -37,7 +37,7 @@
 
     <van-picker
       v-model="showPicker3"
-      :data="pickerData3"
+      :data="cityData3"
       @confirm="onConfirm"
     ></van-picker>
 
@@ -49,7 +49,7 @@
 
     <van-picker
       v-model="showLoadingPicker"
-      :data="pickerData3"
+      :data="cityData3"
       loading
       @confirm="onConfirm"
     ></van-picker>
@@ -60,6 +60,7 @@
 import vanHeader from '@components/header'
 import vanPicker from '@components/picker'
 import vanButton from '@components/button'
+import cityData3 from '@assets/lib/city.data-3.js'
 
 export default {
   name: 'Picker',
@@ -116,76 +117,7 @@ export default {
           id: '宁波'
         }]
       }],
-      pickerData3: [{
-        text: '北京市',
-        id: '北京市',
-        children: [{
-          text: '北京市',
-          id: '北京市',
-          children: [{
-            text: '东城区',
-            id: '东城区'
-          }, {
-            text: '西城区',
-            id: '西城区'
-          }, {
-            text: '崇文区',
-            id: '崇文区'
-          }, {
-            text: '宣武区',
-            id: '宣武区'
-          }]
-        }]
-      }, {
-        text: '河北省',
-        id: '河北省',
-        children: [{
-          text: '石家庄市',
-          id: '石家庄市',
-          children: [{
-            text: '长安区',
-            id: '长安区'
-          }, {
-            text: '桥东区',
-            id: '桥东区'
-          }, {
-            text: '桥西区',
-            id: '桥西区'
-          }, {
-            text: '新华区',
-            id: '新华区'
-          }]
-        }, {
-          text: '唐山市',
-          id: '唐山市',
-          children: [{
-            text: '路南区',
-            id: '路南区'
-          }, {
-            text: '路北区',
-            id: '路北区'
-          }, {
-            text: '古冶区',
-            id: '古冶区'
-          }, {
-            text: '开平区',
-            id: '开平区'
-          }]
-        }, {
-          text: '秦皇岛市',
-          id: '秦皇岛市',
-          children: [{
-            text: '海港区',
-            id: '海港区'
-          }, {
-            text: '山海关区',
-            id: '山海关区'
-          }, {
-            text: '北戴河区',
-            id: '北戴河区'
-          }]
-        }]
-      }],
+      cityData3,
       pickerData4: [{
         text: 'saber',
         id: 'saber'
