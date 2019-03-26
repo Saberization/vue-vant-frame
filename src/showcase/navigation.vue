@@ -255,13 +255,8 @@ export default {
               to: '/card'
             },
             {
-              title: 'Contact 联系人'
-            },
-            {
-              title: 'Coupon 优惠券'
-            },
-            {
-              title: 'GoodsAction 商品导航'
+              title: 'GoodsAction 商品导航',
+              to: '/goodsaction'
             },
             {
               title: 'SubmitBar 提交订单栏'
