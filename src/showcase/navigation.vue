@@ -251,7 +251,8 @@ export default {
               to: '/area'
             },
             {
-              title: 'Card 商品卡片'
+              title: 'Card 商品卡片',
+              to: '/card'
             },
             {
               title: 'Contact 联系人'
