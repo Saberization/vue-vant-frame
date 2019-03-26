@@ -48,6 +48,8 @@ import Area from '@showcase/area'
 import Card from '@showcase/card'
 import Contact from '@showcase/contact'
 import GoodsAction from '@showcase/goodsaction'
+import SubmitBar from '@showcase/submitbar'
+// import Sku from '@showcase/sku'
 
 const routes = [{
   path: '*',
@@ -202,6 +204,9 @@ const routes = [{
 }, {
   path: '/goodsaction',
   component: GoodsAction
+}, {
+  path: '/submitbar',
+  component: SubmitBar
 }]
 
 export default routes

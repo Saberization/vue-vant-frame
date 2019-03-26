@@ -259,10 +259,12 @@ export default {
               to: '/goodsaction'
             },
             {
-              title: 'SubmitBar 提交订单栏'
+              title: 'SubmitBar 提交订单栏',
+              to: '/submitbar'
             },
             {
-              title: 'Sku 商品规格'
+              title: 'Sku 商品规格',
+              to: '/sku'
             }
           ]
         }
