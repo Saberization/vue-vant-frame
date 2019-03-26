@@ -123,6 +123,7 @@ export default {
     },
     data (value) {
       this.pickerData = value
+      this.changeColumnValues()
     }
   },
   methods: {
@@ -162,55 +163,58 @@ export default {
           picker.setColumnValues(2, col2Values[col2Index].children)
         }
       }
+    },
+    changeColumnValues () {
+      this.showPopup = this.show
+      const data = this.data
+      let columns1Values = []
+      let columns2Values = []
+      let columns3Values = []
+
+      if (Array.isArray(data)) {
+        Array.from(data).forEach((e, i) => {
+          const children = e.children
+          if (children && children.length >= 1) {
+            columns1Values.push(e)
+            if (i === 0) {
+              columns2Values = children
+
+              const _children = children[0].children
+              if (Array.isArray(_children)) {
+                columns3Values = _children
+              }
+            }
+          } else {
+            this.pickerData.push(e)
+          }
+        })
+
+        // 两列
+        if (columns3Values.length >= 1) {
+          this.pickerData = [{
+            values: columns1Values,
+            className: 'column1'
+          }, {
+            values: columns2Values,
+            className: 'column2'
+          }, {
+            values: columns3Values,
+            className: 'column3'
+          }]
+        } else if (columns2Values.length >= 1) {
+          this.pickerData = [{
+            values: columns1Values,
+            className: 'column1'
+          }, {
+            values: columns2Values,
+            className: 'column2'
+          }]
+        }
+      }
     }
   },
   created () {
-    this.showPopup = this.show
-    const data = this.data
-    let columns1Values = []
-    let columns2Values = []
-    let columns3Values = []
-
-    if (Array.isArray(data)) {
-      Array.from(data).forEach((e, i) => {
-        const children = e.children
-        if (children && children.length >= 1) {
-          columns1Values.push(e)
-          if (i === 0) {
-            columns2Values = children
-
-            const _children = children[0].children
-            if (Array.isArray(_children)) {
-              columns3Values = _children
-            }
-          }
-        } else {
-          this.pickerData.push(e)
-        }
-      })
-
-      // 两列
-      if (columns3Values.length >= 1) {
-        this.pickerData = [{
-          values: columns1Values,
-          className: 'column1'
-        }, {
-          values: columns2Values,
-          className: 'column2'
-        }, {
-          values: columns3Values,
-          className: 'column3'
-        }]
-      } else if (columns2Values.length >= 1) {
-        this.pickerData = [{
-          values: columns1Values,
-          className: 'column1'
-        }, {
-          values: columns2Values,
-          className: 'column2'
-        }]
-      }
-    }
+    this.changeColumnValues()
   }
 }
 </script>
