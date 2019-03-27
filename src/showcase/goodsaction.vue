@@ -72,10 +72,10 @@ export default {
   },
   methods: {
     onClickMiniBtn () {
-      Toast('点击图标');
+      Toast('点击图标')
     },
     onClickBigBtn () {
-      Toast('点击按钮');
+      Toast('点击按钮')
     }
   }
 }
