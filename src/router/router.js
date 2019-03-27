@@ -49,7 +49,7 @@ import Card from '@showcase/card'
 import Contact from '@showcase/contact'
 import GoodsAction from '@showcase/goodsaction'
 import SubmitBar from '@showcase/submitbar'
-// import Sku from '@showcase/sku'
+import Sku from '@showcase/sku'
 
 const routes = [{
   path: '*',
@@ -207,6 +207,9 @@ const routes = [{
 }, {
   path: '/submitbar',
   component: SubmitBar
+}, {
+  path: '/sku',
+  component: Sku
 }]
 
 export default routes
