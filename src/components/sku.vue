@@ -1,5 +1,6 @@
 <template>
   <van-sku
+    v-model="isShow"
     :sku="sku"
     :goods="goods"
     :goods-id="goodsId"
@@ -67,6 +68,10 @@ export default {
   components: {
     [Sku.name]: Sku
   },
+  model: {
+    prop: 'showbase',
+    event: 'changeStatus'
+  },
   props: {
     sku: Object,
     goods: Object,
@@ -133,6 +138,24 @@ export default {
     showSoldOutSku: {
       type: Boolean,
       default: true
+    },
+    showbase: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data () {
+    return {
+      isShow: this.showbase
+    }
+  },
+  watch: {
+    showbase (value) {
+      this.isShow = value
+    },
+    isShow (value) {
+      console.log(value);
+      this.$emit('changeStatus', value)
     }
   },
   methods: {
