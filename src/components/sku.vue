@@ -18,6 +18,10 @@
     :get-container="getContainer"
     :initial-sku="initialSku"
     :show-soldout-sku="showSoldOutSku"
+    @add-cart="onAddCart"
+    @buy-clicked="onBuyClicked"
+    @stepper-change="onStepperChange"
+    @sku-selected="onSkuSelected"
     ref="sku"
   >
     <slot
@@ -134,6 +138,18 @@ export default {
   methods: {
     getSkuData () {
       return this.$refs.sku.getSkuData();
+    },
+    onAddCart (skuData) {
+      this.$emit('add-cart', skuData)
+    },
+    onBuyClicked (skuData) {
+      this.$emit('buy-clicked', skuData)
+    },
+    onStepperChange (value) {
+      this.$emit('stepper-change', value)
+    },
+    onSkuSelected ({ skuValue, selectedSku, selectedSkuComb }) {
+      this.$emit('sku-selected', { skuValue, selectedSku, selectedSkuComb })
     }
   }
 }
