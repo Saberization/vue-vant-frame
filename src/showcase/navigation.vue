@@ -174,7 +174,7 @@ export default {
               to: '/lazyload'
             },
             {
-              title: 'PullUp 上拉刷新',
+              title: 'PullUp 上拉加载',
               to: '/pullup'
             },
             {
