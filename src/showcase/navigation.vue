@@ -141,8 +141,8 @@ export default {
               to: '/notify'
             },
             {
-              title: 'PullRefresh 下拉刷新',
-              to: '/pullrefresh'
+              title: 'PullDown 下拉刷新',
+              to: '/pulldown'
             },
             {
               title: 'SwipeCell 滑动单元格',
@@ -174,7 +174,8 @@ export default {
               to: '/lazyload'
             },
             {
-              title: 'List 列表'
+              title: 'PullUp 上拉刷新',
+              to: '/pullup'
             },
             {
               title: 'NoticeBar 通告栏',
@@ -261,10 +262,6 @@ export default {
             {
               title: 'SubmitBar 提交订单栏',
               to: '/submitbar'
-            },
-            {
-              title: 'Sku 商品规格',
-              to: '/sku'
             }
           ]
         }

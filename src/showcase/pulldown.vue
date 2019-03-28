@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <van-header
-      title="PullRefresh 下拉刷新"
+      title="PullDown 下拉刷新"
       left-arrow
     ></van-header>
-    <van-pull-refresh
+    <van-pulldown
       v-model="loading"
       top="56"
       class="mt10"
@@ -13,21 +13,21 @@
       <van-cell-group>
         <van-cell v-for="(item, index) in listdata" :key="index" :title="item.title"></van-cell>
       </van-cell-group>
-    </van-pull-refresh>
+    </van-pulldown>
   </div>
 </template>
 
 <script>
 import vanHeader from '@components/header'
-import vanPullRefresh from '@components/pullrefresh'
+import vanPulldown from '@components/pulldown'
 import vanCell from '@components/cell'
 import vanCellGroup from '@components/cellgroup'
 
 export default {
-  name: 'PullRefresh',
+  name: 'PullDown',
   components: {
     vanHeader,
-    vanPullRefresh,
+    vanPulldown,
     vanCell,
     vanCellGroup
   },
@@ -39,7 +39,7 @@ export default {
     }
   },
   mounted () {
-    this.$refs.refresh.PullRefresh({
+    this.$refs.refresh.PullDown({
       url: 'http://yapi.demo.qunar.com/mock/43176/mock/getlist',
       dataRequest: function (currPage, requestCallback) {
         return {

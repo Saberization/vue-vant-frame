@@ -95,7 +95,7 @@ export default {
       })
       this.$emit('refresh')
     },
-    PullRefresh (options) {
+    PullDown (options) {
       // 合并下拉刷新配置项
       Object.assign(this.refreshSettings, options.setting)
       Object.assign(this.settings, options)

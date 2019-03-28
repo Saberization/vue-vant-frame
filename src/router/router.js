@@ -30,7 +30,7 @@ import Loading from '@showcase/loading'
 import Notify from '@showcase/notify'
 import Toast from '@showcase/toast'
 import SwipeCell from '@showcase/swipecell'
-import PullRefresh from '@showcase/pullrefresh'
+import PullDown from '@showcase/pulldown'
 import Circle from '@showcase/circle'
 import Collapse from '@showcase/collapse'
 import ImagePreview from '@showcase/imagepreview'
@@ -49,7 +49,7 @@ import Card from '@showcase/card'
 import Contact from '@showcase/contact'
 import GoodsAction from '@showcase/goodsaction'
 import SubmitBar from '@showcase/submitbar'
-import Sku from '@showcase/sku'
+import PullUp from '@showcase/pullup'
 
 const routes = [{
   path: '*',
@@ -151,8 +151,8 @@ const routes = [{
   path: '/swipecell',
   component: SwipeCell
 }, {
-  path: '/pullrefresh',
-  component: PullRefresh
+  path: '/pulldown',
+  component: PullDown
 }, {
   path: '/circle',
   component: Circle
@@ -208,8 +208,8 @@ const routes = [{
   path: '/submitbar',
   component: SubmitBar
 }, {
-  path: '/sku',
-  component: Sku
+  path: '/pullup',
+  component: PullUp
 }]
 
 export default routes
