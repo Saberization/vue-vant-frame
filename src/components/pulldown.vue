@@ -2,14 +2,14 @@
   <van-pull-refresh
     v-model="loading"
     :style="{top: `${parseInt(top)}px`}"
-    :pulling-text="refreshSettings.pullingText"
-    :loosing-text="refreshSettings.loosingText"
-    :loading-text="refreshSettings.loadingText"
-    :success-text="refreshSettings.successText"
-    :success-duration="refreshSettings.successDuration"
-    :animation-duration="refreshSettings.animationDuration"
-    :head-height="refreshSettings.headHeight"
-    :disabled="refreshSettings.disabled"
+    :pulling-text="refreshSetting.pullingText"
+    :loosing-text="refreshSetting.loosingText"
+    :loading-text="refreshSetting.loadingText"
+    :success-text="refreshSetting.successText"
+    :success-duration="refreshSetting.successDuration"
+    :animation-duration="refreshSetting.animationDuration"
+    :head-height="refreshSetting.headHeight"
+    :disabled="refreshSetting.disabled"
     @refresh="onRefresh"
   >
     <slot></slot>
@@ -55,7 +55,7 @@ export default {
   data () {
     return {
       loading: false,
-      refreshSettings: {
+      refreshSetting: {
         pullingText: '下拉即可刷新',
         loosingText: '释放即可刷新',
         loadingText: '加载中',
@@ -66,16 +66,16 @@ export default {
         disabled: false,
         isLoading: false
       },
-      settings: {
+      ajaxSetting: {
         type: 'post',
         initPageIndex: 0,
-        pageSize: 10,
         timeout: 6000,
-        delay: 300,
         contentType: 'application/x-www-form-urlencoded',
         headers: {}
       },
-      requestData: null
+      currentPage: 0,
+      options: {},
+      requestData: {}
     }
   },
   watch: {
@@ -91,46 +91,46 @@ export default {
       this.getRequestData(() => {
         setTimeout(() => {
           this.loading = false
-        }, 30)
+        }, this.delay);
       })
       this.$emit('refresh')
     },
     PullDown (options) {
       // 合并下拉刷新配置项
-      Object.assign(this.refreshSettings, options.setting)
-      Object.assign(this.settings, options)
+      Object.assign(this.refreshSetting, options.setting)
+      Object.assign(this.ajaxSetting, options.ajaxSetting)
+      this.options = options
+      this.currentPage = this.options.initPageIndex
+      this.delay = this.options.delay || this.delay
       this.getRequestData()
     },
     getRequestData (complete) {
-      const dataRequest = this.settings.dataRequest
-      let requestData = null
+      const dataRequest = this.options.dataRequest
 
       if (dataRequest && typeof dataRequest === 'function') {
-        this.requestData = dataRequest(this.settings.initPageIndex, (data) => {
+        let requestData = null
+
+        this.requestData = dataRequest(this.currentPage, (data) => {
           requestData = data
         })
-        this.requestData = this.requestData === undefined ? requestData : this.requestData
-        if (this.settings.delay > 0) {
-          setTimeout(() => {
-            this.request(this.settings, complete)
-          }, this.settings.delay)
-        } else {
-          this.request(this.settings, complete)
-        }
+        this.requestData = this.requestData ? this.requestData : requestData
+        this.request(complete)
       } else {
-        console.error('请传入 dataRequest')
+        console.error('请传入 dataRequest 函数')
       }
     },
-    request (options, complete) {
+    request (complete) {
+      const ajaxSetting = this.ajaxSetting
+      const options = this.options
       const success = options.success
       const error = options.error
 
       Util.request({
         url: options.url,
-        method: options.type,
+        method: ajaxSetting.type,
         data: this.requestData,
-        headers: options.headers,
-        timeout: options.timeout
+        headers: ajaxSetting.headers,
+        timeout: ajaxSetting.timeout
       }).then((response) => {
         if (complete && typeof complete === 'function') {
           complete()

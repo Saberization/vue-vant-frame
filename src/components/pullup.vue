@@ -1,15 +1,15 @@
 <template>
   <van-list
-    :loading="loading"
-    :finished="finished"
-    :error="error"
-    :offset="offset"
-    :loading-text="loadingText"
-    :finished-text="finishedText"
-    :error-text="errorText"
-    :immediate-check="immediateCheck"
+    v-model="isLoad"
+    :finished="refreshSetting.finished"
+    :error="refreshSetting.error"
+    :offset="refreshSetting.offset"
+    :loading-text="refreshSetting.loadingText"
+    :finished-text="refreshSetting.finishedText"
+    :error-text="refreshSetting.errorText"
+    :immediate-check="refreshSetting.immediateCheck"
     @load="onLoad"
-    ref="pulldown"
+    ref="pullUp"
   >
     <slot></slot>
     <slot
@@ -21,46 +21,69 @@
 
 <script>
 import { List } from 'vant'
+import Util from '@util/'
 
 export default {
   name: 'PullUp',
   components: {
     [List.name]: List
   },
+  model: {
+    prop: 'loading',
+    event: 'changeState'
+  },
   props: {
     loading: {
       type: Boolean,
       default: false
+    }
+  },
+  data () {
+    return {
+      isLoad: this.loading,
+      refreshSetting: {
+        finished: false,
+        error: false,
+        offset: 300,
+        loadingText: '加载中...',
+        finishedText: '没有更多',
+        errorText: '请求失败，点击重新加载',
+        immediateCheck: true
+      },
+      ajaxSetting: {
+        type: 'post',
+        initPageIndex: 0,
+        pageSize: 10,
+        timeout: 6000,
+        delay: 300,
+        contentType: 'application/x-www-form-urlencoded',
+        headers: {}
+      },
+      requestData: {}
+    }
+  },
+  watch: {
+    loading (value) {
+      this.isLoad = value
     },
-    finished: {
-      type: Boolean,
-      default: false
-    },
-    error: {
-      type: Boolean,
-      default: false
-    },
-    offset: {
-      type: Number,
-      default: 300
-    },
-    loadingText: {
-      type: String,
-      default: '加载中...'
-    },
-    finishedText: String,
-    errorText: String,
-    immediateCheck: {
-      type: Boolean,
-      default: true
+    isLoad (value) {
+      this.$emit('changeState', value)
     }
   },
   methods: {
     check () {
-      this.$refs.pulldown.check()
+      this.$refs.pullUp.check()
     },
     onLoad () {
       this.$emit('load')
+    },
+    pullUp (options) {
+      console.log(options)
+      this.ajaxSetting = Object.assign(this.ajaxSetting, options.ajaxSetting || {})
+      this.refreshSetting = Object.assign(this.refreshSetting, options.setting || {})
+    },
+    getRequestData () {
+      
     }
   }
 }

@@ -41,7 +41,7 @@ export default {
   mounted () {
     this.$refs.refresh.PullDown({
       url: 'http://yapi.demo.qunar.com/mock/43176/mock/getlist',
-      dataRequest: function (currPage, requestCallback) {
+      dataRequest (currPage, requestCallback) {
         return {
           token: 'RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=',
           params: {
@@ -52,15 +52,17 @@ export default {
         }
       },
       initPageIndex: 0,
-      pageSize: 10,
-      timeout: 6000,
+      delay: 300,
       success: response => {
         this.listdata = response.custom.infolist
       },
       error: err => {
         console.log(err)
       },
-      contentType: 'application/x-www-form-urlencoded',
+      ajaxSetting: {
+        contentType: 'application/x-www-form-urlencoded',
+        timeout: 6000
+      },
       setting: {
         // 下拉过程中文字
         pullingText: '下拉即可刷新',
