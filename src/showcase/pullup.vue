@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <van-header
-      title="PullDown 上拉加载"
+      title="PullUp 上拉加载"
       left-arrow
     ></van-header>
     <div class="van-content">
@@ -57,7 +57,8 @@ export default {
         console.log(err)
       },
       ajaxSetting: {
-        contentType: 'application/x-www-form-urlencoded'
+        contentType: 'application/x-www-form-urlencoded',
+        timeout: 6000
       },
       setting: {
         // 滚动条与底部距离小于 offset 时触发load事件

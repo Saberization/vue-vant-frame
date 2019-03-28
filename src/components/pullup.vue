@@ -1,6 +1,6 @@
 <template>
   <van-list
-    v-model="isLoad"
+    v-model="loading"
     :finished="refreshSetting.finished"
     :error="refreshSetting.error"
     :offset="refreshSetting.offset"
@@ -29,18 +29,18 @@ export default {
     [List.name]: List
   },
   model: {
-    prop: 'loading',
+    prop: 'isload',
     event: 'changeState'
   },
   props: {
-    loading: {
+    isload: {
       type: Boolean,
       default: false
     }
   },
   data () {
     return {
-      isLoad: this.loading,
+      loading: this.isload,
       refreshSetting: {
         finished: false,
         error: false,
@@ -63,10 +63,10 @@ export default {
     }
   },
   watch: {
-    loading (value) {
-      this.isLoad = value
+    isload (value) {
+      this.loading = value
     },
-    isLoad (value) {
+    loading (value) {
       this.$emit('changeState', value)
     }
   },
@@ -78,7 +78,6 @@ export default {
       this.$emit('load')
     },
     pullUp (options) {
-      console.log(options)
       this.ajaxSetting = Object.assign(this.ajaxSetting, options.ajaxSetting || {})
       this.refreshSetting = Object.assign(this.refreshSetting, options.setting || {})
     },
