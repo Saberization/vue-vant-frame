@@ -68,13 +68,16 @@ export default {
       },
       ajaxSetting: {
         type: 'post',
-        initPageIndex: 0,
         timeout: 6000,
         contentType: 'application/x-www-form-urlencoded',
         headers: {}
       },
       currentPage: 0,
-      options: {},
+      options: {
+        url: '',
+        initPageIndex: 0,
+        delay: 300
+      },
       requestData: {}
     }
   },
@@ -91,7 +94,7 @@ export default {
       this.getRequestData(() => {
         setTimeout(() => {
           this.loading = false
-        }, this.delay);
+        }, this.options.delay)
       })
       this.$emit('refresh')
     },
@@ -99,9 +102,8 @@ export default {
       // 合并下拉刷新配置项
       Object.assign(this.refreshSetting, options.setting)
       Object.assign(this.ajaxSetting, options.ajaxSetting)
-      this.options = options
+      this.options = Object.assign(this.options, options)
       this.currentPage = this.options.initPageIndex
-      this.delay = this.options.delay || this.delay
       this.getRequestData()
     },
     getRequestData (complete) {
@@ -130,8 +132,9 @@ export default {
         method: ajaxSetting.type,
         data: this.requestData,
         headers: ajaxSetting.headers,
-        timeout: ajaxSetting.timeout
-      }).then((response) => {
+        timeout: ajaxSetting.timeout,
+        contentType: ajaxSetting.contentType
+      }).then(response => {
         if (complete && typeof complete === 'function') {
           complete()
         }

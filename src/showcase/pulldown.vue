@@ -41,7 +41,7 @@ export default {
   mounted () {
     this.$refs.refresh.PullDown({
       url: 'http://yapi.demo.qunar.com/mock/43176/mock/getlist',
-      dataRequest (currPage, requestCallback) {
+      dataRequest (currPage) {
         return {
           token: 'RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=',
           params: {

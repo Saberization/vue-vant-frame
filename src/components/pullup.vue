@@ -52,12 +52,15 @@ export default {
       },
       ajaxSetting: {
         type: 'post',
-        initPageIndex: 0,
-        pageSize: 10,
         timeout: 6000,
-        delay: 300,
         contentType: 'application/x-www-form-urlencoded',
         headers: {}
+      },
+      currentPage: 0,
+      options: {
+        url: '',
+        initPageIndex: 0,
+        delay: 300
       },
       requestData: {}
     }
@@ -80,9 +83,53 @@ export default {
     pullUp (options) {
       this.ajaxSetting = Object.assign(this.ajaxSetting, options.ajaxSetting || {})
       this.refreshSetting = Object.assign(this.refreshSetting, options.setting || {})
+      this.options = Object.assign(this.options, options)
+      this.currentPage = this.options.initPageIndex
+      this.getRequestData()
     },
     getRequestData () {
-      
+      const dataRequest = this.options.dataRequest
+
+      if (dataRequest && typeof dataRequest === 'function') {
+        let requestData = null
+
+        this.requestData = dataRequest(this.currentPage, (data) => {
+          requestData = data
+        })
+        this.requestData = this.requestData ? this.requestData : requestData
+        this.request()
+      } else {
+        console.error('请传入 dataRequest 函数')
+      }
+    },
+    request (complete) {
+      const options = this.options
+      const ajaxSetting = this.ajaxSetting
+      const success = this.success
+      const error = this.error
+
+      Util.request({
+        url: options.url,
+        method: ajaxSetting.type,
+        data: this.requestData,
+        contentType: ajaxSetting.contentType,
+        headers: ajaxSetting.headers,
+        timeout: ajaxSetting.timeout
+      }).then(response => {
+        if (complete && typeof complete === 'function') {
+          complete()
+        }
+        if (success && typeof success === 'function') {
+          success(response.data, response)
+        }
+      }).catch(err => {
+        if (complete && typeof complete === 'function') {
+          complete()
+        }
+        if (error && typeof error === 'function') {
+          error(err)
+        }
+      })
     }
   }
 }
