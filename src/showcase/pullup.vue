@@ -10,9 +10,10 @@
         ref="pull"
       >
         <van-cell
-          v-for="(value, index) in list"
+          v-for="(item, index) in list"
           :key="index"
-        >value</van-cell>
+          :title="item.title"
+        ></van-cell>
       </van-pullup>
     </div>
   </div>
@@ -50,8 +51,14 @@ export default {
         }
       },
       initPageIndex: 0,
-      success: response => {
-        console.log(response)
+      success: (response, pageIndex) => {
+        const infolist = response.custom.infolist
+
+        if (pageIndex === 0) {
+          this.list = infolist
+        } else {
+          this.list.push(infolist)
+        }
       },
       error: err => {
         console.log(err)
@@ -62,7 +69,7 @@ export default {
       },
       setting: {
         // 滚动条与底部距离小于 offset 时触发load事件
-        offset: 300,
+        offset: 30,
         // 加载过程中的提示文案
         loadingText: '加载中...',
         // 加载完成后的提示文案

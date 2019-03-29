@@ -151,6 +151,10 @@ export default {
             {
               title: 'Toast 轻提示',
               to: '/toast'
+            },
+            {
+              title: 'List 列表',
+              to: '/list'
             }
           ]
         },

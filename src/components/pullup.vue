@@ -78,6 +78,9 @@ export default {
       this.$refs.pullUp.check()
     },
     onLoad () {
+      this.getRequestData(() => {
+        // this.loading = false
+      })
       this.$emit('load')
     },
     pullUp (options) {
@@ -85,9 +88,8 @@ export default {
       this.refreshSetting = Object.assign(this.refreshSetting, options.setting || {})
       this.options = Object.assign(this.options, options)
       this.currentPage = this.options.initPageIndex
-      this.getRequestData()
     },
-    getRequestData () {
+    getRequestData (complete) {
       const dataRequest = this.options.dataRequest
 
       if (dataRequest && typeof dataRequest === 'function') {
@@ -97,7 +99,7 @@ export default {
           requestData = data
         })
         this.requestData = this.requestData ? this.requestData : requestData
-        this.request()
+        this.request(complete)
       } else {
         console.error('请传入 dataRequest 函数')
       }
@@ -105,8 +107,8 @@ export default {
     request (complete) {
       const options = this.options
       const ajaxSetting = this.ajaxSetting
-      const success = this.success
-      const error = this.error
+      const success = options.success
+      const error = options.error
 
       Util.request({
         url: options.url,
@@ -120,7 +122,7 @@ export default {
           complete()
         }
         if (success && typeof success === 'function') {
-          success(response.data, response)
+          success(response.data, this.currentPage++)
         }
       }).catch(err => {
         if (complete && typeof complete === 'function') {
