@@ -211,9 +211,6 @@ const routes = [{
 }, {
   path: '/pullup',
   component: PullUp
-}, {
-  path: '/list',
-  component: List
 }]
 
 export default routes
