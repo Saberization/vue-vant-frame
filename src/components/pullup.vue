@@ -78,10 +78,12 @@ export default {
       this.$refs.pullUp.check()
     },
     onLoad () {
-      this.getRequestData(() => {
-        // this.loading = false
-      })
-      this.$emit('load')
+      setTimeout(() => {
+        this.getRequestData(() => {
+          this.loading = false
+        })
+        this.$emit('load')
+      }, 300);
     },
     pullUp (options) {
       this.ajaxSetting = Object.assign(this.ajaxSetting, options.ajaxSetting || {})

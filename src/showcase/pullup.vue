@@ -57,7 +57,9 @@ export default {
         if (pageIndex === 0) {
           this.list = infolist
         } else {
-          this.list.push(infolist)
+          infolist.forEach(e => {
+            this.list.push(e)
+          })
         }
       },
       error: err => {
