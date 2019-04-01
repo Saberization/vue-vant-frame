@@ -50,7 +50,6 @@ import Contact from '@showcase/contact'
 import GoodsAction from '@showcase/goodsaction'
 import SubmitBar from '@showcase/submitbar'
 import PullUp from '@showcase/pullup'
-import List from '@showcase/list'
 
 const routes = [{
   path: '*',
