@@ -41,15 +41,7 @@ export default {
   components: {
     [PullRefresh.name]: PullRefresh
   },
-  model: {
-    prop: 'isLoading',
-    event: 'changeLoading'
-  },
   props: {
-    isLoading: {
-      type: Boolean,
-      default: false
-    },
     top: [String, Number]
   },
   data () {
@@ -64,7 +56,8 @@ export default {
         animationDuration: 300,
         headHeight: 50,
         disabled: false,
-        isLoading: false
+        isLoading: false,
+        pullDown () {}
       },
       ajaxSetting: {
         type: 'post',
@@ -81,22 +74,15 @@ export default {
       requestData: {}
     }
   },
-  watch: {
-    isLoading (value) {
-      this.loading = value
-    },
-    loading (value) {
-      this.$emit('changeLoading', value)
-    }
-  },
   methods: {
     onRefresh () {
-      this.getRequestData(() => {
-        setTimeout(() => {
+      this.loading = true
+      setTimeout(() => {
+        this._getRequestData(() => {
           this.loading = false
-        }, this.options.delay)
-      })
-      this.$emit('refresh')
+        })
+      }, this.options.delay)
+      this.refreshSetting.pullDown()
     },
     PullDown (options) {
       // 合并下拉刷新配置项
@@ -104,9 +90,9 @@ export default {
       Object.assign(this.ajaxSetting, options.ajaxSetting)
       this.options = Object.assign(this.options, options)
       this.currentPage = this.options.initPageIndex
-      this.getRequestData()
+      this.onRefresh()
     },
-    getRequestData (complete) {
+    _getRequestData (complete) {
       const dataRequest = this.options.dataRequest
 
       if (dataRequest && typeof dataRequest === 'function') {
@@ -116,12 +102,12 @@ export default {
           requestData = data
         })
         this.requestData = this.requestData ? this.requestData : requestData
-        this.request(complete)
+        this._request(complete)
       } else {
         console.error('请传入 dataRequest 函数')
       }
     },
-    request (complete) {
+    _request (complete) {
       const ajaxSetting = this.ajaxSetting
       const options = this.options
       const success = options.success
@@ -149,10 +135,10 @@ export default {
           error(err)
         }
       })
+    },
+    refresh () {
+      this.onRefresh()
     }
-  },
-  created () {
-    this.loading = this.isLoading
   }
 }
 </script>

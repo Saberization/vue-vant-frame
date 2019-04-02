@@ -2,13 +2,14 @@
   <div class="container">
     <van-header
       title="PullDown 下拉刷新"
+      right-text="刷新"
       left-arrow
+      @click-right="onClickRight"
     ></van-header>
     <van-pulldown
-      v-model="loading"
       top="56"
       class="mt10"
-      ref="refresh"
+      ref="pulldown"
     >
       <van-cell-group>
         <van-cell v-for="(item, index) in listdata" :key="index" :title="item.title"></van-cell>
@@ -33,13 +34,17 @@ export default {
   },
   data () {
     return {
-      loading: true,
       count: 0,
       listdata: []
     }
   },
+  methods: {
+    onClickRight () {
+      this.$refs.pulldown.refresh()
+    }
+  },
   mounted () {
-    this.$refs.refresh.PullDown({
+    this.$refs.pulldown.PullDown({
       url: 'http://yapi.demo.qunar.com/mock/43176/mock/getlist',
       dataRequest (currPage) {
         return {
@@ -79,7 +84,11 @@ export default {
         // 顶部内容高度
         headHeight: 50,
         // 是否禁用
-        disabled: false
+        disabled: false,
+        // 下拉刷新回调事件
+        pullDown () {
+          console.log('pullDown')
+        }
       }
     })
   }
