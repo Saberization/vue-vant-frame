@@ -7,9 +7,9 @@ import {
  * 打开页面
  * @param {String} url 要打开的地址
  */
-const openPage = function (url) {
+const openPage = (url) => {
   const location = window.location
-  let pathname = location.pathname
+  const pathname = location.pathname
 
   if (typeof pathname === 'string') {
     if (url.indexOf('http') !== -1) {
@@ -23,9 +23,7 @@ const openPage = function (url) {
   }
 }
 
-const extend = function () {
-  const args = [].slice.call(arguments)
-
+const extend = (...args) => {
   return Object.assign(...args)
 }
 
