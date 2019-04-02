@@ -71,7 +71,8 @@ export default {
         successDuration: 500,
         animationDuration: 300,
         headHeight: 50,
-        disabled: false
+        disabled: false,
+        pullDown () {}
       },
       pullUpSetting: {
         error: false,
@@ -79,7 +80,8 @@ export default {
         loadingText: '加载中',
         finishedText: '',
         errorText: '',
-        immediateCheck: true
+        immediateCheck: true,
+        pullUp () {}
       },
       ajaxSetting: {
         type: 'post',
@@ -90,7 +92,7 @@ export default {
       options: {
         url: '',
         initPageIndex: 0,
-        delay: 300
+        delay: 400
       },
       currentPage: 0,
       requestData: {}
@@ -100,23 +102,30 @@ export default {
     check () {
       this.$refs.pullup.check()
     },
+    refresh () {
+      this.onRefresh()
+    },
     onRefresh () {
       this.currentPage = this.options.initPageIndex
+      this.isLoading = true
       setTimeout(() => {
-        this.getRequestData(() => {
+        this._getRequestData(() => {
           this.isLoading = false
           this.$nextTick(() => {
             this.check()
           })
         })
       }, this.options.delay)
+      this.pullDownSetting.pullDown()
     },
     onLoad () {
+      this.loading = true
       setTimeout(() => {
-        this.getRequestData(() => {
+        this._getRequestData(() => {
           this.loading = false
         })
       }, this.options.delay)
+      this.pullUpSetting.pullUp()
     },
     pulltorefresh (options) {
       this.pullDownSetting = Object.assign(this.pullDownSetting, options.pullDownSetting || {})
@@ -124,10 +133,8 @@ export default {
       this.ajaxSetting = Object.assign(this.ajaxSetting, options.ajaxSetting || {})
       this.options = Object.assign(this.options, options)
       this.currentPage = this.options.initPageIndex
-
-      this.getRequestData()
     },
-    getRequestData (complete) {
+    _getRequestData (complete) {
       const options = this.options
       const dataRequest = options.dataRequest
 
@@ -138,10 +145,10 @@ export default {
           requestData = data
         })
         this.requestData = this.requestData ? this.requestData : requestData
-        this.request(complete)
+        this._request(complete)
       }
     },
-    request (complete) {
+    _request (complete) {
       const options = this.options
       const ajaxSetting = this.ajaxSetting
       const success = options.success

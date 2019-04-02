@@ -2,7 +2,9 @@
   <div class="container">
     <van-header
       title="Pulltorefresh 下拉刷新上拉加载"
+      right-text="刷新"
       left-arrow
+      @click-right="onClickRight"
     ></van-header>
     <div class="van-content">
       <van-pulltorefresh ref="refresh">
@@ -34,6 +36,11 @@ export default {
   data () {
     return {
       list: []
+    }
+  },
+  methods: {
+    onClickRight () {
+      this.$refs.refresh.refresh()
     }
   },
   mounted () {
