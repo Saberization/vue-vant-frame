@@ -1,0 +1,175 @@
+<template>
+  <van-pull-refresh
+    v-model="isLoading"
+    :pulling-text="pullDownSetting.pullingText"
+    :loosing-text="pullDownSetting.loosingText"
+    :loading-text="pullDownSetting.loadingText"
+    :success-text="pullDownSetting.successText"
+    :success-duration="pullDownSetting.successDuration"
+    :animation-duration="pullDownSetting.animationDuration"
+    :head-height="pullDownSetting.headHeight"
+    :disabled="pullDownSetting.disabled"
+    @refresh="onRefresh"
+  >
+    <van-list
+      v-model="loading"
+      :finished="finished"
+      :error="pullUpSetting.error"
+      :offset="pullUpSetting.offset"
+      :loading-text="pullUpSetting.loadingText"
+      :finished-text="pullUpSetting.finishedText"
+      :error-text="pullUpSetting.errorText"
+      :immediate-check="pullUpSetting.immediateCheck"
+      ref="pullup"
+      @load="onLoad"
+    >
+      <slot></slot>
+      <slot
+        name="loading"
+        slot="pullup-loading"
+      ></slot>
+    </van-list>
+    <slot
+      name="normal"
+      slot="pulldown-normal"
+    ></slot>
+    <slot
+      name="pulling"
+      slot="pulldown-pulling"
+    ></slot>
+    <slot
+      name="loosing"
+      slot="pulldown-loosing"
+    ></slot>
+    <slot
+      name="loading"
+      slot="pulldown-loading"
+    ></slot>
+  </van-pull-refresh>
+</template>
+
+<script>
+import { PullRefresh, List } from 'vant'
+import Util from '@util'
+
+export default {
+  name: 'Pulltorefresh',
+  components: {
+    [PullRefresh.name]: PullRefresh,
+    [List.name]: List
+  },
+  data () {
+    return {
+      isLoading: false,
+      loading: false,
+      finished: false,
+      pullDownSetting: {
+        pullingText: '下拉即可刷新...',
+        loosingText: '释放即可刷新...',
+        loadingText: '加载中...',
+        successText: '',
+        successDuration: 500,
+        animationDuration: 300,
+        headHeight: 50,
+        disabled: false
+      },
+      pullUpSetting: {
+        error: false,
+        offset: 100,
+        loadingText: '加载中',
+        finishedText: '',
+        errorText: '',
+        immediateCheck: true
+      },
+      ajaxSetting: {
+        type: 'post',
+        timeout: 6000,
+        contentType: 'application/x-www-form-urlencoded',
+        headers: {}
+      },
+      options: {
+        url: '',
+        initPageIndex: 0,
+        delay: 300
+      },
+      currentPage: 0,
+      requestData: {}
+    }
+  },
+  methods: {
+    check () {
+      this.$refs.pullup.check()
+    },
+    onRefresh () {
+      this.currentPage = this.options.initPageIndex
+      setTimeout(() => {
+        this.getRequestData(() => {
+          this.isLoading = false
+          this.$nextTick(() => {
+            this.check()
+          })
+        })
+      }, this.options.delay)
+    },
+    onLoad () {
+      setTimeout(() => {
+        this.getRequestData(() => {
+          this.loading = false
+        })
+      }, this.options.delay)
+    },
+    pulltorefresh (options) {
+      this.pullDownSetting = Object.assign(this.pullDownSetting, options.pullDownSetting || {})
+      this.pullUpSetting = Object.assign(this.pullUpSetting, options.pullUpSetting || {})
+      this.ajaxSetting = Object.assign(this.ajaxSetting, options.ajaxSetting || {})
+      this.options = Object.assign(this.options, options)
+      this.currentPage = this.options.initPageIndex
+
+      this.getRequestData()
+    },
+    getRequestData (complete) {
+      const options = this.options
+      const dataRequest = options.dataRequest
+
+      if (dataRequest && typeof dataRequest === 'function') {
+        let requestData = {}
+
+        this.requestData = dataRequest(this.currentPage, (data) => {
+          requestData = data
+        })
+        this.requestData = this.requestData ? this.requestData : requestData
+        this.request(complete)
+      }
+    },
+    request (complete) {
+      const options = this.options
+      const ajaxSetting = this.ajaxSetting
+      const success = options.success
+      const error = options.error
+
+      Util.request({
+        url: options.url,
+        method: ajaxSetting.type,
+        data: this.requestData,
+        contentType: ajaxSetting.contentType,
+        headers: ajaxSetting.headers,
+        timeout: ajaxSetting.timeout
+      }).then(response => {
+        if (success && typeof success === 'function') {
+          success(response.data, this.currentPage++)
+        }
+        if (complete && typeof complete === 'function') {
+          complete()
+        }
+      }).catch(err => {
+        if (error && typeof error === 'function') {
+          error(err)
+        }
+        if (complete && typeof complete === 'function') {
+          complete()
+        }
+      })
+    }
+  }
+}
+</script>

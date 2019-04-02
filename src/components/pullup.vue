@@ -44,7 +44,7 @@ export default {
       refreshSetting: {
         finished: false,
         error: false,
-        offset: 300,
+        offset: 100,
         loadingText: '加载中...',
         finishedText: '没有更多',
         errorText: '请求失败，点击重新加载',
@@ -83,7 +83,7 @@ export default {
           this.loading = false
         })
         this.$emit('load')
-      }, 300);
+      }, this.options.delay)
     },
     pullUp (options) {
       this.ajaxSetting = Object.assign(this.ajaxSetting, options.ajaxSetting || {})

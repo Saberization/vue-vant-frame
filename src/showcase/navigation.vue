@@ -145,6 +145,10 @@ export default {
               to: '/pulldown'
             },
             {
+              title: 'Pulltorefresh 下拉刷新上拉加载',
+              to: '/pulltorefresh'
+            },
+            {
               title: 'SwipeCell 滑动单元格',
               to: '/swipecell'
             },

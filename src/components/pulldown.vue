@@ -60,7 +60,7 @@ export default {
         loosingText: '释放即可刷新',
         loadingText: '加载中',
         successText: '',
-        successDuration: 500,
+        successDuration: 700,
         animationDuration: 300,
         headHeight: 50,
         disabled: false,
