@@ -6,7 +6,6 @@
     ></van-header>
     <div class="van-content">
       <van-pullup
-        v-model="loading"
         ref="pull"
       >
         <van-cell
@@ -33,7 +32,6 @@ export default {
   },
   data () {
     return {
-      loading: false,
       list: []
     }
   },
@@ -79,7 +77,11 @@ export default {
         // 加载失败后的提示文案
         errorText: '请求失败，点击重新加载',
         // 是否在初始化时立即执行滚动位置检查
-        immediateCheck: true
+        immediateCheck: true,
+        // 上拉加载的时候触发
+        pullUp () {
+          console.log('pullUp')
+        }
       }
     })
   }

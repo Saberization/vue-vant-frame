@@ -28,19 +28,9 @@ export default {
   components: {
     [List.name]: List
   },
-  model: {
-    prop: 'isload',
-    event: 'changeState'
-  },
-  props: {
-    isload: {
-      type: Boolean,
-      default: false
-    }
-  },
   data () {
     return {
-      loading: this.isload,
+      loading: false,
       refreshSetting: {
         finished: false,
         error: false,
@@ -48,7 +38,8 @@ export default {
         loadingText: '加载中...',
         finishedText: '没有更多',
         errorText: '请求失败，点击重新加载',
-        immediateCheck: true
+        immediateCheck: true,
+        pullUp () {}
       },
       ajaxSetting: {
         type: 'post',
@@ -65,24 +56,16 @@ export default {
       requestData: {}
     }
   },
-  watch: {
-    isload (value) {
-      this.loading = value
-    },
-    loading (value) {
-      this.$emit('changeState', value)
-    }
-  },
   methods: {
     check () {
       this.$refs.pullUp.check()
     },
     onLoad () {
+      this.loading = true
       setTimeout(() => {
-        this.getRequestData(() => {
+        this._getRequestData(() => {
           this.loading = false
         })
-        this.$emit('load')
       }, this.options.delay)
     },
     pullUp (options) {
@@ -91,7 +74,7 @@ export default {
       this.options = Object.assign(this.options, options)
       this.currentPage = this.options.initPageIndex
     },
-    getRequestData (complete) {
+    _getRequestData (complete) {
       const dataRequest = this.options.dataRequest
 
       if (dataRequest && typeof dataRequest === 'function') {
@@ -101,12 +84,12 @@ export default {
           requestData = data
         })
         this.requestData = this.requestData ? this.requestData : requestData
-        this.request(complete)
+        this._request(complete)
       } else {
         console.error('请传入 dataRequest 函数')
       }
     },
-    request (complete) {
+    _request (complete) {
       const options = this.options
       const ajaxSetting = this.ajaxSetting
       const success = options.success
