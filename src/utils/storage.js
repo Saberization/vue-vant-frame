@@ -20,7 +20,7 @@ export default {
    */
   setItem (key, value) {
     if (!key) {
-      return
+      return ''
     }
 
     if (typeof value === 'object') {
