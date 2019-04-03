@@ -51,6 +51,7 @@ import GoodsAction from '@showcase/goodsaction'
 import SubmitBar from '@showcase/submitbar'
 import PullUp from '@showcase/pullup'
 import Pulltorefresh from '@showcase/pulltorefresh'
+import Util from '@showcase/util'
 
 const routes = [{
   path: '*',
@@ -214,6 +215,9 @@ const routes = [{
 }, {
   path: '/pulltorefresh',
   component: Pulltorefresh
+}, {
+  path: '/util',
+  component: Util
 }]
 
 export default routes

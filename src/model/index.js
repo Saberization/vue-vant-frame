@@ -1,4 +1,4 @@
-import Util from '@util/'
+import Util from '@utils'
 
 const serverUrl = 'http://yapi.demo.qunar.com/mock/43176/mock/';
 

@@ -21,7 +21,7 @@
 
 <script>
 import { List } from 'vant'
-import Util from '@util/'
+import Util from '@utils'
 
 export default {
   name: 'PullUp',

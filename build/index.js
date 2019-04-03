@@ -40,7 +40,7 @@ module.exports = {
     chainWebpack: config => {
       config.resolve.alias
         .set('@', resolve('src'))
-        .set('@util', resolve('src/util'))
+        .set('@utils', resolve('src/utils'))
         .set('@components', resolve('src/components'))
         .set('@assets', resolve('src/assets'))
         .set('@model', resolve('src/model'))
@@ -83,7 +83,7 @@ module.exports = {
     chainWebpack: config => {
       config.resolve.alias
         .set('@', resolve('src'))
-        .set('@util', resolve('src/util'))
+        .set('@utils', resolve('src/utils'))
         .set('@components', resolve('src/components'))
         .set('@assets', resolve('src/assets'))
         .set('@model', resolve('src/model'))

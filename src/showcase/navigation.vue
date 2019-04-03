@@ -208,6 +208,10 @@ export default {
             {
               title: '内置样式',
               to: '/inlinestyle'
+            },
+            {
+              title: 'Util 工具集',
+              to: '/util'
             }
           ]
         },
