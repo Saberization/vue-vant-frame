@@ -3,7 +3,7 @@
  * @Date: 2019-04-02 17:04:21
  * @Last Modified by: guotq
  * @Last Modified time: 2019-04-03 09:02:16
- * @Description: 移值 M7 框架中的 util.sha256
+ * @Description: 移值 M7 框架中的 Util.sha256
  */
 
 const hexcase = 0
