@@ -3,12 +3,12 @@
 </template>
 
 <script>
-import MyDate from '@utils/date'
+import Math from '@utils/math'
 
 export default {
   name: 'Util',
   created () {
-    
+    console.log(Math.add(0.1, 0.2))
   }
 }
 </script>
