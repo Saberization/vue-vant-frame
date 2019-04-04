@@ -206,12 +206,12 @@ export default {
               to: '/tag'
             },
             {
-              title: '内置样式',
-              to: '/inlinestyle'
+              title: 'Amap 地图组件',
+              to: '/amap'
             },
             {
-              title: 'Util 工具集',
-              to: '/util'
+              title: '内置样式',
+              to: '/inlinestyle'
             }
           ]
         },
