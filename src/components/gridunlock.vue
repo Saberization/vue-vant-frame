@@ -50,14 +50,16 @@ export default {
   data () {
     return {
       pointArr: [],
-      offsetTop: 0
+      offsetTop: 0,
+      ctx: null
     }
   },
   methods: {
-    _initGridUnlock () {
+    _initGridunlock () {
       const canvas = this.$refs.canvas
       const ctx = canvas.getContext('2d')
 
+      this.ctx = ctx
       this.offsetTop = this._getOffsetTop(canvas) || 0
       this.pointArr = this._drawLocalPoint((this.cw - 2 * this.offsetX - this.r * 2 * 3) / 2, (this.ch - 2 * this.offsetY - this.r * 2 * 3) / 2)
       this._initListeners(canvas, ctx)
@@ -72,8 +74,6 @@ export default {
         offsetTop += parentElement.offsetTop
         parentElement = parentElement.parentElement
       }
-
-      console.log(offsetTop)
 
       return offsetTop
     },
@@ -141,6 +141,7 @@ export default {
       canvas.addEventListener('touchend', (e) => {
         ctx.clearRect(0, 0, cw, ch)
         this._draw(this.pointArr, linePoint, null, ctx)
+        this.$emit('success', linePoint)
         linePoint = []
       })
     },
@@ -230,10 +231,14 @@ export default {
           ctx.fill()
         }
       }
+    },
+
+    reset () {
+      this.ctx.clearRect(0, 0, cw, ch)
     }
   },
   mounted () {
-    this._initGridUnlock()
+    this._initGridunlock()
   }
 }
 </script>
