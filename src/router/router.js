@@ -53,6 +53,7 @@ import PullUp from '@showcase/pullup'
 import Pulltorefresh from '@showcase/pulltorefresh'
 import Amap from '@showcase/amap'
 import FileInput from '@showcase/fileinput'
+import VerifyCode from '@showcase/verifycode'
 
 const routes = [{
   path: '*',
@@ -222,6 +223,9 @@ const routes = [{
 }, {
   path: '/fileinput',
   component: FileInput
+}, {
+  path: '/verifycode',
+  component: VerifyCode
 }]
 
 export default routes

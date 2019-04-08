@@ -221,6 +221,10 @@ export default {
             {
               title: 'FileInput 选择文件',
               to: '/fileinput'
+            },
+            {
+              title: 'VerifyCode 验证码',
+              to: '/verifycode'
             }
           ]
         },
