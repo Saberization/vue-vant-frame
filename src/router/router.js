@@ -52,6 +52,7 @@ import SubmitBar from '@showcase/submitbar'
 import PullUp from '@showcase/pullup'
 import Pulltorefresh from '@showcase/pulltorefresh'
 import Amap from '@showcase/amap'
+import FileInput from '@showcase/fileinput'
 
 const routes = [{
   path: '*',
@@ -218,6 +219,9 @@ const routes = [{
 }, {
   path: '/amap',
   component: Amap
+}, {
+  path: '/fileinput',
+  component: FileInput
 }]
 
 export default routes

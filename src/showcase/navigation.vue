@@ -216,6 +216,15 @@ export default {
           ]
         },
         {
+          title: '功能组件',
+          children: [
+            {
+              title: 'FileInput 选择文件',
+              to: '/fileinput'
+            }
+          ]
+        },
+        {
           title: '导航组件',
           children: [
             {
@@ -280,32 +289,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  padding: 10px;
+  .container {
+    padding: 10px;
 
-  .component-title {
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    color: #455a64;
-  }
+    .component-title {
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      color: #455a64;
+    }
 
-  .van-collapse-item {
-    margin-bottom: 20px;
+    .van-collapse-item {
+      margin-bottom: 20px;
+    }
+
+    .van-collapse-item__content {
+      padding: 0;
+    }
+
+    .van-collapse-item__title {
+      padding-top: 18px;
+      padding-bottom: 18px;
+    }
+
+    /deep/ .van-cell__title {
+      white-space: nowrap;
+      font-size: 14px;
+    }
+
+    .van-collapse-item__title > .van-cell__title > span {
+      font-size: 16px;
+    }
   }
-  .van-collapse-item__content {
-    padding: 0;
-  }
-  .van-collapse-item__title {
-    padding-top: 18px;
-    padding-bottom: 18px;
-  }
-  /deep/ .van-cell__title {
-    white-space: nowrap;
-    font-size: 14px;
-  }
-  .van-collapse-item__title > .van-cell__title > span {
-    font-size: 16px;
-  }
-}
 </style>
