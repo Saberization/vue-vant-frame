@@ -4,7 +4,10 @@
     <div class="van-content">
       <van-button type="primary" plain @click="selectFile">选择文件</van-button>
       <div class="imagelist" v-if="show">
-        <img :src="item.value" v-for="(item, index) in imagelist" :key="index" alt="">
+        <div v-for="(item, index) in imagelist" :key="index">
+          <img :src="item.value" alt="">
+          <p>文件名：{{item.file.name}}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -24,7 +27,7 @@ export default {
   data () {
     return {
       inputFile: new FileInput({
-        isMulti: true,
+        isMulti: false, // 是否开启多选
         type: 'Image'
       }),
       imagelist: [],
