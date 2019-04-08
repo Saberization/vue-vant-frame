@@ -54,6 +54,7 @@ import Pulltorefresh from '@showcase/pulltorefresh'
 import Amap from '@showcase/amap'
 import FileInput from '@showcase/fileinput'
 import VerifyCode from '@showcase/verifycode'
+import GridUnlock from '@showcase/gridunlock'
 
 const routes = [{
   path: '*',
@@ -226,6 +227,9 @@ const routes = [{
 }, {
   path: '/verifycode',
   component: VerifyCode
+}, {
+  path: '/gridunlock',
+  component: GridUnlock
 }]
 
 export default routes

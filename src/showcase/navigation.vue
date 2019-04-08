@@ -225,6 +225,10 @@ export default {
             {
               title: 'VerifyCode 验证码',
               to: '/verifycode'
+            },
+            {
+              title: 'GridUnlock 网格解锁',
+              to: '/gridunlock'
             }
           ]
         },
