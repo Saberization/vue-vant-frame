@@ -229,6 +229,10 @@ export default {
             {
               title: 'GridUnlock 网格解锁',
               to: '/gridunlock'
+            },
+            {
+              title: 'EasyCalendar 简易日历',
+              to: '/easycalendar'
             }
           ]
         },

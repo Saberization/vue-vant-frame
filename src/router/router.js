@@ -55,6 +55,7 @@ import Amap from '@showcase/amap'
 import FileInput from '@showcase/fileinput'
 import VerifyCode from '@showcase/verifycode'
 import GridUnlock from '@showcase/gridunlock'
+import EasyCalendar from '@showcase/easycalendar'
 
 const routes = [{
   path: '*',
@@ -230,6 +231,9 @@ const routes = [{
 }, {
   path: '/gridunlock',
   component: GridUnlock
+}, {
+  path: '/easycalendar',
+  component: EasyCalendar
 }]
 
 export default routes
