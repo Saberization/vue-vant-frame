@@ -1,6 +1,6 @@
 import {
-  request,
-  requestAll
+  ajax,
+  ajaxAll
 } from './request'
 
 /**
@@ -108,8 +108,8 @@ const extend = (...args) => {
 
 export default {
   openPage,
-  request,
-  requestAll,
+  ajax,
+  ajaxAll,
   extend,
   loaderExternals
 }

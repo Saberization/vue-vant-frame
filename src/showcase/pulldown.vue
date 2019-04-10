@@ -58,11 +58,11 @@ export default {
       },
       initPageIndex: 0,
       delay: 300,
-      success: (response) => {
-        this.listdata = response.custom.infolist
+      success: ({ custom }) => {
+        this.listdata = custom.infolist
       },
       error: (error) => {
-        console.error(JSON.stringify(error))
+        console.log(error)
       },
       ajaxSetting: {
         contentType: 'application/x-www-form-urlencoded',

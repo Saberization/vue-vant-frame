@@ -3,7 +3,7 @@ import Util from '@utils'
 const serverUrl = 'http://yapi.demo.qunar.com/mock/43176/mock/';
 
 const getRefreshList = function(params) {
-  return Util.request({
+  return Util.ajax({
     url: serverUrl + 'getlist',
     type: 'post',
     data: {

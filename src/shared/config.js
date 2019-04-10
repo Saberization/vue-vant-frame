@@ -3,12 +3,8 @@ export default {
    * 是否开启代理
    */
   ajax: {
-    // 是否默认处理错误返回信息
-    // 如果开启，框架会处理一些默认的返回错误,并提示（非200情况下），处理的错误码如下
-    // 400，401，403，404，500，503
-    isAutoDealError: true,
-    // 是否开启自动弹窗提示，isAutoDealError为true时才生效
-    isAutoToast: true,
+    // 是否开启错误状态码自动弹窗提示
+    isAutoErrToast: true,
     // 每次 ajax时，也可以增加isAutoProxy:false，来让本次请求不代理
     // 是否自动代理，如果开启，所有的请求会默认带上用户相关信息，h5是cookie中，app是headers中
     // 如果非新点标准后台，请关闭，否则会影响正常请求

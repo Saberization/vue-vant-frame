@@ -154,7 +154,7 @@ export default {
       const success = options.success
       const error = options.error
 
-      Util.request({
+      Util.ajax({
         url: options.url,
         method: ajaxSetting.type,
         data: this.requestData,

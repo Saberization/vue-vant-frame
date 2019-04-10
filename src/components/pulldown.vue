@@ -113,26 +113,28 @@ export default {
       const success = options.success
       const error = options.error
 
-      Util.request({
+      Util.ajax({
         url: options.url,
         method: ajaxSetting.type,
         data: this.requestData,
         headers: ajaxSetting.headers,
         timeout: ajaxSetting.timeout,
-        contentType: ajaxSetting.contentType
-      }).then(response => {
-        if (complete && typeof complete === 'function') {
-          complete()
-        }
-        if (success && typeof success === 'function') {
-          success(response.data, response)
-        }
-      }).catch(err => {
-        if (complete && typeof complete === 'function') {
-          complete()
-        }
-        if (error && typeof error === 'function') {
-          error(err)
+        contentType: ajaxSetting.contentType,
+        success: response => {
+          if (complete && typeof complete === 'function') {
+            complete()
+          }
+          if (success && typeof success === 'function') {
+            success(response, this.currentPage++)
+          }
+        },
+        error: err => {
+          if (complete && typeof complete === 'function') {
+            complete()
+          }
+          if (error && typeof error === 'function') {
+            error(err)
+          }
         }
       })
     },

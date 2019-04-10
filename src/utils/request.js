@@ -2,6 +2,7 @@ import axios from 'axios'
 import Util from './index'
 import store from '@/store.js'
 import Config from '@shared/config'
+import { Toast } from 'vant'
 
 const defaultSettings = {
   type: 'post',
@@ -12,7 +13,9 @@ const defaultSettings = {
   headers: {},
   contentType: 'application/x-www-form-urlencoded',
   withCredentials: false,
-  isAutoProxy: Config.ajax.isAutoProxy
+  isAutoProxy: Config.ajax.isAutoProxy,
+  success: () => {},
+  error: () => {}
 }
 
 let params = {}
@@ -34,7 +37,7 @@ let createInterceptors = function () {
   })
 }
 
-function request (options) {
+function ajax (options) {
   options = Util.extend(defaultSettings, options)
   params = {
     url: options.url,
@@ -48,6 +51,8 @@ function request (options) {
   const contentType = options.contentType
   const headers = options.headers
   const isAutoProxy = options.isAutoProxy
+  const error = options.error
+  const success = options.success
 
   for (let key in headers) {
     setHeader(key, headers[key])
@@ -62,14 +67,28 @@ function request (options) {
     createInterceptors()
   }
 
-  return axios(params)
+  axios(params).then(response => {
+    let { status, statusText, data } = response
+
+    if ((status !== 200 && statusText !== 'OK') || typeof data.errcode === 'number') {
+      error(data)
+
+      if (Config.ajax.isAutoErrToast) {
+        Toast(data.errmsg)
+      }
+    } else {
+      success(data, response)
+    }
+  }).catch(err => {
+    error(err)
+  })
 }
 
-function requestAll () {
+function ajaxAll () {
   return axios.all([].slice.call(arguments))
 }
 
 export {
-  request,
-  requestAll
+  ajax,
+  ajaxAll
 }
