@@ -24,7 +24,7 @@
 <script>
 import vanHeader from '@components/header'
 import vanAddressEdit from '@components/addressedit'
-import areaList from '@assets/lib/area-list.js'
+import areaList from '@public/lib/area-list.js'
 import { Toast } from 'vant'
 
 export default {

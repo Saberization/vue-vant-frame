@@ -30,8 +30,8 @@
 import vanHeader from '@components/header'
 import vanButton from '@components/button'
 import vanPicker from '@components/picker'
-import cityData2 from '@assets/lib/city-data.js'
-import cityData3 from '@assets/lib/city.data-3.js'
+import cityData2 from '@public/lib/city-data.js'
+import cityData3 from '@public/lib/city.data-3.js'
 import { Toast } from 'vant'
 
 export default {

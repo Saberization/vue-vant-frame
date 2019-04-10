@@ -60,7 +60,7 @@
 import vanHeader from '@components/header'
 import vanPicker from '@components/picker'
 import vanButton from '@components/button'
-import cityData3 from '@assets/lib/city.data-3.js'
+import cityData3 from '@public/lib/city.data-3.js'
 
 export default {
   name: 'Picker',
