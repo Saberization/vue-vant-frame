@@ -3,19 +3,30 @@ const cssOptions = require('./css.env')
 const devServer = require('./dev-server')
 const pages = require('./base.conf')
 const utils = require('./utils')
-
 const resolve = utils.resolve
+const chainWebpack = config => {
+  config.resolve.alias
+    .set('@', resolve('src'))
+    .set('@utils', resolve('src/utils'))
+    .set('@components', resolve('src/components'))
+    .set('@assets', resolve('src/assets'))
+    .set('@model', resolve('src/model'))
+    .set('@shared', resolve('src/shared'))
+    .set('@showcase', resolve('src/showcase'))
+    .set('@router', resolve('src/router'))
+    .set('@public', resolve('public'))
+}
 
 module.exports = {
   // 生产环境
   build: {
     pages: pages,
     // 部署应用包时的基本 URL
-    publicPath: '/',
+    publicPath: './',
     // 生产环境构建文件的目录
     outputDir: 'dist',
     // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
-    assetsDir: '',
+    assetsDir: 'static',
     // 指定生成的 index.html 的输出路径 (相对于 outputDir)。也可以是一个绝对路径。
     indexPath: 'index.html',
     // 生成文件名后面是否带 hash 值
@@ -37,17 +48,7 @@ module.exports = {
     // http-proxy-middleware
     devServer,
     css: cssOptions.build,
-    chainWebpack: config => {
-      config.resolve.alias
-        .set('@', resolve('src'))
-        .set('@utils', resolve('src/utils'))
-        .set('@components', resolve('src/components'))
-        .set('@assets', resolve('src/assets'))
-        .set('@model', resolve('src/model'))
-        .set('@shared', resolve('src/shared'))
-        .set('@showcase', resolve('src/showcase'))
-        .set('@router', resolve('src/router'))
-    }
+    chainWebpack: chainWebpack
   },
 
   // 开发环境
@@ -58,7 +59,7 @@ module.exports = {
     // 生产环境构建文件的目录
     outputDir: 'dist',
     // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
-    assetsDir: '',
+    assetsDir: './static',
     // 指定生成的 index.html 的输出路径 (相对于 outputDir)。也可以是一个绝对路径。
     indexPath: 'index.html',
     // 生成文件名后面是否带 hash 值
@@ -80,16 +81,6 @@ module.exports = {
     // http-proxy-middleware
     devServer,
     css: cssOptions.dev,
-    chainWebpack: config => {
-      config.resolve.alias
-        .set('@', resolve('src'))
-        .set('@utils', resolve('src/utils'))
-        .set('@components', resolve('src/components'))
-        .set('@assets', resolve('src/assets'))
-        .set('@model', resolve('src/model'))
-        .set('@shared', resolve('src/shared'))
-        .set('@showcase', resolve('src/showcase'))
-        .set('@router', resolve('src/router'))
-    }
+    chainWebpack: chainWebpack
   }
 }
