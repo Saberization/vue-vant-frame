@@ -5,6 +5,12 @@
  * 
  */
 
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.ejs = factory());
+}(window, (function () { 'use strict';
+
 /**
  * 加入系统判断功能
  */
@@ -1399,4 +1405,6 @@ mixin(hybridJs);
 
 hybridJs.version = '3.2.6';
 
-export default hybridJs;
+return hybridJs;
+
+})));

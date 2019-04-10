@@ -5,6 +5,12 @@
  * 
  */
 
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(factory());
+}(window, (function () { 'use strict';
+
 function uiMixin(hybrid) {
     var hybridJs = hybrid;
     var innerUtil = hybridJs.innerUtil;
@@ -1831,3 +1837,5 @@ streamMixin(hybridJs);
 contactMixin(hybridJs);
 audioMixin(hybridJs);
 ioMixin(hybridJs);
+
+})));
