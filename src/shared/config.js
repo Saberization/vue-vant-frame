@@ -13,7 +13,7 @@ export default {
     // 是否自动代理，如果开启，所有的请求会默认带上用户相关信息，h5是cookie中，app是headers中
     // 如果非新点标准后台，请关闭，否则会影响正常请求
     // 登陆地址譬如：http://218.4.136.114:8089/oarest9V7/fui/pages/themes/dream/dream
-    isAutoProxy: true
+    isAutoProxy: false
   },
   /**
    * 是否开启 调试面板， 开启可以在移动端捕获log

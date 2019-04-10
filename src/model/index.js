@@ -10,8 +10,7 @@ const getRefreshList = function(params) {
       token: 'RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=',
       params: params
     },
-    dataType: 'json',
-    isAutoProxy: false
+    dataType: 'json'
   })
 }
 

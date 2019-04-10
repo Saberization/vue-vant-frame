@@ -12,7 +12,7 @@ const defaultSettings = {
   headers: {},
   contentType: 'application/x-www-form-urlencoded',
   withCredentials: false,
-  isAutoProxy: Config.isAutoProxy
+  isAutoProxy: Config.ajax.isAutoProxy
 }
 
 let params = {}
