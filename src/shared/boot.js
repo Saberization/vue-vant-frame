@@ -8,7 +8,7 @@ Vue.config.productionTip = false;
 
 /**
  * 插入 Library 库
- * @param {Object} options
+ * @param {Array} gather 集合
  * inject 插入位置
  * src 路径
  * type 类型
