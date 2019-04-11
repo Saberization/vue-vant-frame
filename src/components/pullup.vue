@@ -20,15 +20,15 @@
 </template>
 
 <script>
-import { List } from 'vant'
-import Util from '@utils'
+import { List } from 'vant';
+import Util from '@utils';
 
 export default {
   name: 'PullUp',
   components: {
     [List.name]: List
   },
-  data () {
+  data() {
     return {
       loading: false,
       refreshSetting: {
@@ -39,7 +39,7 @@ export default {
         finishedText: '没有更多',
         errorText: '请求失败，点击重新加载',
         immediateCheck: true,
-        pullUp () {}
+        pullUp() {}
       },
       ajaxSetting: {
         type: 'post',
@@ -54,46 +54,46 @@ export default {
         delay: 300
       },
       requestData: {}
-    }
+    };
   },
   methods: {
-    check () {
-      this.$refs.pullUp.check()
+    check() {
+      this.$refs.pullUp.check();
     },
-    onLoad () {
-      this.loading = true
+    onLoad() {
+      this.loading = true;
       setTimeout(() => {
         this._getRequestData(() => {
-          this.loading = false
-        })
-      }, this.options.delay)
+          this.loading = false;
+        });
+      }, this.options.delay);
     },
-    pullUp (options) {
-      this.ajaxSetting = Object.assign(this.ajaxSetting, options.ajaxSetting || {})
-      this.refreshSetting = Object.assign(this.refreshSetting, options.setting || {})
-      this.options = Object.assign(this.options, options)
-      this.currentPage = this.options.initPageIndex
+    pullUp(options) {
+      this.ajaxSetting = Object.assign(this.ajaxSetting, options.ajaxSetting || {});
+      this.refreshSetting = Object.assign(this.refreshSetting, options.setting || {});
+      this.options = Object.assign(this.options, options);
+      this.currentPage = this.options.initPageIndex;
     },
-    _getRequestData (complete) {
-      const dataRequest = this.options.dataRequest
+    _getRequestData(complete) {
+      const { dataRequest } = this.options;
 
       if (dataRequest && typeof dataRequest === 'function') {
-        let requestData = null
+        let requestData = null;
 
         this.requestData = dataRequest(this.currentPage, (data) => {
-          requestData = data
-        })
-        this.requestData = this.requestData ? this.requestData : requestData
-        this._request(complete)
+          requestData = data;
+        });
+        this.requestData = this.requestData ? this.requestData : requestData;
+        this._request(complete);
       } else {
-        console.error('请传入 dataRequest 函数')
+        console.error('请传入 dataRequest 函数');
       }
     },
-    _request (complete) {
-      const options = this.options
-      const ajaxSetting = this.ajaxSetting
-      const success = options.success
-      const error = options.error
+    _request(complete) {
+      const { options } = this;
+      const { ajaxSetting } = this;
+      const { success } = options;
+      const { error } = options;
 
       Util.ajax({
         url: options.url,
@@ -102,22 +102,22 @@ export default {
         contentType: ajaxSetting.contentType,
         headers: ajaxSetting.headers,
         timeout: ajaxSetting.timeout
-      }).then(response => {
+      }).then((response) => {
         if (complete && typeof complete === 'function') {
-          complete()
+          complete();
         }
         if (success && typeof success === 'function') {
-          success(response.data, this.currentPage++)
+          success(response.data, this.currentPage++);
         }
-      }).catch(err => {
+      }).catch((err) => {
         if (complete && typeof complete === 'function') {
-          complete()
+          complete();
         }
         if (error && typeof error === 'function') {
-          error(err)
+          error(err);
         }
-      })
+      });
     }
   }
-}
+};
 </script>

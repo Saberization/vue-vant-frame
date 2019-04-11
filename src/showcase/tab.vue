@@ -116,9 +116,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanIcon from '@components/icon'
-import { Tab, Tabs, Toast } from 'vant'
+import vanHeader from '@components/header';
+import vanIcon from '@components/icon';
+import { Tab, Tabs, Toast } from 'vant';
 
 export default {
   name: 'Tab',
@@ -128,21 +128,21 @@ export default {
     'van-tabs': Tabs,
     vanIcon
   },
-  data () {
+  data() {
     return {
       active1: 2,
       active2: 0
-    }
+    };
   },
   methods: {
-    onClickDisabled (index, title) {
-      Toast(`${title} 已被禁用`)
+    onClickDisabled(index, title) {
+      Toast(`${title} 已被禁用`);
     },
-    onClick (index, title) {
-      Toast(`当前选中 ${title}`)
+    onClick(index, title) {
+      Toast(`当前选中 ${title}`);
     }
   }
-}
+};
 </script>
 
 <style scoped>

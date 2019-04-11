@@ -43,9 +43,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanSwitch from '@components/switch'
-import { Dialog } from 'vant'
+import vanHeader from '@components/header';
+import vanSwitch from '@components/switch';
+import { Dialog } from 'vant';
 
 export default {
   name: 'component_switch',
@@ -53,7 +53,7 @@ export default {
     vanHeader,
     vanSwitch
   },
-  data () {
+  data() {
     return {
       checked1: true,
       checked2: true,
@@ -61,20 +61,20 @@ export default {
       checked4: true,
       checked5: true,
       checked6: true
-    }
+    };
   },
   methods: {
-    onInput (checked) {
+    onInput(checked) {
       Dialog.confirm({
         title: '提醒',
         message: '是否切换开关？'
       }).then(() => {
-        this.checked6 = checked
+        this.checked6 = checked;
       }).catch(() => {
-      })
+      });
     }
   }
-}
+};
 </script>
 
 <style scoped>

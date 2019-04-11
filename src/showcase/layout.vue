@@ -92,8 +92,8 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import { Row, Col } from 'vant'
+import vanHeader from '@components/header';
+import { Row, Col } from 'vant';
 
 export default {
   name: 'Layout',
@@ -102,7 +102,7 @@ export default {
     'van-col': Col,
     vanHeader
   }
-}
+};
 </script>
 
 <style scoped>

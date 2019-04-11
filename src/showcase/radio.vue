@@ -61,11 +61,11 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanRadio from '@components/radio'
-import vanRadioGroup from '@components/radiogroup'
-import vanCellGroup from '@components/cellgroup'
-import vanCell from '@components/cell'
+import vanHeader from '@components/header';
+import vanRadio from '@components/radio';
+import vanRadioGroup from '@components/radiogroup';
+import vanCellGroup from '@components/cellgroup';
+import vanCell from '@components/cell';
 
 export default {
   name: 'Radio',
@@ -76,7 +76,7 @@ export default {
     vanCellGroup,
     vanCell
   },
-  data () {
+  data() {
     return {
       radio: '1',
       cellRadio: '1',
@@ -85,9 +85,9 @@ export default {
         active: 'https://img.yzcdn.cn/public_files/2017/10/13/793c77793db8641c4c325b7f25bf130d.png',
         normal: 'https://img.yzcdn.cn/public_files/2017/10/13/c547715be149dd3faa817e4a948b40c4.png'
       }
-    }
+    };
   }
-}
+};
 </script>
 
 <style scoped>

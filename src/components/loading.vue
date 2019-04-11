@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { Loading } from 'vant'
+import { Loading } from 'vant';
 
 export default {
   name: 'Loading',
@@ -28,5 +28,5 @@ export default {
       default: '30px'
     }
   }
-}
+};
 </script>

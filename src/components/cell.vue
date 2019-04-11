@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { Cell } from 'vant'
+import { Cell } from 'vant';
 
 export default {
   name: 'Cell',
@@ -93,9 +93,9 @@ export default {
     }
   },
   methods: {
-    onClick () {
-      this.$emit('click')
+    onClick() {
+      this.$emit('click');
     }
   }
-}
+};
 </script>

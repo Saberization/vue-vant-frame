@@ -92,11 +92,11 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanField from '@components/field'
-import vanCellGroup from '@components/cellgroup'
-import vanButton from '@components/button'
-import { Toast } from 'vant'
+import vanHeader from '@components/header';
+import vanField from '@components/field';
+import vanCellGroup from '@components/cellgroup';
+import vanButton from '@components/button';
+import { Toast } from 'vant';
 
 export default {
   name: 'Field',
@@ -106,7 +106,7 @@ export default {
     vanCellGroup,
     vanButton
   },
-  data () {
+  data() {
     return {
       value: '',
       username: '',
@@ -115,17 +115,17 @@ export default {
       phone: '1234567',
       message: '',
       sms: ''
-    }
+    };
   },
   methods: {
-    onInput () {
-      console.log(this.value)
+    onInput() {
+      console.log(this.value);
     },
-    onClickRightIcon (text) {
-      Toast(text)
+    onClickRightIcon(text) {
+      Toast(text);
     }
   }
-}
+};
 </script>
 
 <style scoped>

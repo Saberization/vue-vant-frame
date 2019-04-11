@@ -42,9 +42,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanPopup from '@components/popup'
-import vanButton from '@components/button'
+import vanHeader from '@components/header';
+import vanPopup from '@components/popup';
+import vanButton from '@components/button';
 
 export default {
   name: 'Popup',
@@ -53,44 +53,44 @@ export default {
     vanHeader,
     vanButton
   },
-  data () {
+  data() {
     return {
       show: false,
       position: '',
       overlay: true
-    }
+    };
   },
   methods: {
-    onClickCenterPopup () {
-      this.show = true
+    onClickCenterPopup() {
+      this.show = true;
     },
-    onClickBottomPopup () {
-      this.show = true
-      this.position = 'bottom'
+    onClickBottomPopup() {
+      this.show = true;
+      this.position = 'bottom';
 
       setTimeout(() => {
-        this.show = false
-      }, 1000)
+        this.show = false;
+      }, 1000);
     },
-    onClickTopPopup () {
-      this.show = true
-      this.overlay = false
-      this.position = 'top'
+    onClickTopPopup() {
+      this.show = true;
+      this.overlay = false;
+      this.position = 'top';
 
       setTimeout(() => {
-        this.show = false
-      }, 1000)
+        this.show = false;
+      }, 1000);
     },
-    onClickRightPopup () {
-      this.show = true
-      this.position = 'right'
+    onClickRightPopup() {
+      this.show = true;
+      this.position = 'right';
     },
-    closePopup () {
-      this.show = false
-      this.overlay = true
+    closePopup() {
+      this.show = false;
+      this.overlay = true;
     }
   }
-}
+};
 </script>
 
 <style scoped>

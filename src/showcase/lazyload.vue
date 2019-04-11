@@ -36,14 +36,14 @@
 
 <script>
 // 需要在 main.js 中引入 Lazyload 模块方可使用 v-lazy
-import vanHeader from '@components/header'
+import vanHeader from '@components/header';
 
 export default {
   name: 'Lazyload',
   components: {
     vanHeader
   },
-  data () {
+  data() {
     return {
       imageList: [
         'https://img.yzcdn.cn/public_files/2017/09/05/4e3ea0898b1c2c416eec8c11c5360833.jpg',
@@ -51,9 +51,9 @@ export default {
         'https://img.yzcdn.cn/public_files/2017/09/05/3bd347e44233a868c99cf0fe560232be.jpg',
         'https://img.yzcdn.cn/public_files/2017/09/05/c0dab461920687911536621b345a0bc9.jpg'
       ]
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

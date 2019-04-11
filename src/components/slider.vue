@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { Slider } from 'vant'
+import { Slider } from 'vant';
 
 export default {
   name: 'Slider',
@@ -61,19 +61,19 @@ export default {
       default: '#e5e5e5'
     }
   },
-  data () {
+  data() {
     return {
       sliderValue: 0
-    }
+    };
   },
   methods: {
-    onChange (value) {
-      this.$emit('change', value)
-      this.$emit('changeValue', value)
+    onChange(value) {
+      this.$emit('change', value);
+      this.$emit('changeValue', value);
     }
   },
-  created () {
-    this.sliderValue = this.value
+  created() {
+    this.sliderValue = this.value;
   }
-}
+};
 </script>

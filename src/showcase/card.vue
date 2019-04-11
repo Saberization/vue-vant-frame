@@ -34,9 +34,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanCard from '@components/card'
-import vanButton from '@components/button'
+import vanHeader from '@components/header';
+import vanCard from '@components/card';
+import vanButton from '@components/button';
 
 export default {
   name: 'Card',
@@ -45,7 +45,7 @@ export default {
     vanCard,
     vanButton
   }
-}
+};
 </script>
 
 <style scoped>

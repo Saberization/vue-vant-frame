@@ -69,9 +69,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanCellGroup from '@components/cellgroup'
-import vanCell from '@components/cell'
+import vanHeader from '@components/header';
+import vanCellGroup from '@components/cellgroup';
+import vanCell from '@components/cell';
 
 export default {
   name: 'Cell',
@@ -80,7 +80,7 @@ export default {
     vanHeader,
     vanCellGroup
   }
-}
+};
 </script>
 
 <style scoped>

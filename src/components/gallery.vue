@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { Swipe, SwipeItem } from 'vant'
+import { Swipe, SwipeItem } from 'vant';
 
 export default {
   name: 'Gallery',
@@ -78,23 +78,23 @@ export default {
     },
     data: {
       type: Array,
-      default () {
-        return []
+      default() {
+        return [];
       }
     }
   },
   methods: {
-    onChange (index) {
-      this.$emit('change', index)
+    onChange(index) {
+      this.$emit('change', index);
     },
-    onClick () {
-      this.$emit('click', event.target.parentElement.getAttribute('guid'))
+    onClick() {
+      this.$emit('click', event.target.parentElement.getAttribute('guid'));
     },
-    swipeTo (index) {
-      this.$refs.swipe.swipeTo(index)
+    swipeTo(index) {
+      this.$refs.swipe.swipeTo(index);
     }
   }
-}
+};
 </script>
 
 <style scoped>

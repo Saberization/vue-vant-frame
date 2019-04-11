@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { Button } from 'vant'
+import { Button } from 'vant';
 
 export default {
   name: 'Button',
@@ -84,9 +84,9 @@ export default {
     }
   },
   methods: {
-    onClickBtn () {
-      this.$emit('click')
+    onClickBtn() {
+      this.$emit('click');
     }
   }
-}
+};
 </script>

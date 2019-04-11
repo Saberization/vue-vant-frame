@@ -70,9 +70,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanCellGroup from '@components/cellgroup'
-import vanCell from '@components/cell'
+import vanHeader from '@components/header';
+import vanCellGroup from '@components/cellgroup';
+import vanCell from '@components/cell';
 
 export default {
   name: 'InlineStyle',
@@ -81,56 +81,56 @@ export default {
     vanCellGroup,
     vanCell
   },
-  data () {
+  data() {
     return {
       visibleFade: false,
       visibleSlideUp: false,
       visibleSlideDown: false,
       visibleSlideLeft: false,
       visibleSlideRight: false
-    }
+    };
   },
   methods: {
-    toggleShow (type) {
+    toggleShow(type) {
       switch (type) {
-        case 'Fade':
-          this.visibleFade = true
-          setTimeout(() => {
-            this.visibleFade = false
-          }, 600)
-          break
+      case 'Fade':
+        this.visibleFade = true;
+        setTimeout(() => {
+          this.visibleFade = false;
+        }, 600);
+        break;
 
-        case 'SlideUp':
-          this.visibleSlideUp = true
-          setTimeout(() => {
-            this.visibleSlideUp = false
-          }, 600)
-          break
+      case 'SlideUp':
+        this.visibleSlideUp = true;
+        setTimeout(() => {
+          this.visibleSlideUp = false;
+        }, 600);
+        break;
 
-        case 'SlideDown':
-          this.visibleSlideDown = true
-          setTimeout(() => {
-            this.visibleSlideDown = false
-          }, 600)
-          break
+      case 'SlideDown':
+        this.visibleSlideDown = true;
+        setTimeout(() => {
+          this.visibleSlideDown = false;
+        }, 600);
+        break;
 
-        case 'SlideLeft':
-          this.visibleSlideLeft = true
-          setTimeout(() => {
-            this.visibleSlideLeft = false
-          }, 600)
-          break
+      case 'SlideLeft':
+        this.visibleSlideLeft = true;
+        setTimeout(() => {
+          this.visibleSlideLeft = false;
+        }, 600);
+        break;
 
-        case 'SlideRight':
-          this.visibleSlideRight = true
-          setTimeout(() => {
-            this.visibleSlideRight = false
-          }, 600)
-          break
+      case 'SlideRight':
+        this.visibleSlideRight = true;
+        setTimeout(() => {
+          this.visibleSlideRight = false;
+        }, 600);
+        break;
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>

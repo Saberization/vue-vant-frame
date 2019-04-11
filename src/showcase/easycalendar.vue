@@ -8,8 +8,8 @@
   </div>
 </template>
 <script>
-import vanHeader from '@components/header'
-import easyCalendar from '@components/easycalendar'
+import vanHeader from '@components/header';
+import easyCalendar from '@components/easycalendar';
 
 export default {
   name: 'Easycalendar',
@@ -17,18 +17,18 @@ export default {
     vanHeader,
     easyCalendar
   },
-  data () {
+  data() {
     return {
       show: true,
       result: {}
-    }
+    };
   },
   methods: {
-    onChange (result) {
-      this.result = result
+    onChange(result) {
+      this.result = result;
     }
   }
-}
+};
 </script>
 
 <style scoped>

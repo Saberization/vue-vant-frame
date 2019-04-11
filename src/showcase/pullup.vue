@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanPullup from '@components/pullup'
-import vanCell from '@components/cell'
+import vanHeader from '@components/header';
+import vanPullup from '@components/pullup';
+import vanCell from '@components/cell';
 
 export default {
   name: 'PullUp',
@@ -30,15 +30,15 @@ export default {
     vanCell,
     vanPullup
   },
-  data () {
+  data() {
     return {
       list: []
-    }
+    };
   },
-  mounted () {
+  mounted() {
     this.$refs.pull.pullUp({
       url: 'http://yapi.demo.qunar.com/mock/43176/mock/getlist',
-      dataRequest (currPage) {
+      dataRequest(currPage) {
         return {
           token: 'RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=',
           params: {
@@ -46,22 +46,22 @@ export default {
             pagesize: 10,
             keyword: 'type1'
           }
-        }
+        };
       },
       initPageIndex: 0,
       success: (response, pageIndex) => {
-        const infolist = response.custom.infolist
+        const { infolist } = response.custom;
 
         if (pageIndex === 0) {
-          this.list = infolist
+          this.list = infolist;
         } else {
-          infolist.forEach(e => {
-            this.list.push(e)
-          })
+          infolist.forEach((e) => {
+            this.list.push(e);
+          });
         }
       },
-      error: err => {
-        console.log(err)
+      error: (err) => {
+        console.log(err);
       },
       ajaxSetting: {
         contentType: 'application/x-www-form-urlencoded',
@@ -79,11 +79,11 @@ export default {
         // 是否在初始化时立即执行滚动位置检查
         immediateCheck: true,
         // 上拉加载的时候触发
-        pullUp () {
-          console.log('pullUp')
+        pullUp() {
+          console.log('pullUp');
         }
       }
-    })
+    });
   }
-}
+};
 </script>

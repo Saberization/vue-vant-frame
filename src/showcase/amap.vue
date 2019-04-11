@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import Amap from '@components/amap'
-import vanCellGroup from '@components/cellgroup'
-import vanCell from '@components/cell'
+import vanHeader from '@components/header';
+import Amap from '@components/amap';
+import vanCellGroup from '@components/cellgroup';
+import vanCell from '@components/cell';
 
 export default {
   name: 'AMap',
@@ -24,15 +24,15 @@ export default {
     vanCell,
     vanCellGroup
   },
-  data () {
+  data() {
     return {
       pois: [],
       poiCallback: ({ result }) => {
-        this.pois = result.pois
+        this.pois = result.pois;
       }
-    }
+    };
   }
-}
+};
 </script>
 
 <style scoped>

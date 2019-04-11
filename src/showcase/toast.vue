@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import { Toast } from 'vant'
-import vanHeader from '@components/header'
-import vanButton from '@components/button'
+import { Toast } from 'vant';
+import vanHeader from '@components/header';
+import vanButton from '@components/button';
 
 export default {
   name: 'Toast',
@@ -34,10 +34,10 @@ export default {
     vanButton
   },
   methods: {
-    showToast (options) {
-      Toast(options)
+    showToast(options) {
+      Toast(options);
     },
-    loadingToast () {
+    loadingToast() {
       Toast.loading({
         // 遮罩
         mask: true,
@@ -45,15 +45,15 @@ export default {
         message: '加载中...',
         // 多少毫秒自动关闭toast，0为不关闭toast
         duration: 1300
-      })
+      });
     },
-    successToast () {
-      Toast.success('成功文案')
+    successToast() {
+      Toast.success('成功文案');
     },
-    errorToast () {
-      Toast.fail('失败文案')
+    errorToast() {
+      Toast.fail('失败文案');
     },
-    advToast () {
+    advToast() {
       const toast = Toast.loading({
         // 持续展示 toast
         duration: 0,
@@ -61,22 +61,22 @@ export default {
         forbidClick: true,
         loadingType: 'spinner',
         message: '倒计时 3 秒'
-      })
+      });
 
-      let second = 3
+      let second = 3;
       const timmer = setInterval(() => {
-        second--
+        second--;
         if (second) {
-          toast.message = `倒计时 ${second} 秒`
+          toast.message = `倒计时 ${second} 秒`;
         } else {
-          clearInterval(timmer)
+          clearInterval(timmer);
           // 关闭 toast
-          Toast.clear()
+          Toast.clear();
         }
-      }, 1000)
+      }, 1000);
     }
   }
-}
+};
 </script>
 
 <style scoped>

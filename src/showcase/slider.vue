@@ -54,9 +54,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanSlider from '@components/slider'
-import { Toast } from 'vant'
+import vanHeader from '@components/header';
+import vanSlider from '@components/slider';
+import { Toast } from 'vant';
 
 export default {
   name: 'Slider',
@@ -64,18 +64,18 @@ export default {
     vanHeader,
     vanSlider
   },
-  data () {
+  data() {
     return {
       value: 50,
       baseValue: 30
-    }
+    };
   },
   methods: {
-    onChange (value) {
-      Toast(`当前值：${value}`)
+    onChange(value) {
+      Toast(`当前值：${value}`);
     }
   }
-}
+};
 </script>
 
 <style scoped>

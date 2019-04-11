@@ -28,9 +28,9 @@
 </template>
 
 <script>
-import { Dialog } from 'vant'
-import vanHeader from '@components/header'
-import vanButton from '@components/button'
+import { Dialog } from 'vant';
+import vanHeader from '@components/header';
+import vanButton from '@components/button';
 
 export default {
   name: 'Dialog',
@@ -39,20 +39,20 @@ export default {
     vanButton
   },
   methods: {
-    openDialog (options) {
+    openDialog(options) {
       Dialog.alert(options).then(() => {
         // close
-      })
+      });
     },
-    openConfirmDialog (options) {
+    openConfirmDialog(options) {
       Dialog.alert(options).then(() => {
         // confirm
       }).catch(() => {
         // close
-      })
+      });
     }
   }
-}
+};
 </script>
 
 <style scoped>

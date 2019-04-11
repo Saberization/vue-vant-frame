@@ -43,9 +43,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanCircle from '@components/circle'
-import vanButton from '@components/button'
+import vanHeader from '@components/header';
+import vanCircle from '@components/circle';
+import vanButton from '@components/button';
 
 export default {
   name: 'component_circle',
@@ -54,27 +54,27 @@ export default {
     vanCircle,
     vanButton
   },
-  data () {
+  data() {
     return {
       currentRate: 0,
       rate: 30,
       speed: 100
-    }
+    };
   },
   methods: {
-    add () {
-      this.rate += 20
+    add() {
+      this.rate += 20;
     },
-    less () {
-      this.rate -= 20
+    less() {
+      this.rate -= 20;
     }
   },
   computed: {
-    text () {
-      return this.currentRate.toFixed(0) + '%'
+    text() {
+      return `${this.currentRate.toFixed(0)}%`;
     }
   }
-}
+};
 </script>
 
 <style scoped>

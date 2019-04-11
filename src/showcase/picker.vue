@@ -57,10 +57,10 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanPicker from '@components/picker'
-import vanButton from '@components/button'
-import cityData3 from '@public/lib/city.data-3.js'
+import vanHeader from '@components/header';
+import vanPicker from '@components/picker';
+import vanButton from '@components/button';
+import cityData3 from '@public/lib/city.data-3.js';
 
 export default {
   name: 'Picker',
@@ -69,7 +69,7 @@ export default {
     vanHeader,
     vanButton
   },
-  data () {
+  data() {
     return {
       showPicker1: false,
       showPicker2: false,
@@ -133,14 +133,14 @@ export default {
         id: '逢坂大河'
       }],
       result: ''
-    }
+    };
   },
   methods: {
-    onConfirm (value) {
-      this.result = value
+    onConfirm(value) {
+      this.result = value;
     }
   }
-}
+};
 </script>
 
 <style scoped>

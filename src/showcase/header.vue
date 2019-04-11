@@ -29,9 +29,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanIcon from '@components/icon'
-import { Toast } from 'vant'
+import vanHeader from '@components/header';
+import vanIcon from '@components/icon';
+import { Toast } from 'vant';
 
 export default {
   name: 'Header',
@@ -40,12 +40,12 @@ export default {
     vanIcon
   },
   methods: {
-    onClickLeft () {
-      Toast('返回')
+    onClickLeft() {
+      Toast('返回');
     },
-    onClickRight () {
-      Toast('按钮')
+    onClickRight() {
+      Toast('按钮');
     }
   }
-}
+};
 </script>

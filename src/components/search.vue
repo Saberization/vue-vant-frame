@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { Search } from 'vant'
+import { Search } from 'vant';
 
 export default {
   name: 'Search',
@@ -78,29 +78,29 @@ export default {
     },
     value: String
   },
-  data () {
+  data() {
     return {
       searchValue: ''
-    }
+    };
   },
   methods: {
-    onSearch () {
-      this.$emit('changeValue', this.searchValue)
-      this.$emit('search')
+    onSearch() {
+      this.$emit('changeValue', this.searchValue);
+      this.$emit('search');
     },
-    onClear () {
-      this.$emit('changeValue', '')
-      this.$emit('clear')
+    onClear() {
+      this.$emit('changeValue', '');
+      this.$emit('clear');
     },
-    onCancel () {
-      this.$emit('cancel')
+    onCancel() {
+      this.$emit('cancel');
     },
-    onInput () {
-      this.$emit('changeValue', this.searchValue)
+    onInput() {
+      this.$emit('changeValue', this.searchValue);
     }
   },
-  created () {
-    this.searchValue = this.value
+  created() {
+    this.searchValue = this.value;
   }
-}
+};
 </script>

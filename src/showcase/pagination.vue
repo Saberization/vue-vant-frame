@@ -36,9 +36,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanPagination from '@components/pagination'
-import { Toast } from 'vant'
+import vanHeader from '@components/header';
+import vanPagination from '@components/pagination';
+import { Toast } from 'vant';
 
 export default {
   name: 'Pagination',
@@ -46,15 +46,15 @@ export default {
     vanHeader,
     vanPagination
   },
-  data () {
+  data() {
     return {
       currentPage: 1
-    }
+    };
   },
   methods: {
-    onChangePage () {
-      Toast(`当前第 ${this.currentPage} 页`)
+    onChangePage() {
+      Toast(`当前第 ${this.currentPage} 页`);
     }
   }
-}
+};
 </script>

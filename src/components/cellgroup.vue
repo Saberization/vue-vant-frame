@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { CellGroup } from 'vant'
+import { CellGroup } from 'vant';
 
 export default {
   name: 'CellGroup',
@@ -18,5 +18,5 @@ export default {
       default: true
     }
   }
-}
+};
 </script>

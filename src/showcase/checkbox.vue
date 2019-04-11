@@ -80,11 +80,11 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanCheckboxGroup from '@components/checkboxgroup'
-import vanCheckbox from '@components/checkbox'
-import vanCellGroup from '@components/cellgroup'
-import vanCell from '@components/cell'
+import vanHeader from '@components/header';
+import vanCheckboxGroup from '@components/checkboxgroup';
+import vanCheckbox from '@components/checkbox';
+import vanCellGroup from '@components/cellgroup';
+import vanCell from '@components/cell';
 
 export default {
   name: 'CheckBox',
@@ -95,7 +95,7 @@ export default {
     vanCellGroup,
     vanCell
   },
-  data () {
+  data() {
     return {
       checked: true,
       icon: {
@@ -104,14 +104,14 @@ export default {
       },
       list: ['a', 'b', 'c'],
       result: ['a', 'b']
-    }
+    };
   },
   methods: {
-    toggle (index) {
-      this.$refs.checkboxes[index].toggle()
+    toggle(index) {
+      this.$refs.checkboxes[index].toggle();
     }
   }
-}
+};
 </script>
 
 <style scoped>

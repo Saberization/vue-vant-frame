@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { Panel } from 'vant'
+import { Panel } from 'vant';
 
 export default {
   name: 'Panel',
@@ -31,5 +31,5 @@ export default {
     status: String,
     icon: String
   }
-}
+};
 </script>

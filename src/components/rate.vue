@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { Rate } from 'vant'
+import { Rate } from 'vant';
 
 export default {
   name: 'Rate',
@@ -65,19 +65,19 @@ export default {
     },
     rate: Number
   },
-  data () {
+  data() {
     return {
       rateValue: 1
-    }
+    };
   },
   methods: {
-    onChange (value) {
-      this.$emit('change', value)
-      this.$emit('changeRate', value)
+    onChange(value) {
+      this.$emit('change', value);
+      this.$emit('changeRate', value);
     }
   },
-  created () {
-    this.rateValue = this.rate
+  created() {
+    this.rateValue = this.rate;
   }
-}
+};
 </script>

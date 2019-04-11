@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanAddressEdit from '@components/addressedit'
-import areaList from '@public/lib/area-list.js'
-import { Toast } from 'vant'
+import vanHeader from '@components/header';
+import vanAddressEdit from '@components/addressedit';
+import areaList from '@public/lib/area-list.js';
+import { Toast } from 'vant';
 
 export default {
   name: 'AddressEdit',
@@ -33,30 +33,30 @@ export default {
     vanHeader,
     vanAddressEdit
   },
-  data () {
+  data() {
     return {
       areaList,
       searchResult: []
-    }
+    };
   },
   methods: {
-    onSave (content) {
-      Toast('save')
-      console.log(content)
+    onSave(content) {
+      Toast('save');
+      console.log(content);
     },
-    onDelete () {
-      Toast('delete')
+    onDelete() {
+      Toast('delete');
     },
-    onChangeDetail (val) {
+    onChangeDetail(val) {
       if (val) {
         this.searchResult = [{
           name: '新点软件',
           address: '沙洲湖科创园'
-        }]
+        }];
       } else {
-        this.searchResult = []
+        this.searchResult = [];
       }
     }
   }
-}
+};
 </script>

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { Tag } from 'vant'
+import { Tag } from 'vant';
 
 export default {
   name: 'Tag',
@@ -40,9 +40,9 @@ export default {
     textColor: String
   },
   methods: {
-    onClick () {
-      this.$emit('click')
+    onClick() {
+      this.$emit('click');
     }
   }
-}
+};
 </script>

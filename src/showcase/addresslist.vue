@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanAddressList from '@components/addresslist'
-import { Toast } from 'vant'
+import vanHeader from '@components/header';
+import vanAddressList from '@components/addresslist';
+import { Toast } from 'vant';
 
 export default {
   name: 'AddressList',
@@ -28,7 +28,7 @@ export default {
     vanHeader,
     vanAddressList
   },
-  data () {
+  data() {
     return {
       chosenAddressId: '1',
       list: [
@@ -53,7 +53,7 @@ export default {
           address: '浙江省杭州市滨江区江南大道 15 号'
         }
       ]
-    }
+    };
   },
   methods: {
     onAdd() {
@@ -61,8 +61,8 @@ export default {
     },
 
     onEdit(item, index) {
-      Toast('编辑地址:' + index);
+      Toast(`编辑地址:${index}`);
     }
   }
-}
+};
 </script>

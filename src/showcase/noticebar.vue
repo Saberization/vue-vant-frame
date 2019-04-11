@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanNoticeBar from '@components/noticebar'
+import vanHeader from '@components/header';
+import vanNoticeBar from '@components/noticebar';
 
 export default {
   name: 'NoticeBar',
@@ -39,5 +39,5 @@ export default {
     vanHeader,
     vanNoticeBar
   }
-}
+};
 </script>

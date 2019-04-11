@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanLoading from '@components/loading'
+import vanHeader from '@components/header';
+import vanLoading from '@components/loading';
 
 export default {
   name: 'Loading',
@@ -38,7 +38,7 @@ export default {
     vanHeader,
     vanLoading
   }
-}
+};
 </script>
 
 <style scoped>

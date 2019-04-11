@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { NoticeBar } from 'vant'
+import { NoticeBar } from 'vant';
 
 export default {
   name: 'NoticeBar',
@@ -52,12 +52,12 @@ export default {
     }
   },
   methods: {
-    onClick () {
-      this.$emit('click')
+    onClick() {
+      this.$emit('click');
     },
-    onClose () {
-      this.$emit('close')
+    onClose() {
+      this.$emit('close');
     }
   }
-}
+};
 </script>

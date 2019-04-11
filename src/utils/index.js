@@ -1,115 +1,145 @@
 import {
   ajax,
   ajaxAll
-} from './request'
+} from './request';
 
 /**
  * 打开页面
  * @param {String} url 要打开的地址
  */
 const openPage = (url) => {
-  const location = window.location
-  const pathname = location.pathname
+  const { location } = window;
+  const { pathname } = location;
 
   if (typeof pathname === 'string') {
     if (url.indexOf('http') !== -1) {
-      location.href = url
+      location.href = url;
     } else {
-      let pathArr = pathname.split('/')
+      const pathArr = pathname.split('/');
 
-      pathArr.length = pathArr.length - 1
-      location.href = location.protocol + '//' + location.host + pathArr.join('/') + '/' + url
+      pathArr.length -= 1;
+      location.href = `${location.protocol}//${location.host}${pathArr.join('/')}/${url}`;
     }
   }
-}
+};
 
 const loaderExternals = (...args) => {
   if (args.length >= 2) {
     for (let i = 0, len = args.length; i < len; i++) {
-      let el
-      let item = args[i]
-      let type = item.type || 'js'
-      let url = item.url
-      let position = item.position || 'body'
+      let el;
+      const item = args[i];
+      const type = item.type || 'js';
+      const { url } = item;
+      const position = item.position || 'body';
 
       if (type === 'js') {
-        el = document.createElement('script')
-        el.src = url
+        el = document.createElement('script');
+        el.src = url;
       } else if (type === 'css') {
-        el = document.createElement('link')
-        el.href = url
-        el.rel = 'stylesheet'
+        el = document.createElement('link');
+        el.href = url;
+        el.rel = 'stylesheet';
       }
 
       if (position === 'head') {
-        document.head.appendChild(el)
+        document.head.appendChild(el);
       } else if (position === 'body') {
-        document.body.appendChild(el)
+        document.body.appendChild(el);
       }
 
-      el.onload = item.onload
+      el.onload = item.onload;
     }
   }
 
   if (args.length === 1) {
-    let item = args[0]
-    let url = item.url
-    let position = item.position || 'body'
-    let type = item.type || 'js'
-    let onload = item.onload
-    let el
-    const promiseArr = []
+    const item = args[0];
+    const { url } = item;
+    const position = item.position || 'body';
+    const type = item.type || 'js';
+    const { onload } = item;
+    let el;
+    const promiseArr = [];
 
     if (Array.isArray(url)) {
       for (let i = 0, len = url.length; i < len; i++) {
-        let _url = url[i]
-        let _type = Array.isArray(type) ? type[i] : type
-        let _position = Array.isArray(position) ? position[i] : position
+        const _url = url[i];
+        const _type = Array.isArray(type) ? type[i] : type;
+        const _position = Array.isArray(position) ? position[i] : position;
 
         if (_type === 'js') {
-          el = document.createElement('script')
-          el.src = _url
+          el = document.createElement('script');
+          el.src = _url;
         } else if (_type === 'css') {
-          el = document.createElement('link')
-          el.href = url
-          el.rel = 'stylesheet'
+          el = document.createElement('link');
+          el.href = url;
+          el.rel = 'stylesheet';
         }
 
-        _position === 'head' ? document.head.appendChild(el) : document.body.appendChild(el)
+        _position === 'head' ? document.head.appendChild(el) : document.body.appendChild(el);
         promiseArr.push(new Promise((resolve) => {
-          el.onload = resolve
-        }))
+          el.onload = resolve;
+        }));
       }
 
       Promise.all(promiseArr).then(() => {
         if (onload && typeof onload === 'function') {
-          onload()
+          onload();
         }
-      })
+      });
     } else {
       if (type === 'js') {
-        el = document.createElement('script')
-        el.src = url
+        el = document.createElement('script');
+        el.src = url;
       } else if (type === 'css') {
-        el = document.createElement('link')
-        el.href = url
-        el.rel = 'stylesheet'
+        el = document.createElement('link');
+        el.href = url;
+        el.rel = 'stylesheet';
       }
 
-      position === 'head' ? document.head.appendChild(el) : document.body.appendChild(el)
-      el.onload = onload
+      position === 'head' ? document.head.appendChild(el) : document.body.appendChild(el);
+      el.onload = onload;
     }
   }
-}
+};
 
-const extend = (...args) => {
-  return Object.assign(...args)
-}
+const extend = (...args) => Object.assign(...args);
+
+const uuid = () => {
+  options = options || {};
+
+  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+  const uuid = [];
+  let i;
+  let radix = options.radix || chars.length;
+  let len = options.len || 32;
+  const type = options.type || 'default';
+
+  len = Math.min(len, 36);
+  len = Math.max(len, 4);
+  radix = Math.min(radix, 62);
+  radix = Math.max(radix, 2);
+
+  if (len) {
+    for (i = 0; i < len; i++) {
+      uuid[i] = chars[0 | Math.random() * radix];
+    }
+
+    if (type === 'default') {
+      len > 23 && (uuid[23] = '-');
+      len > 18 && (uuid[18] = '-');
+      len > 13 && (uuid[13] = '-');
+      len > 8 && (uuid[8] = '-');
+    }
+  }
+
+  return uuid.join('');
+};
 
 export default {
   openPage,
   ajax,
   ajaxAll,
   extend,
-  loaderExternals
-}
+  loaderExternals,
+  uuid
+};

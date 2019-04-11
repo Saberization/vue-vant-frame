@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { Circle } from 'vant'
+import { Circle } from 'vant';
 
 export default {
   name: 'component_circle',
@@ -64,20 +64,20 @@ export default {
     }
   },
   watch: {
-    rateValue (value) {
-      this.currentRate = value
+    rateValue(value) {
+      this.currentRate = value;
     },
-    currentRate (value) {
-      this.$emit('changeRate', value)
+    currentRate(value) {
+      this.$emit('changeRate', value);
     }
   },
-  data () {
+  data() {
     return {
       currentRate: 0
-    }
+    };
   },
-  created () {
-    this.currentRate = this.rateValue
+  created() {
+    this.currentRate = this.rateValue;
   }
-}
+};
 </script>

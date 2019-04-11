@@ -63,8 +63,8 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanGallery from '@components/gallery'
+import vanHeader from '@components/header';
+import vanGallery from '@components/gallery';
 
 export default {
   name: 'Gallery',
@@ -72,7 +72,7 @@ export default {
     vanHeader,
     vanGallery
   },
-  data () {
+  data() {
     return {
       current: 0,
       images: [{
@@ -94,18 +94,18 @@ export default {
         title: '标题四',
         pic: 'https://fe.epoint.com.cn/m7showcase/showcase/widgets/gallery/images/testgallery4.jpg'
       }]
-    }
+    };
   },
   methods: {
-    onClick (guid) {
-      console.log(`点击了：${guid}`)
+    onClick(guid) {
+      console.log(`点击了：${guid}`);
     },
-    onChange (index) {
-      this.current = index
-      console.log(`当前 Gallery 索引：${index}`)
+    onChange(index) {
+      this.current = index;
+      console.log(`当前 Gallery 索引：${index}`);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

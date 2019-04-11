@@ -10,83 +10,83 @@ const defaultSetting = {
   isMulti: false,
   type: '',
   accept: ''
-}
+};
 
 class FileInput {
-  constructor (options) {
-    this.options = Object.assign(defaultSetting, options || {})
-    this.errorCallback = () => {}
-    this._createInput()
+  constructor(options) {
+    this.options = Object.assign(defaultSetting, options || {});
+    this.errorCallback = () => {};
+    this._createInput();
   }
 
-  _createInput () {
-    const options = this.options
-    let type
-    let el = document.createElement('input')
-    let df = document.createDocumentFragment()
-    let filter = ''
-    let ejsEnv = false
+  _createInput() {
+    const { options } = this;
+    let type;
+    const el = document.createElement('input');
+    const df = document.createDocumentFragment();
+    let filter = '';
+    const ejsEnv = false;
 
-    el.type = 'file'
+    el.type = 'file';
 
     if (options.isMulti) {
-      el.multiple = true
+      el.multiple = true;
     }
 
     switch (options.type) {
-      case 'Text':
-        filter = ejsEnv ? 'text/*' : 'file/*'
-        type = 'Text'
-        break
+    case 'Text':
+      filter = ejsEnv ? 'text/*' : 'file/*';
+      type = 'Text';
+      break;
 
-      case 'File':
-        filter = ejsEnv ? 'file/*' : '*'
-        type = 'DataUrl'
-        break
+    case 'File':
+      filter = ejsEnv ? 'file/*' : '*';
+      type = 'DataUrl';
+      break;
 
-      case 'Image':
-        filter = 'image/*'
-        type = 'DataUrl'
-        break
+    case 'Image':
+      filter = 'image/*';
+      type = 'DataUrl';
+      break;
 
-      case 'Camera_File':
-        filter = ejsEnv ? 'camera_file/*' : '*'
-        type = 'DataUrl'
-        break
+    case 'Camera_File':
+      filter = ejsEnv ? 'camera_file/*' : '*';
+      type = 'DataUrl';
+      break;
 
-      case 'Image_File':
-        filter = ejsEnv ? 'image_file/*' : '*'
-        type = 'DataUrl'
-        break
+    case 'Image_File':
+      filter = ejsEnv ? 'image_file/*' : '*';
+      type = 'DataUrl';
+      break;
 
-      case 'Image_Camera':
-        filter = ejsEnv ? 'image_camera/*' : 'image/*'
-        type = 'DataUrl'
-        break
+    case 'Image_Camera':
+      filter = ejsEnv ? 'image_camera/*' : 'image/*';
+      type = 'DataUrl';
+      break;
 
-      case 'Camera':
-        filter = ejsEnv ? 'camera/*' : 'image/*'
-        type = 'DataUrl'
-        break
+    case 'Camera':
+      filter = ejsEnv ? 'camera/*' : 'image/*';
+      type = 'DataUrl';
+      break;
 
-      case 'All':
-        filter = ejsEnv ? '*/*' : '*'
-        type = 'DataUrl'
-        break
+    case 'All':
+      filter = ejsEnv ? '*/*' : '*';
+      type = 'DataUrl';
+      break;
 
-      default:
-        filter = '*'
-        type = 'File'
+    default:
+      filter = '*';
+      type = 'File';
     }
 
-    el.accept = options.accept || filter
-    this.el = el
-    this.dataType = type
-    df.appendChild(el)
+    el.accept = options.accept || filter;
+    this.el = el;
+    this.dataType = type;
+    df.appendChild(el);
   }
 
-  triggerClick () {
-    this.el.click()
+  triggerClick() {
+    this.el.click();
   }
 
   /**
@@ -94,27 +94,27 @@ class FileInput {
    * @param {String} event 事件名
    * @param {Function} callback 回调函数
    */
-  on (event = 'change', callback) {
-    const loadFormData = this.loadFormData
-    const dataType = this.dataType
-    const that = this
+  on(event = 'change', callback) {
+    const { loadFormData } = this;
+    const { dataType } = this;
+    const that = this;
 
     if (event === 'error') {
-      this.errorCallback = typeof callback === 'function' ? callback : this.errorCallback
+      this.errorCallback = typeof callback === 'function' ? callback : this.errorCallback;
     }
 
     if (event === 'change') {
       this.el.onchange = function () {
         loadFormData(this.files, dataType)
-          .then(result => {
+          .then((result) => {
             if (callback && typeof callback === 'function') {
-              callback(result)
+              callback(result);
             }
           })
-          .catch(error => {
-            that.errorCallback(error)
-          })
-      }
+          .catch((error) => {
+            that.errorCallback(error);
+          });
+      };
     }
   }
 
@@ -123,61 +123,61 @@ class FileInput {
    * @param {Blob} files 文件对象
    * @param {String} dataType 返回文件类型
    */
-  loadFormData (files, dataType) {
-    let i = 0
-    let promiseQueue = []
+  loadFormData(files, dataType) {
+    let i = 0;
+    const promiseQueue = [];
 
     while (i < files.length) {
-      let file = files[i]
-      const fileReader = new FileReader()
+      const file = files[i];
+      const fileReader = new FileReader();
 
       if (dataType === 'DataUrl') {
-        fileReader.readAsDataURL(file)
+        fileReader.readAsDataURL(file);
       } else if (dataType === 'Text') {
-        fileReader.readAsText(file)
+        fileReader.readAsText(file);
       } else {
-        fileReader.readAsBinaryString(file)
+        fileReader.readAsBinaryString(file);
       }
 
-      let p = new Promise((resolve, reject) => {
+      const p = new Promise((resolve, reject) => {
         fileReader.onload = function (e) {
-          let result = e.target.result
+          let { result } = e.target;
 
           if (dataType === 'DataUrl') {
             if (result.indexOf('data:base64,') !== -1) {
-              const filename = file.name.toLowerCase()
-              let base64Type = 'image/jpeg'
+              const filename = file.name.toLowerCase();
+              let base64Type = 'image/jpeg';
 
               if (filename.lastIndexOf('jpg') !== -1) {
-                base64Type = 'image/jpeg'
+                base64Type = 'image/jpeg';
               } else if (filename.lastIndexOf('.png') !== -1) {
-                base64Type = 'image/png'
+                base64Type = 'image/png';
               } else if (filename.lastIndexOf('gif') !== -1) {
-                base64Type = 'image/gif'
+                base64Type = 'image/gif';
               } else if (filename.lastIndexOf('icon') !== -1) {
-                base64Type = 'image/x-icon'
+                base64Type = 'image/x-icon';
               }
 
-              result = result.replace('data:base64,', '')
-              result = 'data:' + base64Type + ';base64,' + result
+              result = result.replace('data:base64,', '');
+              result = `data:${base64Type};base64,${result}`;
             }
           }
 
           resolve({
             value: result,
-            file: file
-          })
-        }
+            file
+          });
+        };
         fileReader.onerror = function (event) {
-          reject(event)
-        }
-      })
-      promiseQueue.push(p)
-      i++
+          reject(event);
+        };
+      });
+      promiseQueue.push(p);
+      i++;
     }
 
-    return Promise.all(promiseQueue)
+    return Promise.all(promiseQueue);
   }
 }
 
-export default FileInput
+export default FileInput;

@@ -36,10 +36,10 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanSwitchCell from '@components/switchcell'
-import vanCellGroup from '@components/cellgroup'
-import { Toast } from 'vant'
+import vanHeader from '@components/header';
+import vanSwitchCell from '@components/switchcell';
+import vanCellGroup from '@components/cellgroup';
+import { Toast } from 'vant';
 
 export default {
   name: 'SwitchCell',
@@ -48,15 +48,15 @@ export default {
     vanSwitchCell,
     vanCellGroup
   },
-  data () {
+  data() {
     return {
       checked: true
-    }
+    };
   },
   methods: {
-    onChange (checked) {
-      Toast(`当前选中状态 ${checked}`)
+    onChange(checked) {
+      Toast(`当前选中状态 ${checked}`);
     }
   }
-}
+};
 </script>

@@ -35,9 +35,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanPanel from '@components/panel'
-import vanButton from '@components/button'
+import vanHeader from '@components/header';
+import vanPanel from '@components/panel';
+import vanButton from '@components/button';
 
 export default {
   name: 'Panel',
@@ -46,7 +46,7 @@ export default {
     vanHeader,
     vanButton
   }
-}
+};
 </script>
 
 <style scoped>

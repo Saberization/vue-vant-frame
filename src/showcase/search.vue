@@ -40,9 +40,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanSearch from '@components/search'
-import { Toast } from 'vant'
+import vanHeader from '@components/header';
+import vanSearch from '@components/search';
+import { Toast } from 'vant';
 
 export default {
   name: 'Search',
@@ -50,20 +50,20 @@ export default {
     vanHeader,
     vanSearch
   },
-  data () {
+  data() {
     return {
       value: ''
-    }
+    };
   },
   methods: {
-    onSearch () {
-      Toast(`搜索值为：${this.value}`)
+    onSearch() {
+      Toast(`搜索值为：${this.value}`);
     },
-    onCancel () {
-      Toast(`点击了取消按钮`)
+    onCancel() {
+      Toast('点击了取消按钮');
     }
   }
-}
+};
 </script>
 
 <style scoped>

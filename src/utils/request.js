@@ -1,8 +1,8 @@
-import axios from 'axios'
-import Util from './index'
-import store from '@/store.js'
-import Config from '@shared/config'
-import { Toast } from 'vant'
+import axios from 'axios';
+import store from '@/store.js';
+import Config from '@shared/config';
+import { Toast } from 'vant';
+import Util from './index';
 
 const defaultSettings = {
   type: 'post',
@@ -16,29 +16,27 @@ const defaultSettings = {
   isAutoProxy: Config.ajax.isAutoProxy,
   success: () => {},
   error: () => {}
-}
+};
 
-let params = {}
-let setHeader = function (key, value) {
-  const headers = params.headers
-  headers[key] = value
-}
-let createInterceptors = function () {
-  axios.interceptors.request.use(config => {
-    let token = store.state.token
+let params = {};
+const setHeader = function (key, value) {
+  const { headers } = params;
+  headers[key] = value;
+};
+const createInterceptors = function () {
+  axios.interceptors.request.use((config) => {
+    const { token } = store.state;
 
     if (token) { // 判断是否存在token，如果存在的话，则每个http header都加上token
-      config.headers.Authorization = token
+      config.headers.Authorization = token;
     }
 
-    return config
-  }, error => {
-    return Promise.reject(error)
-  })
-}
+    return config;
+  }, error => Promise.reject(error));
+};
 
-function ajax (options) {
-  options = Util.extend(defaultSettings, options)
+function ajax(options) {
+  options = Util.extend(defaultSettings, options);
   params = {
     url: options.url,
     method: options.type,
@@ -46,49 +44,49 @@ function ajax (options) {
     headers: options.headers,
     responseType: options.dataType,
     withCredentials: options.withCredentials
-  }
+  };
 
-  const contentType = options.contentType
-  const headers = options.headers
-  const isAutoProxy = options.isAutoProxy
-  const error = options.error
-  const success = options.success
+  const { contentType } = options;
+  const { headers } = options;
+  const { isAutoProxy } = options;
+  const { error } = options;
+  const { success } = options;
 
-  for (let key in headers) {
-    setHeader(key, headers[key])
+  for (const key in headers) {
+    setHeader(key, headers[key]);
   }
 
   if (contentType) {
-    setHeader('Content-Type', contentType)
+    setHeader('Content-Type', contentType);
   }
 
   if (isAutoProxy) {
     // 创建拦截器
-    createInterceptors()
+    createInterceptors();
   }
 
-  axios(params).then(response => {
-    let { status, statusText, data } = response
+  axios(params).then((response) => {
+    const { status, statusText, data } = response;
 
     if ((status !== 200 && statusText !== 'OK') || typeof data.errcode === 'number') {
-      error(data)
+      error(data);
 
       if (Config.ajax.isAutoErrToast) {
-        Toast(data.errmsg)
+        Toast(data.errmsg);
       }
     } else {
-      success(data, response)
+      success(data, response);
     }
-  }).catch(err => {
-    error(err)
-  })
+  }).catch((err) => {
+    error(err);
+  });
 }
 
-function ajaxAll () {
-  return axios.all([].slice.call(arguments))
+function ajaxAll() {
+  return axios.all([].slice.call(arguments));
 }
 
 export {
   ajax,
   ajaxAll
-}
+};

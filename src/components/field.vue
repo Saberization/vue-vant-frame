@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { Field } from 'vant'
+import { Field } from 'vant';
 
 export default {
   name: 'Field',
@@ -108,8 +108,8 @@ export default {
     },
     autosize: {
       type: [Boolean, Object],
-      default () {
-        return false
+      default() {
+        return false;
       }
     },
     placeholder: String,
@@ -124,35 +124,35 @@ export default {
     rows: [Number, String],
     cols: [Number, String]
   },
-  data () {
+  data() {
     return {
       currentValue: null
-    }
+    };
   },
   methods: {
-    onInput () {
-      this.$emit('changeFieldValue', this.currentValue)
-      this.$emit('input')
+    onInput() {
+      this.$emit('changeFieldValue', this.currentValue);
+      this.$emit('input');
     },
-    onClear () {
-      this.$emit('changeFieldValue', '')
-      this.$emit('clear')
+    onClear() {
+      this.$emit('changeFieldValue', '');
+      this.$emit('clear');
     },
-    onClickLeftIcon () {
-      this.$emit('click-left-icon')
+    onClickLeftIcon() {
+      this.$emit('click-left-icon');
     },
-    onClickRightIcon () {
-      this.$emit('click-right-icon')
+    onClickRightIcon() {
+      this.$emit('click-right-icon');
     },
-    focus () {
-      this.$refs.field.focus()
+    focus() {
+      this.$refs.field.focus();
     },
-    blur () {
-      this.$refs.field.blur()
+    blur() {
+      this.$refs.field.blur();
     }
   },
-  created () {
-    this.currentValue = this.fieldValue
+  created() {
+    this.currentValue = this.fieldValue;
   }
-}
+};
 </script>

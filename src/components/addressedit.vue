@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { AddressEdit } from 'vant'
+import { AddressEdit } from 'vant';
 
 export default {
   name: 'AddressEdit',
@@ -39,14 +39,14 @@ export default {
     areaList: Object,
     addressInfo: {
       type: Object,
-      default () {
-        return {}
+      default() {
+        return {};
       }
     },
     searchResult: {
       type: Array,
-      default () {
-        return []
+      default() {
+        return [];
       }
     },
     showPostal: {
@@ -85,33 +85,33 @@ export default {
     validator: [Function, String]
   },
   methods: {
-    setAddressDetail (value) {
-      this.$refs.addredit.setAddressDetail(value)
+    setAddressDetail(value) {
+      this.$refs.addredit.setAddressDetail(value);
     },
-    onSave (content) {
-      this.$emit('save', content)
+    onSave(content) {
+      this.$emit('save', content);
     },
-    onFocus (key) {
-      this.$emit('focus', key)
+    onFocus(key) {
+      this.$emit('focus', key);
     },
-    onDelete (content) {
-      this.$emit('delete', content)
+    onDelete(content) {
+      this.$emit('delete', content);
     },
-    onCancelDelete (content) {
-      this.$emit('cancel-delete', content)
+    onCancelDelete(content) {
+      this.$emit('cancel-delete', content);
     },
-    onSelectSearch (value) {
-      this.$emit('select-search', value)
+    onSelectSearch(value) {
+      this.$emit('select-search', value);
     },
-    onChangeDetail (value) {
-      this.$emit('change-detail', value)
+    onChangeDetail(value) {
+      this.$emit('change-detail', value);
     },
-    onChangeDefault (value) {
-      this.$emit('change-default', value)
+    onChangeDefault(value) {
+      this.$emit('change-default', value);
     },
-    onChangeArea (values) {
-      this.$emit('change-area', values)
+    onChangeArea(values) {
+      this.$emit('change-area', values);
     }
   }
-}
+};
 </script>

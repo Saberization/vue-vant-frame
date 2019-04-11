@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { Switch } from 'vant'
+import { Switch } from 'vant';
 
 export default {
   name: 'component_switch',
@@ -54,12 +54,12 @@ export default {
     }
   },
   methods: {
-    onChange (checked) {
-      this.$emit('change', checked)
+    onChange(checked) {
+      this.$emit('change', checked);
     },
-    onInput (checked) {
-      this.$emit('input', checked)
+    onInput(checked) {
+      this.$emit('input', checked);
     }
   }
-}
+};
 </script>

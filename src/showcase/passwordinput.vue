@@ -30,9 +30,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanPasswordInput from '@components/passwordinput'
-import vanNumberKeyboard from '@components/numberkeyboard'
+import vanHeader from '@components/header';
+import vanPasswordInput from '@components/passwordinput';
+import vanNumberKeyboard from '@components/numberkeyboard';
 
 export default {
   name: 'PasswordInput',
@@ -41,19 +41,19 @@ export default {
     vanPasswordInput,
     vanNumberKeyboard
   },
-  data () {
+  data() {
     return {
       value: '',
       showKeyboard: false
-    }
+    };
   },
   methods: {
-    onInput (keyValue) {
-      this.value = (this.value + keyValue).slice(0, 6)
+    onInput(keyValue) {
+      this.value = (this.value + keyValue).slice(0, 6);
     },
-    onDelete () {
-      this.value = this.value.slice(0, this.value.length - 1)
+    onDelete() {
+      this.value = this.value.slice(0, this.value.length - 1);
     }
   }
-}
+};
 </script>

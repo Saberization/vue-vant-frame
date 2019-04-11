@@ -34,9 +34,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanActionsheet from '@components/actionsheet'
-import vanButton from '@components/button'
+import vanHeader from '@components/header';
+import vanActionsheet from '@components/actionsheet';
+import vanButton from '@components/button';
 
 export default {
   name: 'Actionsheet',
@@ -45,7 +45,7 @@ export default {
     vanActionsheet,
     vanButton
   },
-  data () {
+  data() {
     return {
       show: false,
       showTitle: false,
@@ -68,14 +68,14 @@ export default {
           disabled: true
         }
       ]
-    }
+    };
   },
   methods: {
-    onSelect (item) {
-      console.log(JSON.stringify(item))
+    onSelect(item) {
+      console.log(JSON.stringify(item));
     }
   }
-}
+};
 </script>
 
 <style scoped>

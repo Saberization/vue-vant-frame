@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanButton from '@components/button'
-import FileInput from '@components/fileinput'
+import vanHeader from '@components/header';
+import vanButton from '@components/button';
+import FileInput from '@components/fileinput';
 
 export default {
   name: 'FileInput',
@@ -24,7 +24,7 @@ export default {
     vanHeader,
     vanButton
   },
-  data () {
+  data() {
     return {
       inputFile: new FileInput({
         isMulti: false, // 是否开启多选
@@ -32,22 +32,22 @@ export default {
       }),
       imagelist: [],
       show: false
-    }
+    };
   },
   methods: {
-    selectFile () {
-      this.inputFile.triggerClick()
+    selectFile() {
+      this.inputFile.triggerClick();
     }
   },
-  created () {
-    const inputFile = this.inputFile
+  created() {
+    const { inputFile } = this;
 
-    inputFile.on('change', result => {
-      this.imagelist = result
-      this.show = true
-    })
+    inputFile.on('change', (result) => {
+      this.imagelist = result;
+      this.show = true;
+    });
   }
-}
+};
 </script>
 
 <style scoped>

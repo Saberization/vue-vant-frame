@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanStepper from '@components/stepper'
+import vanHeader from '@components/header';
+import vanStepper from '@components/stepper';
 
 export default {
   name: 'Stepper',
@@ -43,19 +43,19 @@ export default {
     vanHeader,
     vanStepper
   },
-  data () {
+  data() {
     return {
       value: 1
-    }
+    };
   },
   methods: {
-    onChange (value) {
+    onChange(value) {
       setTimeout(() => {
-        this.value = value
-      }, 500)
+        this.value = value;
+      }, 500);
     }
   }
-}
+};
 </script>
 
 <style scoped>

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { Icon } from 'vant'
+import { Icon } from 'vant';
 
 export default {
   name: 'Icon',
@@ -34,5 +34,5 @@ export default {
       default: 'van-icon'
     }
   }
-}
+};
 </script>

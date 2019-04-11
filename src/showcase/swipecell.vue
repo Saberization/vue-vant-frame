@@ -78,11 +78,11 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanSwipeCell from '@components/swipecell'
-import vanCellGroup from '@components/cellgroup'
-import vanCell from '@components/cell'
-import { Dialog } from 'vant'
+import vanHeader from '@components/header';
+import vanSwipeCell from '@components/swipecell';
+import vanCellGroup from '@components/cellgroup';
+import vanCell from '@components/cell';
+import { Dialog } from 'vant';
 
 export default {
   name: 'SwipeCell',
@@ -93,24 +93,24 @@ export default {
     vanCell
   },
   methods: {
-    onClose (clickPosition, instance) {
+    onClose(clickPosition, instance) {
       switch (clickPosition) {
-        case 'left':
-        case 'cell':
-        case 'outside':
-          instance.close()
-          break
-        case 'right':
-          Dialog.confirm({
-            message: '确定删除吗？'
-          }).then(() => {
-            instance.close()
-          })
-          break
+      case 'left':
+      case 'cell':
+      case 'outside':
+        instance.close();
+        break;
+      case 'right':
+        Dialog.confirm({
+          message: '确定删除吗？'
+        }).then(() => {
+          instance.close();
+        });
+        break;
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

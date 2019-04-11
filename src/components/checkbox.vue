@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { Checkbox } from 'vant'
+import { Checkbox } from 'vant';
 
 export default {
   name: 'Checkbox',
@@ -61,21 +61,21 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       active: false
-    }
+    };
   },
   methods: {
-    onChangeValue () {
-      this.$emit('change', this.active)
+    onChangeValue() {
+      this.$emit('change', this.active);
     },
-    toggle () {
-      this.$refs.checkbox.toggle()
+    toggle() {
+      this.$refs.checkbox.toggle();
     }
   },
-  created () {
-    this.active = this.activekey
+  created() {
+    this.active = this.activekey;
   }
-}
+};
 </script>

@@ -81,8 +81,8 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanTag from '@components/tag'
+import vanHeader from '@components/header';
+import vanTag from '@components/tag';
 
 export default {
   name: 'Tag',
@@ -90,7 +90,7 @@ export default {
     vanHeader,
     vanTag
   }
-}
+};
 </script>
 
 <style scoped>

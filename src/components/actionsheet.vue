@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { Actionsheet } from 'vant'
+import { Actionsheet } from 'vant';
 
 export default {
   name: 'Actionsheet',
@@ -30,8 +30,8 @@ export default {
   props: {
     actions: {
       type: Array,
-      default () {
-        return []
+      default() {
+        return [];
       }
     },
     title: String,
@@ -59,33 +59,33 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       show: false
-    }
+    };
   },
   watch: {
-    showVisible (value) {
-      this.show = value
+    showVisible(value) {
+      this.show = value;
     },
-    show (value) {
-      this.$emit('toggleShow', value)
+    show(value) {
+      this.$emit('toggleShow', value);
     }
   },
   methods: {
-    onSelect (item) {
-      this.show = false
-      this.$emit('toggleShow', false)
-      this.$emit('select', item)
+    onSelect(item) {
+      this.show = false;
+      this.$emit('toggleShow', false);
+      this.$emit('select', item);
     },
-    onCancel () {
-      this.show = false
-      this.$emit('toggleShow', false)
-      this.$emit('cancel')
+    onCancel() {
+      this.show = false;
+      this.$emit('toggleShow', false);
+      this.$emit('cancel');
     }
   },
-  created () {
-    this.show = this.showVisible
+  created() {
+    this.show = this.showVisible;
   }
-}
+};
 </script>

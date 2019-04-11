@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { Stepper } from 'vant'
+import { Stepper } from 'vant';
 
 export default {
   name: 'Stepper',
@@ -60,34 +60,34 @@ export default {
       default: 1
     }
   },
-  data () {
+  data() {
     return {
       stepperValue: 1
-    }
+    };
   },
   methods: {
-    onChange (value) {
-      this.$emit('change', value)
-      this.$emit('changeValue', value)
+    onChange(value) {
+      this.$emit('change', value);
+      this.$emit('changeValue', value);
     },
-    onOverlimit () {
-      this.$emit('overlimit')
+    onOverlimit() {
+      this.$emit('overlimit');
     },
-    onPlus () {
-      this.$emit('plus')
+    onPlus() {
+      this.$emit('plus');
     },
-    onMinus () {
-      this.$emit('minus')
+    onMinus() {
+      this.$emit('minus');
     },
-    onFoucs () {
-      this.$emit('focus')
+    onFoucs() {
+      this.$emit('focus');
     },
-    onBlur () {
-      this.$emit('blur')
+    onBlur() {
+      this.$emit('blur');
     }
   },
   created() {
-    this.stepperValue = this.value 
+    this.stepperValue = this.value;
   }
-}
+};
 </script>

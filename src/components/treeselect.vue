@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { TreeSelect } from 'vant'
+import { TreeSelect } from 'vant';
 
 export default {
   name: 'TreeSelect',
@@ -35,12 +35,12 @@ export default {
     }
   },
   methods: {
-    onNavClick (index) {
-      this.$emit('navclick', index)
+    onNavClick(index) {
+      this.$emit('navclick', index);
     },
-    onItemClick (data) {
-      this.$emit('itemclick', data)
+    onItemClick(data) {
+      this.$emit('itemclick', data);
     }
   }
-}
+};
 </script>

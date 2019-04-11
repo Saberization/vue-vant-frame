@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { SubmitBar } from 'vant'
+import { SubmitBar } from 'vant';
 
 export default {
   name: 'SubmitBar',
@@ -56,9 +56,9 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
-      this.$emit('submit')
+    onSubmit() {
+      this.$emit('submit');
     }
   }
-}
+};
 </script>

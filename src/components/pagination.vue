@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { Pagination } from 'vant'
+import { Pagination } from 'vant';
 
 export default {
   name: 'Pagination',
@@ -60,18 +60,18 @@ export default {
       default: 1
     }
   },
-  data () {
+  data() {
     return {
       page: 1
-    }
+    };
   },
   methods: {
-    onChangePage () {
-      this.$emit('change', this.page)
+    onChangePage() {
+      this.$emit('change', this.page);
     }
   },
-  created () {
-    this.page = this.currentPage
+  created() {
+    this.page = this.currentPage;
   }
-}
+};
 </script>

@@ -62,8 +62,8 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import { Tabbar, TabbarItem, Toast } from 'vant'
+import vanHeader from '@components/header';
+import { Tabbar, TabbarItem, Toast } from 'vant';
 
 export default {
   name: 'Tabbar',
@@ -72,7 +72,7 @@ export default {
     [TabbarItem.name]: TabbarItem,
     vanHeader
   },
-  data () {
+  data() {
     return {
       active1: 0,
       active2: 0,
@@ -81,12 +81,12 @@ export default {
         active: 'https://img.yzcdn.cn/public_files/2017/10/13/793c77793db8641c4c325b7f25bf130d.png',
         normal: 'https://img.yzcdn.cn/public_files/2017/10/13/c547715be149dd3faa817e4a948b40c4.png'
       }
-    }
+    };
   },
   methods: {
-    onChangeTabbar (active) {
-      Toast(`当前点击index： ${active}`)
+    onChangeTabbar(active) {
+      Toast(`当前点击index： ${active}`);
     }
   }
-}
+};
 </script>

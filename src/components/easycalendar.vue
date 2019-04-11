@@ -41,18 +41,18 @@ export default {
       default: 'cur'
     }
   },
-  data () {
+  data() {
     return {
       year: null,
       month: null,
       day: null,
       show: this.isShow,
       result: {}
-    }
+    };
   },
   watch: {
-    isShow (value) {
-      this.show = value
+    isShow(value) {
+      this.show = value;
     }
   },
   methods: {
@@ -62,136 +62,136 @@ export default {
      * @param {Number} month 月
      * @param {Number} day 日
      */
-    createCalendar (year, month, day) {
-      const today = this._getNowDay()
+    createCalendar(year, month, day) {
+      const today = this._getNowDay();
 
       if (!year) {
-        year = today.getFullYear()
+        year = today.getFullYear();
       }
 
       if (!day) {
-        day = today.getDate()
+        day = today.getDate();
       }
 
       if (month === undefined) {
-        month = today.getMonth()
+        month = today.getMonth();
       } else {
-        month = month - 1
+        month -= 1;
 
         if (month < 0) {
-          month = 11
+          month = 11;
         } else if (month > 11) {
-          month = 0
+          month = 0;
         }
       }
 
-      const todayDate = new Date(year, month, 1)
-      let todayYear = todayDate.getFullYear()
-      let todayMonth = todayDate.getMonth() + 1
-      let todayDateOfWeek = todayDate.getDay()
+      const todayDate = new Date(year, month, 1);
+      const todayYear = todayDate.getFullYear();
+      const todayMonth = todayDate.getMonth() + 1;
+      let todayDateOfWeek = todayDate.getDay();
 
-      const preDate = new Date(year, month, 0)
-      let preYear = preDate.getFullYear()
-      let preMonth = preDate.getMonth() + 1
-      let preDateOfMonth = preDate.getDate()
+      const preDate = new Date(year, month, 0);
+      const preYear = preDate.getFullYear();
+      const preMonth = preDate.getMonth() + 1;
+      const preDateOfMonth = preDate.getDate();
 
-      const lastDate = new Date(year, month + 1, 0)
-      const lastDateOfMonth = lastDate.getDate()
+      const lastDate = new Date(year, month + 1, 0);
+      const lastDateOfMonth = lastDate.getDate();
 
-      const nextDate = new Date(year, month + 1, 1)
-      const nextYear = nextDate.getFullYear()
-      const nextMonth = nextDate.getMonth() + 1
+      const nextDate = new Date(year, month + 1, 1);
+      const nextYear = nextDate.getFullYear();
+      const nextMonth = nextDate.getMonth() + 1;
 
       if (day > lastDateOfMonth) {
-        throw new Error('当前传入天数，超出本月应有天数，本月只有：' + lastDateOfMonth + '天')
+        throw new Error(`当前传入天数，超出本月应有天数，本月只有：${lastDateOfMonth}天`);
       }
 
       // 0 - 6 0代表星期天，修改一下
       if (todayDateOfWeek === 0) {
-        todayDateOfWeek = 7
+        todayDateOfWeek = 7;
       }
 
-      let preDayOfCount = todayDateOfWeek - 1
-      let result = []
-      let _year = 0
-      let _month = 0
-      let _day = 0
-      let cls = ''
-      let dayCls = ''
-      let index = 0
+      const preDayOfCount = todayDateOfWeek - 1;
+      const result = [];
+      let _year = 0;
+      let _month = 0;
+      let _day = 0;
+      let cls = '';
+      let dayCls = '';
+      let index = 0;
 
       for (let i = 0, len = 42; i < len; i++) {
-        index = i - preDayOfCount
+        index = i - preDayOfCount;
 
         if (index < 0) {
-          _year = preYear
-          _month = preMonth
-          _day = preDateOfMonth + index + 1
-          cls = 'exceed'
+          _year = preYear;
+          _month = preMonth;
+          _day = preDateOfMonth + index + 1;
+          cls = 'exceed';
         }
 
         if (index >= 0 && index < lastDateOfMonth) {
-          _year = todayYear
-          _month = todayMonth
-          _day = index + 1
-          cls = ''
+          _year = todayYear;
+          _month = todayMonth;
+          _day = index + 1;
+          cls = '';
         }
 
         if (index >= lastDateOfMonth) {
-          _year = nextYear
-          _month = nextMonth
-          _day = index - lastDateOfMonth + 1
-          cls = 'exceed'
+          _year = nextYear;
+          _month = nextMonth;
+          _day = index - lastDateOfMonth + 1;
+          cls = 'exceed';
         }
 
         if (_month === todayMonth && _year === todayYear && _day === day) {
-          dayCls = this.cls
+          dayCls = this.cls;
         } else {
-          dayCls = ''
+          dayCls = '';
         }
 
         result.push({
           year: _year,
           month: _month,
           day: _day,
-          cls: cls,
-          dayCls: dayCls
-        })
+          cls,
+          dayCls
+        });
       }
 
-      this.$refs.date.innerHTML = `${todayYear}-${this.appendZero(todayMonth)}`
-      this.year = todayYear
-      this.month = todayMonth
-      this.day = day
+      this.$refs.date.innerHTML = `${todayYear}-${this.appendZero(todayMonth)}`;
+      this.year = todayYear;
+      this.month = todayMonth;
+      this.day = day;
       this.result = {
         year: todayYear.toString(),
         month: todayMonth.toString(),
         day: day.toString()
-      }
-      this.$emit('change', this.result)
-      this._renderCalendar(result)
+      };
+      this.$emit('change', this.result);
+      this._renderCalendar(result);
     },
 
     /**
      * 渲染日期
      * @param {String} dateCollection 日期集合
      */
-    _renderCalendar (dateCollection) {
-      let result = ''
+    _renderCalendar(dateCollection) {
+      let result = '';
 
-      for (var i = 1, len = dateCollection.length; i <= len; i++) {
-        var item = dateCollection[i - 1]
+      for (let i = 1, len = dateCollection.length; i <= len; i++) {
+        const item = dateCollection[i - 1];
 
         if (i === 1) {
-          result += '<tr><td class="' + item.cls + ' ' + item.dayCls + '" data-year="' + item.year + '" data-month="' + item.month + '">' + item.day + '</td>'
+          result += `<tr><td class="${item.cls} ${item.dayCls}" data-year="${item.year}" data-month="${item.month}">${item.day}</td>`;
         } else if (i % 7 === 0) {
-          result += '<td class="' + item.cls + ' ' + item.dayCls + '" data-year="' + item.year + '" data-month="' + item.month + '">' + item.day + '</td></tr><tr>'
+          result += `<td class="${item.cls} ${item.dayCls}" data-year="${item.year}" data-month="${item.month}">${item.day}</td></tr><tr>`;
         } else {
-          result += '<td class="' + item.cls + ' ' + item.dayCls + '" data-year="' + item.year + '" data-month="' + item.month + '">' + item.day + '</td>'
+          result += `<td class="${item.cls} ${item.dayCls}" data-year="${item.year}" data-month="${item.month}">${item.day}</td>`;
         }
       }
 
-      this.$refs.body.innerHTML = result
+      this.$refs.body.innerHTML = result;
     },
 
     /**
@@ -199,14 +199,14 @@ export default {
      * @param {HTMLElement} el 当前元素
      * @param {String} cls 高亮样式
      */
-    removeSiblingsCls: function (el, cls) {
-      var siblings = [].slice.call(this.$refs.body.querySelectorAll('td'))
+    removeSiblingsCls(el, cls) {
+      const siblings = [].slice.call(this.$refs.body.querySelectorAll('td'));
 
-      siblings.forEach(function (e, i) {
+      siblings.forEach((e, i) => {
         if (e !== el) {
-          e.classList.remove(cls)
+          e.classList.remove(cls);
         }
-      })
+      });
     },
 
     /**
@@ -214,8 +214,8 @@ export default {
      * @return {Date}
      * @private
      */
-    _getNowDay () {
-      return new Date()
+    _getNowDay() {
+      return new Date();
     },
 
     /**
@@ -223,12 +223,12 @@ export default {
      * @param {Number} num 数字
      * @returns {String} 补0过后的数字
      */
-    appendZero (num) {
+    appendZero(num) {
       if (num < 10) {
-        return '0' + num
+        return `0${num}`;
       }
 
-      return num
+      return num;
     },
 
     /**
@@ -236,71 +236,71 @@ export default {
      * @param {HTMLElement} el 元素
      * @param {String} operator 运算符
      */
-    _handleTriggerDate (el, operator) {
-      let month = this.month
-      let year = this.year
-      let style = el.style
+    _handleTriggerDate(el, operator) {
+      let { month } = this;
+      let { year } = this;
+      const { style } = el;
 
       // 弹起样式
-      style.paddingTop = '1px'
+      style.paddingTop = '1px';
 
-      setTimeout(function () {
-        style.paddingTop = 0
-      }, 100)
+      setTimeout(() => {
+        style.paddingTop = 0;
+      }, 100);
 
       if (operator === '+') {
-        month++
+        month++;
       } else if (operator === '-') {
-        month--
+        month--;
       }
 
       if (month <= 0) {
-        year--
+        year--;
       } else if (month > 12) {
-        year++
+        year++;
       }
 
-      this.createCalendar(year, month)
+      this.createCalendar(year, month);
     },
 
-    onClickLeftBtn (e) {
-      this._handleTriggerDate(e.target, '-')
+    onClickLeftBtn(e) {
+      this._handleTriggerDate(e.target, '-');
     },
 
-    onClickRightBtn (e) {
-      this._handleTriggerDate(e.target, '+')
+    onClickRightBtn(e) {
+      this._handleTriggerDate(e.target, '+');
     },
 
-    onClickBody (e) {
-      const target = e.target
-      const cls = this.cls
-      const year = target.dataset.year
-      const month = target.dataset.month
-      const day = target.innerHTML
+    onClickBody(e) {
+      const { target } = e;
+      const { cls } = this;
+      const { year } = target.dataset;
+      const { month } = target.dataset;
+      const day = target.innerHTML;
 
-      target.classList.add(cls)
-      this.removeSiblingsCls(target, cls)
+      target.classList.add(cls);
+      this.removeSiblingsCls(target, cls);
 
       if (month > this.month || month < this.month) {
-        this.createCalendar(year, month, parseInt(day, 10))
+        this.createCalendar(year, month, parseInt(day, 10));
       } else {
         this.result = {
           year: year.toString(),
           month: month.toString(),
           day: day.toString()
-        }
-        this.$emit('change', this.result)
+        };
+        this.$emit('change', this.result);
       }
     },
 
-    getCalendarData () {
-      return this.result
+    getCalendarData() {
+      return this.result;
     }
   },
-  mounted () {
-    this.createCalendar()
+  mounted() {
+    this.createCalendar();
   }
-}
+};
 </script>
 
 <style scoped>

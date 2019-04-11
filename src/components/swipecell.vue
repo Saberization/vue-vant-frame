@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { SwipeCell } from 'vant'
+import { SwipeCell } from 'vant';
 
 export default {
   name: 'SwipeCell',
@@ -43,17 +43,17 @@ export default {
     onClose: Function
   },
   methods: {
-    open (position) {
+    open(position) {
       if (position && typeof position === 'string') {
-        this.$refs.swipecell.open(position)
+        this.$refs.swipecell.open(position);
       }
     },
-    close () {
-      this.$refs.swipecell.close()
+    close() {
+      this.$refs.swipecell.close();
     },
-    onClick (position) {
-      this.$emit('click', position)
+    onClick(position) {
+      this.$emit('click', position);
     }
   }
-}
+};
 </script>

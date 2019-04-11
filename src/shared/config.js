@@ -21,8 +21,8 @@ export default {
    */
   serverUrl: (() => {
     // 是否是正式
-    const isFormal = true
+    const isFormal = true;
 
-    return isFormal ? '//115.29.151.25:8012/' : '//192.168.114.35:8016/webUploaderServer/'
+    return isFormal ? '//115.29.151.25:8012/' : '//192.168.114.35:8016/webUploaderServer/';
   })()
-}
+};

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { PasswordInput } from 'vant'
+import { PasswordInput } from 'vant';
 
 export default {
   name: 'PasswordeInput',
@@ -34,9 +34,9 @@ export default {
     errorInfo: String
   },
   methods: {
-    onFocus () {
-      this.$emit('focus')
+    onFocus() {
+      this.$emit('focus');
     }
   }
-}
+};
 </script>

@@ -49,8 +49,8 @@
 </template>
 
 <script>
-import { PullRefresh, List } from 'vant'
-import Util from '@utils'
+import { PullRefresh, List } from 'vant';
+import Util from '@utils';
 
 export default {
   name: 'Pulltorefresh',
@@ -58,7 +58,7 @@ export default {
     [PullRefresh.name]: PullRefresh,
     [List.name]: List
   },
-  data () {
+  data() {
     return {
       isLoading: false,
       loading: false,
@@ -72,7 +72,7 @@ export default {
         animationDuration: 300,
         headHeight: 50,
         disabled: false,
-        pullDown () {}
+        pullDown() {}
       },
       pullUpSetting: {
         error: false,
@@ -81,7 +81,7 @@ export default {
         finishedText: '',
         errorText: '',
         immediateCheck: true,
-        pullUp () {}
+        pullUp() {}
       },
       ajaxSetting: {
         type: 'post',
@@ -96,63 +96,63 @@ export default {
       },
       currentPage: 0,
       requestData: {}
-    }
+    };
   },
   methods: {
-    check () {
-      this.$refs.pullup.check()
+    check() {
+      this.$refs.pullup.check();
     },
-    refresh () {
-      this.onRefresh()
+    refresh() {
+      this.onRefresh();
     },
-    onRefresh () {
-      this.currentPage = this.options.initPageIndex
-      this.isLoading = true
+    onRefresh() {
+      this.currentPage = this.options.initPageIndex;
+      this.isLoading = true;
       setTimeout(() => {
         this._getRequestData(() => {
-          this.isLoading = false
+          this.isLoading = false;
           this.$nextTick(() => {
-            this.check()
-          })
-        })
-      }, this.options.delay)
-      this.pullDownSetting.pullDown()
+            this.check();
+          });
+        });
+      }, this.options.delay);
+      this.pullDownSetting.pullDown();
     },
-    onLoad () {
-      this.loading = true
+    onLoad() {
+      this.loading = true;
       setTimeout(() => {
         this._getRequestData(() => {
-          this.loading = false
-        })
-      }, this.options.delay)
-      this.pullUpSetting.pullUp()
+          this.loading = false;
+        });
+      }, this.options.delay);
+      this.pullUpSetting.pullUp();
     },
-    pulltorefresh (options) {
-      this.pullDownSetting = Object.assign(this.pullDownSetting, options.pullDownSetting || {})
-      this.pullUpSetting = Object.assign(this.pullUpSetting, options.pullUpSetting || {})
-      this.ajaxSetting = Object.assign(this.ajaxSetting, options.ajaxSetting || {})
-      this.options = Object.assign(this.options, options)
-      this.currentPage = this.options.initPageIndex
+    pulltorefresh(options) {
+      this.pullDownSetting = Object.assign(this.pullDownSetting, options.pullDownSetting || {});
+      this.pullUpSetting = Object.assign(this.pullUpSetting, options.pullUpSetting || {});
+      this.ajaxSetting = Object.assign(this.ajaxSetting, options.ajaxSetting || {});
+      this.options = Object.assign(this.options, options);
+      this.currentPage = this.options.initPageIndex;
     },
-    _getRequestData (complete) {
-      const options = this.options
-      const dataRequest = options.dataRequest
+    _getRequestData(complete) {
+      const { options } = this;
+      const { dataRequest } = options;
 
       if (dataRequest && typeof dataRequest === 'function') {
-        let requestData = {}
+        let requestData = {};
 
         this.requestData = dataRequest(this.currentPage, (data) => {
-          requestData = data
-        })
-        this.requestData = this.requestData ? this.requestData : requestData
-        this._request(complete)
+          requestData = data;
+        });
+        this.requestData = this.requestData ? this.requestData : requestData;
+        this._request(complete);
       }
     },
-    _request (complete) {
-      const options = this.options
-      const ajaxSetting = this.ajaxSetting
-      const success = options.success
-      const error = options.error
+    _request(complete) {
+      const { options } = this;
+      const { ajaxSetting } = this;
+      const { success } = options;
+      const { error } = options;
 
       Util.ajax({
         url: options.url,
@@ -161,22 +161,22 @@ export default {
         contentType: ajaxSetting.contentType,
         headers: ajaxSetting.headers,
         timeout: ajaxSetting.timeout
-      }).then(response => {
+      }).then((response) => {
         if (success && typeof success === 'function') {
-          success(response.data, this.currentPage++)
+          success(response.data, this.currentPage++);
         }
         if (complete && typeof complete === 'function') {
-          complete()
+          complete();
         }
-      }).catch(err => {
+      }).catch((err) => {
         if (error && typeof error === 'function') {
-          error(err)
+          error(err);
         }
         if (complete && typeof complete === 'function') {
-          complete()
+          complete();
         }
-      })
+      });
     }
   }
-}
+};
 </script>

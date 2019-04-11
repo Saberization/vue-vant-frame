@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import { Notify } from 'vant'
-import vanHeader from '@components/header'
-import vanButton from '@components/button'
+import { Notify } from 'vant';
+import vanHeader from '@components/header';
+import vanButton from '@components/button';
 
 export default {
   name: 'Notify',
@@ -25,11 +25,11 @@ export default {
     vanButton
   },
   methods: {
-    showNotify (options) {
-      Notify(options)
+    showNotify(options) {
+      Notify(options);
     }
   }
-}
+};
 </script>
 
 <style scoped>

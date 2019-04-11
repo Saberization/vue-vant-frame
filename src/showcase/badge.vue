@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import { Badge, BadgeGroup } from 'vant'
+import vanHeader from '@components/header';
+import { Badge, BadgeGroup } from 'vant';
 
 export default {
   name: 'Badge',
@@ -39,17 +39,17 @@ export default {
     'van-badge-group': BadgeGroup,
     vanHeader
   },
-  data () {
+  data() {
     return {
       activeKey: 0
-    }
+    };
   },
   methods: {
-    onChange (key) {
-      this.activeKey = key
+    onChange(key) {
+      this.activeKey = key;
     }
   }
-}
+};
 </script>
 
 <style scoped>

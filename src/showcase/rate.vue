@@ -31,9 +31,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanRate from '@components/rate'
-import { Toast } from 'vant'
+import vanHeader from '@components/header';
+import vanRate from '@components/rate';
+import { Toast } from 'vant';
 
 export default {
   name: 'Rate',
@@ -41,17 +41,17 @@ export default {
     vanHeader,
     vanRate
   },
-  data () {
+  data() {
     return {
       value: 3
-    }
+    };
   },
   methods: {
-    onChange () {
-      Toast(`当前评分: ${this.value}`)
+    onChange() {
+      Toast(`当前评分: ${this.value}`);
     }
   }
-}
+};
 </script>
 
 <style scoped>

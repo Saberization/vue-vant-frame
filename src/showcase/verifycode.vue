@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import verifyCode from '@components/verifycode'
-import vanButton from '@components/button'
-import vanField from '@components/field'
-import vanCellGroup from '@components/cellgroup'
-import { Toast } from 'vant'
+import vanHeader from '@components/header';
+import verifyCode from '@components/verifycode';
+import vanButton from '@components/button';
+import vanField from '@components/field';
+import vanCellGroup from '@components/cellgroup';
+import { Toast } from 'vant';
 
 export default {
   name: 'VerifyCode',
@@ -32,20 +32,20 @@ export default {
     vanField,
     vanCellGroup
   },
-  data () {
+  data() {
     return {
       value: ''
-    }
+    };
   },
   methods: {
-    updateVerify () {
-      this.$refs.verifycode.update()
+    updateVerify() {
+      this.$refs.verifycode.update();
     },
-    checkVerifyCode () {
-      Toast(`验证结果：${this.$refs.verifycode.validate(this.value)}`)
+    checkVerifyCode() {
+      Toast(`验证结果：${this.$refs.verifycode.validate(this.value)}`);
     }
   }
-}
+};
 </script>
 
 <style scoped>

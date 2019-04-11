@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { Progress } from 'vant'
+import { Progress } from 'vant';
 
 export default {
   name: 'Progress',
@@ -42,5 +42,5 @@ export default {
     pivotText: String,
     pivotColor: String
   }
-}
+};
 </script>

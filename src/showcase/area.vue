@@ -27,12 +27,12 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanButton from '@components/button'
-import vanPicker from '@components/picker'
-import cityData2 from '@public/lib/city-data.js'
-import cityData3 from '@public/lib/city.data-3.js'
-import { Toast } from 'vant'
+import vanHeader from '@components/header';
+import vanButton from '@components/button';
+import vanPicker from '@components/picker';
+import cityData2 from '@public/lib/city-data.js';
+import cityData3 from '@public/lib/city.data-3.js';
+import { Toast } from 'vant';
 
 export default {
   name: 'Area',
@@ -41,32 +41,32 @@ export default {
     vanButton,
     vanPicker
   },
-  data () {
+  data() {
     return {
       pickerData: [],
       show: false
-    }
+    };
   },
   methods: {
-    showPicker (level) {
-      this.show = true
+    showPicker(level) {
+      this.show = true;
 
       switch (level) {
-        case 'twolevel':
-          this.pickerData = cityData2
-          break
+      case 'twolevel':
+        this.pickerData = cityData2;
+        break;
 
-        case 'threelevel':
-          this.pickerData = cityData3
-          break
+      case 'threelevel':
+        this.pickerData = cityData3;
+        break;
       }
     },
 
-    onConfirm (value) {
-      Toast(value)
+    onConfirm(value) {
+      Toast(value);
     }
   }
-}
+};
 </script>
 
 <style scoped>

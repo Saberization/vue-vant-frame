@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { SwitchCell } from 'vant'
+import { SwitchCell } from 'vant';
 
 export default {
   name: 'SwitchCell',
@@ -60,19 +60,19 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       value: false
-    }
+    };
   },
   methods: {
-    onChange (checked) {
-      this.$emit('changeValue', checked)
-      this.$emit('change', checked)
+    onChange(checked) {
+      this.$emit('changeValue', checked);
+      this.$emit('change', checked);
     }
   },
-  created () {
-    this.value = this.switchValue
+  created() {
+    this.value = this.switchValue;
   }
-}
+};
 </script>

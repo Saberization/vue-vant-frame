@@ -54,13 +54,13 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
+import vanHeader from '@components/header';
 import {
   GoodsAction,
   GoodsActionBigBtn,
   GoodsActionMiniBtn,
   Toast
-} from 'vant'
+} from 'vant';
 
 export default {
   name: 'GoodsAction',
@@ -71,14 +71,14 @@ export default {
     [GoodsActionMiniBtn.name]: GoodsActionMiniBtn
   },
   methods: {
-    onClickMiniBtn () {
-      Toast('点击图标')
+    onClickMiniBtn() {
+      Toast('点击图标');
     },
-    onClickBigBtn () {
-      Toast('点击按钮')
+    onClickBigBtn() {
+      Toast('点击按钮');
     }
   }
-}
+};
 </script>
 
 <style scoped>

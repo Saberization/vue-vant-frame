@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { NumberKeyboard } from 'vant'
+import { NumberKeyboard } from 'vant';
 
 export default {
   name: 'NumberKeyboard',
@@ -64,24 +64,24 @@ export default {
     }
   },
   methods: {
-    onInput (value) {
-      this.$emit('input', value)
+    onInput(value) {
+      this.$emit('input', value);
     },
-    onDelete () {
-      this.$emit('delete')
+    onDelete() {
+      this.$emit('delete');
     },
-    onClose () {
-      this.$emit('close')
+    onClose() {
+      this.$emit('close');
     },
-    onBlur () {
-      this.$emit('blur')
+    onBlur() {
+      this.$emit('blur');
     },
-    onShow () {
-      this.$emit('show')
+    onShow() {
+      this.$emit('show');
     },
-    onHide () {
-      this.$emit('hide')
+    onHide() {
+      this.$emit('hide');
     }
   }
-}
+};
 </script>

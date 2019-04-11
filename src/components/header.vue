@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { NavBar } from 'vant'
+import { NavBar } from 'vant';
 
 export default {
   name: 'Header',
@@ -55,13 +55,13 @@ export default {
     }
   },
   methods: {
-    onClickLeft () {
-      this.$router.back()
-      this.$emit('click-left')
+    onClickLeft() {
+      this.$router.back();
+      this.$emit('click-left');
     },
-    onClickRight () {
-      this.$emit('click-right')
+    onClickRight() {
+      this.$emit('click-right');
     }
   }
-}
+};
 </script>

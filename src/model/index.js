@@ -1,19 +1,19 @@
-import Util from '@utils'
+import Util from '@utils';
 
 const serverUrl = 'http://yapi.demo.qunar.com/mock/43176/mock/';
 
-const getRefreshList = function(params) {
+const getRefreshList = function (params) {
   return Util.ajax({
-    url: serverUrl + 'getlist',
+    url: `${serverUrl}getlist`,
     type: 'post',
     data: {
       token: 'RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=',
-      params: params
+      params
     },
     dataType: 'json'
-  })
-}
+  });
+};
 
 export {
   getRefreshList
-}
+};

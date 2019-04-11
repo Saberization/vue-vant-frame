@@ -1,4 +1,3 @@
-'use strict';
 module.exports = {
   // 是否强制打开浏览器
   open: true,
@@ -15,7 +14,6 @@ module.exports = {
   overlay: true,
   // 是否现实捆绑包中的错误
   stats: 'errors-only',
-
   // 代理，支持 http-proxy-middleware 所有配置
   proxy: null
 };

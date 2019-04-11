@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanTreeSelect from '@components/treeselect'
+import vanHeader from '@components/header';
+import vanTreeSelect from '@components/treeselect';
 
-const Console = console
+const Console = console;
 
 export default {
   name: 'TreeSelect',
@@ -29,7 +29,7 @@ export default {
     vanHeader,
     vanTreeSelect
   },
-  data () {
+  data() {
     return {
       items: [
         {
@@ -122,19 +122,19 @@ export default {
       mainActiveIndex: 0,
       // 被选中元素的id
       activeId: 1
-    }
+    };
   },
   methods: {
     // 左侧导航点击时，触发的事件
-    onNavClick (index) {
-      Console.log(`左侧点击index: ${index}`)
-      this.mainActiveIndex = index
+    onNavClick(index) {
+      Console.log(`左侧点击index: ${index}`);
+      this.mainActiveIndex = index;
     },
     // 右侧选择项被点击时，会触发的事件
-    onItemClick (data) {
-      Console.log(`右侧点击数据: ${JSON.stringify(data)}`)
-      this.activeId = data.id
+    onItemClick(data) {
+      Console.log(`右侧点击数据: ${JSON.stringify(data)}`);
+      this.activeId = data.id;
     }
   }
-}
+};
 </script>

@@ -47,35 +47,35 @@ export default {
       default: 15
     }
   },
-  data () {
+  data() {
     return {
       pointArr: [],
       offsetTop: 0,
       ctx: null
-    }
+    };
   },
   methods: {
-    _initGridunlock () {
-      const canvas = this.$refs.canvas
-      const ctx = canvas.getContext('2d')
+    _initGridunlock() {
+      const { canvas } = this.$refs;
+      const ctx = canvas.getContext('2d');
 
-      this.ctx = ctx
-      this.offsetTop = this._getOffsetTop(canvas) || 0
-      this.pointArr = this._drawLocalPoint((this.cw - 2 * this.offsetX - this.r * 2 * 3) / 2, (this.ch - 2 * this.offsetY - this.r * 2 * 3) / 2)
-      this._initListeners(canvas, ctx)
-      this._draw(this.pointArr, [], null, ctx)
+      this.ctx = ctx;
+      this.offsetTop = this._getOffsetTop(canvas) || 0;
+      this.pointArr = this._drawLocalPoint((this.cw - 2 * this.offsetX - this.r * 2 * 3) / 2, (this.ch - 2 * this.offsetY - this.r * 2 * 3) / 2);
+      this._initListeners(canvas, ctx);
+      this._draw(this.pointArr, [], null, ctx);
     },
 
-    _getOffsetTop (canvas) {
-      let offsetTop = 0
-      let parentElement = canvas.parentElement
+    _getOffsetTop(canvas) {
+      let offsetTop = 0;
+      let { parentElement } = canvas;
 
       while (parentElement && parentElement.nodeType === 1 && parentElement.tagName !== 'body') {
-        offsetTop += parentElement.offsetTop
-        parentElement = parentElement.parentElement
+        offsetTop += parentElement.offsetTop;
+        parentElement = parentElement.parentElement;
       }
 
-      return offsetTop
+      return offsetTop;
     },
 
     /**
@@ -84,24 +84,24 @@ export default {
      * @param {Number} y
      * @private
      */
-    _drawLocalPoint (x, y) {
-      const result = []
-      const offsetX = this.offsetX
-      const offsetY = this.offsetY
-      const r = this.r
+    _drawLocalPoint(x, y) {
+      const result = [];
+      const { offsetX } = this;
+      const { offsetY } = this;
+      const { r } = this;
 
       for (let row = 0; row < 3; row++) {
         for (let col = 0; col < 3; col++) {
-          var ninePoint = {
+          const ninePoint = {
             x: (offsetX + col * x + (col * 2 + 1) * r),
             y: (offsetY + row * y + (row * 2 + 1) * r)
-          }
+          };
 
-          result.push(ninePoint)
+          result.push(ninePoint);
         }
       }
 
-      return result
+      return result;
     },
 
     /**
@@ -109,41 +109,41 @@ export default {
      * @param {CanvasRenderingContext2D} ctx
      * @private
      */
-    _initListeners (canvas, ctx) {
-      let linePoint = []
-      const cw = this.cw
-      const ch = this.ch
+    _initListeners(canvas, ctx) {
+      let linePoint = [];
+      const { cw } = this;
+      const { ch } = this;
 
       canvas.addEventListener('touchstart', (e) => {
-        e.preventDefault()
-        this._selectPoint(e.touches[0], linePoint)
+        e.preventDefault();
+        this._selectPoint(e.touches[0], linePoint);
       }, {
         passive: false
-      })
+      });
 
       canvas.addEventListener('touchmove', (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
-        let touches = e.touches[0]
+        const touches = e.touches[0];
 
-        this._selectPoint(touches, linePoint)
+        this._selectPoint(touches, linePoint);
 
-        ctx.clearRect(0, 0, cw, ch)
+        ctx.clearRect(0, 0, cw, ch);
 
         this._draw(this.pointArr, linePoint, {
           x: touches.pageX,
           y: touches.pageY - this.offsetTop
-        }, ctx)
+        }, ctx);
       }, {
         passive: false
-      })
+      });
 
       canvas.addEventListener('touchend', (e) => {
-        ctx.clearRect(0, 0, cw, ch)
-        this._draw(this.pointArr, linePoint, null, ctx)
-        this.$emit('success', linePoint)
-        linePoint = []
-      })
+        ctx.clearRect(0, 0, cw, ch);
+        this._draw(this.pointArr, linePoint, null, ctx);
+        this.$emit('success', linePoint);
+        linePoint = [];
+      });
     },
 
     /**
@@ -152,20 +152,20 @@ export default {
      * @param {Array} LinePoint 已选择的点
      * @private
      */
-    _selectPoint (touches, LinePoint) {
-      let pointArr = this.pointArr
+    _selectPoint(touches, LinePoint) {
+      const { pointArr } = this;
 
       for (let i = 0, len = pointArr.length; i < len; i++) {
-        let curPoint = pointArr[i]
-        let xDiff = Math.abs(curPoint.x - touches.pageX)
-        let yDiff = Math.abs(curPoint.y - (touches.pageY - this.offsetTop))
-        let dir = Math.pow((xDiff * xDiff + yDiff * yDiff), 0.5)
+        const curPoint = pointArr[i];
+        const xDiff = Math.abs(curPoint.x - touches.pageX);
+        const yDiff = Math.abs(curPoint.y - (touches.pageY - this.offsetTop));
+        const dir = Math.pow((xDiff * xDiff + yDiff * yDiff), 0.5);
 
         if (dir < this.r) {
           if (LinePoint.indexOf(i) < 0) {
-            LinePoint.push(i)
+            LinePoint.push(i);
           }
-          break
+          break;
         }
       }
     },
@@ -178,69 +178,69 @@ export default {
      * @param {Object} ctx canvas画笔
      * @private
      */
-    _draw (pointArr, linePointArr, touchPoint, ctx) {
-      const r = this.r
-      const pI2 = Math.PI * 2
+    _draw(pointArr, linePointArr, touchPoint, ctx) {
+      const { r } = this;
+      const pI2 = Math.PI * 2;
 
       if (linePointArr.length > 0) {
-        ctx.beginPath()
+        ctx.beginPath();
         for (let i = 0, len = linePointArr.length; i < len; i++) {
-          const index = linePointArr[i]
+          const index = linePointArr[i];
 
-          ctx.lineTo(pointArr[index].x, pointArr[index].y)
+          ctx.lineTo(pointArr[index].x, pointArr[index].y);
         }
 
-        ctx.lineWidth = this.lineWidth
-        ctx.strokeStyle = this.lineColor
-        ctx.stroke()
-        ctx.closePath()
+        ctx.lineWidth = this.lineWidth;
+        ctx.strokeStyle = this.lineColor;
+        ctx.stroke();
+        ctx.closePath();
 
         if (touchPoint != null) {
-          const lastIndex = linePointArr[linePointArr.length - 1]
-          const lastPoint = pointArr[lastIndex]
+          const lastIndex = linePointArr[linePointArr.length - 1];
+          const lastPoint = pointArr[lastIndex];
 
-          ctx.beginPath()
-          ctx.moveTo(lastPoint.x, lastPoint.y)
-          ctx.lineTo(touchPoint.x, touchPoint.y)
-          ctx.stroke()
-          ctx.closePath()
+          ctx.beginPath();
+          ctx.moveTo(lastPoint.x, lastPoint.y);
+          ctx.lineTo(touchPoint.x, touchPoint.y);
+          ctx.stroke();
+          ctx.closePath();
         }
       }
 
       for (let i = 0, len = pointArr.length; i < len; i++) {
-        const point = pointArr[i]
+        const point = pointArr[i];
 
-        ctx.fillStyle = this.outRoundBorderColor
-        ctx.beginPath()
-        ctx.arc(point.x, point.y, r, 0, pI2, true)
-        ctx.closePath()
+        ctx.fillStyle = this.outRoundBorderColor;
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, r, 0, pI2, true);
+        ctx.closePath();
 
-        ctx.fill()
-        ctx.fillStyle = this.outRoundColor
+        ctx.fill();
+        ctx.fillStyle = this.outRoundColor;
 
-        ctx.beginPath()
-        ctx.arc(point.x, point.y, r - 3, 0, pI2, true)
-        ctx.closePath()
-        ctx.fill()
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, r - 3, 0, pI2, true);
+        ctx.closePath();
+        ctx.fill();
 
         if (linePointArr.indexOf(i) >= 0) {
-          ctx.fillStyle = this.innerRoundColor
-          ctx.beginPath()
-          ctx.arc(point.x, point.y, r - 16, 0, pI2, true)
-          ctx.closePath()
-          ctx.fill()
+          ctx.fillStyle = this.innerRoundColor;
+          ctx.beginPath();
+          ctx.arc(point.x, point.y, r - 16, 0, pI2, true);
+          ctx.closePath();
+          ctx.fill();
         }
       }
     },
 
-    reset () {
-      this.ctx.clearRect(0, 0, cw, ch)
+    reset() {
+      this.ctx.clearRect(0, 0, cw, ch);
     }
   },
-  mounted () {
-    this._initGridunlock()
+  mounted() {
+    this._initGridunlock();
   }
-}
+};
 </script>
 
 <style scoped>

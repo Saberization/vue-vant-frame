@@ -36,8 +36,8 @@
 </template>
 
 <script>
-import { DatetimePicker } from 'vant'
-import vanPopup from './popup'
+import { DatetimePicker } from 'vant';
+import vanPopup from './popup';
 
 export default {
   name: 'DatetimePicker',
@@ -79,20 +79,20 @@ export default {
     },
     minDate: {
       type: Date,
-      default () {
-        const today = new Date()
-        const year = today.getFullYear()
+      default() {
+        const today = new Date();
+        const year = today.getFullYear();
 
-        return new Date(`${year - 10}-01-01`)
+        return new Date(`${year - 10}-01-01`);
       }
     },
     maxDate: {
       type: Date,
-      default () {
-        const today = new Date()
-        const year = today.getFullYear()
+      default() {
+        const today = new Date();
+        const year = today.getFullYear();
 
-        return new Date(`${year + 10}-01-01`)
+        return new Date(`${year + 10}-01-01`);
       }
     },
     minHour: {
@@ -126,8 +126,8 @@ export default {
       default: 44
     },
     currentDate: {
-      default () {
-        return this.type === 'time' ? '00:00' : new Date()
+      default() {
+        return this.type === 'time' ? '00:00' : new Date();
       }
     },
     confirmButtonText: {
@@ -144,49 +144,49 @@ export default {
     }
   },
   watch: {
-    show (value) {
-      this.showPopup = value
+    show(value) {
+      this.showPopup = value;
     }
   },
-  data () {
+  data() {
     return {
       showPopup: false,
       date: null
-    }
+    };
   },
   methods: {
-    changePopupValue () {
-      this.$emit('change', this.showPopup)
+    changePopupValue() {
+      this.$emit('change', this.showPopup);
     },
-    onConfirm (value) {
-      let appendZero = this.appendZero
-      let type = this.type
+    onConfirm(value) {
+      const { appendZero } = this;
+      const { type } = this;
 
-      this.showPopup = false
+      this.showPopup = false;
       if (type === 'datetime') {
-        this.$emit('confirm', `${appendZero(value.getFullYear())}-${appendZero(value.getMonth() + 1)}-${appendZero(value.getDate())} ${appendZero(value.getHours())}:${appendZero(value.getMinutes())}`)
+        this.$emit('confirm', `${appendZero(value.getFullYear())}-${appendZero(value.getMonth() + 1)}-${appendZero(value.getDate())} ${appendZero(value.getHours())}:${appendZero(value.getMinutes())}`);
       } else if (type === 'date') {
-        this.$emit('confirm', `${appendZero(value.getFullYear())}-${appendZero(value.getMonth() + 1)}-${appendZero(value.getDate())}`)
+        this.$emit('confirm', `${appendZero(value.getFullYear())}-${appendZero(value.getMonth() + 1)}-${appendZero(value.getDate())}`);
       } else if (type === 'year-month') {
-        this.$emit('confirm', `${appendZero(value.getFullYear())}-${appendZero(value.getMonth() + 1)}`)
+        this.$emit('confirm', `${appendZero(value.getFullYear())}-${appendZero(value.getMonth() + 1)}`);
       } else if (type === 'time') {
-        this.$emit('confirm', value)
+        this.$emit('confirm', value);
       }
     },
-    onCancel () {
-      this.showPopup = false
-      this.$emit('cancel')
+    onCancel() {
+      this.showPopup = false;
+      this.$emit('cancel');
     },
-    onChange (picker) {
-      this.$emit('changepicker', picker)
+    onChange(picker) {
+      this.$emit('changepicker', picker);
     },
-    appendZero (value) {
-      return value < 10 ? '0' + value : value
+    appendZero(value) {
+      return value < 10 ? `0${value}` : value;
     }
   },
-  created () {
-    this.showPopup = this.show
-    this.date = this.currentDate
+  created() {
+    this.showPopup = this.show;
+    this.date = this.currentDate;
   }
-}
+};
 </script>

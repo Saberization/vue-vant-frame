@@ -33,37 +33,37 @@ const innerUtil = {
    * @param {Number} num 要验证的数字
    * @return {boolean} true or false
    */
-  isInteger (num) {
-    return Math.floor(num) === num
+  isInteger(num) {
+    return Math.floor(num) === num;
   },
   /**
    * 将一个浮点数转成整数，返回整数和倍数。如 3.14 >> 314，倍数是 100
    * @param {Number} floatNum 小数
    * @return {Object} 返回数据结果
    */
-  toInteger (floatNum) {
-    const self = this
+  toInteger(floatNum) {
+    const self = this;
     const result = {
       times: 1,
       num: 0
-    }
+    };
 
     if (self.isInteger(floatNum)) {
-      result.num = floatNum
+      result.num = floatNum;
 
-      return result
+      return result;
     }
 
-    const str = floatNum + ''
-    const dotIndex = str.indexOf('.')
-    const len = str.substring(dotIndex + 1).length
-    const times = Math.pow(10, len)
-    const intNum = parseInt(floatNum * times + 0.5, 10)
+    const str = `${floatNum}`;
+    const dotIndex = str.indexOf('.');
+    const len = str.substring(dotIndex + 1).length;
+    const times = Math.pow(10, len);
+    const intNum = parseInt(floatNum * times + 0.5, 10);
 
-    result.times = times
-    result.num = intNum
+    result.times = times;
+    result.num = intNum;
 
-    return result
+    return result;
   },
   /**
    * 核心方法，实现加减乘除运算，确保不丢失精度
@@ -75,57 +75,57 @@ const innerUtil = {
    * @param op {string} 运算类型，有加减乘除（add/subtract/multiply/divide）
    *
    */
-  operation (num1, num2, op) {
-    const self = this
-    const o1 = self.toInteger(num1)
-    const o2 = self.toInteger(num2)
-    const n1 = o1.num
-    const n2 = o2.num
-    const t1 = o1.times
-    const t2 = o2.times
-    const max = t1 > t2 ? t1 : t2
+  operation(num1, num2, op) {
+    const self = this;
+    const o1 = self.toInteger(num1);
+    const o2 = self.toInteger(num2);
+    const n1 = o1.num;
+    const n2 = o2.num;
+    const t1 = o1.times;
+    const t2 = o2.times;
+    const max = t1 > t2 ? t1 : t2;
 
-    let result = null
+    let result = null;
 
     switch (op) {
-      case 'add':
+    case 'add':
 
-        if (t1 === t2) { // 两个小数位数相同
-          result = n1 + n2
-        } else if (t1 > t2) { // o1 小数位 大于 o2
-          result = n1 + n2 * (t1 / t2)
-        } else { // o1 小数位 小于 o2
-          result = n1 * (t2 / t1) + n2
-        }
+      if (t1 === t2) { // 两个小数位数相同
+        result = n1 + n2;
+      } else if (t1 > t2) { // o1 小数位 大于 o2
+        result = n1 + n2 * (t1 / t2);
+      } else { // o1 小数位 小于 o2
+        result = n1 * (t2 / t1) + n2;
+      }
 
-        return result / max
+      return result / max;
 
-      case 'subtract':
-        if (t1 === t2) {
-          result = n1 - n2
-        } else if (t1 > t2) {
-          result = n1 - n2 * (t1 / t2)
-        } else {
-          result = n1 * (t2 / t1) - n2
-        }
+    case 'subtract':
+      if (t1 === t2) {
+        result = n1 - n2;
+      } else if (t1 > t2) {
+        result = n1 - n2 * (t1 / t2);
+      } else {
+        result = n1 * (t2 / t1) - n2;
+      }
 
-        return result / max
+      return result / max;
 
-      case 'multiply':
-        result = (n1 * n2) / (t1 * t2)
+    case 'multiply':
+      result = (n1 * n2) / (t1 * t2);
 
-        return result
+      return result;
 
-      case 'divide':
-        const r1 = n1 / n2
-        const r2 = t2 / t1
+    case 'divide':
+      const r1 = n1 / n2;
+      const r2 = t2 / t1;
 
-        return self.operation(r1, r2, 'multiply')
+      return self.operation(r1, r2, 'multiply');
 
-      default:
+    default:
     }
   }
-}
+};
 
 export default {
   /**
@@ -134,8 +134,8 @@ export default {
    * @param {Number} num2 The second number
    * @return {Number} The sum of the two numbers.
    */
-  add (num1, num2) {
-    return innerUtil.operation(num1, num2, 'add')
+  add(num1, num2) {
+    return innerUtil.operation(num1, num2, 'add');
   },
   /**
    * subtract two numbers
@@ -143,8 +143,8 @@ export default {
    * @param {Number} num2 The second number
    * @return {Number} The subtract of the two numbers.
    */
-  subtract (num1, num2) {
-    return innerUtil.operation(num1, num2, 'subtract')
+  subtract(num1, num2) {
+    return innerUtil.operation(num1, num2, 'subtract');
   },
   /**
    * multiply two numbers
@@ -152,8 +152,8 @@ export default {
    * @param {Number} num2 The second number
    * @return {Number} The multiply of the two numbers.
    */
-  multiply (num1, num2) {
-    return innerUtil.operation(num1, num2, 'multiply')
+  multiply(num1, num2) {
+    return innerUtil.operation(num1, num2, 'multiply');
   },
   /**
    * divide two numbers
@@ -161,7 +161,7 @@ export default {
    * @param {Number} num2 The second number
    * @return {Number} The divide of the two numbers.
    */
-  divide (num1, num2) {
-    return innerUtil.operation(num1, num2, 'divide')
+  divide(num1, num2) {
+    return innerUtil.operation(num1, num2, 'divide');
   }
-}
+};

@@ -24,10 +24,10 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanNumberKeyboard from '@components/numberkeyboard'
-import vanButton from '@components/button'
-import { Toast } from 'vant'
+import vanHeader from '@components/header';
+import vanNumberKeyboard from '@components/numberkeyboard';
+import vanButton from '@components/button';
+import { Toast } from 'vant';
 
 export default {
   name: 'NumberKeyboard',
@@ -36,21 +36,21 @@ export default {
     vanNumberKeyboard,
     vanButton
   },
-  data () {
+  data() {
     return {
       show: false,
       theme: 'default'
-    }
+    };
   },
   methods: {
-    onInput (keyValue) {
-      Toast(`input ${keyValue}`)
+    onInput(keyValue) {
+      Toast(`input ${keyValue}`);
     },
-    onDelete () {
-      Toast(`Delete`)
+    onDelete() {
+      Toast('Delete');
     }
   }
-}
+};
 </script>
 
 <style scoped>

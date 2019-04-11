@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { AddressList } from 'vant'
+import { AddressList } from 'vant';
 
 export default {
   name: 'AddressList',
@@ -35,8 +35,8 @@ export default {
   props: {
     list: {
       type: Array,
-      default () {
-        return []
+      default() {
+        return [];
       }
     },
     addButtonText: {
@@ -45,8 +45,8 @@ export default {
     },
     disabledList: {
       type: Array,
-      default () {
-        return []
+      default() {
+        return [];
       }
     },
     disabledText: String,
@@ -56,35 +56,35 @@ export default {
     },
     addrid: String
   },
-  data () {
+  data() {
     return {
       chosenAddressId: this.addrid
-    }
+    };
   },
   watch: {
-    addrid (value) {
-      this.chosenAddressId = value
+    addrid(value) {
+      this.chosenAddressId = value;
     },
-    chosenAddressId (value) {
-      this.$emit('changeValue', value)
+    chosenAddressId(value) {
+      this.$emit('changeValue', value);
     }
   },
   methods: {
-    onAdd () {
-      this.$emit('add')
+    onAdd() {
+      this.$emit('add');
     },
-    onEdit (item, index) {
-      this.$emit('edit', item, index)
+    onEdit(item, index) {
+      this.$emit('edit', item, index);
     },
-    onSelect (item, index) {
-      this.$emit('select', item, index)
+    onSelect(item, index) {
+      this.$emit('select', item, index);
     },
-    onEditDisabled (item, index) {
-      this.$emit('edit-disabled', item, index)
+    onEditDisabled(item, index) {
+      this.$emit('edit-disabled', item, index);
     },
-    onSelectDisabled (item, index) {
-      this.$emit('select-disabled', item, index)
+    onSelectDisabled(item, index) {
+      this.$emit('select-disabled', item, index);
     }
   }
-}
+};
 </script>

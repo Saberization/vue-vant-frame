@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { Popup } from 'vant'
+import { Popup } from 'vant';
 
 export default {
   name: 'Popup',
@@ -62,38 +62,38 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       visible: false
-    }
+    };
   },
   watch: {
-    show (value) {
-      this.visible = value
+    show(value) {
+      this.visible = value;
     }
   },
   methods: {
-    changeValue () {
-      this.$emit('change', this.visible)
+    changeValue() {
+      this.$emit('change', this.visible);
     },
-    onClickOpen () {
-      this.$emit('open')
+    onClickOpen() {
+      this.$emit('open');
     },
-    onClickOpened () {
-      this.$emit('opened')
+    onClickOpened() {
+      this.$emit('opened');
     },
-    onClickClose () {
-      this.$emit('close')
+    onClickClose() {
+      this.$emit('close');
     },
-    onClickClosed () {
-      this.$emit('closed')
+    onClickClosed() {
+      this.$emit('closed');
     },
-    onClickOverlay () {
-      this.$emit('click-overlay')
+    onClickOverlay() {
+      this.$emit('click-overlay');
     }
   },
-  created () {
-    this.visible = this.show
+  created() {
+    this.visible = this.show;
   }
-}
+};
 </script>

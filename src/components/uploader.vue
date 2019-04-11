@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { Uploader } from 'vant'
+import { Uploader } from 'vant';
 
 export default {
   name: 'Uploader',
@@ -40,9 +40,9 @@ export default {
     multiple: Boolean
   },
   methods: {
-    onOversize (file) {
-      this.$emit('oversize', file)
+    onOversize(file) {
+      this.$emit('oversize', file);
     }
   }
-}
+};
 </script>

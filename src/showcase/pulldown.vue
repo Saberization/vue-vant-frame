@@ -19,10 +19,10 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanPulldown from '@components/pulldown'
-import vanCell from '@components/cell'
-import vanCellGroup from '@components/cellgroup'
+import vanHeader from '@components/header';
+import vanPulldown from '@components/pulldown';
+import vanCell from '@components/cell';
+import vanCellGroup from '@components/cellgroup';
 
 export default {
   name: 'PullDown',
@@ -32,21 +32,21 @@ export default {
     vanCell,
     vanCellGroup
   },
-  data () {
+  data() {
     return {
       count: 0,
       listdata: []
-    }
+    };
   },
   methods: {
-    onClickRight () {
-      this.$refs.pulldown.refresh()
+    onClickRight() {
+      this.$refs.pulldown.refresh();
     }
   },
-  mounted () {
+  mounted() {
     this.$refs.pulldown.PullDown({
       url: 'http://yapi.demo.qunar.com/mock/43176/mock/getlist',
-      dataRequest (currPage) {
+      dataRequest(currPage) {
         return {
           token: 'RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=',
           params: {
@@ -54,15 +54,15 @@ export default {
             pagesize: 10,
             keyword: 'type1'
           }
-        }
+        };
       },
       initPageIndex: 0,
       delay: 300,
       success: ({ custom }) => {
-        this.listdata = custom.infolist
+        this.listdata = custom.infolist;
       },
       error: (error) => {
-        console.log(error)
+        console.log(error);
       },
       ajaxSetting: {
         contentType: 'application/x-www-form-urlencoded',
@@ -86,13 +86,13 @@ export default {
         // 是否禁用
         disabled: false,
         // 下拉刷新回调事件
-        pullDown () {
-          console.log('pullDown')
+        pullDown() {
+          console.log('pullDown');
         }
       }
-    })
+    });
   }
-}
+};
 </script>
 
 <style scoped>

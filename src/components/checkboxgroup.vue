@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { CheckboxGroup } from 'vant'
+import { CheckboxGroup } from 'vant';
 
 export default {
   name: 'CheckBoxGroup',
@@ -35,18 +35,18 @@ export default {
       default: () => []
     }
   },
-  data () {
+  data() {
     return {
       value: []
-    }
+    };
   },
   methods: {
-    onChangeValue () {
-      this.$emit('change')
+    onChangeValue() {
+      this.$emit('change');
     }
   },
-  created () {
-    this.value = this.result
+  created() {
+    this.value = this.result;
   }
-}
+};
 </script>

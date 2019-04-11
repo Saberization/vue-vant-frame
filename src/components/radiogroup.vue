@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { RadioGroup } from 'vant'
+import { RadioGroup } from 'vant';
 
 export default {
   name: 'RadioGroup',
@@ -28,9 +28,9 @@ export default {
     radio: [String, Number, Boolean]
   },
   methods: {
-    onChange (name) {
-      this.$emit('change', name)
+    onChange(name) {
+      this.$emit('change', name);
     }
   }
-}
+};
 </script>

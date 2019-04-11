@@ -49,9 +49,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanButton from '@components/button'
-import { Step, Steps } from 'vant'
+import vanHeader from '@components/header';
+import vanButton from '@components/button';
+import { Step, Steps } from 'vant';
 
 export default {
   name: 'Step',
@@ -61,17 +61,17 @@ export default {
     [Step.name]: Step,
     [Steps.name]: Steps
   },
-  data () {
+  data() {
     return {
       active: 1
-    }
+    };
   },
   methods: {
-    nextStep () {
+    nextStep() {
       this.active = this.active >= 3 ? 0 : this.active + 1;
     }
   }
-}
+};
 </script>
 
 <style scoped>

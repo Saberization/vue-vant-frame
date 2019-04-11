@@ -74,9 +74,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import { Collapse, CollapseItem } from 'vant'
-import vanIcon from '@components/icon'
+import vanHeader from '@components/header';
+import { Collapse, CollapseItem } from 'vant';
+import vanIcon from '@components/icon';
 
 export default {
   name: 'Collapse',
@@ -86,11 +86,11 @@ export default {
     [Collapse.name]: Collapse,
     [CollapseItem.name]: CollapseItem
   },
-  data () {
+  data() {
     return {
       activeNames: ['1'],
       activeName: '1'
-    }
+    };
   }
-}
+};
 </script>

@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanProgress from '@components/progress'
+import vanHeader from '@components/header';
+import vanProgress from '@components/progress';
 
 export default {
   name: 'Progress',
@@ -47,7 +47,7 @@ export default {
     vanHeader,
     vanProgress
   }
-}
+};
 </script>
 
 <style scoped>

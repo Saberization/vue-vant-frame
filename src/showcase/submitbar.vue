@@ -51,10 +51,10 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanSubmitBar from '@components/submitbar'
-import vanCheckbox from '@components/checkbox'
-import { Toast } from 'vant'
+import vanHeader from '@components/header';
+import vanSubmitBar from '@components/submitbar';
+import vanCheckbox from '@components/checkbox';
+import { Toast } from 'vant';
 
 export default {
   name: 'SubmitBar',
@@ -63,17 +63,17 @@ export default {
     vanSubmitBar,
     vanCheckbox
   },
-  data () {
+  data() {
     return {
       checked: true
-    }
+    };
   },
   methods: {
-    onSubmit () {
-      Toast('提交订单')
+    onSubmit() {
+      Toast('提交订单');
     }
   }
-}
+};
 </script>
 
 <style scoped>

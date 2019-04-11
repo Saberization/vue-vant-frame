@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanPulltorefresh from '@components/pulltorefresh'
-import vanCell from '@components/cell'
-import vanCellGroup from '@components/cellgroup'
+import vanHeader from '@components/header';
+import vanPulltorefresh from '@components/pulltorefresh';
+import vanCell from '@components/cell';
+import vanCellGroup from '@components/cellgroup';
 
 export default {
   name: 'Pulltorefresh',
@@ -33,20 +33,20 @@ export default {
     vanCell,
     vanCellGroup
   },
-  data () {
+  data() {
     return {
       list: []
-    }
+    };
   },
   methods: {
-    onClickRight () {
-      this.$refs.refresh.refresh()
+    onClickRight() {
+      this.$refs.refresh.refresh();
     }
   },
-  mounted () {
+  mounted() {
     this.$refs.refresh.pulltorefresh({
       url: 'http://yapi.demo.qunar.com/mock/43176/mock/getlist',
-      dataRequest (currPage) {
+      dataRequest(currPage) {
         return {
           token: 'RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=',
           params: {
@@ -54,23 +54,22 @@ export default {
             pagesize: 10,
             keyword: 'type1'
           }
-        }
+        };
       },
       initPageIndex: 0,
       success: ({ custom }, pageindex) => {
-        const infolist = custom.infolist
+        const { infolist } = custom;
 
         if (pageindex === 0) {
-          this.list = infolist
-        }
-        else {
-          infolist.forEach(e => {
-            this.list.push(e)
-          })
+          this.list = infolist;
+        } else {
+          infolist.forEach((e) => {
+            this.list.push(e);
+          });
         }
       },
       error: (error) => {
-        console.error(JSON.stringify(error))
+        console.error(JSON.stringify(error));
       },
       ajaxSetting: {
         contentType: 'application/x-www-form-urlencoded',
@@ -78,7 +77,7 @@ export default {
       },
       pullDownSetting: {},
       pullUpSetting: {}
-    })
+    });
   }
-}
+};
 </script>

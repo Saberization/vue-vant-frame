@@ -29,9 +29,9 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanUploader from '@components/uploader'
-import vanIcon from '@components/icon'
+import vanHeader from '@components/header';
+import vanUploader from '@components/uploader';
+import vanIcon from '@components/icon';
 
 export default {
   name: 'Uploader',
@@ -41,11 +41,11 @@ export default {
     vanIcon
   },
   methods: {
-    onRead (file) {
-      console.log(file)
+    onRead(file) {
+      console.log(file);
     }
   }
-}
+};
 </script>
 
 <style scoped>

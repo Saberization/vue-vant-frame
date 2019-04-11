@@ -76,8 +76,8 @@
 </template>
 
 <script>
-import vanHeader from '@components/header'
-import vanButton from '@components/button'
+import vanHeader from '@components/header';
+import vanButton from '@components/button';
 
 export default {
   name: 'Button',
@@ -85,7 +85,7 @@ export default {
     vanHeader,
     vanButton
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { Card } from 'vant'
+import { Card } from 'vant';
 
 export default {
   name: 'Card',
@@ -83,9 +83,9 @@ export default {
     }
   },
   methods: {
-    onClick () {
-      this.$emit('click')
+    onClick() {
+      this.$emit('click');
     }
   }
-}
+};
 </script>

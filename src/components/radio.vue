@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { Radio } from 'vant'
+import { Radio } from 'vant';
 
 export default {
   name: 'Radio',
@@ -53,5 +53,5 @@ export default {
       default: false
     }
   }
-}
+};
 </script>
