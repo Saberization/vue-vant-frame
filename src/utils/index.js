@@ -135,11 +135,20 @@ const uuid = () => {
   return uuid.join('');
 };
 
+const getExtraDataByKey = (key) => {
+  let uri = decodeURIComponent(window.location.href);
+  let regExp = new RegExp(`\\??${key}=([^&]*)`);
+  let result = uri.match(regExp);
+
+  return Array.isArray(result) && result[1] || '';
+};
+
 export default {
   openPage,
   ajax,
   ajaxAll,
   extend,
   loaderExternals,
-  uuid
+  uuid,
+  getExtraDataByKey
 };
