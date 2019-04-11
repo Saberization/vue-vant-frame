@@ -15,7 +15,7 @@ export default {
    * 是否开启 调试面板， 开启可以在移动端捕获log
    * 仅在debug模式下有效
    */
-  isDebugPanel: 0,
+  isDebugPanel: 1,
   /**
    * 业务接口相关的配置
    */
@@ -24,5 +24,11 @@ export default {
     const isFormal = true;
 
     return isFormal ? '//115.29.151.25:8012/' : '//192.168.114.35:8016/webUploaderServer/';
-  })()
+  })(),
+  /**
+   * 当ejs前框架使用的版本
+   * 2 代表 2.x 版本的 ejs
+   * 3 代表 3.x
+   */
+  ejsVer: 3
 };

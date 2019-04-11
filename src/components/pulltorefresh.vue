@@ -160,22 +160,24 @@ export default {
         data: this.requestData,
         contentType: ajaxSetting.contentType,
         headers: ajaxSetting.headers,
-        timeout: ajaxSetting.timeout
-      }).then((response) => {
-        if (success && typeof success === 'function') {
-          success(response.data, this.currentPage++);
+        timeout: ajaxSetting.timeout,
+        success: (response) => {
+          if (complete && typeof complete === 'function') {
+            complete();
+          }
+          if (success && typeof success === 'function') {
+            success(response, this.currentPage++);
+          }
+        },
+        error: (err) => {
+          if (complete && typeof complete === 'function') {
+            complete();
+          }
+          if (error && typeof error === 'function') {
+            error(err);
+          }
         }
-        if (complete && typeof complete === 'function') {
-          complete();
-        }
-      }).catch((err) => {
-        if (error && typeof error === 'function') {
-          error(err);
-        }
-        if (complete && typeof complete === 'function') {
-          complete();
-        }
-      });
+      })
     }
   }
 };

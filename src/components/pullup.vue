@@ -12,10 +12,7 @@
     ref="pullUp"
   >
     <slot></slot>
-    <slot
-      name="loading"
-      slot="loading"
-    ></slot>
+    <slot name="loading" slot="loading"></slot>
   </van-list>
 </template>
 
@@ -39,7 +36,7 @@ export default {
         finishedText: '没有更多',
         errorText: '请求失败，点击重新加载',
         immediateCheck: true,
-        pullUp() {}
+        pullUp() { }
       },
       ajaxSetting: {
         type: 'post',
@@ -101,20 +98,23 @@ export default {
         data: this.requestData,
         contentType: ajaxSetting.contentType,
         headers: ajaxSetting.headers,
-        timeout: ajaxSetting.timeout
-      }).then((response) => {
-        if (complete && typeof complete === 'function') {
-          complete();
-        }
-        if (success && typeof success === 'function') {
-          success(response.data, this.currentPage++);
-        }
-      }).catch((err) => {
-        if (complete && typeof complete === 'function') {
-          complete();
-        }
-        if (error && typeof error === 'function') {
-          error(err);
+        timeout: ajaxSetting.timeout,
+        success: (response) => {
+          if (complete && typeof complete === 'function') {
+            complete();
+          }
+          if (success && typeof success === 'function') {
+            success(response, this.currentPage);
+            this.currentPage += 1;
+          }
+        },
+        error: (err) => {
+          if (complete && typeof complete === 'function') {
+            complete();
+          }
+          if (error && typeof error === 'function') {
+            error(err);
+          }
         }
       });
     }

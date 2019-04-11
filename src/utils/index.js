@@ -104,7 +104,7 @@ const loaderExternals = (...args) => {
 
 const extend = (...args) => Object.assign(...args);
 
-const uuid = () => {
+const uuid = (options) => {
   options = options || {};
 
   const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');

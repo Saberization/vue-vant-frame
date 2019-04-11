@@ -1,4 +1,4 @@
-import { Vue } from '@shared/boot';
+import { Vue } from '@boot';
 import VueRouter from 'vue-router';
 import routes from '@router/router';
 import { Lazyload } from 'vant';

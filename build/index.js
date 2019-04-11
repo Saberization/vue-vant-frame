@@ -3,6 +3,7 @@ const cssOptions = require('./css.env')
 const devServer = require('./dev-server')
 const utils = require('./utils')
 const pages = require('./base.conf')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const resolve = utils.resolve
 const chainWebpack = config => {
   config.resolve.alias
@@ -15,6 +16,7 @@ const chainWebpack = config => {
     .set('@showcase', resolve('src/showcase'))
     .set('@router', resolve('src/router'))
     .set('@public', resolve('public'))
+    .set('@boot', resolve('src/shared/boot.js'))
 }
 
 module.exports = {
@@ -77,7 +79,13 @@ module.exports = {
     // 是否设置 link script 标签上启用 SRI，如果构建后的文件是部署在 CDN 上的，启用该选项可以提供额外的安全性
     integrity: false,
     // 参数会通过 webpack-merge 合并到最终配置里
-    configureWebpack: () => {},
+    configureWebpack: {
+      plugins: [
+        new CopyWebpackPlugin([{
+          from: 'public'
+        }])
+      ]
+    },
     // http-proxy-middleware
     devServer,
     css: cssOptions.dev,

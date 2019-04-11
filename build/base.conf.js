@@ -22,7 +22,7 @@ const generatePages = function () {
     })
   }
 
-  if (ENV === 'development' && showCaseEntries && Array.isArray(showCaseEntries)) {
+  if (showCaseEntries && Array.isArray(showCaseEntries)) {
     showCaseEntries.forEach((entry, index) => {
       const dir = utils.getDirectoryName(entry)
       const template = showCaseTemplates[index]

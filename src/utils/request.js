@@ -82,8 +82,8 @@ function ajax(options) {
   });
 }
 
-function ajaxAll() {
-  return axios.all([].slice.call(arguments));
+function ajaxAll(...args) {
+  return axios.all(args);
 }
 
 export {
