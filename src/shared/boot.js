@@ -7,6 +7,7 @@ Vue.config.devtools = true;
 Vue.config.productionTip = false;
 
 const env = Config.env;
+const ejsVer = Config.ejsVer;
 
 /**
  * 插入 Library 库
@@ -23,7 +24,6 @@ const insertLibrary = (...args) => {
     const src = e.src;
     const type = e.type;
     let el = null;
-
     let promise = new Promise((resolve) => {
       if (type === 'css') {
         el = document.createElement('link');
@@ -40,7 +40,7 @@ const insertLibrary = (...args) => {
         document.body.appendChild(el);
       }
 
-      el.onload = function() {
+      el.onload = function () {
         resolve();
       };
     });
@@ -59,39 +59,42 @@ if (Config.isDebugPanel) {
   });
 }
 
-if (Config.ejsVer === 3) {
-  insertLibrary({
-    inject: 'head',
-    src: './ejs/v3/ejs.js',
-    type: 'js'
-  }).then(() => {
-    if (env === 'ejs') {
-      insertLibrary({
-        inject: 'head',
-        src: './ejs/v3/ejs.native.js',
-        type: 'js'
-      });
-    } else if (env === 'dd') {
-      insertLibrary({
-        inject: 'head',
-        src: './ejs/dingtalk.js',
-        type: 'js'
-      }).then(() => {
+if (ejsVer === 3) {
+  if (env !== 'h5') {
+    insertLibrary({
+      inject: 'head',
+      src: './ejs/v3/ejs.js',
+      type: 'js'
+    }).then(() => {
+      if (env === 'ejs') {
         insertLibrary({
           inject: 'head',
-          src: './ejs/v3/ejs.dd.js',
+          src: './ejs/v3/ejs.native.js',
           type: 'js'
         });
-      });
-    }
-  });
-} else {
-  insertLibrary({
-    inject: 'head',
-    src: './ejs/v2/epoint.moapi.v2.js',
-    type: 'js'
-  });
-
+      } else if (env === 'dd') {
+        insertLibrary({
+          inject: 'head',
+          src: './ejs/dingtalk.js',
+          type: 'js'
+        }).then(() => {
+          insertLibrary({
+            inject: 'head',
+            src: './ejs/v3/ejs.dd.js',
+            type: 'js'
+          });
+        });
+      }
+    });
+  }
+} else if (ejsVer === 2) {
+  if (env !== 'h5') {
+    insertLibrary({
+      inject: 'head',
+      src: './ejs/v2/epoint.moapi.v2.js',
+      type: 'js'
+    });
+  }
   if (env === 'dd') {
     insertLibrary({
       inject: 'head',

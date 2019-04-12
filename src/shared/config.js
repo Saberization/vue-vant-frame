@@ -35,6 +35,7 @@ export default {
    * 开发环境常量，分别为：h5（wechat）、ejs、dingtalk
    */
   env: (() => {
+    const ENV_H5 = 'h5';
     const ENV_EJS = 'ejs';
     const ENV_DD = 'dd';
 
