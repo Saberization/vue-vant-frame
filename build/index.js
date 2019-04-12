@@ -34,7 +34,7 @@ module.exports = {
     // 生成文件名后面是否带 hash 值
     filenameHashing: true,
     // eslint-loader 是否在保存的时候检查
-    lintOnSave: false,
+    lintOnSave: true,
     // 是否使用包含运行时编译器的 Vue 构建版本。设置为 true 后你就可以在 Vue 组件中使用 template 选项了，但是这会让你的应用额外增加 10kb 左右。
     runtimeCompiler: false,
     // 默认情况下 babel-loader 会忽略所有 node_modules 中的文件。如果你想要通过 Babel 显式转译一个依赖，可以在这个选项中列出来。

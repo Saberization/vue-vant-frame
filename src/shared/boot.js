@@ -6,6 +6,8 @@ import Config from '@shared/config';
 Vue.config.devtools = true;
 Vue.config.productionTip = false;
 
+const env = Config.env;
+
 /**
  * 插入 Library 库
  * @param {Array} gather 集合
@@ -14,27 +16,39 @@ Vue.config.productionTip = false;
  * type 类型
  */
 const insertLibrary = (...args) => {
+  const promiseAssembly = [];
+
   args.forEach((e) => {
     const inject = e.inject;
     const src = e.src;
     const type = e.type;
     let el = null;
 
-    if (type === 'css') {
-      el = document.createElement('link');
-      el.link = src;
-      el.ref = 'stylesheet';
-    } else {
-      el = document.createElement('script');
-      el.src = src;
-    }
+    let promise = new Promise((resolve) => {
+      if (type === 'css') {
+        el = document.createElement('link');
+        el.link = src;
+        el.ref = 'stylesheet';
+      } else {
+        el = document.createElement('script');
+        el.src = src;
+      }
 
-    if (inject === 'head') {
-      document.head.appendChild(el);
-    } else {
-      document.body.appendChild(el);
-    }
-  })
+      if (inject === 'head') {
+        document.head.appendChild(el);
+      } else {
+        document.body.appendChild(el);
+      }
+
+      el.onload = function() {
+        resolve();
+      };
+    });
+
+    promiseAssembly.push(promise);
+  });
+
+  return Promise.all(promiseAssembly);
 };
 
 if (Config.isDebugPanel) {
@@ -50,10 +64,26 @@ if (Config.ejsVer === 3) {
     inject: 'head',
     src: './ejs/v3/ejs.js',
     type: 'js'
-  }, {
-    inject: 'head',
-    src: './ejs/v3/ejs.native.js',
-    type: 'js'
+  }).then(() => {
+    if (env === 'ejs') {
+      insertLibrary({
+        inject: 'head',
+        src: './ejs/v3/ejs.native.js',
+        type: 'js'
+      });
+    } else if (env === 'dd') {
+      insertLibrary({
+        inject: 'head',
+        src: './ejs/dingtalk.js',
+        type: 'js'
+      }).then(() => {
+        insertLibrary({
+          inject: 'head',
+          src: './ejs/v3/ejs.dd.js',
+          type: 'js'
+        });
+      });
+    }
   });
 } else {
   insertLibrary({
@@ -61,6 +91,14 @@ if (Config.ejsVer === 3) {
     src: './ejs/v2/epoint.moapi.v2.js',
     type: 'js'
   });
+
+  if (env === 'dd') {
+    insertLibrary({
+      inject: 'head',
+      src: './ejs/v2/epoint.moapi.v2.dd.js',
+      type: 'js'
+    });
+  }
 }
 
 export {

@@ -9,7 +9,6 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "@vue/eslint-config-airbnb": "^4.0.0",
     "vant": "^1.6.11",
     "vue": "^2.6.6",
     "vue-router": "^3.0.2",
@@ -40,33 +39,12 @@
     },
     "extends": [
       "plugin:vue/essential",
-      "@vue/airbnb"
+      "@vue/standard"
     ],
     "rules": {
-      "indent": [
-        2,
-        2
-      ],
-      "array-bracket-spacing": [
-        2,
-        "never"
-      ],
-      "no-trailing-spaces": 1,
-      "no-this-before-super": 2,
-      "no-spaced-func": 0,
-      "arrow-parens": 2,
-      "no-const-assign": 2,
-      "no-var": 2,
-      "no-console": 0,
-      "comma-dangle": 0,
-      "no-underscore-dangle": 0,
-      "import/no-extraneous-dependencies": 0,
-      "no-plusplus": 0,
-      "func-names": 0,
-      "import/extensions": 0,
-      "no-param-reassign": 0,
-      "guard-for-in": 0,
-      "no-restricted-syntax": 0
+      "semi": ["error", "always"],
+      "space-before-function-paren": "error",
+      "space-before-function-parentheses": "error"
     },
     "parserOptions": {
       "parser": "babel-eslint"

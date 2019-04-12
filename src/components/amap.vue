@@ -50,13 +50,12 @@ export default {
      * @private
      */
     _initializationGeo() {
-      let map;
       let geolocation;
       const { AMap } = window;
       const { setting } = this;
 
       // 加载地图，调用浏览器定位服务
-      map = new AMap.Map(document.getElementById('amap'), setting.map);
+      const map = new AMap.Map(document.getElementById('amap'), setting.map);
       map.plugin('AMap.Geolocation', () => {
         geolocation = new AMap.Geolocation(setting.geolocation);
 

@@ -9,7 +9,7 @@
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
 	(factory());
-}(this, (function () { 'use strict';
+}(window, (function () { 'use strict';
 
 function callDDByArgs(args, api) {
     var options = args[0];
