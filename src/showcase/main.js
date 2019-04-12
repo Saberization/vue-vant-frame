@@ -1,7 +1,11 @@
-import { Vue } from '@boot';
+import {
+  Vue
+} from '@boot';
 import VueRouter from 'vue-router';
 import routes from '@router/router';
-import { Lazyload } from 'vant';
+import {
+  Lazyload
+} from 'vant';
 import Showcase from './showcase';
 
 Vue.use(VueRouter).use(Lazyload, {

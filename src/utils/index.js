@@ -145,6 +145,11 @@ const uuid = (options) => {
   return uuid.join('');
 };
 
+/**
+ * 从 URL 截取参数
+ * @param {String} key 关键字
+ * @returns {String} 返回参数
+ */
 const getExtraDataByKey = (key) => {
   let uri = decodeURIComponent(window.location.href);
   let regExp = new RegExp(`\\??${key}=([^&]*)`);
@@ -227,6 +232,49 @@ const os = (() => {
   };
 })();
 
+/**
+ * 数据处理
+ * @param {Object} response 处理数据
+ * @param {Object} options 配置项
+ */
+const dataProcess = (response, options) => {
+  if (typeof response !== 'object') {
+    console.error(`response的类型为 ${typeof response}`);
+    return false;
+  }
+
+  let dataPath = options.dataPath;
+  let data = null;
+
+  const handler = (pathAssembly) => {
+    let result = null;
+
+    pathAssembly.forEach((path, index) => {
+      let resolvePathData = result ? result[path] : response[path];
+
+      if (resolvePathData) {
+        result = resolvePathData;
+      } else if (index === (pathAssembly.length - 1)) {
+        result = undefined;
+      }
+    });
+    return result;
+  };
+
+  if (dataPath) {
+    if (Array.isArray(dataPath)) {
+      dataPath.forEach((e) => {
+        data = handler(e.split('.'));
+      });
+
+      return data;
+    } else {
+      return handler(dataPath.split('.'));
+    }
+  }
+  return undefined;
+};
+
 export default {
   openPage,
   ajax,
@@ -235,5 +283,6 @@ export default {
   loaderExternals,
   uuid,
   getExtraDataByKey,
-  os
+  os,
+  dataProcess
 };
