@@ -1,0 +1,192 @@
+/*
+ * @Author: guotq
+ * @Date: 2019-04-12 10:57:29
+ * @Last Modified by: guotq
+ * @Last Modified time: 2019-04-12 11:02:07
+ * @Description: 基于 normalize 扩展
+ */
+
+ .l {
+  float: left;
+}
+
+.r {
+  float: right;
+}
+
+.clearfix:before,
+.clearfix:after {
+	display: table;
+	line-height: 0;
+	content: "";
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+.center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.invisible {
+	visibility: hidden;
+}
+
+.can-select {
+	-webkit-user-select: text;
+}
+
+.fullscreen {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.text-center {
+	text-align: center !important;
+}
+
+.text-left {
+	text-align: left !important;
+}
+
+.text-right {
+	text-align: right !important;
+}
+
+.text-justify {
+	text-align: justify !important;
+}
+
+.text-nowrap {
+	white-space: nowrap !important;
+}
+
+.text-ellipsis {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.bg-gray {
+	background-color: #f5f5f5;
+}
+
+.bg-white {
+	background-color: #fff;
+}
+
+.padding10 {
+	padding: 10px;
+}
+
+.padding0 {
+	padding: 0;
+}
+
+.pt10 {
+	padding: 10px;
+}
+
+.pl10 {
+	padding-left: 10px;
+}
+
+.pr10 {
+	padding-right: 10px;
+}
+
+.pb10 {
+	padding-bottom: 10px;
+}
+
+.margin10 {
+	margin: 10px;
+}
+
+.margin0 {
+	margin: 0;
+}
+
+.mt10 {
+	margin-top: 10px;
+}
+
+.ml10 {
+	margin-left: 10px;
+}
+
+.mb10 {
+	margin-bottom: 10px;
+}
+
+.mr10 {
+	margin-right: 10px;
+}
+
+.border-none {
+	border: none;
+}
+
+.clamp2 {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	text-overflow: ellipsis;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.lowercase {
+	text-transform: lowercase;
+}
+
+/* custom style */
+
+input[type=search] {
+  font-size: 14px;
+}
+
+.cell-title:first-child {
+  margin-top: 10px;
+}
+
+.cell-title {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  color: rgba(69, 90, 100, .6);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.van-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.van-content {
+  position: absolute;
+  top: 46px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}

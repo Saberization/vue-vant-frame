@@ -1,3 +1,5 @@
+@import './common.extend.css';
+
 html {
   font-family: 'PingFang SC', Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, Arial, sans-serif;
   -ms-text-size-adjust: 100%;
@@ -293,60 +295,4 @@ table {
 td,
 th {
   padding: 0
-}
-
-.l {
-  float: left;
-}
-
-.r {
-  float: right;
-}
-
-.clearfix:after {
-  content: ".";
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden
-}
-
-.clearfix {
-  *+height: 1%;
-}
-
-input[type=search] {
-  font-size: 14px;
-}
-
-.cell-title:first-child {
-  margin-top: 10px;
-}
-
-.cell-title {
-  margin-top: 30px;
-  margin-bottom: 10px;
-  padding-left: 10px;
-  color: rgba(69, 90, 100, .6);
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.van-nav-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-}
-
-.van-content {
-  position: absolute;
-  top: 46px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
 }
