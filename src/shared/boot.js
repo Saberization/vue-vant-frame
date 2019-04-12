@@ -60,41 +60,37 @@ if (Config.isDebugPanel) {
 }
 
 if (ejsVer === 3) {
-  if (env !== 'h5') {
-    insertLibrary({
-      inject: 'head',
-      src: './ejs/v3/ejs.js',
-      type: 'js'
-    }).then(() => {
-      if (env === 'ejs') {
+  insertLibrary({
+    inject: 'head',
+    src: './ejs/v3/ejs.min.js',
+    type: 'js'
+  }).then(() => {
+    if (env === 'ejs') {
+      insertLibrary({
+        inject: 'head',
+        src: './ejs/v3/ejs.native.min.js',
+        type: 'js'
+      });
+    } else if (env === 'dd') {
+      insertLibrary({
+        inject: 'head',
+        src: './ejs/dingtalk.js',
+        type: 'js'
+      }).then(() => {
         insertLibrary({
           inject: 'head',
-          src: './ejs/v3/ejs.native.js',
+          src: './ejs/v3/ejs.dd.min.js',
           type: 'js'
         });
-      } else if (env === 'dd') {
-        insertLibrary({
-          inject: 'head',
-          src: './ejs/dingtalk.js',
-          type: 'js'
-        }).then(() => {
-          insertLibrary({
-            inject: 'head',
-            src: './ejs/v3/ejs.dd.js',
-            type: 'js'
-          });
-        });
-      }
-    });
-  }
+      });
+    }
+  });
 } else if (ejsVer === 2) {
-  if (env !== 'h5') {
-    insertLibrary({
-      inject: 'head',
-      src: './ejs/v2/epoint.moapi.v2.js',
-      type: 'js'
-    });
-  }
+  insertLibrary({
+    inject: 'head',
+    src: './ejs/v2/epoint.moapi.v2.js',
+    type: 'js'
+  });
   if (env === 'dd') {
     insertLibrary({
       inject: 'head',
