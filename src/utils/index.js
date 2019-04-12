@@ -8,8 +8,12 @@ import {
  * @param {String} url 要打开的地址
  */
 const openPage = (url) => {
-  const { location } = window;
-  const { pathname } = location;
+  const {
+    location
+  } = window;
+  const {
+    pathname
+  } = location;
 
   if (typeof pathname === 'string') {
     if (url.indexOf('http') !== -1) {
@@ -29,7 +33,9 @@ const loaderExternals = (...args) => {
       let el;
       const item = args[i];
       const type = item.type || 'js';
-      const { url } = item;
+      const {
+        url
+      } = item;
       const position = item.position || 'body';
 
       if (type === 'js') {
@@ -53,10 +59,14 @@ const loaderExternals = (...args) => {
 
   if (args.length === 1) {
     const item = args[0];
-    const { url } = item;
+    const {
+      url
+    } = item;
     const position = item.position || 'body';
     const type = item.type || 'js';
-    const { onload } = item;
+    const {
+      onload
+    } = item;
     let el;
     const promiseArr = [];
 
@@ -140,8 +150,82 @@ const getExtraDataByKey = (key) => {
   let regExp = new RegExp(`\\??${key}=([^&]*)`);
   let result = uri.match(regExp);
 
-  return Array.isArray(result) && result[1] || '';
+  return (Array.isArray(result) && result[1]) || '';
 };
+
+const os = (() => {
+  const {
+    userAgent,
+    appVersion
+  } = window.navigator;
+
+  let version = null;
+  let isBadAndroid = false;
+  let ios = false;
+
+  let android = (() => {
+    const result = userAgent.match(/(Android);?[\s/]+([\d.]+)?/);
+
+    if (result) {
+      version = result[2];
+      isBadAndroid = !/Chrome\/\d/.test(appVersion);
+
+      return true;
+    }
+
+    return false;
+  })();
+
+  let iphone = (() => {
+    const result = userAgent.match(/(iPhone\sOS)\s([\d_]+)/);
+
+    if (result) {
+      ios = true;
+      version = result[2].replace(/_/g, '.');
+
+      return true;
+    }
+
+    return false;
+  })();
+
+  let ipad = (() => {
+    const result = userAgent.match(/(iPad).*OS\s([\d_]+)/);
+
+    if (result) {
+      ios = true;
+      version = result[2].replace(/_/g, '.');
+
+      return true;
+    }
+
+    return false;
+  })();
+
+  let ejs = (() => {
+    return userAgent.match(/EpointEJS/i) || false;
+  })();
+
+  let dd = (() => {
+    return userAgent.match(/DingTalk/i) || false;
+  })();
+
+  let h5 = (() => {
+    return (!ejs && !dd) || false;
+  })();
+
+  return {
+    android,
+    version,
+    isBadAndroid,
+    ios,
+    iphone,
+    ipad,
+    ejs,
+    dd,
+    h5
+  };
+})();
 
 export default {
   openPage,
@@ -150,5 +234,6 @@ export default {
   extend,
   loaderExternals,
   uuid,
-  getExtraDataByKey
+  getExtraDataByKey,
+  os
 };

@@ -102,5 +102,6 @@ if (ejsVer === 3) {
 
 export {
   Vue,
-  Config
+  Config,
+  Util
 };

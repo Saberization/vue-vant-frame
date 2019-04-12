@@ -30,7 +30,7 @@ export default {
    * 2 代表 2.x 版本的 ejs
    * 3 代表 3.x
    */
-  ejsVer: 3,
+  ejsVer: 2,
   /**
    * 开发环境常量，ejs、dingtalk
    */
