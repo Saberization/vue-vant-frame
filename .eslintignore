@@ -1,2 +1,3 @@
 src/assets/*
 publib/**
+src/shared/*
