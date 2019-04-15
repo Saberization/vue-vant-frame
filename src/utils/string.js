@@ -25,6 +25,7 @@ const idcard15 = {
     if (tempDate.getYear() !== parseFloat(year) || tempDate.getMonth() !== parseFloat(month) - 1 || tempDate.getDate() !== parseFloat(day)) {
       return false;
     }
+
     return true;
   },
 
@@ -72,6 +73,7 @@ const idcard18 = {
     if (+arr[17] === ValideCode[valCodePosition]) {
       return true;
     }
+
     return false;
   },
 
@@ -205,10 +207,12 @@ export default {
       if (isAllow15 && idcard.length === 15) {
         // 仅仅验证出生日期
         return idcard15.birthValidate(idcard);
-      } if (idcard.length === 18) {
+      }
+      if (idcard.length === 18) {
         // 18位进行关键之校验以及出生日期校验
         return idcard18.validate(idcard);
       }
+      
       return false;
     },
 
@@ -230,7 +234,8 @@ export default {
 
       if (isAllow15 && idcard.length === 15) {
         return idcard15.birthExtract(idcard);
-      } if (idcard.length === 18) {
+      }
+      if (idcard.length === 18) {
         return idcard18.birthExtract(idcard);
       }
 

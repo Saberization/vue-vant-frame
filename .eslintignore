@@ -1,3 +1,4 @@
 src/assets/*
 publib/**
 src/shared/*
+tests/unit/*
