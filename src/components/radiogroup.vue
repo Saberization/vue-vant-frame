@@ -1,6 +1,6 @@
 <template>
   <van-radio-group
-    v-model="radio"
+    v-model="curRadio"
     :disabled="disabled"
     @change="onChange"
   >
@@ -26,6 +26,19 @@ export default {
       default: false
     },
     radio: [String, Number, Boolean]
+  },
+  data () {
+    return {
+      curRadio: this.radio
+    }
+  },
+  watch: {
+    radio (value) {
+      this.curRadio = value;
+    },
+    curRadio (value) {
+      this.$emit('changeRadio', value);
+    }
   },
   methods: {
     onChange(name) {

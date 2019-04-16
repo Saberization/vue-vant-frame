@@ -1,15 +1,15 @@
 /*!
  * ejsv3 v3.2.6
- * (c) 2017-2019 
+ * (c) 2017-2019
  * Released under the BSD-3-Clause License.
- * 
+ *
  */
 
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
 	(factory());
-}(this, (function () { 'use strict';
+}(window, (function () { 'use strict';
 
 function callDDByArgs(args, api) {
     var options = args[0];

@@ -1,6 +1,6 @@
 <template>
   <van-radio
-    v-model="checked"
+    v-model="isChecked"
     :name="name"
     :shape="shape"
     :disabled="disabled"
@@ -26,6 +26,10 @@ export default {
   components: {
     [Radio.name]: Radio
   },
+  model: {
+    prop: 'checked',
+    event: 'changeChecked'
+  },
   props: {
     name: [Number, String, Boolean],
     shape: {
@@ -48,9 +52,19 @@ export default {
       type: String,
       default: '#1989fa'
     },
-    checked: {
-      type: Boolean,
-      default: false
+    checked: Boolean
+  },
+  data () {
+    return {
+      isChecked: this.checked
+    }
+  },
+  watch: {
+    checked (value) {
+      this.isChecked = value;
+    },
+    isChecked (value) {
+      this.$emit('changeChecked', value);
     }
   }
 };
