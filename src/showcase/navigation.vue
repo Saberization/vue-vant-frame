@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <p class="component-title">轻量、可靠的移动端 Vue 组件库</p>
-
     <van-collapse v-model="activeNames">
       <van-collapse-item
         v-for="(v, i) in menu"

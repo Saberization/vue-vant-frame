@@ -27,89 +27,47 @@ const openPage = (url) => {
   }
 };
 
-const loaderExternals = (...args) => {
-  if (args.length >= 2) {
-    for (let i = 0, len = args.length; i < len; i++) {
-      let el;
-      const item = args[i];
-      const type = item.type || 'js';
-      const {
-        url
-      } = item;
-      const position = item.position || 'body';
+/**
+ * 插入 Library 库
+ * @param {Array} gather 集合
+ * inject 插入位置
+ * src 路径
+ * type 类型
+ * @return {Promise} Promise event
+ */
+const loaderLibrary = (...args) => {
+  const promiseAssembly = [];
 
-      if (type === 'js') {
-        el = document.createElement('script');
-        el.src = url;
-      } else if (type === 'css') {
+  args.forEach((e) => {
+    const inject = e.inject;
+    const src = e.src;
+    const type = e.type;
+    let el = null;
+    let promise = new Promise((resolve) => {
+      if (type === 'css') {
         el = document.createElement('link');
-        el.href = url;
-        el.rel = 'stylesheet';
+        el.link = src;
+        el.ref = 'stylesheet';
+      } else {
+        el = document.createElement('script');
+        el.src = src;
       }
 
-      if (position === 'head') {
+      if (inject === 'head') {
         document.head.appendChild(el);
-      } else if (position === 'body') {
+      } else {
         document.body.appendChild(el);
       }
 
-      el.onload = item.onload;
-    }
-  }
+      el.onload = function () {
+        resolve();
+      };
+    });
 
-  if (args.length === 1) {
-    const item = args[0];
-    const {
-      url
-    } = item;
-    const position = item.position || 'body';
-    const type = item.type || 'js';
-    const {
-      onload
-    } = item;
-    let el;
-    const promiseArr = [];
+    promiseAssembly.push(promise);
+  });
 
-    if (Array.isArray(url)) {
-      for (let i = 0, len = url.length; i < len; i++) {
-        const _url = url[i];
-        const _type = Array.isArray(type) ? type[i] : type;
-        const _position = Array.isArray(position) ? position[i] : position;
-
-        if (_type === 'js') {
-          el = document.createElement('script');
-          el.src = _url;
-        } else if (_type === 'css') {
-          el = document.createElement('link');
-          el.href = url;
-          el.rel = 'stylesheet';
-        }
-
-        _position === 'head' ? document.head.appendChild(el) : document.body.appendChild(el);
-        promiseArr.push(new Promise((resolve) => {
-          el.onload = resolve;
-        }));
-      }
-
-      Promise.all(promiseArr).then(() => {
-        if (onload && typeof onload === 'function') {
-          onload();
-        }
-      });
-    } else {
-      if (type === 'js') {
-        el = document.createElement('script');
-        el.src = url;
-      } else if (type === 'css') {
-        el = document.createElement('link');
-        el.href = url;
-        el.rel = 'stylesheet';
-      }
-
-      position === 'head' ? document.head.appendChild(el) : document.body.appendChild(el);
-      el.onload = onload;
-    }
-  }
+  return Promise.all(promiseAssembly);
 };
 
 const extend = (...args) => Object.assign(...args);
@@ -236,10 +194,12 @@ const os = (() => {
  * 数据处理
  * @param {Object} response 处理数据
  * @param {Object} options 配置项
+ * @returns {Boolean} data or true
  */
 const dataProcess = (response, options) => {
   if (typeof response !== 'object') {
     console.error(`response的类型为 ${typeof response}`);
+
     return false;
   }
 
@@ -258,6 +218,7 @@ const dataProcess = (response, options) => {
         result = undefined;
       }
     });
+
     return result;
   };
 
@@ -272,6 +233,7 @@ const dataProcess = (response, options) => {
       return handler(dataPath.split('.'));
     }
   }
+
   return undefined;
 };
 
@@ -280,9 +242,9 @@ export default {
   ajax,
   ajaxAll,
   extend,
-  loaderExternals,
   uuid,
   getExtraDataByKey,
   os,
-  dataProcess
+  dataProcess,
+  loaderLibrary
 };

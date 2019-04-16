@@ -131,7 +131,7 @@
              * @description each遍历操作
              * @param {type} elements
              * @param {type} callback
-             * @returns {global}
+             * @returns {boot.js}
              */
             exports.each = function(elements, callback, hasOwnProperty) {
                 if (!elements) {
@@ -203,7 +203,7 @@
             /**
              * @description 判断os系统 ,判断是否是ejs
              * ejs.os
-             * @param {type} 
+             * @param {type}
              * @returns {undefined}
              */
             (function() {
@@ -215,7 +215,7 @@
                         this.os.ejs = true;
                         this.os.name += '_' + 'ejs';
                     }
-                    //阿里的钉钉 DingTalk/3.0.0 
+                    //阿里的钉钉 DingTalk/3.0.0
                     var dd = ua.match(/DingTalk/i); //TODO dingding
                     if (dd) {
                         this.os.dd = true;
@@ -839,7 +839,7 @@
             }
         };
         /**
-         ***NativeUI 模块 
+         ***NativeUI 模块
          */
         ejs.nativeUI = {
             /**
@@ -913,7 +913,7 @@
              * btn2 第二个按钮
              * cancelable 是否可取消
              * @param {Function} callback 回调函数
-             * 
+             *
              */
             confirm: function(options, callback) {
                 options = options || {};
@@ -977,7 +977,7 @@
              * type 样式类型，默认为0。 0：单列表样式；1：九宫格样式(目前只支持单选)
              * columns 九宫格列数，默认3列，只有当type为1时有效。
              * @param {Function} callback 回调函数
-             * 
+             *
              */
             select: function(options, callback) {
                 options = options || {};
@@ -1030,7 +1030,7 @@
              * items 内容
              * cancelable 是否可取消
              * @param {Function} callback 回调函数
-             * 
+             *
              */
             actionSheet: function(options, callback) {
                 options = options || {};
@@ -1060,7 +1060,7 @@
              * iconItems 图标内容
              * orientation 菜单类别。仅为"horizontal"时弹出横向菜单，否则弹出垂直菜单。
              * @param {Function} callback 回调函数
-             * 
+             *
              */
             popWindow: function(options, callback) {
                 options = options || {};
@@ -1217,7 +1217,7 @@
             }
         };
         /**
-         ***Navigator 模块 
+         ***Navigator 模块
          * 包括原生页面title操作以及部分导航栏操作
          */
         ejs.navigator = {
@@ -1368,7 +1368,7 @@
         };
 
         /**
-         ***Sql 模块 
+         ***Sql 模块
          * 包括原生的数据库键值操作
          */
         ejs.sql = {
@@ -1407,7 +1407,7 @@
         };
 
         /**
-         ***Oauth 模块 
+         ***Oauth 模块
          * 授权认证相关,如获取原生的token
          */
         ejs.oauth = {
@@ -1437,7 +1437,7 @@
             }
         };
         /**
-         ***runtime 模块 
+         ***runtime 模块
          * 运行环境管理，包括应用间的通信等
          */
         ejs.runtime = {
@@ -1504,7 +1504,7 @@
         };
 
         /**
-         ***device 模块 
+         ***device 模块
          * 设备信息相关
          */
         ejs.device = {
@@ -1512,7 +1512,7 @@
              * @description 获取当前网络状态
              * 异步
              * @param {Function} callback 对应的回调函数
-             * 
+             *
              */
             getNetWorkType: function(callback) {
                 JSBridge.callHandler(EJS_API, 'getNetWorkType', {}, function(res) {
@@ -1524,7 +1524,7 @@
              * @description 强制设置屏幕的方向
              * Android中对首页的Fragment无效
              * 异步
-             * @param {String} orientation 
+             * @param {String} orientation
              * 为"1"时强制竖屏；为"0"时强制横屏；其他按照系统设置旋转。
              */
             setOrientation: function(orientation) {
@@ -1640,7 +1640,7 @@
         };
 
         /**
-         ***app 模块 
+         ***app 模块
          * 一些其它的杂七杂八的操作
          */
         ejs.app = {
@@ -1715,7 +1715,7 @@
              * @description 下载文件
              * 下载完成后自动打开文件。
              * 最大并发下载数5，超出部分等前面下载完成后自动下载
-             * 
+             *
              * @param {JSON} options 额外参数
              * reDownloaded 是否重新下载。
              * reDownloader这个参数iOS未处理
@@ -1725,7 +1725,7 @@
              * fileName 文件名。如果为空，会根据url地址或者头文件中读取出文件名。。
              * @param {Function} callback 回调函数
              * @param {Function} error 错误回调
-             * 
+             *
              */
             downloadFile: function(options, callback, error) {
                 options = options || {};
@@ -1913,7 +1913,7 @@
                 });
             },
             //收藏模块
-            //使用收藏相关API请升级框架核心类库(android升级至epointandroidcore_V2.1.jar以上版本) 
+            //使用收藏相关API请升级框架核心类库(android升级至epointandroidcore_V2.1.jar以上版本)
             //只返回保存为非空的字段以及CollectionTime(保存时间)字段
             collection: {
                 /**

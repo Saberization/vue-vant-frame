@@ -12,6 +12,22 @@ export default {
     isAutoProxy: false
   },
   /**
+   * v6中针对ejs.oauth.getToken接口的定制
+   * 可以修改getToken返回的值，方便v6中调试
+   * v7中开发人员无需关注token（通过ajax自动代理进行设置）
+   */
+  token: {
+    // token的过期时间，防止页面的token过期，单位为秒
+    // H5下动态获取时才会有缓存
+    duration: 7200,
+    // 可以是字符串，也可以是方法
+    // 字符串的话直接可以使用，函数的话 通过success回调返回
+    // 只是H5下有效，ejs下默认就是容器的token，不容改变
+    getToken: (success) => {
+      success('RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=');
+    }
+  },
+  /**
    * 是否开启 调试面板， 开启可以在移动端捕获log
    * 仅在debug模式下有效
    */

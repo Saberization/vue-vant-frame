@@ -119,24 +119,27 @@ export default {
      * @param {Object} lat 百度地图的精度
      */
     searchQuery(lng, lat) {
-      Util.loaderExternals({
-        url: `http://api.map.baidu.com/geocoder/v2/?callback=_addrFrameCallback&location=${lat},${lng}&output=json&pois=1&ak=K5LXDCfHLnGvLDQsZx0AKyXNV5kLObYF&radius=${this.setting.radius}`,
+      Util.loaderLibrary({
+        src: `//api.map.baidu.com/geocoder/v2/?callback=_addrFrameCallback&location=${lat},${lng}&output=json&pois=1&ak=K5LXDCfHLnGvLDQsZx0AKyXNV5kLObYF&radius=${this.setting.radius}`,
         type: 'js',
-        position: 'body'
+        inject: 'body'
       });
     }
   },
   created() {
     this.setting = Object.assign(this.setting, this.options);
 
-    Util.loaderExternals({
-      url: ['//webapi.amap.com/maps?v=1.4.6&key=f2cb2852df505ce99f414bff0b93915b', '//api.map.baidu.com/getscript?v=2.0&ak=K5LXDCfHLnGvLDQsZx0AKyXNV5kLObYF&services=&t=20190123111209'],
+    Util.loaderLibrary({
+      src: '//webapi.amap.com/maps?v=1.4.6&key=f2cb2852df505ce99f414bff0b93915b',
       type: 'js',
-      position: 'head',
-      onload: () => {
-        this.setting.geolocation.buttonOffset = new window.AMap.Pixel(10, 20);
-        this._initializationGeo();
-      }
+      inject: 'head'
+    }, {
+      src: '//api.map.baidu.com/getscript?v=2.0&ak=K5LXDCfHLnGvLDQsZx0AKyXNV5kLObYF&services=&t=20190123111209',
+      type: 'js',
+      inject: 'head'
+    }).then(() => {
+      this.setting.geolocation.buttonOffset = new window.AMap.Pixel(10, 20);
+      this._initializationGeo();
     });
 
     window._addrFrameCallback = (data) => {

@@ -1,8 +1,8 @@
 import axios from 'axios';
-import store from '@/store.js';
 import Config from '@shared/config';
 import { Toast } from 'vant';
 import Util from './index';
+import Token from './token';
 
 const defaultSettings = {
   type: 'post',
@@ -21,18 +21,20 @@ const defaultSettings = {
 let params = {};
 const setHeader = function (key, value) {
   const { headers } = params;
+
   headers[key] = value;
 };
 const createInterceptors = function () {
   axios.interceptors.request.use((config) => {
-    const { token } = store.state;
+    const token = '';
 
-    if (token) { // 判断是否存在token，如果存在的话，则每个http header都加上token
+    // 判断是否存在token，如果存在的话，则每个http header都加上token
+    if (token) {
       config.headers.Authorization = token;
     }
 
     return config;
-  }, error => Promise.reject(error));
+  }, (error) => Promise.reject(error));
 };
 
 function ajax(options) {
@@ -46,11 +48,7 @@ function ajax(options) {
     withCredentials: options.withCredentials
   };
 
-  const { contentType } = options;
-  const { headers } = options;
-  const { isAutoProxy } = options;
-  const { error } = options;
-  const { success } = options;
+  const { contentType, headers, isAutoProxy, error, success} = options;
 
   for (const key in headers) {
     setHeader(key, headers[key]);

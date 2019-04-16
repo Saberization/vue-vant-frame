@@ -1,4 +1,5 @@
 src/assets/*
-publib/**
+public/ejs/**/*
+public/ejs/*
 src/shared/*
 tests/unit/*

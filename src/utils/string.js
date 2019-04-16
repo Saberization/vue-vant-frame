@@ -212,7 +212,7 @@ export default {
         // 18位进行关键之校验以及出生日期校验
         return idcard18.validate(idcard);
       }
-      
+
       return false;
     },
 

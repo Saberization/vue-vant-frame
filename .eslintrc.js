@@ -30,14 +30,14 @@ module.exports = {
      * 注释风格
      */
     // 如果使用注释，一定要符合jsdoc
-    // 要求使用有效和一致的JSDoc 注释，只有在有返回值时才需要return 
+    // 要求使用有效和一致的JSDoc 注释，只有在有返回值时才需要return
     "valid-jsdoc": [2, {
       "requireReturn": false
     }],
     // 强制在注释中 // 或 /* 使用一致的空格
     // 所以注释都必须是 // sss  格式
     "spaced-comment": [2, "always", {
-      "markers": ["global", "globals", "eslint", "eslint-disable", "*package", "!"]
+      "markers": ["boot.js", "globals", "eslint", "eslint-disable", "*package", "!"]
     }],
     // 禁止在代码行后使用内联注释
     "no-inline-comments": 2,
