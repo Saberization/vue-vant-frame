@@ -92,7 +92,7 @@ export default {
       options: {
         url: '',
         initPageIndex: 0,
-        delay: 400
+        delay: 600
       },
       currentPage: 0,
       requestData: {}
@@ -176,6 +176,8 @@ export default {
           if (error && typeof error === 'function') {
             error(err);
           }
+
+          this.loading = true;
         }
       });
     }

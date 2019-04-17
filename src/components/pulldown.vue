@@ -69,7 +69,7 @@ export default {
       options: {
         url: '',
         initPageIndex: 0,
-        delay: 300
+        delay: 600
       },
       requestData: {}
     };

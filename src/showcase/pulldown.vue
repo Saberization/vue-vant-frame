@@ -47,7 +47,7 @@ export default {
   },
   mounted () {
     this.$refs.pulldown.PullDown({
-      url: 'http://yapi.demo.qunar.com/mock/43176/mock/getlist',
+      url: 'https://www.easy-mock.com/mock/5cb6ca44f6c8be4af31ae04d/mock/getlist',
       dataRequest (currPage) {
         return {
           token: 'RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=',
@@ -59,7 +59,6 @@ export default {
         };
       },
       initPageIndex: 0,
-      delay: 300,
       success: ({ custom }) => {
         this.listdata = custom.infolist;
       },

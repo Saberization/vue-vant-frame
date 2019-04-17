@@ -39,7 +39,7 @@ export default {
   },
   mounted () {
     this.$refs.pull.pullUp({
-      url: 'http://yapi.demo.qunar.com/mock/43176/mock/getlist',
+      url: 'https://www.easy-mock.com/mock/5cb6ca44f6c8be4af31ae04d/mock/getlist',
       dataRequest (currPage) {
         return {
           token: 'RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=',

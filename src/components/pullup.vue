@@ -36,7 +36,7 @@ export default {
         finishedText: '没有更多',
         errorText: '请求失败，点击重新加载',
         immediateCheck: true,
-        pullUp () { }
+        pullUp () {}
       },
       ajaxSetting: {
         type: 'post',
@@ -48,7 +48,7 @@ export default {
       options: {
         url: '',
         initPageIndex: 0,
-        delay: 300
+        delay: 600
       },
       requestData: {}
     };
@@ -115,6 +115,7 @@ export default {
           if (error && typeof error === 'function') {
             error(err);
           }
+          this.loading = true;
         }
       });
     }
