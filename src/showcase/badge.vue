@@ -39,13 +39,13 @@ export default {
     'van-badge-group': BadgeGroup,
     vanHeader
   },
-  data() {
+  data () {
     return {
       activeKey: 0
     };
   },
   methods: {
-    onChange(key) {
+    onChange (key) {
       this.activeKey = key;
     }
   }

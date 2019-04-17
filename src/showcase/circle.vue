@@ -54,7 +54,7 @@ export default {
     vanCircle,
     vanButton
   },
-  data() {
+  data () {
     return {
       currentRate: 0,
       rate: 30,
@@ -62,15 +62,15 @@ export default {
     };
   },
   methods: {
-    add() {
+    add () {
       this.rate += 20;
     },
-    less() {
+    less () {
       this.rate -= 20;
     }
   },
   computed: {
-    text() {
+    text () {
       return `${this.currentRate.toFixed(0)}%`;
     }
   }

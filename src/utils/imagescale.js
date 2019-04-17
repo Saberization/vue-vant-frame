@@ -3,13 +3,13 @@
  * 最临邻近插值
  */
 
-function scale(data, width, height, newData, newWidth, newHeight) {
+function scale (data, width, height, newData, newWidth, newHeight) {
   // 计算压缩后的缩放比
   const scaleW = newWidth / width;
   const scaleH = newHeight / height;
   const dstData = newData;
 
-  const filter = function filter(dstCol, dstRow) {
+  const filter = function filter (dstCol, dstRow) {
     const srcCol = Math.min(width - 1, dstCol / scaleW);
     const srcRow = Math.min(height - 1, dstRow / scaleH);
     const intCol = Math.floor(srcCol);
@@ -36,7 +36,7 @@ function scale(data, width, height, newData, newWidth, newHeight) {
   }
 }
 
-function nearestNeighborInterpolation(imgData, newImgData) {
+function nearestNeighborInterpolation (imgData, newImgData) {
   scale(imgData.data, imgData.width, imgData.height, newImgData.data, newImgData.width, newImgData.height);
 
   return newImgData;
@@ -54,8 +54,9 @@ function nearestNeighborInterpolation(imgData, newImgData) {
  * @param {Number} srcHeight 高度
  * @param {Number} row 目标像素的行
  * @param {Number} col 目标像素的列
+ * @returns {String} rgba 颜色值
  */
-function getRGBAValue(data, srcWidth, srcHeight, row, col) {
+function getRGBAValue (data, srcWidth, srcHeight, row, col) {
   let newRow = row;
   let newCol = col;
 
@@ -78,13 +79,13 @@ function getRGBAValue(data, srcWidth, srcHeight, row, col) {
   return [data[newIndex + 0], data[newIndex + 1], data[newIndex + 2], data[newIndex + 3]];
 }
 
-function scale$1(data, width, height, newData, newWidth, newHeight) {
+function scale$1 (data, width, height, newData, newWidth, newHeight) {
   // 计算压缩后的缩放比
   const scaleW = newWidth / width;
   const scaleH = newHeight / height;
   const dstData = newData;
 
-  const filter = function filter(dstCol, dstRow) {
+  const filter = function filter (dstCol, dstRow) {
     // 源图像中的坐标（可能是一个浮点）
     const srcCol = Math.min(width - 1, dstCol / scaleW);
     const srcRow = Math.min(height - 1, dstRow / scaleH);
@@ -123,7 +124,7 @@ function scale$1(data, width, height, newData, newWidth, newHeight) {
   }
 }
 
-function bilinearInterpolation(imgData, newImgData) {
+function bilinearInterpolation (imgData, newImgData) {
   scale$1(imgData.data, imgData.width, imgData.height, newImgData.data, newImgData.width, newImgData.height);
 
   return newImgData;
@@ -141,24 +142,24 @@ function bilinearInterpolation(imgData, newImgData) {
  * http://blog.csdn.net/qq_24451605/article/details/49474113
  * https://en.wikipedia.org/wiki/Bicubic_interpolation
  * */
-let a00 = void 0;
-let a01 = void 0;
-let a02 = void 0;
-let a03 = void 0;
-let a10 = void 0;
-let a11 = void 0;
-let a12 = void 0;
-let a13 = void 0;
-let a20 = void 0;
-let a21 = void 0;
-let a22 = void 0;
-let a23 = void 0;
-let a30 = void 0;
-let a31 = void 0;
-let a32 = void 0;
-let a33 = void 0;
+let a00 = '';
+let a01 = '';
+let a02 = '';
+let a03 = '';
+let a10 = '';
+let a11 = '';
+let a12 = '';
+let a13 = '';
+let a20 = '';
+let a21 = '';
+let a22 = '';
+let a23 = '';
+let a30 = '';
+let a31 = '';
+let a32 = '';
+let a33 = '';
 
-const getRGBAValue$1 = function getRGBAValue(data, srcWidth, srcHeight, row, col, colorIndex) {
+const getRGBAValue$1 = function getRGBAValue (data, srcWidth, srcHeight, row, col, colorIndex) {
   let newRow = row;
   let newCol = col;
 
@@ -181,7 +182,7 @@ const getRGBAValue$1 = function getRGBAValue(data, srcWidth, srcHeight, row, col
   return data[newIndex + colorIndex];
 };
 
-const getPixelValue = function getPixelValue(pixelValue) {
+const getPixelValue = function getPixelValue (pixelValue) {
   let newPixelValue = pixelValue;
 
   newPixelValue = Math.min(255, newPixelValue);
@@ -190,7 +191,7 @@ const getPixelValue = function getPixelValue(pixelValue) {
   return newPixelValue;
 };
 
-const updateCoefficients = function updateCoefficients(tmpPixels) {
+const updateCoefficients = function updateCoefficients (tmpPixels) {
   const p = tmpPixels;
 
   a00 = p[1][1];
@@ -214,7 +215,7 @@ const updateCoefficients = function updateCoefficients(tmpPixels) {
   a33 = 0.25 * p[0][0] - 0.75 * p[0][1] + 0.75 * p[0][2] - 0.25 * p[0][3] - 0.75 * p[1][0] + 2.25 * p[1][1] - 2.25 * p[1][2] + 0.75 * p[1][3] + 0.75 * p[2][0] - 2.25 * p[2][1] + 2.25 * p[2][2] - 0.75 * p[2][3] - 0.25 * p[3][0] + 0.75 * p[3][1] - 0.75 * p[3][2] + 0.25 * p[3][3];
 };
 
-const getValue = function getValue(x, y) {
+const getValue = function getValue (x, y) {
   const x2 = x * x;
   const x3 = x2 * x;
   const y2 = y * y;
@@ -223,14 +224,14 @@ const getValue = function getValue(x, y) {
   return a00 + a01 * y + a02 * y2 + a03 * y3 + (a10 + a11 * y + a12 * y2 + a13 * y3) * x + (a20 + a21 * y + a22 * y2 + a23 * y3) * x2 + (a30 + a31 * y + a32 * y2 + a33 * y3) * x3;
 };
 
-function scale$2(data, width, height, newData, newWidth, newHeight) {
+function scale$2 (data, width, height, newData, newWidth, newHeight) {
   const dstData = newData;
 
   // 计算压缩后的缩放比
   const scaleW = newWidth / width;
   const scaleH = newHeight / height;
 
-  const filter = function filter(dstCol, dstRow) {
+  const filter = function filter (dstCol, dstRow) {
     // 源图像中的坐标（可能是一个浮点）
     const srcCol = Math.min(width - 1, dstCol / scaleW);
     const srcRow = Math.min(height - 1, dstRow / scaleH);
@@ -247,6 +248,7 @@ function scale$2(data, width, height, newData, newWidth, newHeight) {
 
     // 16个邻近像素的灰度（分别计算成rgba）
     const tmpPixels = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+
     // rgba
     for (let i = 0; i <= 3; i += 1) {
       // 16个临近点
@@ -271,7 +273,7 @@ function scale$2(data, width, height, newData, newWidth, newHeight) {
   }
 }
 
-function bicubicInterpolation(imgData, newImgData) {
+function bicubicInterpolation (imgData, newImgData) {
   scale$2(imgData.data, imgData.width, imgData.height, newImgData.data, newImgData.width, newImgData.height);
 
   return newImgData;
@@ -299,7 +301,7 @@ function bicubicInterpolation(imgData, newImgData) {
  */
 const A = -1;
 
-function interpolationCalculate(x) {
+function interpolationCalculate (x) {
   const absX = x >= 0 ? x : -x;
   const x2 = x * x;
   const x3 = absX * x2;
@@ -313,7 +315,7 @@ function interpolationCalculate(x) {
   return 0;
 }
 
-function getPixelValue$1(pixelValue) {
+function getPixelValue$1 (pixelValue) {
   let newPixelValue = pixelValue;
 
   newPixelValue = Math.min(255, newPixelValue);
@@ -329,8 +331,9 @@ function getPixelValue$1(pixelValue) {
  * @param {Number} srcHeight 高度
  * @param {Number} row 目标像素的行
  * @param {Number} col 目标像素的列
+ * @returns {String} rgba值
  */
-function getRGBAValue$2(data, srcWidth, srcHeight, row, col) {
+function getRGBAValue$2 (data, srcWidth, srcHeight, row, col) {
   let newRow = row;
   let newCol = col;
 
@@ -353,14 +356,14 @@ function getRGBAValue$2(data, srcWidth, srcHeight, row, col) {
   return [data[newIndex + 0], data[newIndex + 1], data[newIndex + 2], data[newIndex + 3]];
 }
 
-function scale$3(data, width, height, newData, newWidth, newHeight) {
+function scale$3 (data, width, height, newData, newWidth, newHeight) {
   const dstData = newData;
 
   // 计算压缩后的缩放比
   const scaleW = newWidth / width;
   const scaleH = newHeight / height;
 
-  const filter = function filter(dstCol, dstRow) {
+  const filter = function filter (dstCol, dstRow) {
     // 源图像中的坐标（可能是一个浮点）
     const srcCol = Math.min(width - 1, dstCol / scaleW);
     const srcRow = Math.min(height - 1, dstRow / scaleH);
@@ -377,6 +380,7 @@ function scale$3(data, width, height, newData, newWidth, newHeight) {
 
     // 存储灰度值的权重卷积和
     const rgbaData = [0, 0, 0, 0];
+
     // 根据数学推导，16个点的f1*f2加起来是趋近于1的（可能会有浮点误差）
     // 因此就不再单独先加权值，再除了
     // 16个邻近点
@@ -410,13 +414,13 @@ function scale$3(data, width, height, newData, newWidth, newHeight) {
   }
 }
 
-function bicubicInterpolation$1(imgData, newImgData) {
+function bicubicInterpolation$1 (imgData, newImgData) {
   scale$3(imgData.data, imgData.width, imgData.height, newImgData.data, newImgData.width, newImgData.height);
 
   return newImgData;
 }
 
-function extend(target) {
+function extend (target) {
   const finalTarget = target;
 
   for (var _len = arguments.length, rest = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -482,7 +486,7 @@ const defaultArgsCompress = {
   forceHeight: 0
 };
 
-function scaleMixin(ImageScale) {
+function scaleMixin (ImageScale) {
   const api = ImageScale;
 
   /**
@@ -491,7 +495,7 @@ function scaleMixin(ImageScale) {
    * @param {ImageData} newImageData 新的ImageData
    * @param {Object} args 额外参数
    */
-  api.scaleImageData = function scaleImageData(imageData, newImageData, args) {
+  api.scaleImageData = function scaleImageData (imageData, newImageData, args) {
     const finalArgs = extend({}, defaultArgs, args);
     const processTypes = [nearestNeighborInterpolation, bilinearInterpolation, bicubicInterpolation, bicubicInterpolation$1];
     const curDealFunc = processTypes[finalArgs.processType];
@@ -505,7 +509,7 @@ function scaleMixin(ImageScale) {
    * @param {Object} args 额外参数
    * @return {String} 返回目标图片的b64字符串
    */
-  api.scaleImage = function scaleImage(image, args) {
+  api.scaleImage = function scaleImage (image, args) {
     const { width } = image;
     const { height } = image;
     const finalArgs = extend({}, defaultArgs, args);
@@ -535,7 +539,7 @@ function scaleMixin(ImageScale) {
     return canvasTransfer.toDataURL(finalArgs.mime, 0.9);
   };
 
-  function getPixelRatio(context) {
+  function getPixelRatio (context) {
     const backingStore = context.backingStorePixelRatio || context.webkitBackingStorePixelRatio || context.mozBackingStorePixelRatio || context.msBackingStorePixelRatio || context.oBackingStorePixelRatio || context.backingStorePixelRatio || 1;
 
     const ratio = (window.devicePixelRatio || 1) / backingStore;
@@ -550,7 +554,7 @@ function scaleMixin(ImageScale) {
    * @param {Object} args 额外参数
    * @return {String} 返回目标图片的b64字符串
    */
-  api.compressImage = function compressImage(image, args) {
+  api.compressImage = function compressImage (image, args) {
     const { width } = image;
     const { height } = image;
     const wPerH = width / height;

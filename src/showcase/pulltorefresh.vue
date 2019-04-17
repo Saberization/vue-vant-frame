@@ -33,20 +33,20 @@ export default {
     vanCell,
     vanCellGroup
   },
-  data() {
+  data () {
     return {
       list: []
     };
   },
   methods: {
-    onClickRight() {
+    onClickRight () {
       this.$refs.refresh.refresh();
     }
   },
-  mounted() {
+  mounted () {
     this.$refs.refresh.pulltorefresh({
       url: 'http://yapi.demo.qunar.com/mock/43176/mock/getlist',
-      dataRequest(currPage) {
+      dataRequest (currPage) {
         return {
           token: 'RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=',
           params: {

@@ -24,7 +24,7 @@ export default {
     vanCell,
     vanCellGroup
   },
-  data() {
+  data () {
     return {
       pois: [],
       poiCallback: ({ result }) => {

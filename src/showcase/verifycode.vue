@@ -32,16 +32,16 @@ export default {
     vanField,
     vanCellGroup
   },
-  data() {
+  data () {
     return {
       value: ''
     };
   },
   methods: {
-    updateVerify() {
+    updateVerify () {
       this.$refs.verifycode.update();
     },
-    checkVerifyCode() {
+    checkVerifyCode () {
       Toast(`验证结果：${this.$refs.verifycode.validate(this.value)}`);
     }
   }

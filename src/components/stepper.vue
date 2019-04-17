@@ -60,33 +60,33 @@ export default {
       default: 1
     }
   },
-  data() {
+  data () {
     return {
       stepperValue: 1
     };
   },
   methods: {
-    onChange(value) {
+    onChange (value) {
       this.$emit('change', value);
       this.$emit('changeValue', value);
     },
-    onOverlimit() {
+    onOverlimit () {
       this.$emit('overlimit');
     },
-    onPlus() {
+    onPlus () {
       this.$emit('plus');
     },
-    onMinus() {
+    onMinus () {
       this.$emit('minus');
     },
-    onFoucs() {
+    onFoucs () {
       this.$emit('focus');
     },
-    onBlur() {
+    onBlur () {
       this.$emit('blur');
     }
   },
-  created() {
+  created () {
     this.stepperValue = this.value;
   }
 };

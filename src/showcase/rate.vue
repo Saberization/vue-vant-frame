@@ -41,13 +41,13 @@ export default {
     vanHeader,
     vanRate
   },
-  data() {
+  data () {
     return {
       value: 3
     };
   },
   methods: {
-    onChange() {
+    onChange () {
       Toast(`当前评分: ${this.value}`);
     }
   }

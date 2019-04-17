@@ -44,7 +44,7 @@ export default {
   props: {
     top: [String, Number]
   },
-  data() {
+  data () {
     return {
       loading: false,
       refreshSetting: {
@@ -57,7 +57,7 @@ export default {
         headHeight: 50,
         disabled: false,
         isLoading: false,
-        pullDown() {}
+        pullDown () {}
       },
       ajaxSetting: {
         type: 'post',
@@ -75,7 +75,7 @@ export default {
     };
   },
   methods: {
-    onRefresh() {
+    onRefresh () {
       this.loading = true;
       setTimeout(() => {
         this._getRequestData(() => {
@@ -84,7 +84,7 @@ export default {
       }, this.options.delay);
       this.refreshSetting.pullDown();
     },
-    PullDown(options) {
+    PullDown (options) {
       // 合并下拉刷新配置项
       Object.assign(this.refreshSetting, options.setting);
       Object.assign(this.ajaxSetting, options.ajaxSetting);
@@ -92,7 +92,7 @@ export default {
       this.currentPage = this.options.initPageIndex;
       this.onRefresh();
     },
-    _getRequestData(complete) {
+    _getRequestData (complete) {
       const { dataRequest } = this.options;
 
       if (dataRequest && typeof dataRequest === 'function') {
@@ -107,7 +107,7 @@ export default {
         console.error('请传入 dataRequest 函数');
       }
     },
-    _request(complete) {
+    _request (complete) {
       const { ajaxSetting } = this;
       const { options } = this;
       const { success } = options;
@@ -138,7 +138,7 @@ export default {
         }
       });
     },
-    refresh() {
+    refresh () {
       this.onRefresh();
     }
   }

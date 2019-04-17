@@ -34,7 +34,7 @@ export default {
     errorInfo: String
   },
   methods: {
-    onFocus() {
+    onFocus () {
       this.$emit('focus');
     }
   }

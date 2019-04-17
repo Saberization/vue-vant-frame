@@ -53,7 +53,7 @@ export default {
     vanHeader,
     vanButton
   },
-  data() {
+  data () {
     return {
       show: false,
       position: '',
@@ -61,10 +61,10 @@ export default {
     };
   },
   methods: {
-    onClickCenterPopup() {
+    onClickCenterPopup () {
       this.show = true;
     },
-    onClickBottomPopup() {
+    onClickBottomPopup () {
       this.show = true;
       this.position = 'bottom';
 
@@ -72,7 +72,7 @@ export default {
         this.show = false;
       }, 1000);
     },
-    onClickTopPopup() {
+    onClickTopPopup () {
       this.show = true;
       this.overlay = false;
       this.position = 'top';
@@ -81,11 +81,11 @@ export default {
         this.show = false;
       }, 1000);
     },
-    onClickRightPopup() {
+    onClickRightPopup () {
       this.show = true;
       this.position = 'right';
     },
-    closePopup() {
+    closePopup () {
       this.show = false;
       this.overlay = true;
     }

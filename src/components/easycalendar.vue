@@ -41,7 +41,7 @@ export default {
       default: 'cur'
     }
   },
-  data() {
+  data () {
     return {
       year: null,
       month: null,
@@ -51,7 +51,7 @@ export default {
     };
   },
   watch: {
-    isShow(value) {
+    isShow (value) {
       this.show = value;
     }
   },
@@ -62,7 +62,7 @@ export default {
      * @param {Number} month 月
      * @param {Number} day 日
      */
-    createCalendar(year, month, day) {
+    createCalendar (year, month, day) {
       const today = this._getNowDay();
 
       if (!year) {
@@ -176,7 +176,7 @@ export default {
      * 渲染日期
      * @param {String} dateCollection 日期集合
      */
-    _renderCalendar(dateCollection) {
+    _renderCalendar (dateCollection) {
       let result = '';
 
       for (let i = 1, len = dateCollection.length; i <= len; i++) {
@@ -199,7 +199,7 @@ export default {
      * @param {HTMLElement} el 当前元素
      * @param {String} cls 高亮样式
      */
-    removeSiblingsCls(el, cls) {
+    removeSiblingsCls (el, cls) {
       const siblings = [].slice.call(this.$refs.body.querySelectorAll('td'));
 
       siblings.forEach((e, i) => {
@@ -211,10 +211,10 @@ export default {
 
     /**
      * 获取当前日期
-     * @return {Date}
+     * @return {Date} 日期
      * @private
      */
-    _getNowDay() {
+    _getNowDay () {
       return new Date();
     },
 
@@ -223,7 +223,7 @@ export default {
      * @param {Number} num 数字
      * @returns {String} 补0过后的数字
      */
-    appendZero(num) {
+    appendZero (num) {
       if (num < 10) {
         return `0${num}`;
       }
@@ -236,7 +236,7 @@ export default {
      * @param {HTMLElement} el 元素
      * @param {String} operator 运算符
      */
-    _handleTriggerDate(el, operator) {
+    _handleTriggerDate (el, operator) {
       let { month } = this;
       let { year } = this;
       const { style } = el;
@@ -263,15 +263,15 @@ export default {
       this.createCalendar(year, month);
     },
 
-    onClickLeftBtn(e) {
+    onClickLeftBtn (e) {
       this._handleTriggerDate(e.target, '-');
     },
 
-    onClickRightBtn(e) {
+    onClickRightBtn (e) {
       this._handleTriggerDate(e.target, '+');
     },
 
-    onClickBody(e) {
+    onClickBody (e) {
       const { target } = e;
       const { cls } = this;
       const { year } = target.dataset;
@@ -293,11 +293,11 @@ export default {
       }
     },
 
-    getCalendarData() {
+    getCalendarData () {
       return this.result;
     }
   },
-  mounted() {
+  mounted () {
     this.createCalendar();
   }
 };

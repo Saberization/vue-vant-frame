@@ -30,7 +30,7 @@ export default {
   data () {
     return {
       curRadio: this.radio
-    }
+    };
   },
   watch: {
     radio (value) {
@@ -41,7 +41,7 @@ export default {
     }
   },
   methods: {
-    onChange(name) {
+    onChange (name) {
       this.$emit('change', name);
     }
   }

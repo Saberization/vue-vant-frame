@@ -43,13 +43,13 @@ export default {
     vanHeader,
     vanStepper
   },
-  data() {
+  data () {
     return {
       value: 1
     };
   },
   methods: {
-    onChange(value) {
+    onChange (value) {
       setTimeout(() => {
         this.value = value;
       }, 500);

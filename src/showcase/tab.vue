@@ -128,17 +128,17 @@ export default {
     'van-tabs': Tabs,
     vanIcon
   },
-  data() {
+  data () {
     return {
       active1: 2,
       active2: 0
     };
   },
   methods: {
-    onClickDisabled(index, title) {
+    onClickDisabled (index, title) {
       Toast(`${title} 已被禁用`);
     },
-    onClick(index, title) {
+    onClick (index, title) {
       Toast(`当前选中 ${title}`);
     }
   }

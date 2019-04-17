@@ -43,15 +43,15 @@ export default {
     onClose: Function
   },
   methods: {
-    open(position) {
+    open (position) {
       if (position && typeof position === 'string') {
         this.$refs.swipecell.open(position);
       }
     },
-    close() {
+    close () {
       this.$refs.swipecell.close();
     },
-    onClick(position) {
+    onClick (position) {
       this.$emit('click', position);
     }
   }

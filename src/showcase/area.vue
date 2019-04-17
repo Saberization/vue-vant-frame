@@ -41,28 +41,31 @@ export default {
     vanButton,
     vanPicker
   },
-  data() {
+  data () {
     return {
       pickerData: [],
       show: false
     };
   },
   methods: {
-    showPicker(level) {
+    showPicker (level) {
       this.show = true;
 
       switch (level) {
-      case 'twolevel':
-        this.pickerData = cityData2;
-        break;
+        case 'twolevel':
+          this.pickerData = cityData2;
+          break;
 
-      case 'threelevel':
-        this.pickerData = cityData3;
-        break;
+        case 'threelevel':
+          this.pickerData = cityData3;
+          break;
+
+        default:
+          break;
       }
     },
 
-    onConfirm(value) {
+    onConfirm (value) {
       Toast(value);
     }
   }

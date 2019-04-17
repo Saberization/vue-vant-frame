@@ -26,17 +26,17 @@ export default {
   components: {
     vanHeader
   },
-  data() {
+  data () {
     return {
       imgList: ['https://img.yzcdn.cn/public_files/2017/09/05/4e3ea0898b1c2c416eec8c11c5360833.jpg', 'https://img.yzcdn.cn/public_files/2017/09/05/fd08f07665ed67d50e11b32a21ce0682.jpg']
     };
   },
   methods: {
-    onShowImg(startPosition) {
+    onShowImg (startPosition) {
       ImagePreview({
         images: this.imgList,
         startPosition,
-        onClose() {
+        onClose () {
           // close dosomething
         }
       });

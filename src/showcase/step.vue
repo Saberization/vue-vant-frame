@@ -61,13 +61,13 @@ export default {
     [Step.name]: Step,
     [Steps.name]: Steps
   },
-  data() {
+  data () {
     return {
       active: 1
     };
   },
   methods: {
-    nextStep() {
+    nextStep () {
       this.active = this.active >= 3 ? 0 : this.active + 1;
     }
   }

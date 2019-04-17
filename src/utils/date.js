@@ -41,7 +41,7 @@ class MyDate extends Date {
    * @param {String} pattern 匹配字符串,可以手动传入,或者采取默认
    * @return {MyDate} 返回一个MyDate对象
    */
-  parseDate(dateString, pattern) {
+  parseDate (dateString, pattern) {
     try {
       dateString = dateString || '';
       // 判断需要的匹配模式
@@ -68,30 +68,30 @@ class MyDate extends Date {
           // 判断YMDhmsiw等等关键字
           // 这个matchs1[i]有可能是YYYY，MM之类，所以只需取第一个字符
           switch (matchs1[i].charAt(0) || '') {
-          case 'Y':
-            myDate.setFullYear(mTarget);
-            break;
-          case 'M':
-            myDate.setMonth(mTarget - 1);
-            break;
-          case 'D':
-            myDate.setDate(mTarget);
-            break;
-          case 'h':
-            myDate.setHours(mTarget);
-            break;
-          case 'm':
-            myDate.setMinutes(mTarget);
-            break;
-          case 's':
-            myDate.setSeconds(mTarget);
-            break;
-          case 'i':
-            myDate.setMilliseconds(mTarget);
-            break;
-          default:
-            // 默认不操作
-            break;
+            case 'Y':
+              myDate.setFullYear(mTarget);
+              break;
+            case 'M':
+              myDate.setMonth(mTarget - 1);
+              break;
+            case 'D':
+              myDate.setDate(mTarget);
+              break;
+            case 'h':
+              myDate.setHours(mTarget);
+              break;
+            case 'm':
+              myDate.setMinutes(mTarget);
+              break;
+            case 's':
+              myDate.setSeconds(mTarget);
+              break;
+            case 'i':
+              myDate.setMilliseconds(mTarget);
+              break;
+            default:
+              // 默认不操作
+              break;
           }
         }
 
@@ -108,7 +108,7 @@ class MyDate extends Date {
    * @param {String} fmt 自己需要输出的格式，经典的yyyyMMddhhmmssiiww系列
    * @return {String} 返回一个字符串
    */
-  format(fmt) {
+  format (fmt) {
     const pattern = fmt || DEFAULT_PATTERN;
     const value = this;
 
@@ -117,32 +117,32 @@ class MyDate extends Date {
       // 实际上这个函数会分别回调多次 没符合一次匹配就回调一次
       // $0:yyyy  $0:MM $0:dd  依次类推
       switch ($0.charAt(0)) {
-      case 'Y':
-      case 'y':
-        return paddingFillWith0(value.getFullYear(), $0.length);
-      case 'M':
-        return paddingFillWith0(value.getMonth() + 1, $0.length);
-      case 'D':
-      case 'd':
-        return paddingFillWith0(value.getDate(), $0.length);
-      case 'H':
-      case 'h':
-        return paddingFillWith0(value.getHours(), $0.length);
-      case 'm':
-        return paddingFillWith0(value.getMinutes(), $0.length);
-      case 's':
-        return paddingFillWith0(value.getSeconds(), $0.length);
-      case 'i':
-        return paddingFillWith0(value.getMilliseconds(), $0.length);
-      case 'w':
-        return value.getDay();
-      case 'W':
-        // 自动将星期转为了大写
-        var week = ['日', '一', '二', '三', '四', '五', '六'];
+        case 'Y':
+        case 'y':
+          return paddingFillWith0(value.getFullYear(), $0.length);
+        case 'M':
+          return paddingFillWith0(value.getMonth() + 1, $0.length);
+        case 'D':
+        case 'd':
+          return paddingFillWith0(value.getDate(), $0.length);
+        case 'H':
+        case 'h':
+          return paddingFillWith0(value.getHours(), $0.length);
+        case 'm':
+          return paddingFillWith0(value.getMinutes(), $0.length);
+        case 's':
+          return paddingFillWith0(value.getSeconds(), $0.length);
+        case 'i':
+          return paddingFillWith0(value.getMilliseconds(), $0.length);
+        case 'w':
+          return value.getDay();
+        case 'W':
+          // 自动将星期转为了大写
+          var week = ['日', '一', '二', '三', '四', '五', '六'];
 
-        return paddingFillWith0(week[value.getDay()], $0.length);
-      default:
-        return '';
+          return paddingFillWith0(week[value.getDay()], $0.length);
+        default:
+          return '';
       }
     });
   }
@@ -152,7 +152,7 @@ class MyDate extends Date {
    * @param {Boolean} isTimezoneOffsetFixed 是否补齐时区误差
    * @return {Number} 返回绝对时间戳
    */
-  getAbsoluteMillonsTime(isTimezoneOffsetFixed) {
+  getAbsoluteMillonsTime (isTimezoneOffsetFixed) {
     // 要补上与GMT时区的误差，时区差以分钟为单位，所以要换成毫秒
     const offset = isTimezoneOffsetFixed ? this.getTimezoneOffset() * 60 * 1000 : 0;
 
@@ -164,7 +164,7 @@ class MyDate extends Date {
    * @param {Boolean} isTimezoneOffsetFixed 是否补齐时区误差
    * @return {String} 返回绝对时间戳，19700101到现在的
    */
-  toTimeStap(isTimezoneOffsetFixed) {
+  toTimeStap (isTimezoneOffsetFixed) {
     return `${this.getAbsoluteMillonsTime(isTimezoneOffsetFixed)}`;
   }
 
@@ -173,7 +173,7 @@ class MyDate extends Date {
    * @param {Number} num 往后几秒小时，默认为0
    * @return {MyDate} 返回一个计算后的MyDate对象
    */
-  nextSeconds(num) {
+  nextSeconds (num) {
     num = num || 1;
 
     // 通过毫秒计算，加上一个小时的毫秒数
@@ -181,19 +181,19 @@ class MyDate extends Date {
     return new MyDate(this.getTime() + num * 1000);
   }
 
-  nextMinutes(num) {
+  nextMinutes (num) {
     num = num || 1;
 
     return this.nextSeconds(60 * num);
   }
 
-  nextHours(num) {
+  nextHours (num) {
     num = num || 1;
 
     return this.nextMinutes(60 * num);
   }
 
-  nextDays(num) {
+  nextDays (num) {
     num = num || 1;
 
     return this.nextHours(24 * num);
@@ -204,7 +204,7 @@ class MyDate extends Date {
    * @param {Number} num 往后几秒小时，默认为0
    * @return {MyDate} 返回一个计算后的MyDate对象
    */
-  nextMonths(num) {
+  nextMonths (num) {
     num = num || 0;
 
     // 月份，0-11，所以补上1，凑成12进制
@@ -238,7 +238,7 @@ class MyDate extends Date {
     return this.nextDays(days);
   }
 
-  nextYears(num) {
+  nextYears (num) {
     num = num || 0;
 
     return this.nextMonths(12 * num);
@@ -250,7 +250,7 @@ class MyDate extends Date {
    * @param {String} pattern 模式字符串，需要比较到何等程度
    * @return {Number} 返回一个便宜数字，大于0代表当前时间大于比较时间，小于0就是小于，否则等于
    */
-  compare(another, pattern) {
+  compare (another, pattern) {
     if (!(another instanceof MyDate)) {
       throw new Error('比较类型错误，必须是MyDate型');
     }
@@ -260,34 +260,34 @@ class MyDate extends Date {
     let formatPattern = '';
 
     switch (pattern.charAt(0)) {
-    case 'Y':
-    case 'y':
-      formatPattern = 'YYYY';
-      break;
-    case 'M':
-      formatPattern = 'YYYYMM';
-      break;
-    case 'D':
-    case 'd':
-      formatPattern = 'YYYYMMDD';
-      break;
-    case 'H':
-    case 'h':
-      formatPattern = 'YYYYMMDDhh';
-      break;
-    case 'm':
-      formatPattern = 'YYYYMMDDhhmm';
-      break;
-    case 'S':
-    case 's':
-      formatPattern = 'YYYYMMDDhhmmss';
-      break;
-    case 'I':
-    case 'i':
-      formatPattern = 'YYYYMMDDhhmmssiii';
-      break;
-    default:
-      break;
+      case 'Y':
+      case 'y':
+        formatPattern = 'YYYY';
+        break;
+      case 'M':
+        formatPattern = 'YYYYMM';
+        break;
+      case 'D':
+      case 'd':
+        formatPattern = 'YYYYMMDD';
+        break;
+      case 'H':
+      case 'h':
+        formatPattern = 'YYYYMMDDhh';
+        break;
+      case 'm':
+        formatPattern = 'YYYYMMDDhhmm';
+        break;
+      case 'S':
+      case 's':
+        formatPattern = 'YYYYMMDDhhmmss';
+        break;
+      case 'I':
+      case 'i':
+        formatPattern = 'YYYYMMDDhhmmssiii';
+        break;
+      default:
+        break;
     }
 
     const now = +this.format(formatPattern);

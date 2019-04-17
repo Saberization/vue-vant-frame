@@ -40,39 +40,42 @@ export default {
       default: false
     }
   },
-  data() {
+  data () {
     return {
       verifyStr: ''
     };
   },
   methods: {
-    update() {
+    update () {
       this._drawVerify();
     },
-    validate(value) {
+    validate (value) {
       const { verifyStr } = this;
 
       if (this.enableCaseValidation) {
         return verifyStr === value;
       }
+
       return verifyStr.toLowerCase() === value.toLowerCase();
     },
     /**
      * 生成随机数
      * @param {Number} min 最小值
      * @param {Number} max 最大值
+     * @returns {Number} 随机数
      * @private
      */
-    _randomNum(min, max) {
+    _randomNum (min, max) {
       return Math.floor(Math.random() * (max - min) + min);
     },
     /**
      * 生成一个随机色
      * @param {Number} min 最小值
      * @param {Number} max 最大值
+     * @returns {String} 颜色值
      * @private
      */
-    _randomColor(min, max) {
+    _randomColor (min, max) {
       const r = this._randomNum(min, max);
       const g = this._randomNum(min, max);
       const b = this._randomNum(min, max);
@@ -82,7 +85,7 @@ export default {
     /**
      * 绘制验证码
      */
-    _drawVerify() {
+    _drawVerify () {
       const { canvas } = this.$refs;
       const ctx = canvas.getContext('2d');
       const { _randomNum } = this;
@@ -145,7 +148,7 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     this._drawVerify();
   }
 };

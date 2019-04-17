@@ -64,22 +64,22 @@ export default {
     }
   },
   methods: {
-    onInput(value) {
+    onInput (value) {
       this.$emit('input', value);
     },
-    onDelete() {
+    onDelete () {
       this.$emit('delete');
     },
-    onClose() {
+    onClose () {
       this.$emit('close');
     },
-    onBlur() {
+    onBlur () {
       this.$emit('blur');
     },
-    onShow() {
+    onShow () {
       this.$emit('show');
     },
-    onHide() {
+    onHide () {
       this.$emit('hide');
     }
   }

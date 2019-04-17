@@ -24,7 +24,7 @@ export default {
     vanHeader,
     vanButton
   },
-  data() {
+  data () {
     return {
       inputFile: new FileInput({
         isMulti: false, // 是否开启多选
@@ -35,11 +35,11 @@ export default {
     };
   },
   methods: {
-    selectFile() {
+    selectFile () {
       this.inputFile.triggerClick();
     }
   },
-  created() {
+  created () {
     const { inputFile } = this;
 
     inputFile.on('change', (result) => {

@@ -86,7 +86,7 @@ export default {
     [Collapse.name]: Collapse,
     [CollapseItem.name]: CollapseItem
   },
-  data() {
+  data () {
     return {
       activeNames: ['1'],
       activeName: '1'

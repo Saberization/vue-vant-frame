@@ -71,7 +71,7 @@ export default {
     'van-datepicker3': vanDatepicker,
     'van-datepicker4': vanDatepicker
   },
-  data() {
+  data () {
     return {
       showDatePicker1: false,
       showDatePicker2: false,
@@ -81,30 +81,31 @@ export default {
     };
   },
   methods: {
-    selectDatetime() {
+    selectDatetime () {
       this.showDatePicker1 = true;
     },
-    selectDate() {
+    selectDate () {
       this.showDatePicker2 = true;
     },
-    selectDatetimeYearMonth() {
+    selectDatetimeYearMonth () {
       this.showDatePicker3 = true;
     },
-    selecttime() {
+    selecttime () {
       this.showDatePicker4 = true;
     },
-    onConfirm(value) {
+    onConfirm (value) {
       this.result = value;
     },
-    onCancel() {
+    onCancel () {
       Console.log('点击取消按钮');
     },
-    formatter(type, value) {
+    formatter (type, value) {
       if (type === 'year') {
         return `${value}年`;
       } if (type === 'month') {
         return `${value}月`;
       }
+
       return value;
     }
   }

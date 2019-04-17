@@ -53,7 +53,7 @@ export default {
     vanHeader,
     vanSwitch
   },
-  data() {
+  data () {
     return {
       checked1: true,
       checked2: true,
@@ -64,7 +64,7 @@ export default {
     };
   },
   methods: {
-    onInput(checked) {
+    onInput (checked) {
       Dialog.confirm({
         title: '提醒',
         message: '是否切换开关？'

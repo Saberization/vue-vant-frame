@@ -61,20 +61,20 @@ export default {
       default: false
     }
   },
-  data() {
+  data () {
     return {
       active: false
     };
   },
   methods: {
-    onChangeValue() {
+    onChangeValue () {
       this.$emit('change', this.active);
     },
-    toggle() {
+    toggle () {
       this.$refs.checkbox.toggle();
     }
   },
-  created() {
+  created () {
     this.active = this.activekey;
   }
 };

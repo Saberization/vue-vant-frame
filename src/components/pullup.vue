@@ -25,7 +25,7 @@ export default {
   components: {
     [List.name]: List
   },
-  data() {
+  data () {
     return {
       loading: false,
       refreshSetting: {
@@ -36,7 +36,7 @@ export default {
         finishedText: '没有更多',
         errorText: '请求失败，点击重新加载',
         immediateCheck: true,
-        pullUp() { }
+        pullUp () { }
       },
       ajaxSetting: {
         type: 'post',
@@ -54,10 +54,10 @@ export default {
     };
   },
   methods: {
-    check() {
+    check () {
       this.$refs.pullUp.check();
     },
-    onLoad() {
+    onLoad () {
       this.loading = true;
       setTimeout(() => {
         this._getRequestData(() => {
@@ -65,13 +65,13 @@ export default {
         });
       }, this.options.delay);
     },
-    pullUp(options) {
+    pullUp (options) {
       this.ajaxSetting = Object.assign(this.ajaxSetting, options.ajaxSetting || {});
       this.refreshSetting = Object.assign(this.refreshSetting, options.setting || {});
       this.options = Object.assign(this.options, options);
       this.currentPage = this.options.initPageIndex;
     },
-    _getRequestData(complete) {
+    _getRequestData (complete) {
       const { dataRequest } = this.options;
 
       if (dataRequest && typeof dataRequest === 'function') {
@@ -86,7 +86,7 @@ export default {
         console.error('请传入 dataRequest 函数');
       }
     },
-    _request(complete) {
+    _request (complete) {
       const { options } = this;
       const { ajaxSetting } = this;
       const { success } = options;

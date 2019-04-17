@@ -45,7 +45,7 @@ export default {
     vanActionsheet,
     vanButton
   },
-  data() {
+  data () {
     return {
       show: false,
       showTitle: false,
@@ -71,7 +71,7 @@ export default {
     };
   },
   methods: {
-    onSelect(item) {
+    onSelect (item) {
       console.log(JSON.stringify(item));
     }
   }

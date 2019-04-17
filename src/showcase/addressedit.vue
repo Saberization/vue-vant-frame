@@ -33,21 +33,21 @@ export default {
     vanHeader,
     vanAddressEdit
   },
-  data() {
+  data () {
     return {
       areaList,
       searchResult: []
     };
   },
   methods: {
-    onSave(content) {
+    onSave (content) {
       Toast('save');
       console.log(content);
     },
-    onDelete() {
+    onDelete () {
       Toast('delete');
     },
-    onChangeDetail(val) {
+    onChangeDetail (val) {
       if (val) {
         this.searchResult = [{
           name: '新点软件',

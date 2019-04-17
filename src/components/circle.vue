@@ -64,19 +64,19 @@ export default {
     }
   },
   watch: {
-    rateValue(value) {
+    rateValue (value) {
       this.currentRate = value;
     },
-    currentRate(value) {
+    currentRate (value) {
       this.$emit('changeRate', value);
     }
   },
-  data() {
+  data () {
     return {
       currentRate: 0
     };
   },
-  created() {
+  created () {
     this.currentRate = this.rateValue;
   }
 };

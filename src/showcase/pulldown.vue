@@ -32,21 +32,21 @@ export default {
     vanCell,
     vanCellGroup
   },
-  data() {
+  data () {
     return {
       count: 0,
       listdata: []
     };
   },
   methods: {
-    onClickRight() {
+    onClickRight () {
       this.$refs.pulldown.refresh();
     }
   },
-  mounted() {
+  mounted () {
     this.$refs.pulldown.PullDown({
       url: 'http://yapi.demo.qunar.com/mock/43176/mock/getlist',
-      dataRequest(currPage) {
+      dataRequest (currPage) {
         return {
           token: 'RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=',
           params: {
@@ -86,7 +86,7 @@ export default {
         // 是否禁用
         disabled: false,
         // 下拉刷新回调事件
-        pullDown() {
+        pullDown () {
           console.log('pullDown');
         }
       }

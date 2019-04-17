@@ -41,7 +41,7 @@ export default {
     vanIcon
   },
   methods: {
-    onRead(file) {
+    onRead (file) {
       console.log(file);
     }
   }

@@ -65,6 +65,7 @@ const unicode2GBKCode = (chrCode) => {
 const gbkCode2Unicode = (chrCode) => {
   // 以16进制形式输出字符串
   let chrHex = chrCode.toString(16);
+
   chrHex = `000${chrHex.toUpperCase()}`;
   chrHex = chrHex.substr(chrHex.length - 4);
 
@@ -84,7 +85,7 @@ const charset = {
    * @param {String} str 目标字符串,必须是在Ascii码范围内
    * @return {String} 输出的目标二进制字符串
    */
-  strToBinary(str) {
+  strToBinary (str) {
     const res = [];
 
     if (str) {
@@ -113,7 +114,7 @@ const charset = {
    * @param {String} str 传入的 utf16编码字符串(javascript内置的就是utf16编码)
    * @return {String} utf8编码的字符串,js打印会有乱码
    */
-  utf16ToUtf8(str) {
+  utf16ToUtf8 (str) {
     if (!str) {
       // ''字符属于ascii码,所以不必担心不同编码的转换问题
       return '';
@@ -255,7 +256,7 @@ const charset = {
    * @param {String} str utf16编码的字符串(js内置)
    * @return {String} 转换后gbk编码的字符串
    */
-  utf16ToGbk(str) {
+  utf16ToGbk (str) {
     if (!str) {
       return '';
     }
@@ -300,7 +301,7 @@ const charset = {
    * @param {String} str GBK编码的字符串
    * @return {String} 转化后的utf16字符串
    */
-  gbkToUtf16(str) {
+  gbkToUtf16 (str) {
     if (!str) {
       return '';
     }
@@ -331,7 +332,7 @@ const charset = {
    * @param {String} str utf8编码的字符串
    * @return {String} utf16编码的字符串,可以直接被js用来打印
    */
-  utf8ToUtf16(str) {
+  utf8ToUtf16 (str) {
     if (!str) {
       return '';
     }
@@ -478,7 +479,7 @@ const charset = {
      * 所以传入的编码一般是采取utf8或gbk的编码
      * @return {String} 编码后的base64字符串
      */
-    _encode(str) {
+    _encode (str) {
       if (!str) {
         return '';
       }
@@ -534,7 +535,7 @@ const charset = {
      * 所以传入的编码一般是采取utf8或gbk的编码
      * @return {String} 编码后的base64字符串
      */
-    _decode(str) {
+    _decode (str) {
       if (!str) {
         return '';
       }
@@ -589,7 +590,7 @@ const charset = {
      * @param {Boolean} isUri 是否uri编码
      * @return {String} 编码后并uri编码的base64字符串
      */
-    encode(str, type, isUri) {
+    encode (str, type, isUri) {
       type = type || 'utf8';
       if (type === 'gbk') {
         // 转成 gbk
@@ -615,7 +616,7 @@ const charset = {
      * @param {Boolean} isUri 是否uri解码
      * @return {String} 编码后并uri编码的base64字符串
      */
-    decode(str, type, isUri) {
+    decode (str, type, isUri) {
       type = type || 'utf8';
       if (isUri) {
         str = decodeURIComponent(str);
@@ -627,6 +628,7 @@ const charset = {
       } if (type === 'utf8') {
         return charset.utf8ToUtf16(decodeStr);
       }
+
       // 否则就是默认的utf16不要变
       return decodeStr;
     }

@@ -69,7 +69,7 @@ export default {
     vanHeader,
     vanButton
   },
-  data() {
+  data () {
     return {
       showPicker1: false,
       showPicker2: false,
@@ -136,7 +136,7 @@ export default {
     };
   },
   methods: {
-    onConfirm(value) {
+    onConfirm (value) {
       this.result = value;
     }
   }

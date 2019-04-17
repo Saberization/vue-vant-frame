@@ -72,7 +72,7 @@ export default {
     vanHeader,
     vanGallery
   },
-  data() {
+  data () {
     return {
       current: 0,
       images: [{
@@ -97,10 +97,10 @@ export default {
     };
   },
   methods: {
-    onClick(guid) {
+    onClick (guid) {
       console.log(`点击了：${guid}`);
     },
-    onChange(index) {
+    onChange (index) {
       this.current = index;
       console.log(`当前 Gallery 索引：${index}`);
     }

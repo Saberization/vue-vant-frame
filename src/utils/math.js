@@ -33,7 +33,7 @@ const innerUtil = {
    * @param {Number} num 要验证的数字
    * @return {boolean} true or false
    */
-  isInteger(num) {
+  isInteger (num) {
     return Math.floor(num) === num;
   },
   /**
@@ -41,7 +41,7 @@ const innerUtil = {
    * @param {Number} floatNum 小数
    * @return {Object} 返回数据结果
    */
-  toInteger(floatNum) {
+  toInteger (floatNum) {
     const self = this;
     const result = {
       times: 1,
@@ -69,13 +69,12 @@ const innerUtil = {
    * 核心方法，实现加减乘除运算，确保不丢失精度
    * 思路：把小数放大为整数（乘），进行算术运算，再缩小为小数（除）
    *
-   * @param num1 {number} 运算数1
-   * @param num2 {number} 运算数2
-   * @param digits {number} 精度，保留的小数点数，比如 2, 即保留为两位小数
-   * @param op {string} 运算类型，有加减乘除（add/subtract/multiply/divide）
-   *
+   * @param {Number} num1 运算数1
+   * @param {Number} num2 运算数2
+   * @param {String} op 运算类型，有加减乘除（add/subtract/multiply/divide）
+   * @returns {Number} 运算结果
    */
-  operation(num1, num2, op) {
+  operation (num1, num2, op) {
     const self = this;
     const o1 = self.toInteger(num1);
     const o2 = self.toInteger(num2);
@@ -88,41 +87,41 @@ const innerUtil = {
     let result = null;
 
     switch (op) {
-    case 'add':
+      case 'add':
 
-      if (t1 === t2) { // 两个小数位数相同
-        result = n1 + n2;
-      } else if (t1 > t2) { // o1 小数位 大于 o2
-        result = n1 + n2 * (t1 / t2);
-      } else { // o1 小数位 小于 o2
-        result = n1 * (t2 / t1) + n2;
-      }
+        if (t1 === t2) { // 两个小数位数相同
+          result = n1 + n2;
+        } else if (t1 > t2) { // o1 小数位 大于 o2
+          result = n1 + n2 * (t1 / t2);
+        } else { // o1 小数位 小于 o2
+          result = n1 * (t2 / t1) + n2;
+        }
 
-      return result / max;
+        return result / max;
 
-    case 'subtract':
-      if (t1 === t2) {
-        result = n1 - n2;
-      } else if (t1 > t2) {
-        result = n1 - n2 * (t1 / t2);
-      } else {
-        result = n1 * (t2 / t1) - n2;
-      }
+      case 'subtract':
+        if (t1 === t2) {
+          result = n1 - n2;
+        } else if (t1 > t2) {
+          result = n1 - n2 * (t1 / t2);
+        } else {
+          result = n1 * (t2 / t1) - n2;
+        }
 
-      return result / max;
+        return result / max;
 
-    case 'multiply':
-      result = (n1 * n2) / (t1 * t2);
+      case 'multiply':
+        result = (n1 * n2) / (t1 * t2);
 
-      return result;
+        return result;
 
-    case 'divide':
-      const r1 = n1 / n2;
-      const r2 = t2 / t1;
+      case 'divide':
+        const r1 = n1 / n2;
+        const r2 = t2 / t1;
 
-      return self.operation(r1, r2, 'multiply');
+        return self.operation(r1, r2, 'multiply');
 
-    default:
+      default:
     }
   }
 };
@@ -134,7 +133,7 @@ export default {
    * @param {Number} num2 The second number
    * @return {Number} The sum of the two numbers.
    */
-  add(num1, num2) {
+  add (num1, num2) {
     return innerUtil.operation(num1, num2, 'add');
   },
   /**
@@ -143,7 +142,7 @@ export default {
    * @param {Number} num2 The second number
    * @return {Number} The subtract of the two numbers.
    */
-  subtract(num1, num2) {
+  subtract (num1, num2) {
     return innerUtil.operation(num1, num2, 'subtract');
   },
   /**
@@ -152,7 +151,7 @@ export default {
    * @param {Number} num2 The second number
    * @return {Number} The multiply of the two numbers.
    */
-  multiply(num1, num2) {
+  multiply (num1, num2) {
     return innerUtil.operation(num1, num2, 'multiply');
   },
   /**
@@ -161,7 +160,7 @@ export default {
    * @param {Number} num2 The second number
    * @return {Number} The divide of the two numbers.
    */
-  divide(num1, num2) {
+  divide (num1, num2) {
     return innerUtil.operation(num1, num2, 'divide');
   }
 };

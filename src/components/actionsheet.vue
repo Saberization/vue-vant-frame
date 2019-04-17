@@ -30,7 +30,7 @@ export default {
   props: {
     actions: {
       type: Array,
-      default() {
+      default () {
         return [];
       }
     },
@@ -59,32 +59,32 @@ export default {
       default: false
     }
   },
-  data() {
+  data () {
     return {
       show: false
     };
   },
   watch: {
-    showVisible(value) {
+    showVisible (value) {
       this.show = value;
     },
-    show(value) {
+    show (value) {
       this.$emit('toggleShow', value);
     }
   },
   methods: {
-    onSelect(item) {
+    onSelect (item) {
       this.show = false;
       this.$emit('toggleShow', false);
       this.$emit('select', item);
     },
-    onCancel() {
+    onCancel () {
       this.show = false;
       this.$emit('toggleShow', false);
       this.$emit('cancel');
     }
   },
-  created() {
+  created () {
     this.show = this.showVisible;
   }
 };

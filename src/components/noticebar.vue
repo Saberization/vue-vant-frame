@@ -52,10 +52,10 @@ export default {
     }
   },
   methods: {
-    onClick() {
+    onClick () {
       this.$emit('click');
     },
-    onClose() {
+    onClose () {
       this.$emit('close');
     }
   }

@@ -58,7 +58,7 @@ export default {
     [PullRefresh.name]: PullRefresh,
     [List.name]: List
   },
-  data() {
+  data () {
     return {
       isLoading: false,
       loading: false,
@@ -72,7 +72,7 @@ export default {
         animationDuration: 300,
         headHeight: 50,
         disabled: false,
-        pullDown() {}
+        pullDown () {}
       },
       pullUpSetting: {
         error: false,
@@ -81,7 +81,7 @@ export default {
         finishedText: '',
         errorText: '',
         immediateCheck: true,
-        pullUp() {}
+        pullUp () {}
       },
       ajaxSetting: {
         type: 'post',
@@ -99,13 +99,13 @@ export default {
     };
   },
   methods: {
-    check() {
+    check () {
       this.$refs.pullup.check();
     },
-    refresh() {
+    refresh () {
       this.onRefresh();
     },
-    onRefresh() {
+    onRefresh () {
       this.currentPage = this.options.initPageIndex;
       this.isLoading = true;
       setTimeout(() => {
@@ -118,7 +118,7 @@ export default {
       }, this.options.delay);
       this.pullDownSetting.pullDown();
     },
-    onLoad() {
+    onLoad () {
       this.loading = true;
       setTimeout(() => {
         this._getRequestData(() => {
@@ -127,14 +127,14 @@ export default {
       }, this.options.delay);
       this.pullUpSetting.pullUp();
     },
-    pulltorefresh(options) {
+    pulltorefresh (options) {
       this.pullDownSetting = Object.assign(this.pullDownSetting, options.pullDownSetting || {});
       this.pullUpSetting = Object.assign(this.pullUpSetting, options.pullUpSetting || {});
       this.ajaxSetting = Object.assign(this.ajaxSetting, options.ajaxSetting || {});
       this.options = Object.assign(this.options, options);
       this.currentPage = this.options.initPageIndex;
     },
-    _getRequestData(complete) {
+    _getRequestData (complete) {
       const { options } = this;
       const { dataRequest } = options;
 
@@ -148,7 +148,7 @@ export default {
         this._request(complete);
       }
     },
-    _request(complete) {
+    _request (complete) {
       const { options } = this;
       const { ajaxSetting } = this;
       const { success } = options;

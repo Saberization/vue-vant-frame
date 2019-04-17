@@ -65,18 +65,18 @@ export default {
     },
     rate: Number
   },
-  data() {
+  data () {
     return {
       rateValue: 1
     };
   },
   methods: {
-    onChange(value) {
+    onChange (value) {
       this.$emit('change', value);
       this.$emit('changeRate', value);
     }
   },
-  created() {
+  created () {
     this.rateValue = this.rate;
   }
 };

@@ -17,8 +17,9 @@ export default {
    * 存储键值对
    * @param {String} key 键
    * @param {String} value 值
+   * @returns {String} ''
    */
-  setItem(key, value) {
+  setItem (key, value) {
     if (!key) {
       return '';
     }
@@ -33,8 +34,9 @@ export default {
    * 读取键值对
    * @param {String} key 键
    * @param {Boolean} isJson 是否自动转为JSONObject对象
+   * @returns {Object} JSONOBJ
    */
-  getItem(key, isJson) {
+  getItem (key, isJson) {
     const value = localStorage.getItem(key);
     let result = value;
 
@@ -52,13 +54,13 @@ export default {
    * 移除键值对
    * @param {String} key 键
    */
-  removeItem(key) {
+  removeItem (key) {
     localStorage.removeItem(key);
   },
   /**
    * 清空所有键值对
    */
-  clear() {
+  clear () {
     localStorage.clear();
   },
   /**
@@ -66,7 +68,7 @@ export default {
    * @param {Function} callback 回调函数
    * @param {Boolean} isJson 是否转换为 JSONObject 对象
    */
-  each(callback, isJson) {
+  each (callback, isJson) {
     const keys = Object.keys(localStorage);
 
     keys.forEach((e, i) => {

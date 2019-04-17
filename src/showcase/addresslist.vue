@@ -28,7 +28,7 @@ export default {
     vanHeader,
     vanAddressList
   },
-  data() {
+  data () {
     return {
       chosenAddressId: '1',
       list: [
@@ -56,11 +56,11 @@ export default {
     };
   },
   methods: {
-    onAdd() {
+    onAdd () {
       Toast('新增地址');
     },
 
-    onEdit(item, index) {
+    onEdit (item, index) {
       Toast(`编辑地址:${index}`);
     }
   }

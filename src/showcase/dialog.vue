@@ -39,12 +39,12 @@ export default {
     vanButton
   },
   methods: {
-    openDialog(options) {
+    openDialog (options) {
       Dialog.alert(options).then(() => {
         // close
       });
     },
-    openConfirmDialog(options) {
+    openConfirmDialog (options) {
       Dialog.alert(options).then(() => {
         // confirm
       }).catch(() => {

@@ -2,7 +2,6 @@ import axios from 'axios';
 import Config from '@shared/config';
 import { Toast } from 'vant';
 import Util from './index';
-import Token from './token';
 
 const defaultSettings = {
   type: 'post',
@@ -37,7 +36,7 @@ const createInterceptors = function () {
   }, (error) => Promise.reject(error));
 };
 
-function ajax(options) {
+function ajax (options) {
   options = Util.extend(defaultSettings, options);
   params = {
     url: options.url,
@@ -48,7 +47,7 @@ function ajax(options) {
     withCredentials: options.withCredentials
   };
 
-  const { contentType, headers, isAutoProxy, error, success} = options;
+  const { contentType, headers, isAutoProxy, error, success } = options;
 
   for (const key in headers) {
     setHeader(key, headers[key]);
@@ -80,7 +79,7 @@ function ajax(options) {
   });
 }
 
-function ajaxAll(...args) {
+function ajaxAll (...args) {
   return axios.all(args);
 }
 

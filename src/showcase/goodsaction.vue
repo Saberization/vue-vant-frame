@@ -71,10 +71,10 @@ export default {
     [GoodsActionMiniBtn.name]: GoodsActionMiniBtn
   },
   methods: {
-    onClickMiniBtn() {
+    onClickMiniBtn () {
       Toast('点击图标');
     },
-    onClickBigBtn() {
+    onClickBigBtn () {
       Toast('点击按钮');
     }
   }

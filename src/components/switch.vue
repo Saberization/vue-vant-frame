@@ -54,10 +54,10 @@ export default {
     }
   },
   methods: {
-    onChange(checked) {
+    onChange (checked) {
       this.$emit('change', checked);
     },
-    onInput(checked) {
+    onInput (checked) {
       this.$emit('input', checked);
     }
   }

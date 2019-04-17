@@ -41,17 +41,17 @@ export default {
     vanPasswordInput,
     vanNumberKeyboard
   },
-  data() {
+  data () {
     return {
       value: '',
       showKeyboard: false
     };
   },
   methods: {
-    onInput(keyValue) {
+    onInput (keyValue) {
       this.value = (this.value + keyValue).slice(0, 6);
     },
-    onDelete() {
+    onDelete () {
       this.value = this.value.slice(0, this.value.length - 1);
     }
   }

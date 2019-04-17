@@ -78,28 +78,28 @@ export default {
     },
     value: String
   },
-  data() {
+  data () {
     return {
       searchValue: ''
     };
   },
   methods: {
-    onSearch() {
+    onSearch () {
       this.$emit('changeValue', this.searchValue);
       this.$emit('search');
     },
-    onClear() {
+    onClear () {
       this.$emit('changeValue', '');
       this.$emit('clear');
     },
-    onCancel() {
+    onCancel () {
       this.$emit('cancel');
     },
-    onInput() {
+    onInput () {
       this.$emit('changeValue', this.searchValue);
     }
   },
-  created() {
+  created () {
     this.searchValue = this.value;
   }
 };

@@ -108,7 +108,7 @@ export default {
     },
     autosize: {
       type: [Boolean, Object],
-      default() {
+      default () {
         return false;
       }
     },
@@ -124,34 +124,34 @@ export default {
     rows: [Number, String],
     cols: [Number, String]
   },
-  data() {
+  data () {
     return {
       currentValue: null
     };
   },
   methods: {
-    onInput() {
+    onInput () {
       this.$emit('changeFieldValue', this.currentValue);
       this.$emit('input');
     },
-    onClear() {
+    onClear () {
       this.$emit('changeFieldValue', '');
       this.$emit('clear');
     },
-    onClickLeftIcon() {
+    onClickLeftIcon () {
       this.$emit('click-left-icon');
     },
-    onClickRightIcon() {
+    onClickRightIcon () {
       this.$emit('click-right-icon');
     },
-    focus() {
+    focus () {
       this.$refs.field.focus();
     },
-    blur() {
+    blur () {
       this.$refs.field.blur();
     }
   },
-  created() {
+  created () {
     this.currentValue = this.fieldValue;
   }
 };

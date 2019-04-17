@@ -18,7 +18,7 @@ export default {
     },
     options: {
       type: Object,
-      default() {
+      default () {
         return {};
       }
     },
@@ -26,7 +26,7 @@ export default {
     error: Function,
     poicallback: Function
   },
-  data() {
+  data () {
     return {
       setting: {
         map: {
@@ -49,13 +49,14 @@ export default {
      * 初始化定位
      * @private
      */
-    _initializationGeo() {
+    _initializationGeo () {
       let geolocation;
       const { AMap } = window;
       const { setting } = this;
 
       // 加载地图，调用浏览器定位服务
       const map = new AMap.Map(document.getElementById('amap'), setting.map);
+
       map.plugin('AMap.Geolocation', () => {
         geolocation = new AMap.Geolocation(setting.geolocation);
 
@@ -71,7 +72,7 @@ export default {
      * @param {Object} data 高德地图返回的坐标内容
      * @private
      */
-    _onComplete(data) {
+    _onComplete (data) {
       this.position = data.position;
       this._coordConvert(this.position);
       data.position = this.position;
@@ -84,7 +85,7 @@ export default {
      * 定位失败后触发
      * @param {Object} err 报错信息
      */
-    _onError(err) {
+    _onError (err) {
       if (this.error && typeof this.error === 'function') {
         this.error(err);
       }
@@ -94,7 +95,7 @@ export default {
      * 高德坐标转换成百度坐标
      * @param {Object} position 坐标位置
      */
-    _coordConvert(position) {
+    _coordConvert (position) {
       const x = position.lng;
       const y = position.lat;
       const { BMap } = window;
@@ -118,7 +119,7 @@ export default {
      * @param {Object} lng 百度地图的纬度
      * @param {Object} lat 百度地图的精度
      */
-    searchQuery(lng, lat) {
+    searchQuery (lng, lat) {
       Util.loaderLibrary({
         src: `//api.map.baidu.com/geocoder/v2/?callback=_addrFrameCallback&location=${lat},${lng}&output=json&pois=1&ak=K5LXDCfHLnGvLDQsZx0AKyXNV5kLObYF&radius=${this.setting.radius}`,
         type: 'js',
@@ -126,7 +127,7 @@ export default {
       });
     }
   },
-  created() {
+  created () {
     this.setting = Object.assign(this.setting, this.options);
 
     Util.loaderLibrary({

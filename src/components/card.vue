@@ -83,7 +83,7 @@ export default {
     }
   },
   methods: {
-    onClick() {
+    onClick () {
       this.$emit('click');
     }
   }

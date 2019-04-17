@@ -34,10 +34,10 @@ export default {
     vanButton
   },
   methods: {
-    showToast(options) {
+    showToast (options) {
       Toast(options);
     },
-    loadingToast() {
+    loadingToast () {
       Toast.loading({
         // 遮罩
         mask: true,
@@ -47,13 +47,13 @@ export default {
         duration: 1300
       });
     },
-    successToast() {
+    successToast () {
       Toast.success('成功文案');
     },
-    errorToast() {
+    errorToast () {
       Toast.fail('失败文案');
     },
-    advToast() {
+    advToast () {
       const toast = Toast.loading({
         // 持续展示 toast
         duration: 0,

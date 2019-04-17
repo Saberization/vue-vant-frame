@@ -78,19 +78,19 @@ export default {
     },
     data: {
       type: Array,
-      default() {
+      default () {
         return [];
       }
     }
   },
   methods: {
-    onChange(index) {
+    onChange (index) {
       this.$emit('change', index);
     },
-    onClick() {
+    onClick () {
       this.$emit('click', event.target.parentElement.getAttribute('guid'));
     },
-    swipeTo(index) {
+    swipeTo (index) {
       this.$refs.swipe.swipeTo(index);
     }
   }

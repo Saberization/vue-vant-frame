@@ -39,13 +39,13 @@ export default {
     areaList: Object,
     addressInfo: {
       type: Object,
-      default() {
+      default () {
         return {};
       }
     },
     searchResult: {
       type: Array,
-      default() {
+      default () {
         return [];
       }
     },
@@ -85,31 +85,31 @@ export default {
     validator: [Function, String]
   },
   methods: {
-    setAddressDetail(value) {
+    setAddressDetail (value) {
       this.$refs.addredit.setAddressDetail(value);
     },
-    onSave(content) {
+    onSave (content) {
       this.$emit('save', content);
     },
-    onFocus(key) {
+    onFocus (key) {
       this.$emit('focus', key);
     },
-    onDelete(content) {
+    onDelete (content) {
       this.$emit('delete', content);
     },
-    onCancelDelete(content) {
+    onCancelDelete (content) {
       this.$emit('cancel-delete', content);
     },
-    onSelectSearch(value) {
+    onSelectSearch (value) {
       this.$emit('select-search', value);
     },
-    onChangeDetail(value) {
+    onChangeDetail (value) {
       this.$emit('change-detail', value);
     },
-    onChangeDefault(value) {
+    onChangeDefault (value) {
       this.$emit('change-default', value);
     },
-    onChangeArea(values) {
+    onChangeArea (values) {
       this.$emit('change-area', values);
     }
   }

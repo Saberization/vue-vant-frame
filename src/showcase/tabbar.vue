@@ -72,7 +72,7 @@ export default {
     [TabbarItem.name]: TabbarItem,
     vanHeader
   },
-  data() {
+  data () {
     return {
       active1: 0,
       active2: 0,
@@ -84,7 +84,7 @@ export default {
     };
   },
   methods: {
-    onChangeTabbar(active) {
+    onChangeTabbar (active) {
       Toast(`当前点击index： ${active}`);
     }
   }

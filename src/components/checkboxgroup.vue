@@ -35,17 +35,17 @@ export default {
       default: () => []
     }
   },
-  data() {
+  data () {
     return {
       value: []
     };
   },
   methods: {
-    onChangeValue() {
+    onChangeValue () {
       this.$emit('change');
     }
   },
-  created() {
+  created () {
     this.value = this.result;
   }
 };

@@ -61,18 +61,18 @@ export default {
       default: '#e5e5e5'
     }
   },
-  data() {
+  data () {
     return {
       sliderValue: 0
     };
   },
   methods: {
-    onChange(value) {
+    onChange (value) {
       this.$emit('change', value);
       this.$emit('changeValue', value);
     }
   },
-  created() {
+  created () {
     this.sliderValue = this.value;
   }
 };

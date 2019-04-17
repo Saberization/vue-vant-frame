@@ -64,14 +64,14 @@ export default {
     vanHeader,
     vanSlider
   },
-  data() {
+  data () {
     return {
       value: 50,
       baseValue: 30
     };
   },
   methods: {
-    onChange(value) {
+    onChange (value) {
       Toast(`当前值：${value}`);
     }
   }

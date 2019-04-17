@@ -106,31 +106,31 @@ export default {
     },
     data: {
       type: Array,
-      default() {
+      default () {
         return [];
       }
     }
   },
-  data() {
+  data () {
     return {
       showPopup: null,
       pickerData: []
     };
   },
   watch: {
-    show(value) {
+    show (value) {
       this.showPopup = value;
     },
-    data(value) {
+    data (value) {
       this.pickerData = value;
       this.changeColumnValues();
     }
   },
   methods: {
-    onChangeVisible() {
+    onChangeVisible () {
       this.$emit('changeVisible', this.showPopup);
     },
-    onConfirm(value, index) {
+    onConfirm (value, index) {
       if (Array.isArray(value)) {
         let result = '';
 
@@ -145,11 +145,11 @@ export default {
       this.showPopup = false;
       this.onChangeVisible();
     },
-    onCancel() {
+    onCancel () {
       this.showPopup = false;
       this.onChangeVisible();
     },
-    onChange(picker, values) {
+    onChange (picker, values) {
       const $picker = this.$refs.picker;
 
       if (Array.isArray(values) && values.length >= 1) {
@@ -164,7 +164,7 @@ export default {
         }
       }
     },
-    changeColumnValues() {
+    changeColumnValues () {
       this.showPopup = this.show;
       const { data } = this;
       const columns1Values = [];
@@ -174,12 +174,14 @@ export default {
       if (Array.isArray(data)) {
         Array.from(data).forEach((e, i) => {
           const { children } = e;
+
           if (children && children.length >= 1) {
             columns1Values.push(e);
             if (i === 0) {
               columns2Values = children;
 
               const _children = children[0].children;
+
               if (Array.isArray(_children)) {
                 columns3Values = _children;
               }
@@ -213,7 +215,7 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     this.changeColumnValues();
   }
 };

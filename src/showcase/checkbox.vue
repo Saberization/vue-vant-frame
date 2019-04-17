@@ -95,7 +95,7 @@ export default {
     vanCellGroup,
     vanCell
   },
-  data() {
+  data () {
     return {
       checked: true,
       icon: {
@@ -107,7 +107,7 @@ export default {
     };
   },
   methods: {
-    toggle(index) {
+    toggle (index) {
       this.$refs.checkboxes[index].toggle();
     }
   }

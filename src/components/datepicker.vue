@@ -79,7 +79,7 @@ export default {
     },
     minDate: {
       type: Date,
-      default() {
+      default () {
         const today = new Date();
         const year = today.getFullYear();
 
@@ -88,7 +88,7 @@ export default {
     },
     maxDate: {
       type: Date,
-      default() {
+      default () {
         const today = new Date();
         const year = today.getFullYear();
 
@@ -126,7 +126,7 @@ export default {
       default: 44
     },
     currentDate: {
-      default() {
+      default () {
         return this.type === 'time' ? '00:00' : new Date();
       }
     },
@@ -144,21 +144,21 @@ export default {
     }
   },
   watch: {
-    show(value) {
+    show (value) {
       this.showPopup = value;
     }
   },
-  data() {
+  data () {
     return {
       showPopup: false,
       date: null
     };
   },
   methods: {
-    changePopupValue() {
+    changePopupValue () {
       this.$emit('change', this.showPopup);
     },
-    onConfirm(value) {
+    onConfirm (value) {
       const { appendZero } = this;
       const { type } = this;
 
@@ -173,18 +173,18 @@ export default {
         this.$emit('confirm', value);
       }
     },
-    onCancel() {
+    onCancel () {
       this.showPopup = false;
       this.$emit('cancel');
     },
-    onChange(picker) {
+    onChange (picker) {
       this.$emit('changepicker', picker);
     },
-    appendZero(value) {
+    appendZero (value) {
       return value < 10 ? `0${value}` : value;
     }
   },
-  created() {
+  created () {
     this.showPopup = this.show;
     this.date = this.currentDate;
   }

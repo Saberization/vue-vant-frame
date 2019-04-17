@@ -46,13 +46,13 @@ export default {
     vanHeader,
     vanPagination
   },
-  data() {
+  data () {
     return {
       currentPage: 1
     };
   },
   methods: {
-    onChangePage() {
+    onChangePage () {
       Toast(`当前第 ${this.currentPage} 页`);
     }
   }

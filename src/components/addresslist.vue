@@ -35,7 +35,7 @@ export default {
   props: {
     list: {
       type: Array,
-      default() {
+      default () {
         return [];
       }
     },
@@ -45,7 +45,7 @@ export default {
     },
     disabledList: {
       type: Array,
-      default() {
+      default () {
         return [];
       }
     },
@@ -56,33 +56,33 @@ export default {
     },
     addrid: String
   },
-  data() {
+  data () {
     return {
       chosenAddressId: this.addrid
     };
   },
   watch: {
-    addrid(value) {
+    addrid (value) {
       this.chosenAddressId = value;
     },
-    chosenAddressId(value) {
+    chosenAddressId (value) {
       this.$emit('changeValue', value);
     }
   },
   methods: {
-    onAdd() {
+    onAdd () {
       this.$emit('add');
     },
-    onEdit(item, index) {
+    onEdit (item, index) {
       this.$emit('edit', item, index);
     },
-    onSelect(item, index) {
+    onSelect (item, index) {
       this.$emit('select', item, index);
     },
-    onEditDisabled(item, index) {
+    onEditDisabled (item, index) {
       this.$emit('edit-disabled', item, index);
     },
-    onSelectDisabled(item, index) {
+    onSelectDisabled (item, index) {
       this.$emit('select-disabled', item, index);
     }
   }

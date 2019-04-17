@@ -55,11 +55,11 @@ export default {
     }
   },
   methods: {
-    onClickLeft() {
+    onClickLeft () {
       this.$router.back();
       this.$emit('click-left');
     },
-    onClickRight() {
+    onClickRight () {
       this.$emit('click-right');
     }
   }

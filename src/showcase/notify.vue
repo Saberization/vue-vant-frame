@@ -25,7 +25,7 @@ export default {
     vanButton
   },
   methods: {
-    showNotify(options) {
+    showNotify (options) {
       Notify(options);
     }
   }

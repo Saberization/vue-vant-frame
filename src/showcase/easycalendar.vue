@@ -17,14 +17,14 @@ export default {
     vanHeader,
     easyCalendar
   },
-  data() {
+  data () {
     return {
       show: true,
       result: {}
     };
   },
   methods: {
-    onChange(result) {
+    onChange (result) {
       this.result = result;
     }
   }

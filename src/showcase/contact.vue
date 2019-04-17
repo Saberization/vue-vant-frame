@@ -67,7 +67,7 @@ export default {
     vanHeader,
     vanPopup
   },
-  data() {
+  data () {
     return {
       chosenContactId: null,
       editingContact: {},
@@ -82,37 +82,38 @@ export default {
     };
   },
   computed: {
-    cardType() {
+    cardType () {
       return this.chosenContactId !== null ? 'edit' : 'add';
     },
 
-    currentContact() {
+    currentContact () {
       const id = this.chosenContactId;
+
       return id !== null ? this.list.filter(item => item.id === id)[0] : {};
     }
   },
   methods: {
     // 添加联系人
-    onAdd() {
+    onAdd () {
       this.editingContact = { id: this.list.length };
       this.isEdit = false;
       this.showEdit = true;
     },
 
     // 编辑联系人
-    onEdit(item) {
+    onEdit (item) {
       this.isEdit = true;
       this.showEdit = true;
       this.editingContact = item;
     },
 
     // 选中联系人
-    onSelect() {
+    onSelect () {
       this.showList = false;
     },
 
     // 保存联系人
-    onSave(info) {
+    onSave (info) {
       this.showEdit = false;
       this.showList = false;
 
@@ -125,7 +126,7 @@ export default {
     },
 
     // 删除联系人
-    onDelete(info) {
+    onDelete (info) {
       this.showEdit = false;
       this.list = this.list.filter(item => item.id !== info.id);
       if (this.chosenContactId === info.id) {

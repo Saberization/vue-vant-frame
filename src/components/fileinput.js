@@ -13,13 +13,13 @@ const defaultSetting = {
 };
 
 class FileInput {
-  constructor(options) {
+  constructor (options) {
     this.options = Object.assign(defaultSetting, options || {});
     this.errorCallback = () => {};
     this._createInput();
   }
 
-  _createInput() {
+  _createInput () {
     const { options } = this;
     let type;
     const el = document.createElement('input');
@@ -34,49 +34,49 @@ class FileInput {
     }
 
     switch (options.type) {
-    case 'Text':
-      filter = ejsEnv ? 'text/*' : 'file/*';
-      type = 'Text';
-      break;
+      case 'Text':
+        filter = ejsEnv ? 'text/*' : 'file/*';
+        type = 'Text';
+        break;
 
-    case 'File':
-      filter = ejsEnv ? 'file/*' : '*';
-      type = 'DataUrl';
-      break;
+      case 'File':
+        filter = ejsEnv ? 'file/*' : '*';
+        type = 'DataUrl';
+        break;
 
-    case 'Image':
-      filter = 'image/*';
-      type = 'DataUrl';
-      break;
+      case 'Image':
+        filter = 'image/*';
+        type = 'DataUrl';
+        break;
 
-    case 'Camera_File':
-      filter = ejsEnv ? 'camera_file/*' : '*';
-      type = 'DataUrl';
-      break;
+      case 'Camera_File':
+        filter = ejsEnv ? 'camera_file/*' : '*';
+        type = 'DataUrl';
+        break;
 
-    case 'Image_File':
-      filter = ejsEnv ? 'image_file/*' : '*';
-      type = 'DataUrl';
-      break;
+      case 'Image_File':
+        filter = ejsEnv ? 'image_file/*' : '*';
+        type = 'DataUrl';
+        break;
 
-    case 'Image_Camera':
-      filter = ejsEnv ? 'image_camera/*' : 'image/*';
-      type = 'DataUrl';
-      break;
+      case 'Image_Camera':
+        filter = ejsEnv ? 'image_camera/*' : 'image/*';
+        type = 'DataUrl';
+        break;
 
-    case 'Camera':
-      filter = ejsEnv ? 'camera/*' : 'image/*';
-      type = 'DataUrl';
-      break;
+      case 'Camera':
+        filter = ejsEnv ? 'camera/*' : 'image/*';
+        type = 'DataUrl';
+        break;
 
-    case 'All':
-      filter = ejsEnv ? '*/*' : '*';
-      type = 'DataUrl';
-      break;
+      case 'All':
+        filter = ejsEnv ? '*/*' : '*';
+        type = 'DataUrl';
+        break;
 
-    default:
-      filter = '*';
-      type = 'File';
+      default:
+        filter = '*';
+        type = 'File';
     }
 
     el.accept = options.accept || filter;
@@ -85,7 +85,7 @@ class FileInput {
     df.appendChild(el);
   }
 
-  triggerClick() {
+  triggerClick () {
     this.el.click();
   }
 
@@ -94,7 +94,7 @@ class FileInput {
    * @param {String} event 事件名
    * @param {Function} callback 回调函数
    */
-  on(event = 'change', callback) {
+  on (event = 'change', callback) {
     const { loadFormData } = this;
     const { dataType } = this;
     const that = this;
@@ -122,8 +122,9 @@ class FileInput {
    * 根据type解析FORMDATA
    * @param {Blob} files 文件对象
    * @param {String} dataType 返回文件类型
+   * @returns {Promise} 事件 event
    */
-  loadFormData(files, dataType) {
+  loadFormData (files, dataType) {
     let i = 0;
     const promiseQueue = [];
 
@@ -172,6 +173,7 @@ class FileInput {
           reject(event);
         };
       });
+
       promiseQueue.push(p);
       i++;
     }

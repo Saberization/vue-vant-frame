@@ -30,7 +30,7 @@ export default {
     'van-collapse-item': CollapseItem,
     vanCell
   },
-  data() {
+  data () {
     return {
       activeNames: [1, 2, 3, 4, 5, 6],
       menu: [

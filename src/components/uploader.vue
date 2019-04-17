@@ -40,7 +40,7 @@ export default {
     multiple: Boolean
   },
   methods: {
-    onOversize(file) {
+    onOversize (file) {
       this.$emit('oversize', file);
     }
   }

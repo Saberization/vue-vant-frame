@@ -40,7 +40,7 @@ export default {
     textColor: String
   },
   methods: {
-    onClick() {
+    onClick () {
       this.$emit('click');
     }
   }

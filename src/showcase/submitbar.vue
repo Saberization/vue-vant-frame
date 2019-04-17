@@ -63,13 +63,13 @@ export default {
     vanSubmitBar,
     vanCheckbox
   },
-  data() {
+  data () {
     return {
       checked: true
     };
   },
   methods: {
-    onSubmit() {
+    onSubmit () {
       Toast('提交订单');
     }
   }

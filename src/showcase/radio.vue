@@ -76,7 +76,7 @@ export default {
     vanCellGroup,
     vanCell
   },
-  data() {
+  data () {
     return {
       radio: '1',
       cellRadio: '1',

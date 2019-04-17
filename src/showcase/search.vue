@@ -50,16 +50,16 @@ export default {
     vanHeader,
     vanSearch
   },
-  data() {
+  data () {
     return {
       value: ''
     };
   },
   methods: {
-    onSearch() {
+    onSearch () {
       Toast(`搜索值为：${this.value}`);
     },
-    onCancel() {
+    onCancel () {
       Toast('点击了取消按钮');
     }
   }

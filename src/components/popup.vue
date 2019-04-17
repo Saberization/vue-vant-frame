@@ -62,37 +62,37 @@ export default {
       default: false
     }
   },
-  data() {
+  data () {
     return {
       visible: false
     };
   },
   watch: {
-    show(value) {
+    show (value) {
       this.visible = value;
     }
   },
   methods: {
-    changeValue() {
+    changeValue () {
       this.$emit('change', this.visible);
     },
-    onClickOpen() {
+    onClickOpen () {
       this.$emit('open');
     },
-    onClickOpened() {
+    onClickOpened () {
       this.$emit('opened');
     },
-    onClickClose() {
+    onClickClose () {
       this.$emit('close');
     },
-    onClickClosed() {
+    onClickClosed () {
       this.$emit('closed');
     },
-    onClickOverlay() {
+    onClickOverlay () {
       this.$emit('click-overlay');
     }
   },
-  created() {
+  created () {
     this.visible = this.show;
   }
 };

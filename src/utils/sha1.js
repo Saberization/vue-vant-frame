@@ -137,7 +137,7 @@ export default {
    * @param {String} s 内容
    * @return {String} 返回密文,hex字符串
    */
-  hex(s) {
+  hex (s) {
     s = Utf8Encode(s);
 
     return binb2hex(coreSha1(str2binb(s), s.length * chrsz));

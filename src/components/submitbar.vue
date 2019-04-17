@@ -56,7 +56,7 @@ export default {
     }
   },
   methods: {
-    onSubmit() {
+    onSubmit () {
       this.$emit('submit');
     }
   }

@@ -47,7 +47,7 @@ export default {
       default: 15
     }
   },
-  data() {
+  data () {
     return {
       pointArr: [],
       offsetTop: 0,
@@ -55,7 +55,7 @@ export default {
     };
   },
   methods: {
-    _initGridunlock() {
+    _initGridunlock () {
       const { canvas } = this.$refs;
       const ctx = canvas.getContext('2d');
 
@@ -66,7 +66,7 @@ export default {
       this._draw(this.pointArr, [], null, ctx);
     },
 
-    _getOffsetTop(canvas) {
+    _getOffsetTop (canvas) {
       let offsetTop = 0;
       let { parentElement } = canvas;
 
@@ -84,7 +84,7 @@ export default {
      * @param {Number} y
      * @private
      */
-    _drawLocalPoint(x, y) {
+    _drawLocalPoint (x, y) {
       const result = [];
       const { offsetX } = this;
       const { offsetY } = this;
@@ -109,7 +109,7 @@ export default {
      * @param {CanvasRenderingContext2D} ctx
      * @private
      */
-    _initListeners(canvas, ctx) {
+    _initListeners (canvas, ctx) {
       let linePoint = [];
       const { cw } = this;
       const { ch } = this;
@@ -152,7 +152,7 @@ export default {
      * @param {Array} LinePoint 已选择的点
      * @private
      */
-    _selectPoint(touches, LinePoint) {
+    _selectPoint (touches, LinePoint) {
       const { pointArr } = this;
 
       for (let i = 0, len = pointArr.length; i < len; i++) {
@@ -178,7 +178,7 @@ export default {
      * @param {Object} ctx canvas画笔
      * @private
      */
-    _draw(pointArr, linePointArr, touchPoint, ctx) {
+    _draw (pointArr, linePointArr, touchPoint, ctx) {
       const { r } = this;
       const pI2 = Math.PI * 2;
 
@@ -233,11 +233,11 @@ export default {
       }
     },
 
-    reset() {
+    reset () {
       this.ctx.clearRect(0, 0, cw, ch);
     }
   },
-  mounted() {
+  mounted () {
     this._initGridunlock();
   }
 };

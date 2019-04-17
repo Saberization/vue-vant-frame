@@ -18,7 +18,7 @@ export default {
     vanHeader,
     gridUnlock
   },
-  data() {
+  data () {
     return {
       result: null
     };
@@ -28,7 +28,7 @@ export default {
      * 连线成功回调
      * @param {Array} result 每一个选中圆的索引值，格式为[0, 1, 2, 3]
      */
-    onSuccess(result) {
+    onSuccess (result) {
       this.result = result;
     }
   }

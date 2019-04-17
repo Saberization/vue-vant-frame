@@ -29,7 +29,7 @@ export default {
     vanHeader,
     vanTreeSelect
   },
-  data() {
+  data () {
     return {
       items: [
         {
@@ -126,12 +126,12 @@ export default {
   },
   methods: {
     // 左侧导航点击时，触发的事件
-    onNavClick(index) {
+    onNavClick (index) {
       Console.log(`左侧点击index: ${index}`);
       this.mainActiveIndex = index;
     },
     // 右侧选择项被点击时，会触发的事件
-    onItemClick(data) {
+    onItemClick (data) {
       Console.log(`右侧点击数据: ${JSON.stringify(data)}`);
       this.activeId = data.id;
     }

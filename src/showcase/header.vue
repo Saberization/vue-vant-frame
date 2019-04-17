@@ -40,10 +40,10 @@ export default {
     vanIcon
   },
   methods: {
-    onClickLeft() {
+    onClickLeft () {
       Toast('返回');
     },
-    onClickRight() {
+    onClickRight () {
       Toast('按钮');
     }
   }

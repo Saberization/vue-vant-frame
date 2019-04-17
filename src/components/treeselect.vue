@@ -35,10 +35,10 @@ export default {
     }
   },
   methods: {
-    onNavClick(index) {
+    onNavClick (index) {
       this.$emit('navclick', index);
     },
-    onItemClick(data) {
+    onItemClick (data) {
       this.$emit('itemclick', data);
     }
   }

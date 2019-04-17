@@ -106,7 +106,7 @@ export default {
     vanCellGroup,
     vanButton
   },
-  data() {
+  data () {
     return {
       value: '',
       username: '',
@@ -118,10 +118,10 @@ export default {
     };
   },
   methods: {
-    onInput() {
+    onInput () {
       console.log(this.value);
     },
-    onClickRightIcon(text) {
+    onClickRightIcon (text) {
       Toast(text);
     }
   }

@@ -57,7 +57,7 @@ export default {
   data () {
     return {
       isChecked: this.checked
-    }
+    };
   },
   watch: {
     checked (value) {

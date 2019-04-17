@@ -60,18 +60,18 @@ export default {
       default: false
     }
   },
-  data() {
+  data () {
     return {
       value: false
     };
   },
   methods: {
-    onChange(checked) {
+    onChange (checked) {
       this.$emit('changeValue', checked);
       this.$emit('change', checked);
     }
   },
-  created() {
+  created () {
     this.value = this.switchValue;
   }
 };

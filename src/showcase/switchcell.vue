@@ -48,13 +48,13 @@ export default {
     vanSwitchCell,
     vanCellGroup
   },
-  data() {
+  data () {
     return {
       checked: true
     };
   },
   methods: {
-    onChange(checked) {
+    onChange (checked) {
       Toast(`当前选中状态 ${checked}`);
     }
   }

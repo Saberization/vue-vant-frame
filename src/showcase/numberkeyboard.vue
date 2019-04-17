@@ -36,17 +36,17 @@ export default {
     vanNumberKeyboard,
     vanButton
   },
-  data() {
+  data () {
     return {
       show: false,
       theme: 'default'
     };
   },
   methods: {
-    onInput(keyValue) {
+    onInput (keyValue) {
       Toast(`input ${keyValue}`);
     },
-    onDelete() {
+    onDelete () {
       Toast('Delete');
     }
   }

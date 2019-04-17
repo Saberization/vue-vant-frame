@@ -15,9 +15,9 @@ export default {
   /**
    * base64 转换成 blob 对象
    * @param {String} b64 base64值
-   * returns {Object} blob对象
+   * @returns {Object} blob对象
    */
-  base64ToBlob(b64) {
+  base64ToBlob (b64) {
     const arr = b64.split(',');
 
     // 解码 b64 并且转换成 btype
@@ -43,7 +43,7 @@ export default {
    * @param {Function} callback 回调函数
    * returns {String} 该文件的base64值
    */
-  blobToBase64(blob, callback) {
+  blobToBase64 (blob, callback) {
     const fileReader = new FileReader();
     const that = this;
 
@@ -57,7 +57,7 @@ export default {
    * @param {String} b64 base64值
    * @returns {String} mime 类型
    */
-  getMime(b64) {
+  getMime (b64) {
     return b64.match(/:(.*);/)[1];
   },
   /**
@@ -65,7 +65,7 @@ export default {
    * @param {String} b64 base64值
    * @returns {String} 该 base64 的 url 部分
    */
-  getBase64Url(b64) {
+  getBase64Url (b64) {
     return b64.match(/(.*),/)[1];
   },
   /**
@@ -73,7 +73,7 @@ export default {
    * @param {String} b64 base64值
    * @returns {String} 该 base64 去除 url 后的值
    */
-  getBase64NotUrl(b64) {
+  getBase64NotUrl (b64) {
     return b64.replace(/^data.*,/, '');
   }
 };

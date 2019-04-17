@@ -15,7 +15,7 @@ const idcard15 = {
    * @param {String} idcard 身份证号
    * @return {Boolean} 是否验证通过
    */
-  birthValidate(idcard) {
+  birthValidate (idcard) {
     // 18位生日认证为  6, 10 10, 12  12, 14
     const year = idcard.substring(6, 8);
     const month = idcard.substring(8, 10);
@@ -36,7 +36,7 @@ const idcard15 = {
    * @return {String} 出生日期
    * @example 2017-07-03
    */
-  birthExtract(idcard) {
+  birthExtract (idcard) {
     const year = idcard.substring(6, 8);
     const month = idcard.substring(8, 10);
     const day = idcard.substring(10, 12);
@@ -56,7 +56,7 @@ const idcard18 = {
    * @param {String} idcard 身份证号
    * @return {Boolean} 是否验证通过
    */
-  validate(idcard) {
+  validate (idcard) {
     let sum = 0;
     const arr = idcard.split('');
 
@@ -84,7 +84,7 @@ const idcard18 = {
    * @return {String} 出生日期
    * @example 2017-07-03
    */
-  birthExtract(idcard) {
+  birthExtract (idcard) {
     const year = idcard.substring(6, 10);
     const month = idcard.substring(10, 12);
     const day = idcard.substring(12, 14);
@@ -99,7 +99,7 @@ export default {
    * @param {String} str 要检验的字符串
    * @return {Boolean} true or false
    */
-  isNum(str) {
+  isNum (str) {
     if (!str) {
       return str;
     }
@@ -118,7 +118,7 @@ export default {
    * <p>虚拟运营商：170</p>
    * @return {Boolean} true or false
    */
-  isPhoneNum(str) {
+  isPhoneNum (str) {
     if (!str) {
       return str;
     }
@@ -131,7 +131,7 @@ export default {
    * @param {String} str 要检验的字符串
    * @return {Boolean} true or false
    */
-  isTelNum(str) {
+  isTelNum (str) {
     if (!str) {
       return str;
     }
@@ -150,7 +150,7 @@ export default {
    * @param {String} str 要检验的字符串
    * @return {Boolean} true or false
    */
-  isEmail(str) {
+  isEmail (str) {
     if (!str) {
       return str;
     }
@@ -163,7 +163,7 @@ export default {
    * @param {String} str 需验证的字符串
    * @return {Boolean} true or false
    */
-  isExternalUrl(str) {
+  isExternalUrl (str) {
     if (!str) {
       return str;
     }
@@ -177,7 +177,7 @@ export default {
    * @param {RegExp} reg 正值式
    * @return {String} 返回过滤后的结果
    */
-  excludeSpecial(str, reg) {
+  excludeSpecial (str, reg) {
     if (!str) {
       return str;
     }
@@ -199,7 +199,7 @@ export default {
      * @param {Boolean} isAllow15 是否支持15位验证，默认为false
      * @return {Boolean} 是否验证通过
      */
-    validate(idcard, isAllow15) {
+    validate (idcard, isAllow15) {
       idcard = idcard || '';
       idcard = idcard.replace(/\s*/g, '');
       isAllow15 = isAllow15 || false;
@@ -224,7 +224,7 @@ export default {
      * @return {String} 出生日期
      * @example 2017-07-03
      */
-    birthExtract(idcard, isAllow15) {
+    birthExtract (idcard, isAllow15) {
       if (!this.validate(idcard, isAllow15)) {
         console.error('Illegal IdCard');
 
@@ -248,7 +248,7 @@ export default {
      * @param {Boolean} isAllow15 是否支持15位验证，默认为false
      * @return {String} 隐藏关键信息后的身份证
      */
-    birthEncode(idcard, isAllow15) {
+    birthEncode (idcard, isAllow15) {
       if (!this.validate(idcard, isAllow15)) {
         console.error('Illegal IdCard');
 

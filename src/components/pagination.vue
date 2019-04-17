@@ -60,17 +60,17 @@ export default {
       default: 1
     }
   },
-  data() {
+  data () {
     return {
       page: 1
     };
   },
   methods: {
-    onChangePage() {
+    onChangePage () {
       this.$emit('change', this.page);
     }
   },
-  created() {
+  created () {
     this.page = this.currentPage;
   }
 };
