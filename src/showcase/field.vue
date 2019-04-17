@@ -119,7 +119,9 @@ export default {
   },
   methods: {
     onInput () {
-      console.log(this.value);
+      const Console = console;
+
+      Console.log(this.value);
     },
     onClickRightIcon (text) {
       Toast(text);

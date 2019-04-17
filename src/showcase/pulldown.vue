@@ -24,6 +24,8 @@ import vanPulldown from '@components/pulldown';
 import vanCell from '@components/cell';
 import vanCellGroup from '@components/cellgroup';
 
+const Console = console;
+
 export default {
   name: 'PullDown',
   components: {
@@ -62,7 +64,7 @@ export default {
         this.listdata = custom.infolist;
       },
       error: (error) => {
-        console.log(error);
+        Console.log(error);
       },
       ajaxSetting: {
         contentType: 'application/x-www-form-urlencoded',
@@ -87,7 +89,7 @@ export default {
         disabled: false,
         // 下拉刷新回调事件
         pullDown () {
-          console.log('pullDown');
+          Console.log('pullDown');
         }
       }
     });

@@ -42,7 +42,9 @@ export default {
   },
   methods: {
     onRead (file) {
-      console.log(file);
+      const Console = console;
+
+      Console.log(file);
     }
   }
 };

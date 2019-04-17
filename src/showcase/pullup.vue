@@ -23,6 +23,8 @@ import vanHeader from '@components/header';
 import vanPullup from '@components/pullup';
 import vanCell from '@components/cell';
 
+const Console = console;
+
 export default {
   name: 'PullUp',
   components: {
@@ -61,7 +63,7 @@ export default {
         }
       },
       error: (err) => {
-        console.log(err);
+        Console.log(err);
       },
       ajaxSetting: {
         contentType: 'application/x-www-form-urlencoded',
@@ -80,7 +82,7 @@ export default {
         immediateCheck: true,
         // 上拉加载的时候触发
         pullUp () {
-          console.log('pullUp');
+          Console.log('pullUp');
         }
       }
     });

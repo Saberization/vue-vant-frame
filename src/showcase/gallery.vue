@@ -66,6 +66,8 @@
 import vanHeader from '@components/header';
 import vanGallery from '@components/gallery';
 
+const Console = console;
+
 export default {
   name: 'Gallery',
   components: {
@@ -98,11 +100,11 @@ export default {
   },
   methods: {
     onClick (guid) {
-      console.log(`点击了：${guid}`);
+      Console.log(`点击了：${guid}`);
     },
     onChange (index) {
       this.current = index;
-      console.log(`当前 Gallery 索引：${index}`);
+      Console.log(`当前 Gallery 索引：${index}`);
     }
   }
 };
