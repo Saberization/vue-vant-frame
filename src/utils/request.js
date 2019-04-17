@@ -18,6 +18,7 @@ const defaultSettings = {
 };
 
 let params = {};
+const ejsVer = Config.ejsVer;
 const setHeader = function (key, value) {
   const { headers } = params;
 
@@ -25,11 +26,15 @@ const setHeader = function (key, value) {
 };
 const createInterceptors = function () {
   axios.interceptors.request.use((config) => {
-    const token = '';
-
     // 判断是否存在token，如果存在的话，则每个http header都加上token
-    if (token) {
-      config.headers.Authorization = token;
+    if (ejsVer === 3 && Util.os.ejs) {
+      ejs.auth.getToken({
+        success: (result) => {
+          config.headers.Authorization = `Bearer ${result.access_token}`;
+        }
+      });
+    } else if (ejsVer === 3) {
+      config.withCredentials = true;
     }
 
     return config;
