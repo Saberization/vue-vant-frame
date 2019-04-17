@@ -72,7 +72,9 @@ export default {
   },
   methods: {
     onSelect (item) {
-      console.log(JSON.stringify(item));
+      const Console = console;
+
+      Console.log(JSON.stringify(item));
     }
   }
 };

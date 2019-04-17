@@ -41,8 +41,10 @@ export default {
   },
   methods: {
     onSave (content) {
+      const Console = console;
+
       Toast('save');
-      console.log(content);
+      Console.log(content);
     },
     onDelete () {
       Toast('delete');

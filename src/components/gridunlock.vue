@@ -80,8 +80,9 @@ export default {
 
     /**
      * 计算画布9个点
-     * @param {Number} x
-     * @param {Number} y
+     * @param {Number} x 坐标
+     * @param {Number} y 坐标
+     * @returns {Array} result 坐标数组
      * @private
      */
     _drawLocalPoint (x, y) {
@@ -105,8 +106,8 @@ export default {
     },
 
     /**
-     * @param {HTMLElement} canvas
-     * @param {CanvasRenderingContext2D} ctx
+     * @param {HTMLElement} canvas el
+     * @param {Object} ctx CanvasRenderingContext2D
      * @private
      */
     _initListeners (canvas, ctx) {
@@ -148,7 +149,7 @@ export default {
 
     /**
      * 选点
-     * @param {event} event.touches
+     * @param {event} touches 坐标
      * @param {Array} LinePoint 已选择的点
      * @private
      */
@@ -195,7 +196,7 @@ export default {
         ctx.stroke();
         ctx.closePath();
 
-        if (touchPoint != null) {
+        if (touchPoint) {
           const lastIndex = linePointArr[linePointArr.length - 1];
           const lastPoint = pointArr[lastIndex];
 
@@ -234,7 +235,7 @@ export default {
     },
 
     reset () {
-      this.ctx.clearRect(0, 0, cw, ch);
+      this.ctx.clearRect(0, 0, this.cw, this.ch);
     }
   },
   mounted () {

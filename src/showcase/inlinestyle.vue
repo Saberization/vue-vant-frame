@@ -127,6 +127,9 @@ export default {
             this.visibleSlideRight = false;
           }, 600);
           break;
+
+        default:
+          break;
       }
     }
   }
