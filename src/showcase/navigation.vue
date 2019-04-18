@@ -297,7 +297,6 @@ export default {
     };
   },
   created () {
-    
   }
 };
 </script>
