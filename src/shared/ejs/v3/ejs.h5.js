@@ -1,43 +1,7 @@
-import {
-  Toast,
-  Dialog
-} from 'vant';
+import ui from './ui';
 
-const uiToast = (options) => {
-  if (typeof options !== 'object') {
-    return;
-  }
-  Toast(options.message);
-};
-
-const uiAlert = (options) => {
-  if (typeof options !== 'object') {
-    return;
-  }
-
-  return Dialog.alert({
-    title: options.title,
-    message: options.message,
-    confirmButtonText: options.buttonName
-  });
-};
-
-const uiConfirm = (options) => {
-  if (typeof options !== 'object') {
-    return;
-  }
-
-  const buttonLabels = options.buttonLabels;
-
-  return Dialog.confirm({
-    title: options.title,
-    message: options.message,
-    cancelButtonText: buttonLabels[0],
-    confirmButtonText: buttonLabels[1]
-  });
-};
-
-function uiMixin(hybrid) {
+function uiMixin() {
+  const hybrid = ejs;
   const innerUtil = hybrid.innerUtil;
 
   hybrid.extendModule('ui', [{
@@ -51,7 +15,7 @@ function uiMixin(hybrid) {
       const options = args[0];
       const resolve = args[1];
 
-      uiToast(options);
+      ui.toast(options);
       options.success && options.success();
       resolve && resolve();
     }
@@ -68,7 +32,7 @@ function uiMixin(hybrid) {
       const options = args[0];
       const resolve = args[1];
 
-      uiAlert(options).then(() => {
+      ui.alert(options).then(() => {
         options.success && options.success();
         resolve && resolve({});
       });
@@ -86,7 +50,7 @@ function uiMixin(hybrid) {
       const options = args[0];
       const resolve = args[1];
 
-      uiConfirm(options).then(() => {
+      ui.confirm(options).then(() => {
         options.success && options.success(1);
         resolve && resolve(1);
       }).catch(() => {
@@ -97,4 +61,9 @@ function uiMixin(hybrid) {
   }]);
 }
 
-uiMixin(ejs);
+function storageMixin() {
+
+}
+
+uiMixin();
+storageMixin();
