@@ -23,7 +23,18 @@ const uiAlert = (options) => {
 };
 
 const uiConfirm = (options) => {
+  if (typeof options !== 'object') {
+    return;
+  }
 
+  const buttonLabels = options.buttonLabels;
+
+  return Dialog.confirm({
+    title: options.title,
+    message: options.message,
+    cancelButtonText: buttonLabels[0],
+    confirmButtonText: buttonLabels[1]
+  });
 };
 
 function uiMixin(hybrid) {
@@ -66,7 +77,22 @@ function uiMixin(hybrid) {
     namespace: 'confirm',
     os: ['h5'],
     defaultParams: {
-      
+      title: '',
+      message: '',
+      buttonLabels: ['取消', '确定']
+    },
+    runCode(...rest) {
+      const args = rest;
+      const options = args[0];
+      const resolve = args[1];
+
+      uiConfirm(options).then(() => {
+        options.success && options.success(1);
+        resolve && resolve(1);
+      }).catch(() => {
+        options.success && options.success(0);
+        resolve && resolve(0);
+      });
     }
   }]);
 }

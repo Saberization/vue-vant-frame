@@ -120,7 +120,7 @@ export default {
         headers: ajaxSetting.headers,
         timeout: ajaxSetting.timeout,
         contentType: ajaxSetting.contentType,
-        success (response) {
+        success: (response) => {
           if (complete && typeof complete === 'function') {
             complete();
           }
@@ -128,7 +128,7 @@ export default {
             success(response, this.currentPage++);
           }
         },
-        error (err) {
+        error: (err) => {
           if (complete && typeof complete === 'function') {
             complete();
           }

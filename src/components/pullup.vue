@@ -99,7 +99,7 @@ export default {
         contentType: ajaxSetting.contentType,
         headers: ajaxSetting.headers,
         timeout: ajaxSetting.timeout,
-        success (response) {
+        success: (response) => {
           if (complete && typeof complete === 'function') {
             complete();
           }
@@ -108,7 +108,7 @@ export default {
             this.currentPage += 1;
           }
         },
-        error (err) {
+        error: (err) => {
           if (complete && typeof complete === 'function') {
             complete();
           }
