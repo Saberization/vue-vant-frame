@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import '@assets/css/common.css';
 import 'vant/lib/icon/local.css';
-import Config from '@shared/config';
-import Util from '@utils'
+import Config from './config';
+import Util from '@utils';
 
 const loaderLibrary = Util.loaderLibrary;
 const ejsVer = Config.ejsVer;
@@ -25,6 +25,8 @@ if (ejsVer === 3) {
     require('../../public/ejs/v2/epoint.moapi.v2.dd.js');
   }
 }
+
+require('./compatibility.js');
 
 if (Config.isDebugPanel) {
   loaderLibrary({

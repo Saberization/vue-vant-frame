@@ -41,6 +41,9 @@
       "plugin:vue/essential",
       "@vue/standard"
     ],
+    "globals": {
+      "ejs": true
+    },
     "rules": {
       "semi": [2, "always"],
       "eqeqeq": [2, "allow-null"],
