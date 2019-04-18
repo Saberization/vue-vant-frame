@@ -46,14 +46,18 @@ export default {
    * 2 代表 2.x 版本的 ejs
    * 3 代表 3.x
    */
-  ejsVer: 2,
+  ejsVer: 3,
   /**
    * 开发环境常量，ejs、dingtalk
    */
   env: (() => {
+    const ENV_H5 = 'h5';
     const ENV_EJS = 'ejs';
     const ENV_DD = 'dd';
+    const ENV_EJS_H5 = 'ejs_h5';
+    const ENV_DD_H5 = 'dd_h5';
+    const ENV_ALL = 'ejs_dd_h5';
 
-    return ENV_EJS;
+    return ENV_EJS_H5;
   })()
 };
