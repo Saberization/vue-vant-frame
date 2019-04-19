@@ -60,8 +60,6 @@ export default {
     try {
       for (let i = 0, len = keys.length; i < len; i++) {
         const key = keys[i];
-
-        console.log(key);
   
         localStorage.removeItem(key);
       }

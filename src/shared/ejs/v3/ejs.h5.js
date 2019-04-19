@@ -109,5 +109,38 @@ function storageMixin() {
   }]);
 }
 
+function pageMixin() {
+  hybrid.extendModule('page', [{
+    namespace: 'open',
+    os: ['h5'],
+    defaultParams: {
+      pageUrl: '',
+      data: {}
+    },
+    runCode(...rest) {
+      const args = innerUtil.compatibleStringParamsToObject.call(this, rest, 'pageUrl', 'data');
+      const options = args[0];
+
+      options.pageUrl = innerUtil.getFullUrlByParams(options.pageUrl, options.data);
+      window.location.href = options.pageUrl;
+    }
+  }, {
+    namespace: 'close',
+    os: ['h5'],
+    runCode() {
+      if (window.history.length > 1) {
+        window.history.back();
+      }
+    }
+  }, {
+    namespace: 'reload',
+    os: ['h5'],
+    runCode() {
+      window.location.reload();
+    }
+  }]);
+}
+
 uiMixin();
 storageMixin();
+pageMixin();
