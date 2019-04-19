@@ -297,12 +297,6 @@ export default {
     };
   },
   created () {
-    ejs.storage.getItem({
-      key: 'ejsVer',
-      success: function (result) {
-        console.log(result);
-      }
-    });
   }
 };
 </script>

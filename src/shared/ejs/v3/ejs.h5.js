@@ -66,16 +66,13 @@ function storageMixin() {
   hybrid.extendModule('storage', [{
     namespace: 'getItem',
     os: ['h5'],
-    defaultParams: {
-      key: ''
-    },
     runCode(params, resolve, reject) {
       const options = params;
       const success = options.success;
       const error = options.error;
 
       if (typeof options.key === 'string') {
-        options.key = [options.key]
+        options.key = [options.key];
       }
 
       storage.getItem(options, {
@@ -88,11 +85,26 @@ function storageMixin() {
   }, {
     namespace: 'setItem',
     os: ['h5'],
-    defaultParams: {
-      key: ''
-    },
     runCode(params, resolve, reject) {
+      const options = params;
+      const success = options.success;
+      const error = options.error;
 
+      storage.setItem(options, { resolve, reject, success, error });
+    }
+  }, {
+    namespace: 'removeItem',
+    os: ['h5'],
+    runCode(params, resolve, reject) {
+      const options = params;
+      const success = options.success;
+      const error = options.error;
+
+      if (typeof options.key === 'string') {
+        options.key = [options.key];
+      }
+
+      
     }
   }]);
 }

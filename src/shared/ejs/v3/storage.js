@@ -25,8 +25,34 @@ export default {
     success && success(values);
     resolve && resolve(values);
   },
-  setItem (options) {
+  setItem (options, { success, error, reject, resolve }) {
+    const keys = Object.keys(options);
 
+    try {
+      for (let i = 0, len = keys.length; i < len; i++) {
+        const key = keys[i];
+  
+        if (key !== 'success' && key !== 'error') {
+          localStorage.setItem(key, options[key]);
+        }
+      }
+    } catch (msg) {
+      let errorMsg = '';
+
+      if (msg.name === 'QuotaExceededError') {
+        errorMsg = '超出本地存储限额，建议先清除一些无用空间!';
+      } else {
+        errorMsg = 'localStorage存储值出错';
+      }
+
+      error && error(errorMsg);
+      reject && reject(errorMsg);
+
+      return;
+    }
+
+    success && success({});
+    resolve && resolve({});
   },
   removeItem (options) {
 
