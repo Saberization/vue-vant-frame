@@ -1,9 +1,10 @@
 import ui from './ui';
+import storage from './storage.js';
+
+const hybrid = ejs;
+const innerUtil = hybrid.innerUtil;
 
 function uiMixin() {
-  const hybrid = ejs;
-  const innerUtil = hybrid.innerUtil;
-
   hybrid.extendModule('ui', [{
     namespace: 'toast',
     os: ['h5'],
@@ -62,7 +63,38 @@ function uiMixin() {
 }
 
 function storageMixin() {
+  hybrid.extendModule('storage', [{
+    namespace: 'getItem',
+    os: ['h5'],
+    defaultParams: {
+      key: ''
+    },
+    runCode(params, resolve, reject) {
+      const options = params;
+      const success = options.success;
+      const error = options.error;
 
+      if (typeof options.key === 'string') {
+        options.key = [options.key]
+      }
+
+      storage.getItem(options, {
+        success,
+        error,
+        resolve,
+        reject
+      });
+    }
+  }, {
+    namespace: 'setItem',
+    os: ['h5'],
+    defaultParams: {
+      key: ''
+    },
+    runCode(params, resolve, reject) {
+
+    }
+  }]);
 }
 
 uiMixin();
