@@ -297,7 +297,7 @@ export default {
     };
   },
   created () {
-    ejs.device.callPhone('18962299766');
+    
   }
 };
 </script>

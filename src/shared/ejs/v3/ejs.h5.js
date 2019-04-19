@@ -154,6 +154,30 @@ function deviceMixin() {
 
       window.location.href = `tel:${phoneNum}`;
     }
+  }, {
+    namespace: 'sendMsg',
+    os: ['h5'],
+    defaultParams: {
+      phoneNum: '',
+      message: ''
+    },
+    runCode(...rest) {
+      const args = innerUtil.compatibleStringParamsToObject.call(this, rest, 'phoneNum', 'message');
+      const options = args[0];
+
+      window.location.href = `sms:${options.phoneNum}?body=${options.message}`;
+    }
+  }, {
+    namespace: 'sendMail',
+    os: ['h5'],
+    defaultParams: {
+      mail: '',
+      subject: '',
+      cc: ''
+    },
+    runCode(...rest) {
+
+    }
   }]);
 }
 
