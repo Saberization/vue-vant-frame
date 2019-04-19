@@ -104,7 +104,7 @@ function storageMixin() {
         options.key = [options.key];
       }
 
-      
+      storage.removeItem(options, { resolve, reject, success, error });
     }
   }]);
 }

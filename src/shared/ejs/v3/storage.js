@@ -54,7 +54,29 @@ export default {
     success && success({});
     resolve && resolve({});
   },
-  removeItem (options) {
+  removeItem (options, { success, error, resolve, reject }) {
+    const keys = options.key;
 
+    try {
+      for (let i = 0, len = keys.length; i < len; i++) {
+        const key = keys[i];
+
+        console.log(key);
+  
+        localStorage.removeItem(key);
+      }
+    } catch (msg) {
+      const err = {
+        code: 0,
+        msg: `localStorage值删除出错${keys}`,
+        result: msg
+      };
+
+      error && error(err);
+      reject && reject(err);
+    }
+
+    success && success({});
+    resolve && resolve({});
   }
 }
