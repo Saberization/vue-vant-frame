@@ -141,6 +141,23 @@ function pageMixin() {
   }]);
 }
 
+function deviceMixin() {
+  hybrid.extendModule('device', [{
+    namespace: 'callPhone',
+    os: ['h5'],
+    defaultParams: {
+      phoneNum: ''
+    },
+    runCode(...rest) {
+      const args = innerUtil.compatibleStringParamsToObject.call(this, rest, 'phoneNum');
+      const phoneNum = args[0].phoneNum;
+
+      window.location.href = `tel:${phoneNum}`;
+    }
+  }]);
+}
+
 uiMixin();
 storageMixin();
 pageMixin();
+deviceMixin();
