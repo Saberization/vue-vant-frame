@@ -1,15 +1,19 @@
-import { Toast, Dialog } from 'vant';
+import {
+  Toast,
+  Dialog
+} from 'vant';
+import Config from '@shared/config';
 
 function nativeUIMixin() {
   ejs.extendFucObj('nativeUI', {
-    toast (options) {
+    toast(options) {
       if (!ejs.os.h5) {
         return;
       }
 
       let msg = '';
 
-      if (typeof options === 'string') {
+      if (typeof options === 'string' || typeof options === 'number') {
         msg = options;
       } else {
         msg = options.message;
@@ -17,7 +21,7 @@ function nativeUIMixin() {
 
       Toast(msg);
     },
-    alert (...rest) {
+    alert(...rest) {
       if (!ejs.os.h5) {
         return;
       }
@@ -32,7 +36,10 @@ function nativeUIMixin() {
         values.title = args[1];
         values.message = args[0];
       } else {
-        let { message, title } = args[0];
+        let {
+          message,
+          title
+        } = args[0];
 
         values.title = title;
         values.message = message;
@@ -40,7 +47,7 @@ function nativeUIMixin() {
 
       Dialog.alert(values);
     },
-    confirm (...rest) {
+    confirm(...rest) {
       const args = rest;
       const params = args[0];
       let confirmParams = {
@@ -90,12 +97,37 @@ function nativeUIMixin() {
 }
 
 function tokenMixin() {
-  ejs.extendFucObj('token', {
-    getToken (callback, defaultValue) {
+  ejs.extendFucObj('oauth', {
+    getToken(callback, defaultValue) {
       if (ejs.os.ejs) {
         return;
       }
 
+      var configToken = '';
+
+      Config.token.getToken(function (token) {
+        configToken = token;
+      });
+
+      var res = {
+        code: 1,
+        msg: '',
+        result: {
+          token: defaultValue || configToken
+        }
+      };
+
+      callback && callback(res.result, res.msg, res);
+    }
+  });
+}
+
+function sqlMixin() {
+  ejs.extendFucObj('sql', {
+    setConfigValue(key, value, callback) {
+
+    },
+    getConfigValue(key, callback) {
 
     }
   });
