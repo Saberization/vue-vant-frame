@@ -123,15 +123,63 @@ function tokenMixin() {
 }
 
 function sqlMixin() {
+  const localStorage = window.localStorage;
+
   ejs.extendFucObj('sql', {
     setConfigValue(key, value, callback) {
+      if (ejs.os.ejs) {
+        return;
+      }
 
+      key = key || '';
+
+      try {
+        if (key && value) {
+          if (typeof value === 'object') {
+            value = JSON.stringify(value);
+            localStorage.setItem(key, value);
+          }
+        }
+      } catch (err) {
+        if (err.msg === 'QuotaExceededError') {
+          console.error(`超出本地存储限额，建议先清除一些无用空间！更多信息: ${JSON.stringify(err)}`);
+        } else {
+          console.error(`localStorage 存值出错，更多信息：${JSON.stringify(err)}`);
+        }
+      }
+
+      var res = {
+        code: 1,
+        msg: '',
+        result: {}
+      };
+
+      callback && callback(res.result, res.msg, res);
     },
     getConfigValue(key, callback) {
+      var item = '';
 
+      key = key || '';
+      
+      try {
+        item = localStorage.getItem(key);
+      } catch (err) {
+        console.error(`localStorage 取值出错，更多信息：${JSON.stringify(err)}`);
+      }
+
+      var res = {
+        code: 1,
+        msg: '',
+        result: {
+          value: item
+        }
+      };
+
+      callback && callback(res.result, res.msg, res);
     }
   });
 }
 
 nativeUIMixin();
 tokenMixin();
+sqlMixin();
