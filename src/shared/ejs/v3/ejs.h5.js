@@ -176,7 +176,10 @@ function deviceMixin() {
       cc: ''
     },
     runCode(...rest) {
+      const args = innerUtil.compatibleStringParamsToObject.call(this, rest, 'mail', 'subject', 'cc');
+      const options = args[0];
 
+      window.location.href = `mailto:${options.mail}?subject=${options.subject}&cc=${options.cc}`;
     }
   }]);
 }
