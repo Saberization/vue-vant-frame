@@ -126,7 +126,7 @@ function sqlMixin() {
   const localStorage = window.localStorage;
 
   ejs.extendFucObj('sql', {
-    setConfigValue(key, value, callback) {
+    setConfigValue (key, value, callback) {
       if (ejs.os.ejs) {
         return;
       }
@@ -156,11 +156,11 @@ function sqlMixin() {
 
       callback && callback(res.result, res.msg, res);
     },
-    getConfigValue(key, callback) {
+    getConfigValue (key, callback) {
       var item = '';
 
       key = key || '';
-      
+
       try {
         item = localStorage.getItem(key);
       } catch (err) {

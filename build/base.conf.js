@@ -1,41 +1,41 @@
-const path = require('path')
-const utils = require('./utils')
-const entries = utils.getMultiFile(path.resolve(__dirname, '../src/pages/**/*.js'))
-const templates = utils.getMultiFile(path.resolve(__dirname, '../src/pages/**/*.html'))
-const showCaseEntries = utils.getMultiFile(path.resolve(__dirname, '../src/showcase/**/*.js'))
-const showCaseTemplates = utils.getMultiFile(path.resolve(__dirname, '../src/showcase/**/*.html'))
-const ENV = process.env.NODE_ENV
+const path = require('path');
+const utils = require('./utils');
+const entries = utils.getMultiFile(path.resolve(__dirname, '../src/pages/**/*.js'));
+const templates = utils.getMultiFile(path.resolve(__dirname, '../src/pages/**/*.html'));
+const showCaseEntries = utils.getMultiFile(path.resolve(__dirname, '../src/showcase/**/*.js'));
+const showCaseTemplates = utils.getMultiFile(path.resolve(__dirname, '../src/showcase/**/*.html'));
+const ENV = process.env.NODE_ENV;
 
 const generatePages = function () {
-  const pages = {}
+  const pages = {};
 
   if (entries && Array.isArray(entries)) {
     entries.forEach((entry, index) => {
-      const dir = utils.getDirectoryName(entry)
-      const template = templates[index]
+      const dir = utils.getDirectoryName(entry);
+      const template = templates[index];
 
       pages[dir] = {
         entry: entry,
-        template: template,
+        template: template || path.resolve(__dirname, '../public/index.html'),
         filename: dir + '.html'
-      }
-    })
+      };
+    });
   }
 
-  if (showCaseEntries && Array.isArray(showCaseEntries)) {
+  if (ENV === 'development' && showCaseEntries && Array.isArray(showCaseEntries)) {
     showCaseEntries.forEach((entry, index) => {
-      const dir = utils.getDirectoryName(entry)
-      const template = showCaseTemplates[index]
+      const dir = utils.getDirectoryName(entry);
+      const template = showCaseTemplates[index];
 
       pages[dir] = {
         entry: entry,
         template: template,
         filename: dir + '.html'
-      }
-    })
+      };
+    });
   }
 
-  return pages
-}
+  return pages;
+};
 
-module.exports = generatePages()
+module.exports = generatePages();

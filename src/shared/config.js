@@ -39,14 +39,14 @@ export default {
     // 是否是正式
     const isFormal = true;
 
-    return isFormal ? '//115.29.151.25:8012/' : '//192.168.114.35:8016/webUploaderServer/';
+    return isFormal ? 'https://www.easy-mock.com/mock/5cb6ca44f6c8be4af31ae04d/mock/' : '//192.168.114.35:8016/webUploaderServer/';
   })(),
   /**
    * 当ejs前框架使用的版本
    * 2 代表 2.x 版本的 ejs
    * 3 代表 3.x
    */
-  ejsVer: 2,
+  ejsVer: 3,
   /**
    * 开发环境常量，ejs、dingtalk
    */

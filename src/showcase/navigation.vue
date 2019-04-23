@@ -285,11 +285,6 @@ export default {
         }
       ]
     };
-  },
-  created () {
-    ejs.oauth.getToken(function (result) {
-      console.log(result);
-    });
   }
 };
 </script>
