@@ -105,7 +105,7 @@ export default {
   .slider-title {
     line-height: 30px;
     position: absolute;
-    bottom: 4px;
+    bottom: 0;
     left: 0;
     width: 100%;
     height: 30px;
