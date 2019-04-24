@@ -100,6 +100,7 @@ export default {
 <style scoped>
   .van-swipe-item__img {
     width: 100%;
+    height: 100%;
   }
 
   .slider-title {
