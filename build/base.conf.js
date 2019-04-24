@@ -9,7 +9,7 @@ const ENV = process.env.NODE_ENV;
 const generatePages = function () {
   const pages = {};
 
-  if (entries && Array.isArray(entries)) {
+  if (entries && Array.isArray(entries) && entries.length > 1) {
     entries.forEach((entry, index) => {
       const dir = utils.getDirectoryName(entry);
       const template = templates[index];
