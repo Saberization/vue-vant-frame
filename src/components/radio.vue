@@ -7,6 +7,7 @@
     :label-disabled="labelDisabled"
     :label-position="labelPosition"
     :checked-color="checkedColor"
+    @click="onClickRadio"
   >
     <slot></slot>
     <slot
@@ -65,6 +66,11 @@ export default {
     },
     isChecked (value) {
       this.$emit('changeChecked', value);
+    }
+  },
+  methods: {
+    onClickRadio (event) {
+      this.$emit('click', event);
     }
   }
 };

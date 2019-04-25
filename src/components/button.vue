@@ -15,8 +15,10 @@
     :loading-size="loadingSize"
     :url="url"
     :to="to"
+    :hairline="hairline"
     :replace="replace"
     @click="onClickBtn"
+    @touchstart="onTouchStart"
   >
     <slot></slot>
   </van-button>
@@ -81,11 +83,18 @@ export default {
     replace: {
       type: Boolean,
       default: false
+    },
+    hairline: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
-    onClickBtn () {
-      this.$emit('click');
+    onClickBtn (event) {
+      this.$emit('click', event);
+    },
+    onTouchStart (event) {
+      this.$emit('touchstart', event);
     }
   }
 };

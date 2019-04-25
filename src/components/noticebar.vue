@@ -8,6 +8,7 @@
     :left-icon="leftIcon"
     :color="color"
     :background="background"
+    :wrapable="wrapable"
     @click="onClick"
     @close="onClose"
   >
@@ -49,6 +50,10 @@ export default {
     background: {
       type: String,
       default: '#fff7cc'
+    },
+    wrapable: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {

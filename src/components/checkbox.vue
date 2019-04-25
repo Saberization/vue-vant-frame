@@ -8,6 +8,7 @@
     :label-position="labelPosition"
     :checked-color="checkedColor"
     @change="onChangeValue"
+    @click="onClickCheckBox"
     ref="checkbox"
   >
     <slot></slot>
@@ -72,6 +73,9 @@ export default {
     },
     toggle () {
       this.$refs.checkbox.toggle();
+    },
+    onClickCheckBox (event) {
+      this.$emit('click', event);
     }
   },
   created () {

@@ -22,6 +22,7 @@
     :autofocus="autofocus"
     :rows="rows"
     :cols="cols"
+    :error-message-align="errorMessageAlign"
     @input="onInput"
     @clear="onClear"
     @click-left-icon="onClickLeftIcon"
@@ -122,7 +123,11 @@ export default {
       default: ''
     },
     rows: [Number, String],
-    cols: [Number, String]
+    cols: [Number, String],
+    errorMessageAlign: {
+      type: String,
+      default: 'left'
+    }
   },
   data () {
     return {
