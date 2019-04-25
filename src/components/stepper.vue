@@ -8,6 +8,7 @@
     :disabled="disabled"
     :disable-input="disableInput"
     :async-change="asyncChange"
+    :input-width="inputWidth"
     @change="onChange"
     @overlimit="onOverlimit"
     @plus="onPlus"
@@ -58,6 +59,10 @@ export default {
     value: {
       type: [Number, String],
       default: 1
+    },
+    inputWidth: {
+      type: String,
+      default: '30px'
     }
   },
   data () {

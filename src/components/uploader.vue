@@ -1,5 +1,6 @@
 <template>
   <van-uploader
+    :name="name"
     :result-type="resultType"
     :accept="accept"
     :disabled="disabled"
@@ -22,6 +23,7 @@ export default {
     [Uploader.name]: Uploader
   },
   props: {
+    name: String,
     resultType: {
       type: String,
       default: 'dataUrl'

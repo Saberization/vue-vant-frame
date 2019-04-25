@@ -9,6 +9,7 @@
     :bar-height="barHeight"
     :active-color="activeColor"
     :inactive-color="inactiveColor"
+    :vertical="vertical"
     @change="onChange"
   >
     <slot name="button" slot="button"></slot>
@@ -59,6 +60,10 @@ export default {
     inactiveColor: {
       type: String,
       default: '#e5e5e5'
+    },
+    vertical: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
