@@ -23,7 +23,10 @@
       name="title"
       slot="title"
     ></slot>
-    <slot></slot>
+    <slot
+      name="label"
+      slot="label"
+    ></slot>
     <slot
       name="icon"
       slot="icon"

@@ -4,6 +4,7 @@
     :info="info"
     :color="color"
     :size="size"
+    :tag="tag"
     :class-prefix="classPrefix"
   ></van-icon>
 </template>
@@ -32,6 +33,10 @@ export default {
     classPrefix: {
       type: String,
       default: 'van-icon'
+    },
+    tag: {
+      type: String,
+      default: 'i'
     }
   }
 };
