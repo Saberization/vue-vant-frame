@@ -8,6 +8,7 @@
     :disabled="disabled"
     :loading="loading"
     :currency="currency"
+    :decimal-length="decimalLength"
     @submit="onSubmit"
   >
     <slot></slot>
@@ -53,6 +54,10 @@ export default {
     currency: {
       type: String,
       default: '¥'
+    },
+    decimalLength: {
+      type: Number,
+      default: 2
     }
   },
   methods: {

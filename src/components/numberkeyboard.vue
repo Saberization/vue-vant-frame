@@ -10,6 +10,7 @@
     :delete-button-text="deleteButtonText"
     :show-delete-key="showDeleteKey"
     :hide-on-click-outside="hideOnClickOutside"
+    :safe-area-inset-bottom="safeAreaInsetBottom"
     @input="onInput"
     @delete="onDelete"
     @close="onClose"
@@ -61,6 +62,10 @@ export default {
     hideOnClickOutside: {
       type: Boolean,
       default: true
+    },
+    safeAreaInsetBottom: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {

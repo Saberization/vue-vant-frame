@@ -8,6 +8,7 @@
     :close-on-click-overlay="closeOnClickOverlay"
     :lazy-render="lazyRender"
     :get-container="getContainer"
+    :safe-area-inset-bottom="safeAreaInsetBottom"
     @select="onSelect"
     @cancel="onCancel"
   >
@@ -55,6 +56,10 @@ export default {
       default: null
     },
     showVisible: {
+      type: Boolean,
+      default: false
+    },
+    safeAreaInsetBottom: {
       type: Boolean,
       default: false
     }
