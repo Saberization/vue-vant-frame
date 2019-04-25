@@ -10,6 +10,7 @@
     :readonly="readonly"
     :disabled="disabled"
     :disabled-color="disabledColor"
+    :allow-half="allowHalf"
     @change="onChange"
   ></van-rate>
 </template>
@@ -63,7 +64,11 @@ export default {
       type: String,
       default: '#bdbdbd'
     },
-    rate: Number
+    rate: Number,
+    allowHalf: {
+      type: Boolean,
+      default: false
+    }
   },
   data () {
     return {
