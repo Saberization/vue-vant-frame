@@ -63,6 +63,7 @@ export default {
   methods: {
     onClickCenterPopup () {
       this.show = true;
+      this.position = '';
     },
     onClickBottomPopup () {
       this.show = true;
@@ -74,7 +75,6 @@ export default {
     },
     onClickTopPopup () {
       this.show = true;
-      this.overlay = false;
       this.position = 'top';
 
       setTimeout(() => {
@@ -87,7 +87,6 @@ export default {
     },
     closePopup () {
       this.show = false;
-      this.overlay = true;
     }
   }
 };
