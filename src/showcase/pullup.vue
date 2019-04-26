@@ -6,6 +6,7 @@
     ></van-header>
     <div class="van-content">
       <van-pullup
+        :setting="refreshSetting"
         ref="pull"
       >
         <van-cell
@@ -34,11 +35,12 @@ export default {
   },
   data () {
     return {
-      list: []
+      list: [],
+      refreshSetting: {}
     };
   },
   mounted () {
-    this.$refs.pull.pullUp({
+    this.refreshSetting = {
       url: 'https://www.easy-mock.com/mock/5cb6ca44f6c8be4af31ae04d/mock/getlist',
       dataRequest (currPage) {
         return {
@@ -85,7 +87,7 @@ export default {
           Console.log('pullUp');
         }
       }
-    });
+    };
   }
 };
 </script>

@@ -25,6 +25,14 @@ export default {
   components: {
     [List.name]: List
   },
+  props: {
+    setting: {
+      type: Object,
+      default () {
+        return {};
+      }
+    }
+  },
   data () {
     return {
       loading: false,
@@ -52,6 +60,11 @@ export default {
       },
       requestData: {}
     };
+  },
+  watch: {
+    setting (value) {
+      this.pullUp(value);
+    }
   },
   methods: {
     check () {
@@ -119,6 +132,9 @@ export default {
         }
       });
     }
+  },
+  created () {
+    this.pullUp(this.setting);
   }
 };
 </script>
