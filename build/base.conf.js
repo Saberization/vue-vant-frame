@@ -1,15 +1,15 @@
 const path = require('path');
 const utils = require('./utils');
-const entries = utils.getMultiFile(path.resolve(__dirname, '../src/pages/**/*.js'));
-const templates = utils.getMultiFile(path.resolve(__dirname, '../src/pages/**/*.html'));
-const showCaseEntries = utils.getMultiFile(path.resolve(__dirname, '../src/showcase/**/*.js'));
-const showCaseTemplates = utils.getMultiFile(path.resolve(__dirname, '../src/showcase/**/*.html'));
+const entries = utils.getMultiFile(path.resolve(__dirname, '../src/pages/**/main.js'));
+const templates = utils.getMultiFile(path.resolve(__dirname, '../src/pages/**/index.html'));
+const showCaseEntries = utils.getMultiFile(path.resolve(__dirname, '../src/showcase/**/main.js'));
+const showCaseTemplates = utils.getMultiFile(path.resolve(__dirname, '../src/showcase/**/index.html'));
 const ENV = process.env.NODE_ENV;
 
 const generatePages = function () {
   const pages = {};
 
-  if (entries && Array.isArray(entries) && entries.length > 1) {
+  if (entries && Array.isArray(entries)) {
     entries.forEach((entry, index) => {
       const dir = utils.getDirectoryName(entry);
       const template = templates[index];
@@ -17,7 +17,7 @@ const generatePages = function () {
       pages[dir] = {
         entry: entry,
         template: template || path.resolve(__dirname, '../public/index.html'),
-        filename: dir + '.html'
+        filename: `${dir}.html`
       };
     });
   }
@@ -30,7 +30,7 @@ const generatePages = function () {
       pages[dir] = {
         entry: entry,
         template: template,
-        filename: dir + '.html'
+        filename: `${dir}.html`
       };
     });
   }

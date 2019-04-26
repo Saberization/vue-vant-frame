@@ -42,7 +42,13 @@ export default {
     [PullRefresh.name]: PullRefresh
   },
   props: {
-    top: [String, Number]
+    top: [String, Number],
+    setting: {
+      type: Object,
+      default () {
+        return {};
+      }
+    }
   },
   data () {
     return {
@@ -73,6 +79,11 @@ export default {
       },
       requestData: {}
     };
+  },
+  watch: {
+    setting (value) {
+      this.pullDown(value);
+    }
   },
   methods: {
     onRefresh () {
@@ -141,6 +152,9 @@ export default {
     refresh () {
       this.onRefresh();
     }
+  },
+  created () {
+    this.pullDown(this.setting);
   }
 };
 </script>

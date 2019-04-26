@@ -58,6 +58,19 @@ export default {
     [PullRefresh.name]: PullRefresh,
     [List.name]: List
   },
+  props: {
+    setting: {
+      type: Object,
+      default () {
+        return {};
+      }
+    }
+  },
+  watch: {
+    setting (value) {
+      this.pulltorefresh(value);
+    }
+  },
   data () {
     return {
       isLoading: false,
@@ -181,6 +194,9 @@ export default {
         }
       });
     }
+  },
+  created () {
+    this.pulltorefresh(this.setting);
   }
 };
 </script>

@@ -9,6 +9,7 @@
     <van-pulldown
       top="56"
       class="mt10"
+      setting="refreshSetting"
       ref="pulldown"
     >
       <van-cell-group>
@@ -37,7 +38,8 @@ export default {
   data () {
     return {
       count: 0,
-      listdata: []
+      listdata: [],
+      refreshSetting: {}
     };
   },
   methods: {
@@ -46,7 +48,7 @@ export default {
     }
   },
   mounted () {
-    this.$refs.pulldown.PullDown({
+    this.refreshSetting({
       url: 'https://www.easy-mock.com/mock/5cb6ca44f6c8be4af31ae04d/mock/getlist',
       dataRequest (currPage) {
         return {

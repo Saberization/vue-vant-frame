@@ -7,12 +7,9 @@
       @click-right="onClickRight"
     ></van-header>
     <div class="van-content">
-      <van-pulltorefresh ref="refresh">
+      <van-pulltorefresh :setting="refreshSetting" ref="refresh">
         <van-cell-group>
-          <van-cell
-            v-for="(item, index) in list"
-            :key="index"
-          >{{item.title}}</van-cell>
+          <van-cell v-for="(item, index) in list" :key="index">{{item.title}}</van-cell>
         </van-cell-group>
       </van-pulltorefresh>
     </div>
@@ -33,20 +30,21 @@ export default {
     vanCell,
     vanCellGroup
   },
-  data () {
+  data() {
     return {
-      list: []
+      list: [],
+      refreshSetting: {}
     };
   },
   methods: {
-    onClickRight () {
+    onClickRight() {
       this.$refs.refresh.refresh();
     }
   },
-  mounted () {
-    this.$refs.refresh.pulltorefresh({
+  mounted() {
+    this.refreshSetting = {
       url: 'https://www.easy-mock.com/mock/5cb6ca44f6c8be4af31ae04d/mock/getlist',
-      dataRequest (currPage) {
+      dataRequest(currPage) {
         return {
           token: 'RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=',
           params: {
@@ -77,7 +75,7 @@ export default {
       },
       pullDownSetting: {},
       pullUpSetting: {}
-    });
+    };
   }
 };
 </script>
