@@ -14,7 +14,8 @@ const defaultSettings = {
   withCredentials: false,
   isAutoProxy: Config.ajax.isAutoProxy,
   success: () => {},
-  error: () => {}
+  error: () => {},
+  complete: () => {}
 };
 
 let params = {};
@@ -52,7 +53,7 @@ function ajax (options) {
     withCredentials: options.withCredentials
   };
 
-  const { contentType, headers, isAutoProxy, error, success } = options;
+  const { contentType, headers, isAutoProxy, error, success, complete } = options;
 
   for (const key in headers) {
     setHeader(key, headers[key]);
@@ -81,6 +82,8 @@ function ajax (options) {
     }
   }).catch((err) => {
     error(err);
+  }).then(() => {
+    complete();
   });
 }
 
