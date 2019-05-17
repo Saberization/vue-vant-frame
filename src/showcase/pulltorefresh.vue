@@ -1,81 +1,68 @@
 <template>
   <div class="container">
-    <van-header
-      title="Pulltorefresh 下拉刷新上拉加载"
-      right-text="刷新"
-      left-arrow
-      @click-right="onClickRight"
-    ></van-header>
+    <van-header title="Pulltorefresh 下拉刷新上拉加载" right-text="刷新" left-arrow></van-header>
     <div class="van-content">
-      <van-pulltorefresh :setting="refreshSetting" ref="refresh">
-        <van-cell-group>
-          <van-cell v-for="(item, index) in list" :key="index">{{item.title}}</van-cell>
-        </van-cell-group>
-      </van-pulltorefresh>
+      <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+        <van-cell v-for="(v, i) in list" :key="i" :title="v.title"/>
+      </van-list>
     </div>
   </div>
 </template>
 
 <script>
 import vanHeader from '@components/header';
-import vanPulltorefresh from '@components/pulltorefresh';
 import vanCell from '@components/cell';
-import vanCellGroup from '@components/cellgroup';
+import { PullRefresh, List } from 'vant';
+import Util from '@utils';
 
 export default {
   name: 'Pulltorefresh',
   components: {
-    vanHeader,
-    vanPulltorefresh,
+    [PullRefresh.name]: PullRefresh,
+    [List.name]: List,
     vanCell,
-    vanCellGroup
+    vanHeader
   },
   data() {
     return {
+      loading: false,
+      finished: false,
       list: [],
-      refreshSetting: {}
+      pageIndex: 0
     };
   },
   methods: {
-    onClickRight() {
-      this.$refs.refresh.refresh();
-    }
-  },
-  mounted() {
-    this.refreshSetting = {
-      url: 'https://www.easy-mock.com/mock/5cb6ca44f6c8be4af31ae04d/mock/getlist',
-      dataRequest(currPage) {
-        return {
+    onLoad() {
+      Util.ajax({
+        url: 'http://115.29.151.25:8012/request.php?action=testV7List',
+        data: JSON.stringify({
           token: 'RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=',
           params: {
-            pageindex: currPage,
+            pageindex: this.pageIndex++,
             pagesize: 10,
             keyword: 'type1'
           }
-        };
-      },
-      initPageIndex: 0,
-      success: ({ custom }, pageindex) => {
-        const { infolist } = custom;
+        }),
+        success: ({ custom }) => {
+          const infolist = custom.infolist;
 
-        if (pageindex === 0) {
-          this.list = infolist;
-        } else {
-          infolist.forEach((e) => {
-            this.list.push(e);
-          });
+          if (Array.isArray(infolist)) {
+            infolist.forEach((e) => {
+              this.list.push(e);
+            });
+          }
+
+          this.loading = false;
+
+          if (!Array.isArray(infolist) || infolist.length === 0) {
+            this.finished = true;
+          }
+        },
+        error: (err) => {
+          console.log(err);
         }
-      },
-      error: (error) => {
-        console.error(JSON.stringify(error));
-      },
-      ajaxSetting: {
-        contentType: 'application/x-www-form-urlencoded',
-        timeout: 6000
-      },
-      pullDownSetting: {},
-      pullUpSetting: {}
-    };
+      });
+    }
   }
-};
+}
 </script>

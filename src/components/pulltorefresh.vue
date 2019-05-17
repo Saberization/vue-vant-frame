@@ -64,6 +64,10 @@ export default {
       default () {
         return {};
       }
+    },
+    finished: {
+      type: Boolean,
+      default: false
     }
   },
   watch: {
@@ -75,7 +79,6 @@ export default {
     return {
       isLoading: false,
       loading: false,
-      finished: false,
       pullDownSetting: {
         pullingText: '下拉即可刷新...',
         loosingText: '释放即可刷新...',
