@@ -1,6 +1,7 @@
 <template>
   <van-pull-refresh
     v-model="loading"
+    :finished="finished"
     :style="{top: `${parseInt(top)}px`}"
     :pulling-text="refreshSetting.pullingText"
     :loosing-text="refreshSetting.loosingText"
@@ -48,6 +49,10 @@ export default {
       default () {
         return {};
       }
+    },
+    finished: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -95,7 +100,7 @@ export default {
       }, this.options.delay);
       this.refreshSetting.pullDown();
     },
-    PullDown (options) {
+    pullDown (options) {
       // 合并下拉刷新配置项
       Object.assign(this.refreshSetting, options.setting);
       Object.assign(this.ajaxSetting, options.ajaxSetting);

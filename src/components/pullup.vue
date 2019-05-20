@@ -1,7 +1,7 @@
 <template>
   <van-list
     v-model="loading"
-    :finished="refreshSetting.finished"
+    :finished="finished"
     :error="refreshSetting.error"
     :offset="refreshSetting.offset"
     :loading-text="refreshSetting.loadingText"
@@ -31,13 +31,16 @@ export default {
       default () {
         return {};
       }
+    },
+    finished: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
       loading: false,
       refreshSetting: {
-        finished: false,
         error: false,
         offset: 100,
         loadingText: '加载中...',

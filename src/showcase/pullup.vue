@@ -7,6 +7,7 @@
     <div class="van-content">
       <van-pullup
         :setting="refreshSetting"
+        :finished="finished"
         ref="pull"
       >
         <van-cell
@@ -36,12 +37,13 @@ export default {
   data () {
     return {
       list: [],
-      refreshSetting: {}
+      refreshSetting: {},
+      finished: false
     };
   },
   mounted () {
     this.refreshSetting = {
-      url: 'https://www.easy-mock.com/mock/5cb6ca44f6c8be4af31ae04d/mock/getlist',
+      url: 'http://115.29.151.25:8012/request.php?action=testV7List',
       dataRequest (currPage) {
         return {
           token: 'RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=',
@@ -58,10 +60,16 @@ export default {
 
         if (pageIndex === 0) {
           this.list = infolist;
+        } else if (Array.isArray(infolist)) {
+          if (infolist.length >= 1) {
+            infolist.forEach((e) => {
+              this.list.push(e);
+            });
+          } else {
+            this.finished = true;
+          }
         } else {
-          infolist.forEach((e) => {
-            this.list.push(e);
-          });
+          this.finished = true;
         }
       },
       error: (err) => {
