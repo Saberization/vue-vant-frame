@@ -5,25 +5,18 @@
       left-arrow
     ></van-header>
     <div class="van-content">
-      <van-pullup
-        :setting="refreshSetting"
-        :finished="finished"
-        ref="pull"
-      >
-        <van-cell
-          v-for="(item, index) in list"
-          :key="index"
-          :title="item.title"
-        ></van-cell>
-      </van-pullup>
+      <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+        <van-cell v-for="(item, index) in list" :key="index" :title="item.title"></van-cell>
+      </van-list>
     </div>
   </div>
 </template>
 
 <script>
 import vanHeader from '@components/header';
-import vanPullup from '@components/pullup';
 import vanCell from '@components/cell';
+import { List } from 'vant';
+import Util from '@utils';
 
 const Console = console;
 
@@ -32,70 +25,49 @@ export default {
   components: {
     vanHeader,
     vanCell,
-    vanPullup
+    [List.name]: List
   },
-  data () {
+  data() {
     return {
+      pageIndex: 0,
+      loading: false,
       list: [],
-      refreshSetting: {},
       finished: false
     };
   },
-  mounted () {
-    this.refreshSetting = {
-      url: 'http://115.29.151.25:8012/request.php?action=testV7List',
-      dataRequest (currPage) {
-        return {
+  methods: {
+    onLoad() {
+      Util.ajax({
+        url: 'http://115.29.151.25:8012/request.php?action=testV7List',
+        data: JSON.stringify({
           token: 'RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=',
           params: {
-            pageindex: currPage,
+            pageindex: this.pageIndex++,
             pagesize: 10,
             keyword: 'type1'
           }
-        };
-      },
-      initPageIndex: 0,
-      success: (response, pageIndex) => {
-        const { infolist } = response.custom;
+        }),
+        success: ({ custom }) => {
+          const infolist = custom.infolist || [];
+          const len = infolist.length;
 
-        if (pageIndex === 0) {
-          this.list = infolist;
-        } else if (Array.isArray(infolist)) {
-          if (infolist.length >= 1) {
-            infolist.forEach((e) => {
-              this.list.push(e);
-            });
-          } else {
-            this.finished = true;
-          }
-        } else {
-          this.finished = true;
+          setTimeout(() => {
+            if (len > 0) {
+              infolist.forEach(e => {
+                this.list.push(e);
+              });
+            } else if (len === 0) {
+              this.finished = true;
+            }
+
+            this.loading = false;
+          }, 600);
+        },
+        error: err => {
+          Console.error(err);
         }
-      },
-      error: (err) => {
-        Console.log(err);
-      },
-      ajaxSetting: {
-        contentType: 'application/x-www-form-urlencoded',
-        timeout: 6000
-      },
-      setting: {
-        // 滚动条与底部距离小于 offset 时触发load事件
-        offset: 30,
-        // 加载过程中的提示文案
-        loadingText: '加载中...',
-        // 加载完成后的提示文案
-        finishedText: '没有更多',
-        // 加载失败后的提示文案
-        errorText: '请求失败，点击重新加载',
-        // 是否在初始化时立即执行滚动位置检查
-        immediateCheck: true,
-        // 上拉加载的时候触发
-        pullUp () {
-          Console.log('pullUp');
-        }
-      }
-    };
+      });
+    }
   }
 };
 </script>

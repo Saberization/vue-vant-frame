@@ -138,6 +138,14 @@ export default {
               to: '/pulltorefresh'
             },
             {
+              title: 'PullUp 上拉加载',
+              to: '/pullup'
+            },
+            {
+              title: 'Minirefresh 下拉刷新上拉加载',
+              to: '/minirefresh'
+            },
+            {
               title: 'SwipeCell 滑动单元格',
               to: '/swipecell'
             },
@@ -165,10 +173,6 @@ export default {
             {
               title: 'LazyLoad 图片懒加载',
               to: '/lazyload'
-            },
-            {
-              title: 'PullUp 上拉加载',
-              to: '/pullup'
             },
             {
               title: 'NoticeBar 通告栏',

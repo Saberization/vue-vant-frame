@@ -31,6 +31,7 @@ import Notify from '@showcase/notify';
 import Toast from '@showcase/toast';
 import SwipeCell from '@showcase/swipecell';
 import PullDown from '@showcase/pulldown';
+import Minirefresh from '@showcase/minirefresh';
 import Circle from '@showcase/circle';
 import Collapse from '@showcase/collapse';
 import ImagePreview from '@showcase/imagepreview';
@@ -234,6 +235,9 @@ const routes = [{
 }, {
   path: '/easycalendar',
   component: EasyCalendar
+}, {
+  path: '/Minirefresh',
+  component: Minirefresh
 }];
 
 export default routes;

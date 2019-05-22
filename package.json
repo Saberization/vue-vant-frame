@@ -43,7 +43,8 @@
       "@vue/standard"
     ],
     "globals": {
-      "ejs": true
+      "ejs": true,
+      "MiniRefresh": true
     },
     "rules": {
       "semi": [
@@ -231,7 +232,8 @@
       ],
       "no-multi-spaces": 2,
       "no-multi-str": 2,
-      "default-case": 2
+      "default-case": 2,
+      "space-before-function-paren": 0
     },
     "parserOptions": {
       "parser": "babel-eslint"
