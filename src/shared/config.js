@@ -33,6 +33,10 @@ export default {
    */
   isDebugPanel: 1,
   /**
+   * 是否开启性能检测
+   */
+  isTestPerformance: 1,
+  /**
    * 业务接口相关的配置
    */
   serverUrl: (() => {

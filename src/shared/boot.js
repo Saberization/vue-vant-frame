@@ -16,6 +16,14 @@ if (Config.isDebugPanel) {
   });
 }
 
+if (Config.isTestPerformance) {
+  Util.loaderLibrary({
+    inject: 'body',
+    src: './lib/performance.js',
+    type: 'js'
+  });
+}
+
 export {
   Vue,
   Config
