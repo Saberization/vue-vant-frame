@@ -5,6 +5,7 @@ const templates = utils.getMultiFile(path.resolve(__dirname, '../src/pages/**/in
 const showCaseEntries = utils.getMultiFile(path.resolve(__dirname, '../src/showcase/**/main.js'));
 const showCaseTemplates = utils.getMultiFile(path.resolve(__dirname, '../src/showcase/**/index.html'));
 const ENV = process.env.NODE_ENV;
+const isDevBuildShowcase = 0;
 
 const generatePages = function () {
   const pages = {};
@@ -16,13 +17,13 @@ const generatePages = function () {
 
       pages[dir] = {
         entry: entry,
-        template: template || path.resolve(__dirname, '../public/index.html'),
+        template: template || 'public/index.html',
         filename: `${dir}.html`
       };
     });
   }
 
-  if (ENV === 'development' && showCaseEntries && Array.isArray(showCaseEntries)) {
+  if (ENV === 'development' && isDevBuildShowcase && showCaseEntries && Array.isArray(showCaseEntries)) {
     showCaseEntries.forEach((entry, index) => {
       const dir = utils.getDirectoryName(entry);
       const template = showCaseTemplates[index];

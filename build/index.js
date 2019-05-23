@@ -1,9 +1,12 @@
 'use strict';
+const path = require('path')
 const cssOptions = require('./css.env')
 const devServer = require('./dev-server')
 const utils = require('./utils')
 const pages = require('./base.conf')
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const chokidar = require('chokidar')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const resolve = utils.resolve
 const chainWebpack = config => {
   config.resolve.alias
@@ -46,7 +49,7 @@ module.exports = {
     // 是否设置 link script 标签上启用 SRI
     integrity: false,
     // 参数会通过 webpack-merge 合并到最终配置里
-    configureWebpack: () => {},
+    configureWebpack: () => { },
     // http-proxy-middleware
     devServer,
     css: cssOptions.build,

@@ -35,7 +35,7 @@ export default {
   /**
    * 是否开启性能检测
    */
-  isTestPerformance: 1,
+  isTestPerformance: 0,
   /**
    * 业务接口相关的配置
    */
