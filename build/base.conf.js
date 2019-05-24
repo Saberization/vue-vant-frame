@@ -6,6 +6,7 @@ const showCaseEntries = utils.getMultiFile(path.resolve(__dirname, '../src/showc
 const showCaseTemplates = utils.getMultiFile(path.resolve(__dirname, '../src/showcase/**/index.html'));
 const ENV = process.env.NODE_ENV;
 const isDevBuildShowcase = 0;
+const isProBuildShowcase = 1;
 
 const generatePages = function () {
   const pages = {};
@@ -21,6 +22,19 @@ const generatePages = function () {
         filename: `${dir}.html`
       };
     });
+
+    if (isProBuildShowcase && Array.isArray(showCaseEntries)) {
+      showCaseEntries.forEach((entry, index) => {
+        const dir = utils.getDirectoryName(entry);
+        const template = showCaseTemplates[index];
+  
+        pages[dir] = {
+          entry: entry,
+          template: template,
+          filename: `${dir}.html`
+        };
+      });
+    }
   }
 
   if (ENV === 'development' && isDevBuildShowcase && showCaseEntries && Array.isArray(showCaseEntries)) {
