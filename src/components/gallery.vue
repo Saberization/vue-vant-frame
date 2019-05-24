@@ -11,6 +11,8 @@
     :touchable="touchable"
     :width="width"
     :height="height"
+    :bg="bg"
+    :color="color"
     @change="onChange"
     ref="swipe"
   >
@@ -19,7 +21,7 @@
       <img v-else-if="value.pic && value.pic.length && lazyload" v-lazy="`${value.pic}`" alt="" class="van-swipe-item__img">
       <span v-else>{{ value }}</span>
 
-      <div class="slider-title" v-if="value.title">{{ value.title }}</div>
+      <div class="slider-title" v-if="value.title" :style="{backgroundColor: bg, color: color}">{{ value.title }}</div>
     </van-swipe-item>
     <slot name="indicator" slot="indicator"></slot>
   </van-swipe>
@@ -81,6 +83,14 @@ export default {
       default () {
         return [];
       }
+    },
+    bg: {
+      type: String,
+      default: '#000'
+    },
+    color: {
+      type: String,
+      default: '#fff'
     }
   },
   methods: {
@@ -114,7 +124,6 @@ export default {
     text-align: left;
     text-indent: 12px;
     opacity: .8;
-    background-color: #000;
     color: #fff;
   }
 </style>
