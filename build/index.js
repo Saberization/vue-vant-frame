@@ -6,7 +6,6 @@ const utils = require('./utils')
 const pages = require('./base.conf')
 const chokidar = require('chokidar')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const resolve = utils.resolve
 const chainWebpack = config => {
   config.resolve.alias
@@ -20,6 +19,27 @@ const chainWebpack = config => {
     .set('@router', resolve('src/router'))
     .set('@public', resolve('public'))
     .set('@boot', resolve('src/shared/boot.js'))
+
+  config.module
+    .rule('images')
+    .use('url-loader')
+    .loader('url-loader')
+    .tap(options => {
+      // 修改它的选项...
+      options.limit = 100
+      return options
+    });
+
+  Object.keys(pages).forEach(entryName => {
+    config.plugins.delete(`prefetch-${entryName}`);
+  });
+
+  if (process.env.NODE_ENV === "production") {
+    config.plugin("extract-css").tap(() => [{
+      path: path.join(__dirname, "./dist"),
+      filename: "css/[name].[contenthash:8].css"
+    }]);
+  }
 }
 
 module.exports = {
@@ -49,7 +69,7 @@ module.exports = {
     // 是否设置 link script 标签上启用 SRI
     integrity: false,
     // 参数会通过 webpack-merge 合并到最终配置里
-    configureWebpack: () => { },
+    configureWebpack: config => {},
     // http-proxy-middleware
     devServer,
     css: cssOptions.build,
