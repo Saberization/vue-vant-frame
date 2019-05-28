@@ -20,26 +20,9 @@ const chainWebpack = config => {
     .set('@public', resolve('public'))
     .set('@boot', resolve('src/shared/boot.js'))
 
-  config.module
-    .rule('images')
-    .use('url-loader')
-    .loader('url-loader')
-    .tap(options => {
-      // 修改它的选项...
-      options.limit = 100
-      return options
-    });
-
   Object.keys(pages).forEach(entryName => {
     config.plugins.delete(`prefetch-${entryName}`);
   });
-
-  if (process.env.NODE_ENV === "production") {
-    config.plugin("extract-css").tap(() => [{
-      path: path.join(__dirname, "./dist"),
-      filename: "css/[name].[contenthash:8].css"
-    }]);
-  }
 }
 
 module.exports = {
