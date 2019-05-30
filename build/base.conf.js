@@ -5,8 +5,8 @@ const templates = utils.getMultiFile(path.resolve(__dirname, '../src/pages/**/in
 const showCaseEntries = utils.getMultiFile(path.resolve(__dirname, '../src/showcase/**/main.js'));
 const showCaseTemplates = utils.getMultiFile(path.resolve(__dirname, '../src/showcase/**/index.html'));
 const ENV = process.env.NODE_ENV;
-const isDevBuildShowcase = 0;
-const isProBuildShowcase = 1;
+const isDevBuildShowcase = 1;
+const isProBuildShowcase = 0;
 
 const generatePages = function () {
   const pages = {};
