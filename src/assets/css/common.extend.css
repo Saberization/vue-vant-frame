@@ -2,7 +2,7 @@
  * @Author: guotq
  * @Date: 2019-04-12 10:57:29
  * @Last Modified by: guotq
- * @Last Modified time: 2019-04-12 11:02:07
+ * @Last Modified time: 2019-05-30 16:23:12
  * @Description: 基于 normalize 扩展
  */
 
@@ -196,5 +196,6 @@ input[type=search] {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+	bottom: 0;
+	overflow: auto !important;
 }

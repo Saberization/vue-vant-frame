@@ -1,118 +1,139 @@
 <template>
   <div class="container">
-    <van-header
-      title="Pulltorefresh 下拉刷新"
-      left-arrow
-    ></van-header>
-    <div class="van-content">
-      <div
-        id="minirefresh"
-        class="minirefresh-wrap"
-      >
-        <div class="minirefresh-scroll">
-          <div
-            class="data-list"
-            ref="listdata"
-          >
-            <van-cell
-              v-for="(item, index) in listdata"
-              :key="index"
-              :title="item.title"
-              :label="`描述信息${index}`"
-            >{{ item.date }}</van-cell>
-          </div>
-        </div>
+    <van-search
+      v-model="searchValue"
+      class="search-area"
+      placeholder="请输入搜索关键词"
+      :show-action="true"
+      background="#fff"
+      @search="onSearch"
+    >
+      <div slot="action">
+        <van-button type="info" size="small" class="srh-btn" @click="onSearch">搜索</van-button>
       </div>
+    </van-search>
+
+    <div class="van-content">
+      <van-pull-refresh v-model="pullLoading" @refresh="onRefresh">
+        <van-list v-model="upLoading" :finished="finished" @load="onLoad" finished-text="没有更多数据了">
+          <van-cell-group>
+            <van-cell v-for="(item, index) in listdata" :key="index" :title="item.title"></van-cell>
+          </van-cell-group>
+        </van-list>
+      </van-pull-refresh>
     </div>
   </div>
 </template>
 
 <script>
-import vanHeader from '@components/header';
-import vanCell from '@components/cell';
-import 'minirefresh';
-import 'minirefresh/dist/debug/minirefresh.css';
 import Util from '@utils';
-
-const Console = console;
+import vanSearch from '@components/search';
+import vanButton from '@components/button';
+import { PullRefresh, List } from 'vant';
+import vanCell from '@components/cell';
+import vanCellGroup from '@components/cellgroup';
 
 export default {
-  name: 'Pulltorefresh',
+  name: 'list',
   components: {
-    vanHeader,
-    vanCell
+    vanSearch,
+    vanButton,
+    [PullRefresh.name]: PullRefresh,
+    [List.name]: List,
+    vanCell,
+    vanCellGroup
   },
   data() {
     return {
-      miniRefresh: null,
-      listdata: [],
-      requestDelayTime: 600,
-      pageindex: 0
+      searchValue: '',
+      pullLoading: false,
+      upLoading: false,
+      finished: false,
+      pageSize: 10,
+      pageIndex: 0,
+      listdata: []
     };
   },
   methods: {
-    requestAjax(eventType) {
-      if (eventType === 'down') {
-        this.pageindex = 0;
-      }
+    /**
+     * 下拉刷新回调
+     */
+    onRefresh() {
+      this.pageIndex = 0;
+      this.finished = false;
+      this.upLoading = true;
 
+      setTimeout(() => {
+        this.getList();
+      }, 500);
+    },
+    /**
+     * 获取列表
+     */
+    getList() {
       Util.ajax({
-        url: 'http://115.29.151.25:8012/request.php?action=testV7List',
+        url: 'https://www.easy-mock.com/mock/5cb6ca44f6c8be4af31ae04d/mock/getlist',
         data: JSON.stringify({
           token: 'RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=',
           params: {
-            pageindex: this.pageindex++,
-            pagesize: 10,
-            keyword: 'type1'
+            pageindex: this.pageIndex,
+            pagesize: this.pageSize,
+            keyword: this.searchValue
           }
         }),
         success: ({ custom }) => {
           const infolist = custom.infolist || [];
           const len = infolist.length;
-          const miniRefresh = this.miniRefresh;
 
-          if (len > 0) {
-            setTimeout(() => {
-              if (eventType === 'down') {
-                this.listdata = infolist;
-                miniRefresh.endDownLoading(true);
-              } else {
-                infolist.forEach(e => {
-                  this.listdata.push(e);
-                });
-                miniRefresh.endUpLoading(false);
-              }
-            }, this.requestDelayTime);
-          } else {
-            if (eventType === 'down') {
-              this.listdata = [];
-              miniRefresh.endDownLoading(true);
-            } else {
-              miniRefresh.endUpLoading(true);
-            }
+          if (this.pageIndex === 0) {
+            this.listdata = infolist;
+          } else if (len > 1) {
+            infolist.forEach(e => {
+              this.listdata.push(e);
+            });
           }
-        },
-        error: err => {
-          Console.error(err);
+
+          // 加载状态结束
+          this.upLoading = false;
+          this.pullLoading = false;
+          this.pageIndex++;
+
+          if (len === 0) {
+            this.finished = true;
+          }
         }
       });
+    },
+    /**
+     * 上拉刷新回调
+     */
+    onLoad() {
+      setTimeout(() => {
+        this.getList();
+      }, 500);
+    },
+    /**
+     * 搜索
+     */
+    onSearch() {
+      this.pullLoading = true;
+      this.onRefresh();
     }
-  },
-  mounted() {
-    this.miniRefresh = new MiniRefresh({
-      container: '#minirefresh',
-      down: {
-        callback: () => {
-          this.requestAjax('down');
-        }
-      },
-      up: {
-        isAuto: true,
-        callback: () => {
-          this.requestAjax('up');
-        }
-      }
-    });
   }
 };
 </script>
+
+<style scoped>
+.srh-btn {
+  height: 34px;
+  font-size: 14px;
+}
+
+.search-area {
+  border-bottom: 1px solid #ebedf0;
+}
+
+.van-content {
+  top: 55px;
+}
+</style>
