@@ -35,6 +35,7 @@
       name="right-icon"
       slot="right-icon"
     ></slot>
+    <slot></slot>
   </van-cell>
 </template>
 
