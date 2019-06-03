@@ -6,6 +6,7 @@
     :size="size"
     :tag="tag"
     :class-prefix="classPrefix"
+    @click="onClick"
   ></van-icon>
 </template>
 
@@ -37,6 +38,11 @@ export default {
     tag: {
       type: String,
       default: 'i'
+    }
+  },
+  methods: {
+    onClick() {
+      this.$emit('click');
     }
   }
 };
