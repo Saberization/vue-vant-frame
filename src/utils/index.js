@@ -237,6 +237,14 @@ const dataProcess = (response, options) => {
   return undefined;
 };
 
+/**
+ * 判断值是否为空
+ * @param {String} value 值
+ */
+const isNull = (value) => {
+  return value === null || value === undefined;
+};
+
 export default {
   openPage,
   ajax,
@@ -246,5 +254,6 @@ export default {
   getExtraDataByKey,
   os,
   dataProcess,
-  loaderLibrary
+  loaderLibrary,
+  isNull
 };
