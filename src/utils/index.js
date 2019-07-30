@@ -2,6 +2,16 @@ import {
   ajax,
   ajaxAll
 } from './request';
+import base64 from './base64';
+import charset from './charset';
+import date from './date';
+import imagescale from './imagescale';
+import math from ',/math';
+import qrcode from './qrcode';
+import sha1 from './sha1';
+import sha256 from './sha256';
+import storage from './storage';
+import string from './string';
 
 /**
  * 打开页面
@@ -240,6 +250,7 @@ const dataProcess = (response, options) => {
 /**
  * 判断值是否为空
  * @param {String} value 值
+ * @returns {Boolean} 验证结果
  */
 const isNull = (value) => {
   return value === null || value === undefined;
@@ -255,5 +266,15 @@ export default {
   os,
   dataProcess,
   loaderLibrary,
-  isNull
+  isNull,
+  base64,
+  charset,
+  date,
+  imagescale,
+  math,
+  qrcode,
+  sha1,
+  sha256,
+  storage,
+  string
 };

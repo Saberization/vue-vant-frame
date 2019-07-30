@@ -1,3 +1,5 @@
+import Util from '@utils';
+
 export default {
 
   /**
@@ -34,7 +36,7 @@ export default {
       return true;
     }
 
-    const n = String(v);
+    let n = String(v);
 
     if (n.indexOf('-') !== -1 && n.indexOf('-') !== 0) {
       return false;
@@ -78,10 +80,10 @@ export default {
       return true;
     }
 
-    var IsURL = function (strurl) {
+    const IsURL = function (strurl) {
       strurl = strurl.toLowerCase().split('?')[0];
 
-      var strRegex = '^((https|http|ftp|rtsp|mms)?://)?' +
+      const strRegex = '^((https|http|ftp|rtsp|mms)?://)?' +
         '(([0-9]{1,3}.){3}[0-9]{1,3}' +
         '|' +
         "([0-9a-z_!~*'()-]+.)*" +
@@ -91,7 +93,7 @@ export default {
         '((/?)|' +
         "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
 
-      var re = new RegExp(strRegex);
+      const re = new RegExp(strRegex);
 
       if (re.test(strurl)) {
         return (true);
@@ -101,32 +103,6 @@ export default {
     };
 
     return IsURL(v);
-  },
-
-  /**
-   * 2019-06-13 14:05:46
-   * 验证是否是数字
-   * @param {String} v 要验证的数字或字符串数字
-   * @returns {Boolean} 是否是数字或者字符串数字
-   */
-  isFloat(v) {
-    if (Util.isNull(v) || v === '') {
-      return true;
-    }
-
-    var n = String(v);
-
-    if (n.indexOf('-') !== -1 && n.indexOf('-') !== 0) {
-      return false;
-    }
-
-    n = n.replace('-', '');
-
-    if (n.split('.').length > 2) {
-      return false;
-    }
-
-    return n.length > 0 && !(/[^0-9.]/).test(n) && !(n.charAt(n.length - 1) === '.');
   },
 
   /**
@@ -202,7 +178,7 @@ export default {
     }
 
     // 统一社会信用代码
-    var reg = /^([0-9A-Z]{2})([0-9]{6})([0-9A-Z]{10})$/;
+    const reg = /^([0-9A-Z]{2})([0-9]{6})([0-9A-Z]{10})$/;
 
     if (!reg.test(v)) {
       return false;
@@ -217,20 +193,22 @@ export default {
    * @returns {Boolean} 是否是身份证
    */
   isIdCard(v) {
-    if (Util.isNull(v) || v === "")
+    if (Util.isNull(v) || v === '') {
       return true;
+    }
 
     function validateIdCard(idCard) {
       // 15位和18位身份证号码的正则表达式
-      var regIdCard = /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/;
+      const regIdCard = /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/;
 
       // 如果通过该验证，说明身份证格式正确，但准确性还需计算
       if (regIdCard.test(idCard)) {
-        if (idCard.length == 18) {
-          const idCardWi = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2); // 将前17位加权因子保存在数组里
-          const idCardY = new Array(1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2); // 这是除以11后，可能产生的11位余数、验证码，也保存成数组
+        if (idCard.length === 18) {
+          const idCardWi = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]; // 将前17位加权因子保存在数组里
+          const idCardY = [1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2]; // 这是除以11后，可能产生的11位余数、验证码，也保存成数组
           let idCardWiSum = 0; // 用来保存前17位各自乖以加权因子后的总和
-          for (var i = 0; i < 17; i++) {
+
+          for (let i = 0; i < 17; i++) {
             idCardWiSum += idCard.substring(i, i + 1) * idCardWi[i];
           }
 
@@ -238,15 +216,15 @@ export default {
           const idCardLast = idCard.substring(17); // 得到最后一位身份证号码
 
           // 如果等于2，则说明校验码是10，身份证号码最后一位应该是X
-          if (idCardMod == 2) {
-            if (idCardLast === "X" || idCardLast === "x") {
+          if (idCardMod === 2) {
+            if (idCardLast === 'X' || idCardLast === 'x') {
               return true;
             } else {
               return false;
             }
           } else {
             // 用计算出的验证码与最后一位身份证号码匹配，如果一致，说明通过，否则是无效的身份证号码
-            if (idCardLast == idCardY[idCardMod]) {
+            if (idCardLast === parseInt(idCardY[idCardMod], 10)) {
               return true;
             } else {
               return false;
