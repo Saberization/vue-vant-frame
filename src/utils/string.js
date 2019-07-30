@@ -68,6 +68,42 @@ export default {
   },
 
   /**
+   * 2019-06-13 14:05:46
+   * 验证是否是 url
+   * @param {String} v url
+   * @returns {Boolean} 是否是url
+   */
+  isUrl(v) {
+    if (Util.isNull(v) || v === '') {
+      return true;
+    }
+
+    var IsURL = function (strurl) {
+      strurl = strurl.toLowerCase().split('?')[0];
+
+      var strRegex = '^((https|http|ftp|rtsp|mms)?://)?' +
+        '(([0-9]{1,3}.){3}[0-9]{1,3}' +
+        '|' +
+        "([0-9a-z_!~*'()-]+.)*" +
+        '([0-9a-z][0-9a-z-]{0,61})?[0-9a-z].' +
+        '[a-z]{2,6})' +
+        '(:[0-9]{1,5})?' +
+        '((/?)|' +
+        "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
+
+      var re = new RegExp(strRegex);
+
+      if (re.test(strurl)) {
+        return (true);
+      } else {
+        return (false);
+      }
+    };
+
+    return IsURL(v);
+  },
+
+  /**
    * 判断一个字符串是否是手机号码
    * @param {String} str 要检验的字符串
    * 正则：手机号（精确）
@@ -103,32 +139,6 @@ export default {
      * 分机号 一般都是3位数字，我们认为大于等于3位，小于8位
      */
     return this.isPhoneNum(str) || /^(0\d{2,3}-?|\(0\d{2,3}\))?[1-9]\d{4,7}(-\d{3,8})?$/.test(str);
-  },
-
-  /**
-   * 判断一个字符串是否是合法的EMAIL
-   * @param {String} str 要检验的字符串
-   * @return {Boolean} true or false
-   */
-  isEmail(str) {
-    if (!str) {
-      return str;
-    }
-
-    return /^(\w)+([-.]\w+)*@(\w)+((\.\w{2,4}){1,3})$/.test(str);
-  },
-
-  /**
-   * 判断是否为外部url
-   * @param {String} str 需验证的字符串
-   * @return {Boolean} true or false
-   */
-  isExternalUrl(str) {
-    if (!str) {
-      return str;
-    }
-
-    return /^(http|https|ftp|file|\/\/).*$/.test(str);
   },
 
   /**
