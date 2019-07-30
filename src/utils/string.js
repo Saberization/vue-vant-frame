@@ -1,3 +1,10 @@
+/*
+ * @Author: guotq
+ * @Date: 2019-07-30 17:52:39
+ * @Last Modified by: guotq
+ * @Last Modified time: 2019-07-30 17:52:39
+ * @Description: 字符串操作相关， 例如邮箱验证， 身份证验证等
+ */
 import Util from '@utils';
 
 export default {
