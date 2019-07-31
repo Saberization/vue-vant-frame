@@ -9,6 +9,7 @@
     :loading="loading"
     :currency="currency"
     :decimal-length="decimalLength"
+    :safe-area-inset-bottom="safeAreaInsetBottom"
     @submit="onSubmit"
   >
     <slot></slot>
@@ -58,6 +59,10 @@ export default {
     decimalLength: {
       type: Number,
       default: 2
+    },
+    safeAreaInsetBottom: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
