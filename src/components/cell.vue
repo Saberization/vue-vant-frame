@@ -20,22 +20,10 @@
     :title-style="titleStyle"
     @click="onClick"
   >
-    <slot
-      name="title"
-      slot="title"
-    ></slot>
-    <slot
-      name="label"
-      slot="label"
-    ></slot>
-    <slot
-      name="icon"
-      slot="icon"
-    ></slot>
-    <slot
-      name="right-icon"
-      slot="right-icon"
-    ></slot>
+    <slot name="title" slot="title"></slot>
+    <slot name="label" slot="label"></slot>
+    <slot name="icon" slot="icon"></slot>
+    <slot name="right-icon" slot="right-icon"></slot>
     <slot></slot>
   </van-cell>
 </template>

@@ -13,10 +13,7 @@
     @select-disabled="onSelectDisabled"
   >
     <slot></slot>
-    <slot
-      name="top"
-      slot="top"
-    ></slot>
+    <slot name="top" slot="top"></slot>
   </van-address-list>
 </template>
 
