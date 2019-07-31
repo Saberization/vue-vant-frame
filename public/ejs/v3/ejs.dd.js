@@ -1,8 +1,8 @@
 /*!
- * ejsv3 v3.2.6
- * (c) 2017-2019
+ * ejsv3 v3.2.6d
+ * (c) 2017-2019 
  * Released under the BSD-3-Clause License.
- *
+ * 
  */
 
 (function (global, factory) {
@@ -513,7 +513,7 @@ function runtimeMixin(hybrid) {
             var args = rest;
 
             args[0] = innerUtil.extend(args[0], {
-                app: ejs.os.android ? args[0].packageName : args[0].scheme,
+                app: hybridJs.os.android ? args[0].packageName : args[0].scheme,
                 activity: args[0].className
             });
 

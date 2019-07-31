@@ -1,8 +1,8 @@
 /*!
- * ejsv3 v3.2.6
- * (c) 2017-2019
+ * ejsv3 v3.2.6d
+ * (c) 2017-2019 
  * Released under the BSD-3-Clause License.
- *
+ * 
  */
 
 (function (global, factory) {
@@ -67,7 +67,7 @@ function uiMixin(hybrid) {
             var args = innerUtil.compatibleStringParamsToObject.call(this, rest, 'message', 'title', 'buttonName');
 
             args[0].buttonLabels = [args[0].buttonName];
-            ejs.ui.confirm.apply(this, args);
+            hybridJs.ui.confirm.apply(this, args);
         }
     }, {
         namespace: 'confirm',
@@ -1283,11 +1283,11 @@ function navigatorMixin(hybrid) {
 
             newOptions.success = function () {
                 // 点击的时候，弹出菜单
-                ejs.ui.popWindow.apply(_this, rest);
+                hybridJs.ui.popWindow.apply(_this, rest);
             };
 
             newArgs[0] = newOptions;
-            ejs.navigator.setRightBtn.apply(this, newArgs);
+            hybridJs.navigator.setRightBtn.apply(this, newArgs);
         }
     }, {
         namespace: 'setLeftBtn',
@@ -1460,7 +1460,7 @@ function utilMixin(hybrid) {
         defaultParams: {
             // 最大时长，单位为秒
             maxDuration: 120,
-            className: ejs.os.android ? 'com.epoint.baseapp.component.media.ShootActivity' : 'EPTVideoRecordViewController'
+            className: hybridJs.os.android ? 'com.epoint.baseapp.component.media.ShootActivity' : 'EPTVideoRecordViewController'
         },
         runCode: function runCode() {
             for (var _len2 = arguments.length, rest = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
@@ -1475,7 +1475,7 @@ function utilMixin(hybrid) {
                 maxDuration: args[0].maxDuration
             };
 
-            ejs.page.openLocal.apply(this, args);
+            hybridJs.page.openLocal.apply(this, args);
         }
     }, {
         namespace: 'getPreviewUrl',
@@ -1673,7 +1673,7 @@ function contactMixin(hybrid) {
         defaultParams: {
             // 已选人员的用户guid列表
             userguids: [],
-            className: ejs.os.android ? 'com.epoint.baseapp.component.chooseperson.PersonChooseActivity' : 'WPLPersonnelSelectViewController'
+            className: hybridJs.os.android ? 'com.epoint.baseapp.component.chooseperson.PersonChooseActivity' : 'WPLPersonnelSelectViewController'
         },
         runCode: function runCode() {
             for (var _len = arguments.length, rest = Array(_len), _key = 0; _key < _len; _key++) {
@@ -1688,7 +1688,7 @@ function contactMixin(hybrid) {
                 userguids: args[0].userguids
             };
 
-            ejs.page.openLocal.apply(this, args);
+            hybridJs.page.openLocal.apply(this, args);
         }
     }]);
 }

@@ -1,238 +1,239 @@
 /*!
- * ejsv3 v3.2.6
- * (c) 2017-2019
+ * ejsv3 v3.2.6d
+ * (c) 2017-2019 
  * Released under the BSD-3-Clause License.
- *
+ * 
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.ejs = factory());
-}(window, (function () { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    (global.ejs = factory());
+}(window, (function () {
+  'use strict';
 
-/**
- * 加入系统判断功能
- */
-function osMixin(hybrid) {
+  /**
+   * 加入系统判断功能
+   */
+  function osMixin(hybrid) {
     var hybridJs = hybrid;
     var detect = function detect(ua) {
-        this.os = {};
+      this.os = {};
 
-        var android = ua.match(/(Android);?[\s/]+([\d.]+)?/);
+      var android = ua.match(/(Android);?[\s/]+([\d.]+)?/);
 
-        if (android) {
-            this.os.android = true;
-            this.os.version = android[2];
-            this.os.isBadAndroid = !/Chrome\/\d/.test(window.navigator.appVersion);
-        }
+      if (android) {
+        this.os.android = true;
+        this.os.version = android[2];
+        this.os.isBadAndroid = !/Chrome\/\d/.test(window.navigator.appVersion);
+      }
 
-        var iphone = ua.match(/(iPhone\sOS)\s([\d_]+)/);
+      var iphone = ua.match(/(iPhone\sOS)\s([\d_]+)/);
 
-        if (iphone) {
-            this.os.ios = true;
-            this.os.iphone = true;
-            this.os.version = iphone[2].replace(/_/g, '.');
-        }
+      if (iphone) {
+        this.os.ios = true;
+        this.os.iphone = true;
+        this.os.version = iphone[2].replace(/_/g, '.');
+      }
 
-        var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
+      var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
 
-        if (ipad) {
-            this.os.ios = true;
-            this.os.ipad = true;
-            this.os.version = ipad[2].replace(/_/g, '.');
-        }
+      if (ipad) {
+        this.os.ios = true;
+        this.os.ipad = true;
+        this.os.version = ipad[2].replace(/_/g, '.');
+      }
 
-        // epoint的容器
-        var ejs = ua.match(/EpointEJS/i);
+      // epoint的容器
+      var ejs = ua.match(/EpointEJS/i);
 
-        if (ejs) {
-            this.os.ejs = true;
-        }
+      if (ejs) {
+        this.os.ejs = true;
+      }
 
-        var dd = ua.match(/DingTalk/i);
+      var dd = ua.match(/DingTalk/i);
 
-        if (dd) {
-            this.os.dd = true;
-        }
+      if (dd) {
+        this.os.dd = true;
+      }
 
-        // 如果ejs和钉钉都不是，则默认为h5
-        if (!ejs && !dd) {
-            this.os.h5 = true;
-        }
+      // 如果ejs和钉钉都不是，则默认为h5
+      if (!ejs && !dd) {
+        this.os.h5 = true;
+      }
     };
 
     detect.call(hybridJs, navigator.userAgent);
-}
+  }
 
-/**
- * 不用polyfill，避免体积增大
- */
-function promiseMixin(hybrid) {
+  /**
+   * 不用polyfill，避免体积增大
+   */
+  function promiseMixin(hybrid) {
     var hybridJs = hybrid;
 
     // 暂时去除默认的promise支持，防止普通开发人员不会使用导致报错无法补货
     // hybridJs.Promise = window.Promise;
 
     hybridJs.getPromise = function () {
-        return hybridJs.Promise;
+      return hybridJs.Promise;
     };
 
     hybridJs.setPromise = function (newPromise) {
-        hybridJs.Promise = newPromise;
+      hybridJs.Promise = newPromise;
     };
-}
+  }
 
-var globalError = {
+  var globalError = {
 
     /**
      * 1001 api os错误
      */
     ERROR_TYPE_APIOS: {
-        code: 1001,
-        // 这个只是默认的提示，如果没有新的提示，就会采用默认的提示
-        msg: '该API无法在当前OS下运行'
+      code: 1001,
+      // 这个只是默认的提示，如果没有新的提示，就会采用默认的提示
+      msg: '该API无法在当前OS下运行'
     },
 
     /**
      * 1002 api modify错误
      */
     ERROR_TYPE_APIMODIFY: {
-        code: 1002,
-        msg: '不允许更改JSSDK的API'
+      code: 1002,
+      msg: '不允许更改JSSDK的API'
     },
 
     /**
      * 1003 module modify错误
      */
     ERROR_TYPE_MODULEMODIFY: {
-        code: 1003,
-        msg: '不允许更改JSSDK的模块'
+      code: 1003,
+      msg: '不允许更改JSSDK的模块'
     },
 
     /**
      * 1004 api 不存在
      */
     ERROR_TYPE_APINOTEXIST: {
-        code: 1004,
-        msg: '调用了不存在的api'
+      code: 1004,
+      msg: '调用了不存在的api'
     },
 
     /**
      * 1005 组件api对应的proto不存在
      */
     ERROR_TYPE_PROTONOTEXIST: {
-        code: 1005,
-        msg: '调用错误，该组件api对应的proto不存在'
+      code: 1005,
+      msg: '调用错误，该组件api对应的proto不存在'
     },
 
     /**
      * 1006 非容器环境下无法调用自定义组件API
      */
     ERROR_TYPE_CUSTOMEAPINOTEXIST: {
-        code: 1006,
-        msg: '非容器下无法调用自定义组件API'
+      code: 1006,
+      msg: '非容器下无法调用自定义组件API'
     },
 
     /**
      * 1007 对应的event事件在该环境下不存在
      */
     ERROR_TYPE_EVENTNOTEXIST: {
-        code: 1007,
-        msg: '对应的event事件在该环境下不存在'
+      code: 1007,
+      msg: '对应的event事件在该环境下不存在'
     },
 
     /**
      * 1008 对应的event事件在该环境下不存在
      */
     ERROR_TYPE_INITVERSIONERROR: {
-        code: 1008,
-        msg: '初始化版本号错误，请检查容器api的实现情况'
+      code: 1008,
+      msg: '初始化版本号错误，请检查容器api的实现情况'
     },
 
     /**
      * 1009 当前容器版本不支持API
      */
     ERROR_TYPE_APINEEDHIGHNATIVEVERSION: {
-        code: 1009,
-        msg: '当前API需要更高版本的容器支持'
+      code: 1009,
+      msg: '当前API需要更高版本的容器支持'
     },
 
     /**
      * 2001 ready modify错误-ready回调正常只允许定义一个
      */
     ERROR_TYPE_READYMODIFY: {
-        code: 2001,
-        msg: 'ready回调不允许多次设置'
+      code: 2001,
+      msg: 'ready回调不允许多次设置'
     },
 
     /**
      * 2002 config modify错误-正常一个页面只允许config一次
      */
     ERROR_TYPE_CONFIGMODIFY: {
-        code: 2002,
-        msg: 'config不允许多次调用'
+      code: 2002,
+      msg: 'config不允许多次调用'
     },
 
     /**
      * 2003 config 错误
      */
     ERROR_TYPE_CONFIGERROR: {
-        code: 2003,
-        msg: 'config校验错误'
+      code: 2003,
+      msg: 'config校验错误'
     },
 
     /**
      * 2004 version not support
      */
     ERROR_TYPE_VERSIONNOTSUPPORT: {
-        code: 2004,
-        msg: '不支持当前容器版本，请确保容器与前端库版本匹配'
+      code: 2004,
+      msg: '不支持当前容器版本，请确保容器与前端库版本匹配'
     },
 
     /**
      * 2004 version not support
      */
     ERROR_TYPE_VERSIONNEEDUPGRADE: {
-        code: 2005,
-        msg: '当前JSSDK库小于容器版本，请将前端库升级到最新版本'
+      code: 2005,
+      msg: '当前JSSDK库小于容器版本，请将前端库升级到最新版本'
     },
 
     /**
      * 3000 原生错误(非API错误)，原生捕获到的错误都会通知J5
      */
     ERROR_TYPE_NATIVE: {
-        code: 3000,
-        msg: '捕获到一处原生容器错误'
+      code: 3000,
+      msg: '捕获到一处原生容器错误'
     },
 
     /**
      * 3001 原生调用h5错误  原生通过JSBridge调用h5错误，可能是参数不对
      */
     ERROR_TYPE_NATIVECALL: {
-        code: 3001,
-        msg: '原生调用H5时参数不对'
+      code: 3001,
+      msg: '原生调用H5时参数不对'
     },
 
     /**
      * 9999 其它未知错误
      */
     ERROR_TYPE_UNKNOWN: {
-        code: 9999,
-        msg: '未知错误'
+      code: 9999,
+      msg: '未知错误'
     }
-};
+  };
 
-function warn(msg) {
+  function warn(msg) {
     // 模板字符串
     console.error("[hybridJs error]: " + msg);
-}
+  }
 
-function log(msg) {
+  function log(msg) {
     console.log("[hybridJs log]: " + msg);
-}
+  }
 
-function errorMixin(hybrid) {
+  function errorMixin(hybrid) {
     var hybridJs = hybrid;
     var errorFunc = void 0;
 
@@ -242,14 +243,14 @@ function errorMixin(hybrid) {
      * @param {String} msg 错误提示
      */
     function showError() {
-        var code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-        var msg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '错误!';
+      var code = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      var msg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '错误!';
 
-        warn('code:' + code + ', msg:' + msg);
-        errorFunc && errorFunc({
-            code: code,
-            message: msg
-        });
+      warn('code:' + code + ', msg:' + msg);
+      errorFunc && errorFunc({
+        code: code,
+        message: msg
+      });
     }
 
     hybridJs.showError = showError;
@@ -264,47 +265,47 @@ function errorMixin(hybrid) {
      * code 错误码
      */
     hybridJs.error = function error(callback) {
-        errorFunc = callback;
-        // 兼容钉钉
-        if (hybridJs.os.dd) {
-            window.dd && dd.error(errorFunc);
-        }
+      errorFunc = callback;
+      // 兼容钉钉
+      if (hybridJs.os.dd) {
+        window.dd && dd.error(errorFunc);
+      }
     };
-}
+  }
 
-function isObject(object) {
+  function isObject(object) {
     var classType = Object.prototype.toString.call(object).match(/^\[object\s(.*)\]$/)[1];
 
     return classType !== 'String' && classType !== 'Number' && classType !== 'Boolean' && classType !== 'Undefined' && classType !== 'Null';
-}
+  }
 
-var noop = function noop() {};
+  var noop = function noop() {};
 
-function extend(target) {
+  function extend(target) {
     var finalTarget = target;
 
     for (var _len = arguments.length, rest = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        rest[_key - 1] = arguments[_key];
+      rest[_key - 1] = arguments[_key];
     }
 
     rest.forEach(function (source) {
-        source && Object.keys(source).forEach(function (key) {
-            finalTarget[key] = source[key];
-        });
+      source && Object.keys(source).forEach(function (key) {
+        finalTarget[key] = source[key];
+      });
     });
 
     return finalTarget;
-}
+  }
 
-/**
- * 如果version1大于version2，返回1，如果小于，返回-1，否则返回0。 TODO
- * @param {string} version1 版本1
- * @param {string} version2 版本2
- * @return {number} 返回版本1和版本2的关系
- */
-function compareVersion(version1, version2) {
+  /**
+   * 如果version1大于version2，返回1，如果小于，返回-1，否则返回0。 TODO
+   * @param {string} version1 版本1
+   * @param {string} version2 版本2
+   * @return {number} 返回版本1和版本2的关系
+   */
+  function compareVersion(version1, version2) {
     if (typeof version1 !== 'string' || typeof version2 !== 'string') {
-        throw new Error('version need to be string type');
+      throw new Error('version need to be string type');
     }
 
     var verArr1 = version1.split('.');
@@ -313,41 +314,41 @@ function compareVersion(version1, version2) {
 
     // forin不推荐，foreach不能return与break
     for (var i = 0; i < len; i += 1) {
-        var ver1 = verArr1[i] || 0;
-        var ver2 = verArr2[i] || 0;
+      var ver1 = verArr1[i] || 0;
+      var ver2 = verArr2[i] || 0;
 
-        if (i === 2) {
-            if (isNaN(+ver1)) {
-                ver1 = ver1.slice(0, ver1.length - 1);
-            }
-
-            if (isNaN(+ver2)) {
-                ver2 = ver2.slice(0, ver2.length - 1);
-            }
+      if (i === 2) {
+        if (isNaN(+ver1)) {
+          ver1 = ver1.slice(0, ver1.length - 1);
         }
 
-        // 隐式转化为数字
-        ver1 -= 0;
-        ver2 -= 0;
-
-        if (ver1 > ver2) {
-            return 1;
-        } else if (ver1 < ver2) {
-            return -1;
+        if (isNaN(+ver2)) {
+          ver2 = ver2.slice(0, ver2.length - 1);
         }
+      }
+
+      // 隐式转化为数字
+      ver1 -= 0;
+      ver2 -= 0;
+
+      if (ver1 > ver2) {
+        return 1;
+      } else if (ver1 < ver2) {
+        return -1;
+      }
     }
 
     return 0;
-}
+  }
 
-/**
- * 字符串超出截取
- * @param {string} str 目标字符串
- * @param {Number} count 字数，以英文为基数，如果是中文，会自动除2
- * @return {string} 返回截取后的字符串
- * 暂时不考虑只遍历一部分的性能问题，因为在应用场景内是微不足道的
- */
-function eclipseText() {
+  /**
+   * 字符串超出截取
+   * @param {string} str 目标字符串
+   * @param {Number} count 字数，以英文为基数，如果是中文，会自动除2
+   * @return {string} 返回截取后的字符串
+   * 暂时不考虑只遍历一部分的性能问题，因为在应用场景内是微不足道的
+   */
+  function eclipseText() {
     var str = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
     var count = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 6;
 
@@ -356,18 +357,18 @@ function eclipseText() {
     var num = 0;
 
     return str.split('').filter(function (ch) {
-        num += /[\u4e00-\u9fa5]/.test(ch) ? LEN_CHINESE : LEN_ENGLISH;
+      num += /[\u4e00-\u9fa5]/.test(ch) ? LEN_CHINESE : LEN_ENGLISH;
 
-        return num <= count;
+      return num <= count;
     }).join('');
-}
+  }
 
-/**
- * 得到一个项目的根路径
- * h5模式下例如:http://id:端口/项目名/
- * @return {String} 项目的根路径
- */
-function getProjectBasePath() {
+  /**
+   * 得到一个项目的根路径
+   * h5模式下例如:http://id:端口/项目名/
+   * @return {String} 项目的根路径
+   */
+  function getProjectBasePath() {
     var locObj = window.location;
     var patehName = locObj.pathname;
     var pathArray = patehName.split('/');
@@ -378,15 +379,15 @@ function getProjectBasePath() {
 
     // 如果尾部有两个//替换成一个
     return (locObj.protocol + '//' + locObj.host + '/' + contextPath).replace(/[/]{2}$/, '/');
-}
+  }
 
-/**
- * 将相对路径转为绝对路径 ./ ../ 开头的  为相对路径
- * 会基于对应调用js的html路径去计算
- * @param {String} path 需要转换的路径
- * @return {String} 返回转换后的路径
- */
-function changeRelativePathToAbsolute(path) {
+  /**
+   * 将相对路径转为绝对路径 ./ ../ 开头的  为相对路径
+   * 会基于对应调用js的html路径去计算
+   * @param {String} path 需要转换的路径
+   * @return {String} 返回转换后的路径
+   */
+  function changeRelativePathToAbsolute(path) {
     var locObj = window.location;
     var patehName = locObj.pathname;
     // 匹配相对路径返回父级的个数
@@ -402,36 +403,36 @@ function changeRelativePathToAbsolute(path) {
     finalPath = locObj.protocol + '//' + locObj.host + finalPath;
 
     return finalPath;
-}
+  }
 
-/**
- * 得到一个全路径
- * @param {String} path 路径
- * @return {String} 返回最终的路径
- */
-function getFullPath(path) {
+  /**
+   * 得到一个全路径
+   * @param {String} path 路径
+   * @return {String} 返回最终的路径
+   */
+  function getFullPath(path) {
     // 全路径
     if (/^(http|https|ftp|\/\/)/g.test(path)) {
-        return path;
+      return path;
     }
 
     // 是否是相对路径
     var isRelative = /(\.\/)|(\.\.\/)/.test(path);
 
     if (isRelative) {
-        return changeRelativePathToAbsolute(path);
+      return changeRelativePathToAbsolute(path);
     }
 
     return '' + getProjectBasePath() + path;
-}
+  }
 
-/**
- * 将json参数拼接到url中
- * @param {String} url url地址
- * @param {Object} data 需要添加的json数据
- * @return {String} 返回最终的url
- */
-function getFullUrlByParams() {
+  /**
+   * 将json参数拼接到url中
+   * @param {String} url url地址
+   * @param {Object} data 需要添加的json数据
+   * @return {String} 返回最终的url
+   */
+  function getFullUrlByParams() {
     var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
     var data = arguments[1];
 
@@ -439,35 +440,35 @@ function getFullUrlByParams() {
     var extrasDataStr = '';
 
     if (data) {
-        Object.keys(data).forEach(function (item) {
-            if (extrasDataStr.indexOf('?') === -1 && fullUrl.indexOf('?') === -1) {
-                extrasDataStr += '?';
-            } else {
-                extrasDataStr += '&';
-            }
-            extrasDataStr += item + '=' + data[item];
-        });
+      Object.keys(data).forEach(function (item) {
+        if (extrasDataStr.indexOf('?') === -1 && fullUrl.indexOf('?') === -1) {
+          extrasDataStr += '?';
+        } else {
+          extrasDataStr += '&';
+        }
+        extrasDataStr += item + '=' + data[item];
+      });
     }
 
     fullUrl += extrasDataStr;
 
     return fullUrl;
-}
+  }
 
-/**
- * 获取 base64 去除 url 部分
- * @param {String} base64 base64值
- * @returns {String} 该 base64 去除 url 后的值
- */
-function getBase64NotUrl(base64) {
+  /**
+   * 获取 base64 去除 url 部分
+   * @param {String} base64 base64值
+   * @returns {String} 该 base64 去除 url 后的值
+   */
+  function getBase64NotUrl(base64) {
     return base64.replace(/^data.*,/, '');
-}
+  }
 
-/**
- * 依赖于以下的基础库
- * Promise
- */
-function proxyMixin(hybrid) {
+  /**
+   * 依赖于以下的基础库
+   * Promise
+   */
+  function proxyMixin(hybrid) {
     var hybridJs = hybrid;
     var globalError = hybridJs.globalError;
 
@@ -478,104 +479,104 @@ function proxyMixin(hybrid) {
      * @constructor
      */
     function Proxy(api, callback) {
-        this.api = api;
-        this.callback = callback;
+      this.api = api;
+      this.callback = callback;
     }
 
     /**
      * 实际的代理操作
      */
     Proxy.prototype.walk = function walk() {
-        var _this = this;
+      var _this = this;
 
-        // 实时获取promise
-        var Promise = hybridJs.getPromise();
+      // 实时获取promise
+      var Promise = hybridJs.getPromise();
 
-        // 返回一个闭包函数
-        return function () {
-            for (var _len = arguments.length, rest = Array(_len), _key = 0; _key < _len; _key++) {
-                rest[_key] = arguments[_key];
+      // 返回一个闭包函数
+      return function () {
+        for (var _len = arguments.length, rest = Array(_len), _key = 0; _key < _len; _key++) {
+          rest[_key] = arguments[_key];
+        }
+
+        var args = rest;
+
+        args[0] = args[0] || {};
+
+        // 默认参数的处理
+        if (_this.api.defaultParams && args[0] instanceof Object) {
+          Object.keys(_this.api.defaultParams).forEach(function (item) {
+            if (args[0][item] === undefined) {
+              args[0][item] = _this.api.defaultParams[item];
             }
+          });
+        }
 
-            var args = rest;
+        // 决定是否使用Promise
+        var finallyCallback = void 0;
 
-            args[0] = args[0] || {};
+        if (_this.callback) {
+          // 将this指针修正为proxy内部，方便直接使用一些api关键参数
+          finallyCallback = _this.callback;
+        }
 
-            // 默认参数的处理
-            if (_this.api.defaultParams && args[0] instanceof Object) {
-                Object.keys(_this.api.defaultParams).forEach(function (item) {
-                    if (args[0][item] === undefined) {
-                        args[0][item] = _this.api.defaultParams[item];
-                    }
-                });
-            }
+        if (_this.api.support && hybridJs.nativeVersion && compareVersion(hybridJs.nativeVersion, _this.api.support) < 0) {
+          // 如果当前版本还不支持API
+          // 实际上也可以在原生容器进行检测，这里由于遗留问题，改为前端进行
+          var msg = _this.api.namespace + '\u8981\u6C42\u7684\u5BB9\u5668\u7248\u672C\u81F3\u5C11\u4E3A:' + _this.api.support + '\uFF0C\u5F53\u524D\u5BB9\u5668\u7248\u672C\uFF1A' + hybridJs.nativeVersion + '\uFF0C\u8BF7\u5347\u7EA7';
 
-            // 决定是否使用Promise
-            var finallyCallback = void 0;
+          var errorTips = {
+            code: globalError.ERROR_TYPE_APINEEDHIGHNATIVEVERSION.code,
+            msg: msg
+          };
 
-            if (_this.callback) {
-                // 将this指针修正为proxy内部，方便直接使用一些api关键参数
-                finallyCallback = _this.callback;
-            }
+          if (hybridJs.ui && typeof hybridJs.ui.toast === 'function') {
+            hybridJs.ui.toast(msg);
+          }
 
-            if (_this.api.support && hybridJs.nativeVersion && compareVersion(hybridJs.nativeVersion, _this.api.support) < 0) {
-                // 如果当前版本还不支持API
-                // 实际上也可以在原生容器进行检测，这里由于遗留问题，改为前端进行
-                var msg = _this.api.namespace + '\u8981\u6C42\u7684\u5BB9\u5668\u7248\u672C\u81F3\u5C11\u4E3A:' + _this.api.support + '\uFF0C\u5F53\u524D\u5BB9\u5668\u7248\u672C\uFF1A' + hybridJs.nativeVersion + '\uFF0C\u8BF7\u5347\u7EA7';
-
-                var errorTips = {
-                    code: globalError.ERROR_TYPE_APINEEDHIGHNATIVEVERSION.code,
-                    msg: msg
-                };
-
-                if (hybridJs.ui && typeof hybridJs.ui.toast === 'function') {
-                    hybridJs.ui.toast(msg);
-                }
-
-                // 不满足要求，直接走错误回调，内部走错误
-                finallyCallback = function finallyCallback() {
-                    var len = arguments.length;
-                    var options = arguments.length <= 0 ? undefined : arguments[0];
-                    var reject = void 0;
-
-                    if (Promise) {
-                        reject = arguments.length <= len - 1 ? undefined : arguments[len - 1];
-                    }
-
-                    // 如果存在错误回调
-                    options.error && options.error(errorTips);
-                    reject && reject(errorTips);
-                };
-            }
+          // 不满足要求，直接走错误回调，内部走错误
+          finallyCallback = function finallyCallback() {
+            var len = arguments.length;
+            var options = arguments.length <= 0 ? undefined : arguments[0];
+            var reject = void 0;
 
             if (Promise) {
-                return finallyCallback && new Promise(function (resolve, reject) {
-                    // 拓展 args
-                    args = args.concat([resolve, reject]);
-                    finallyCallback.apply(_this, args);
-                });
+              reject = arguments.length <= len - 1 ? undefined : arguments[len - 1];
             }
 
-            return finallyCallback && finallyCallback.apply(_this, args);
-        };
+            // 如果存在错误回调
+            options.error && options.error(errorTips);
+            reject && reject(errorTips);
+          };
+        }
+
+        if (Promise) {
+          return finallyCallback && new Promise(function (resolve, reject) {
+            // 拓展 args
+            args = args.concat([resolve, reject]);
+            finallyCallback.apply(_this, args);
+          });
+        }
+
+        return finallyCallback && finallyCallback.apply(_this, args);
+      };
     };
 
     /**
      * 析构函数
      */
     Proxy.prototype.dispose = function dispose() {
-        this.api = null;
-        this.callback = null;
+      this.api = null;
+      this.callback = null;
     };
 
     hybridJs.Proxy = Proxy;
-}
+  }
 
-/**
- * h5和原生交互，jsbridge核心代码
- * 依赖于showError，globalError，os
- */
-function jsbridgeMixin(hybrid) {
+  /**
+   * h5和原生交互，jsbridge核心代码
+   * 依赖于showError，globalError，os
+   */
+  function jsbridgeMixin(hybrid) {
     var hybridJs = hybrid;
 
     // 必须要有一个全局的JSBridge，否则原生和H5无法通信
@@ -611,16 +612,16 @@ function jsbridgeMixin(hybrid) {
      * @return {Number} 返回一个随机的短期回调id
      */
     function getCallbackId() {
-        var exclude = function exclude(port) {
-            if (excludePort.indexOf(port) !== -1) {
-                return exclude(Math.floor(Math.random() * uniqueLongCallbackId));
-            }
+      var exclude = function exclude(port) {
+        if (excludePort.indexOf(port) !== -1) {
+          return exclude(Math.floor(Math.random() * uniqueLongCallbackId));
+        }
 
-            return port;
-        };
+        return port;
+      };
 
-        // 确保每次都不会和长期id相同
-        return exclude(Math.floor(Math.random() * uniqueLongCallbackId));
+      // 确保每次都不会和长期id相同
+      return exclude(Math.floor(Math.random() * uniqueLongCallbackId));
     }
 
     /**
@@ -629,11 +630,11 @@ function jsbridgeMixin(hybrid) {
      * @return {String} 转为字符串后的结果
      */
     function getParam(data) {
-        if (typeof data !== 'string') {
-            return JSON.stringify(data);
-        }
+      if (typeof data !== 'string') {
+        return JSON.stringify(data);
+      }
 
-        return data;
+      return data;
     }
 
     /**
@@ -644,27 +645,27 @@ function jsbridgeMixin(hybrid) {
      * @return {String} 返回拼接后的uri
      */
     function getUri(proto, message) {
-        var uri = CUSTOM_PROTOCOL_SCHEME + '://' + proto;
+      var uri = CUSTOM_PROTOCOL_SCHEME + '://' + proto;
 
-        // 回调id作为端口存在
-        var callbackId = void 0;
-        var method = void 0;
-        var params = void 0;
+      // 回调id作为端口存在
+      var callbackId = void 0;
+      var method = void 0;
+      var params = void 0;
 
-        if (message.callbackId) {
-            // 必须有回调id才能生成一个scheme
-            // 这种情况是H5主动调用native时
-            callbackId = message.callbackId;
-            method = message.handlerName;
-            params = message.data;
-        }
+      if (message.callbackId) {
+        // 必须有回调id才能生成一个scheme
+        // 这种情况是H5主动调用native时
+        callbackId = message.callbackId;
+        method = message.handlerName;
+        params = message.data;
+      }
 
-        // 参数转为字符串
-        params = encodeURIComponent(getParam(params));
-        // uri 补充,需要编码，防止非法字符
-        uri += ':' + callbackId + '/' + method + '?' + params;
+      // 参数转为字符串
+      params = encodeURIComponent(getParam(params));
+      // uri 补充,需要编码，防止非法字符
+      uri += ':' + callbackId + '/' + method + '?' + params;
 
-        return uri;
+      return uri;
     }
 
     /**
@@ -674,36 +675,36 @@ function jsbridgeMixin(hybrid) {
      * @param {Object} responseCallback 调用完方法后的回调,或者长期回调的id
      */
     function doSend(proto, message, responseCallback) {
-        var newMessage = message;
+      var newMessage = message;
 
-        if (typeof responseCallback === 'function') {
-            // 如果传入的回调时函数，需要给它生成id
-            // 取到一个唯一的callbackid
-            var callbackId = getCallbackId();
-            // 回调函数添加到短期集合中
-            responseCallbacks[callbackId] = responseCallback;
-            // 方法的详情添加回调函数的关键标识
-            newMessage.callbackId = callbackId;
+      if (typeof responseCallback === 'function') {
+        // 如果传入的回调时函数，需要给它生成id
+        // 取到一个唯一的callbackid
+        var callbackId = getCallbackId();
+        // 回调函数添加到短期集合中
+        responseCallbacks[callbackId] = responseCallback;
+        // 方法的详情添加回调函数的关键标识
+        newMessage.callbackId = callbackId;
+      } else {
+        // 如果传入时已经是id，代表已经在回调池中了，直接使用即可
+        newMessage.callbackId = responseCallback;
+      }
+
+      // 获取 触发方法的url scheme
+      var uri = getUri(proto, newMessage);
+
+      if (os.ejs) {
+        // 依赖于os判断
+        if (os.ios) {
+          // ios采用
+          window.webkit.messageHandlers.WKWebViewJavascriptBridge.postMessage(uri);
         } else {
-            // 如果传入时已经是id，代表已经在回调池中了，直接使用即可
-            newMessage.callbackId = responseCallback;
+          window.top.prompt(uri, '');
         }
-
-        // 获取 触发方法的url scheme
-        var uri = getUri(proto, newMessage);
-
-        if (os.ejs) {
-            // 依赖于os判断
-            if (os.ios) {
-                // ios采用
-                window.webkit.messageHandlers.WKWebViewJavascriptBridge.postMessage(uri);
-            } else {
-                window.top.prompt(uri, '');
-            }
-        } else {
-            // 浏览器
-            warn('\u6D4F\u89C8\u5668\u4E2Djsbridge\u65E0\u6548,\u5BF9\u5E94scheme:' + uri);
-        }
+      } else {
+        // 浏览器
+        warn('\u6D4F\u89C8\u5668\u4E2Djsbridge\u65E0\u6548,\u5BF9\u5E94scheme:' + uri);
+      }
     }
 
     /**
@@ -714,7 +715,7 @@ function jsbridgeMixin(hybrid) {
      * @param {Function} handler 对应的方法
      */
     JSBridge.registerHandler = function registerHandler(handlerName, handler) {
-        messageHandlers[handlerName] = handler;
+      messageHandlers[handlerName] = handler;
     };
 
     /**
@@ -723,7 +724,7 @@ function jsbridgeMixin(hybrid) {
      * @param {Function} callback 对应回调函数
      */
     JSBridge.registerLongCallback = function registerLongCallback(callbackId, callback) {
-        responseCallbacksLongTerm[callbackId] = callback;
+      responseCallbacksLongTerm[callbackId] = callback;
     };
 
     /**
@@ -732,9 +733,9 @@ function jsbridgeMixin(hybrid) {
      * @return {Number} 返回长期回调id
      */
     JSBridge.getLongCallbackId = function getLongCallbackId() {
-        uniqueLongCallbackId -= 1;
+      uniqueLongCallbackId -= 1;
 
-        return uniqueLongCallbackId;
+      return uniqueLongCallbackId;
     };
 
     /**
@@ -745,10 +746,10 @@ function jsbridgeMixin(hybrid) {
      * @param {Object} callback 回调函数或者是长期的回调id
      */
     JSBridge.callHandler = function callHandler(proto, handlerName, data, callback) {
-        doSend(proto, {
-            handlerName: handlerName,
-            data: data
-        }, callback);
+      doSend(proto, {
+        handlerName: handlerName,
+        data: data
+      }, callback);
     };
 
     /**
@@ -756,61 +757,61 @@ function jsbridgeMixin(hybrid) {
      * @param {String} messageJSON 对应的方法的详情,需要手动转为json
      */
     JSBridge._handleMessageFromNative = function _handleMessageFromNative(messageJSON) {
-        /**
-         * 处理原生过来的方法
-         */
-        function doDispatchMessageFromNative() {
-            var message = void 0;
+      /**
+       * 处理原生过来的方法
+       */
+      function doDispatchMessageFromNative() {
+        var message = void 0;
 
-            try {
-                if (typeof messageJSON === 'string') {
-                    message = decodeURIComponent(messageJSON);
-                    message = JSON.parse(message);
-                } else {
-                    message = messageJSON;
-                }
-            } catch (e) {
-                showError(globalError.ERROR_TYPE_NATIVECALL.code, globalError.ERROR_TYPE_NATIVECALL.msg);
+        try {
+          if (typeof messageJSON === 'string') {
+            message = decodeURIComponent(messageJSON);
+            message = JSON.parse(message);
+          } else {
+            message = messageJSON;
+          }
+        } catch (e) {
+          showError(globalError.ERROR_TYPE_NATIVECALL.code, globalError.ERROR_TYPE_NATIVECALL.msg);
 
-                return;
-            }
-
-            // 回调函数
-            var responseId = message.responseId;
-            var responseData = message.responseData;
-            var responseCallback = void 0;
-
-            if (responseId) {
-                // 这里规定,原生执行方法完毕后准备通知h5执行回调时,回调函数id是responseId
-                responseCallback = responseCallbacks[responseId];
-                // 默认先短期再长期
-                responseCallback = responseCallback || responseCallbacksLongTerm[responseId];
-                // 执行本地的回调函数
-                responseCallback && responseCallback(responseData);
-
-                delete responseCallbacks[responseId];
-            } else {
-                /**
-                 * 否则,代表原生主动执行h5本地的函数
-                 * 从本地注册的函数中获取
-                 */
-                var handler = messageHandlers[message.handlerName];
-                var data = message.data;
-
-                // 执行本地函数,按照要求传入数据和回调
-                handler && handler(data);
-            }
+          return;
         }
 
-        // 使用异步
-        setTimeout(doDispatchMessageFromNative);
-    };
-}
+        // 回调函数
+        var responseId = message.responseId;
+        var responseData = message.responseData;
+        var responseCallback = void 0;
 
-/**
- * 内部触发jsbridge的方式，作为一个工具类提供
- */
-function generateJSBridgeTrigger(JSBridge) {
+        if (responseId) {
+          // 这里规定,原生执行方法完毕后准备通知h5执行回调时,回调函数id是responseId
+          responseCallback = responseCallbacks[responseId];
+          // 默认先短期再长期
+          responseCallback = responseCallback || responseCallbacksLongTerm[responseId];
+          // 执行本地的回调函数
+          responseCallback && responseCallback(responseData);
+
+          delete responseCallbacks[responseId];
+        } else {
+          /**
+           * 否则,代表原生主动执行h5本地的函数
+           * 从本地注册的函数中获取
+           */
+          var handler = messageHandlers[message.handlerName];
+          var data = message.data;
+
+          // 执行本地函数,按照要求传入数据和回调
+          handler && handler(data);
+        }
+      }
+
+      // 使用异步
+      setTimeout(doDispatchMessageFromNative);
+    };
+  }
+
+  /**
+   * 内部触发jsbridge的方式，作为一个工具类提供
+   */
+  function generateJSBridgeTrigger(JSBridge) {
     /**
      * 有三大类型，短期回调，延时回调，长期回调，其中长期回调中又有一个event比较特殊
      * @param {JSON} options 配置参数，包括
@@ -823,62 +824,62 @@ function generateJSBridgeTrigger(JSBridge) {
      * @param {Function} reject promise中失败回调函数
      */
     return function callJsBridge(options, resolve, reject) {
-        var success = options.success;
-        var error = options.error;
-        var dataFilter = options.dataFilter;
-        var proto = options.proto;
-        var handlerName = options.handlerName;
-        var isLongCb = options.isLongCb;
-        var isEvent = options.isEvent;
-        var data = options.data;
+      var success = options.success;
+      var error = options.error;
+      var dataFilter = options.dataFilter;
+      var proto = options.proto;
+      var handlerName = options.handlerName;
+      var isLongCb = options.isLongCb;
+      var isEvent = options.isEvent;
+      var data = options.data;
 
-        // 统一的回调处理
-        var cbFunc = function cbFunc(res) {
-            if (res.code === 0) {
-                error && error(res);
-                // 长期回调不走promise
-                !isLongCb && reject && reject(res);
-            } else {
-                var finalRes = res;
-
-                if (dataFilter) {
-                    finalRes = dataFilter(finalRes);
-                }
-                // 提取出result
-                success && success(finalRes.result);
-                !isLongCb && resolve && resolve(finalRes.result);
-            }
-        };
-
-        if (isLongCb) {
-            /**
-             * 长期回调的做法，需要注册一个长期回调id,每一个方法都有一个固定的长期回调id
-             * 短期回调的做法(短期回调执行一次后会自动销毁)
-             * 但长期回调不会销毁，因此可以持续触发，例如下拉刷新
-             * 长期回调id通过函数自动生成，每次会获取一个唯一的id
-             */
-            var longCbId = JSBridge.getLongCallbackId();
-
-            if (isEvent) {
-                // 如果是event，data里需要增加一个参数
-                data.port = longCbId;
-            }
-            JSBridge.registerLongCallback(longCbId, cbFunc);
-            // 传入的是id
-            JSBridge.callHandler(proto, handlerName, data, longCbId);
-            // 长期回调默认就成功了，这是兼容的情况，防止有人误用
-            resolve && resolve();
+      // 统一的回调处理
+      var cbFunc = function cbFunc(res) {
+        if (res.code === 0) {
+          error && error(res);
+          // 长期回调不走promise
+          !isLongCb && reject && reject(res);
         } else {
-            // 短期回调直接使用方法
-            JSBridge.callHandler(proto, handlerName, data, cbFunc);
-        }
-    };
-}
+          var finalRes = res;
 
-/**
- * 如果api没有runcode，应该有一个默认的实现
- */
-function callinnerMixin(hybrid) {
+          if (dataFilter) {
+            finalRes = dataFilter(finalRes);
+          }
+          // 提取出result
+          success && success(finalRes.result);
+          !isLongCb && resolve && resolve(finalRes.result);
+        }
+      };
+
+      if (isLongCb) {
+        /**
+         * 长期回调的做法，需要注册一个长期回调id,每一个方法都有一个固定的长期回调id
+         * 短期回调的做法(短期回调执行一次后会自动销毁)
+         * 但长期回调不会销毁，因此可以持续触发，例如下拉刷新
+         * 长期回调id通过函数自动生成，每次会获取一个唯一的id
+         */
+        var longCbId = JSBridge.getLongCallbackId();
+
+        if (isEvent) {
+          // 如果是event，data里需要增加一个参数
+          data.port = longCbId;
+        }
+        JSBridge.registerLongCallback(longCbId, cbFunc);
+        // 传入的是id
+        JSBridge.callHandler(proto, handlerName, data, longCbId);
+        // 长期回调默认就成功了，这是兼容的情况，防止有人误用
+        resolve && resolve();
+      } else {
+        // 短期回调直接使用方法
+        JSBridge.callHandler(proto, handlerName, data, cbFunc);
+      }
+    };
+  }
+
+  /**
+   * 如果api没有runcode，应该有一个默认的实现
+   */
+  function callinnerMixin(hybrid) {
     var hybridJs = hybrid;
     var os = hybridJs.os;
     var JSBridge = hybridJs.JSBridge;
@@ -891,42 +892,42 @@ function callinnerMixin(hybrid) {
      * @param {Function} reject promise的失败回调
      */
     function callInner(options, resolve, reject) {
-        var data = extend({}, options);
+      var data = extend({}, options);
 
-        // 纯数据不需要回调
-        data.success = undefined;
-        data.error = undefined;
-        data.dataFilter = undefined;
+      // 纯数据不需要回调
+      data.success = undefined;
+      data.error = undefined;
+      data.dataFilter = undefined;
 
-        if (os.ejs) {
-            // 默认ejs环境才触发jsbridge
-            callJsBridge({
-                handlerName: this.api.namespace,
-                data: data,
-                proto: this.api.moduleName,
-                success: options.success,
-                error: options.error,
-                dataFilter: options.dataFilter,
-                isLongCb: this.api.isLongCb,
-                isEvent: this.api.isEvent
-            }, resolve, reject);
-        }
+      if (os.ejs) {
+        // 默认ejs环境才触发jsbridge
+        callJsBridge({
+          handlerName: this.api.namespace,
+          data: data,
+          proto: this.api.moduleName,
+          success: options.success,
+          error: options.error,
+          dataFilter: options.dataFilter,
+          isLongCb: this.api.isLongCb,
+          isEvent: this.api.isEvent
+        }, resolve, reject);
+      }
     }
 
     hybridJs.callInner = callInner;
-}
+  }
 
-/**
- * 定义API的添加
- * 必须按照特定方法添加API才能正常的代理
- * 依赖于一些基本库
- * os
- * Proxy
- * globalError
- * showError
- * callInner
- */
-function defineapiMixin(hybrid) {
+  /**
+   * 定义API的添加
+   * 必须按照特定方法添加API才能正常的代理
+   * 依赖于一些基本库
+   * os
+   * Proxy
+   * globalError
+   * showError
+   * callInner
+   */
+  function defineapiMixin(hybrid) {
     var hybridJs = hybrid;
     var Proxy = hybridJs.Proxy;
     var globalError = hybridJs.globalError;
@@ -949,61 +950,61 @@ function defineapiMixin(hybrid) {
     var supportOsArray = ['ejs', 'dd', 'h5'];
 
     function getCurrProxyApiOs(currOs) {
-        for (var i = 0, len = supportOsArray.length; i < len; i += 1) {
-            if (currOs[supportOsArray[i]]) {
-                return supportOsArray[i];
-            }
+      for (var i = 0, len = supportOsArray.length; i < len; i += 1) {
+        if (currOs[supportOsArray[i]]) {
+          return supportOsArray[i];
         }
+      }
 
-        // 默认是h5
-        return 'h5';
+      // 默认是h5
+      return 'h5';
     }
 
     function getModuleApiParentByNameSpace(module, namespace) {
-        var apiParent = module;
-        // 只取命名空间的父级,如果仅仅是xxx，是没有父级的
-        var parentNamespaceArray = /[.]/.test(namespace) ? namespace.replace(/[.][^.]+$/, '').split('.') : [];
+      var apiParent = module;
+      // 只取命名空间的父级,如果仅仅是xxx，是没有父级的
+      var parentNamespaceArray = /[.]/.test(namespace) ? namespace.replace(/[.][^.]+$/, '').split('.') : [];
 
-        parentNamespaceArray.forEach(function (item) {
-            apiParent[item] = apiParent[item] || {};
-            apiParent = apiParent[item];
-        });
+      parentNamespaceArray.forEach(function (item) {
+        apiParent[item] = apiParent[item] || {};
+        apiParent = apiParent[item];
+      });
 
-        return apiParent;
+      return apiParent;
     }
 
     function proxyApiNamespace(apiParent, apiName, finalNameSpace, api) {
-        // 代理API，将apiParent里的apiName代理到Proxy执行
-        Object.defineProperty(apiParent, apiName, {
-            configurable: true,
-            enumerable: true,
-            get: function proxyGetter() {
-                // 确保get得到的函数一定是能执行的
-                var nameSpaceApi = proxysApis[finalNameSpace];
-                // 得到当前是哪一个环境，获得对应环境下的代理对象
-                var proxyObj = nameSpaceApi[getCurrProxyApiOs(os)] || nameSpaceApi.h5;
+      // 代理API，将apiParent里的apiName代理到Proxy执行
+      Object.defineProperty(apiParent, apiName, {
+        configurable: true,
+        enumerable: true,
+        get: function proxyGetter() {
+          // 确保get得到的函数一定是能执行的
+          var nameSpaceApi = proxysApis[finalNameSpace];
+          // 得到当前是哪一个环境，获得对应环境下的代理对象
+          var proxyObj = nameSpaceApi[getCurrProxyApiOs(os)] || nameSpaceApi.h5;
 
-                if (proxyObj) {
-                    /**
-                     * 返回代理对象，所以所有的api都会通过这个代理函数
-                     * 注意引用问题，如果直接返回原型链式的函数对象，由于是在getter中，里面的this会被改写
-                     * 所以需要通过walk后主动返回
-                     */
-                    return proxyObj.walk();
-                }
+          if (proxyObj) {
+            /**
+             * 返回代理对象，所以所有的api都会通过这个代理函数
+             * 注意引用问题，如果直接返回原型链式的函数对象，由于是在getter中，里面的this会被改写
+             * 所以需要通过walk后主动返回
+             */
+            return proxyObj.walk();
+          }
 
-                // 正常情况下走不到，除非预编译的时候在walk里手动抛出
-                var osErrorTips = api.os ? api.os.join('或') : '"非法"';
-                var msg = api.namespace + '\u8981\u6C42\u7684os\u73AF\u5883\u4E3A:' + osErrorTips;
+          // 正常情况下走不到，除非预编译的时候在walk里手动抛出
+          var osErrorTips = api.os ? api.os.join('或') : '"非法"';
+          var msg = api.namespace + '\u8981\u6C42\u7684os\u73AF\u5883\u4E3A:' + osErrorTips;
 
-                showError(globalError.ERROR_TYPE_APIOS.code, msg);
+          showError(globalError.ERROR_TYPE_APIOS.code, msg);
 
-                return noop;
-            },
-            set: function proxySetter() {
-                showError(globalError.ERROR_TYPE_APIMODIFY.code, globalError.ERROR_TYPE_APIMODIFY.msg);
-            }
-        });
+          return noop;
+        },
+        set: function proxySetter() {
+          showError(globalError.ERROR_TYPE_APIMODIFY.code, globalError.ERROR_TYPE_APIMODIFY.msg);
+        }
+      });
     }
 
     /**
@@ -1011,20 +1012,20 @@ function defineapiMixin(hybrid) {
      * @param {String} moduleName 模块名
      */
     function observeModule(moduleName) {
-        Object.defineProperty(hybridJs, moduleName, {
-            configurable: true,
-            enumerable: true,
-            get: function proxyGetter() {
-                if (!proxysModules[moduleName]) {
-                    proxysModules[moduleName] = {};
-                }
+      Object.defineProperty(hybridJs, moduleName, {
+        configurable: true,
+        enumerable: true,
+        get: function proxyGetter() {
+          if (!proxysModules[moduleName]) {
+            proxysModules[moduleName] = {};
+          }
 
-                return proxysModules[moduleName];
-            },
-            set: function proxySetter() {
-                showError(globalError.ERROR_TYPE_MODULEMODIFY.code, globalError.ERROR_TYPE_MODULEMODIFY.msg);
-            }
-        });
+          return proxysModules[moduleName];
+        },
+        set: function proxySetter() {
+          showError(globalError.ERROR_TYPE_MODULEMODIFY.code, globalError.ERROR_TYPE_MODULEMODIFY.msg);
+        }
+      });
     }
 
     /**
@@ -1036,66 +1037,66 @@ function defineapiMixin(hybrid) {
      * defaultParams 默认参数
      */
     function extendApi(moduleName, apiParam) {
-        if (!apiParam || !apiParam.namespace) {
-            return;
+      if (!apiParam || !apiParam.namespace) {
+        return;
+      }
+      if (!hybridJs[moduleName]) {
+        // 如果没有定义模块，监听整个模块，用代理取值，防止重定义
+        // 这样，模块只允许初次定义以及之后的赋值，其它操作都会被内部拒绝
+        observeModule(moduleName);
+      }
+
+      var api = apiParam;
+      var modlue = hybridJs[moduleName];
+      var apiNamespace = api.namespace;
+
+      // api加上module关键字，方便内部处理
+      api.moduleName = moduleName;
+
+      var apiParent = getModuleApiParentByNameSpace(modlue, apiNamespace);
+
+      // 最终的命名空间是包含模块的
+      var finalNameSpace = moduleName + '.' + api.namespace;
+      // 如果仅仅是xxx，直接取xxx，如果aa.bb，取bb
+      var apiName = /[.]/.test(apiNamespace) ? api.namespace.match(/[.][^.]+$/)[0].substr(1) : apiNamespace;
+
+      // 这里防止触发代理，就不用apiParent[apiName]了，而是用proxysApis[finalNameSpace]
+      if (!proxysApis[finalNameSpace]) {
+        // 如果还没有代理这个API的命名空间，代理之，只需要设置一次代理即可
+        proxyApiNamespace(apiParent, apiName, finalNameSpace, api);
+      }
+
+      // 一个新的API代理，会替换以前API命名空间中对应的内容
+      var apiRuncode = api.runCode;
+
+      if (!apiRuncode && callInner) {
+        // 如果没有runcode，默认使用callInner
+        apiRuncode = callInner;
+      }
+
+      var newApiProxy = new Proxy(api, apiRuncode);
+      var oldProxyNamespace = proxysApis[finalNameSpace] || {};
+      var oldProxyOsNotUse = {};
+
+      proxysApis[finalNameSpace] = {};
+
+      supportOsArray.forEach(function (osTmp) {
+        if (api.os && api.os.indexOf(osTmp) !== -1) {
+          // 如果存在这个os，并且合法，重新定义
+          proxysApis[finalNameSpace][osTmp] = newApiProxy;
+          oldProxyOsNotUse[osTmp] = true;
+        } else if (oldProxyNamespace[osTmp]) {
+          // 否则仍然使用老版本的代理
+          proxysApis[finalNameSpace][osTmp] = oldProxyNamespace[osTmp];
+          // api本身的os要添加这个环境，便于提示
+          api.os && api.os.push(osTmp);
         }
-        if (!hybridJs[moduleName]) {
-            // 如果没有定义模块，监听整个模块，用代理取值，防止重定义
-            // 这样，模块只允许初次定义以及之后的赋值，其它操作都会被内部拒绝
-            observeModule(moduleName);
-        }
+      });
 
-        var api = apiParam;
-        var modlue = hybridJs[moduleName];
-        var apiNamespace = api.namespace;
-
-        // api加上module关键字，方便内部处理
-        api.moduleName = moduleName;
-
-        var apiParent = getModuleApiParentByNameSpace(modlue, apiNamespace);
-
-        // 最终的命名空间是包含模块的
-        var finalNameSpace = moduleName + '.' + api.namespace;
-        // 如果仅仅是xxx，直接取xxx，如果aa.bb，取bb
-        var apiName = /[.]/.test(apiNamespace) ? api.namespace.match(/[.][^.]+$/)[0].substr(1) : apiNamespace;
-
-        // 这里防止触发代理，就不用apiParent[apiName]了，而是用proxysApis[finalNameSpace]
-        if (!proxysApis[finalNameSpace]) {
-            // 如果还没有代理这个API的命名空间，代理之，只需要设置一次代理即可
-            proxyApiNamespace(apiParent, apiName, finalNameSpace, api);
-        }
-
-        // 一个新的API代理，会替换以前API命名空间中对应的内容
-        var apiRuncode = api.runCode;
-
-        if (!apiRuncode && callInner) {
-            // 如果没有runcode，默认使用callInner
-            apiRuncode = callInner;
-        }
-
-        var newApiProxy = new Proxy(api, apiRuncode);
-        var oldProxyNamespace = proxysApis[finalNameSpace] || {};
-        var oldProxyOsNotUse = {};
-
-        proxysApis[finalNameSpace] = {};
-
-        supportOsArray.forEach(function (osTmp) {
-            if (api.os && api.os.indexOf(osTmp) !== -1) {
-                // 如果存在这个os，并且合法，重新定义
-                proxysApis[finalNameSpace][osTmp] = newApiProxy;
-                oldProxyOsNotUse[osTmp] = true;
-            } else if (oldProxyNamespace[osTmp]) {
-                // 否则仍然使用老版本的代理
-                proxysApis[finalNameSpace][osTmp] = oldProxyNamespace[osTmp];
-                // api本身的os要添加这个环境，便于提示
-                api.os && api.os.push(osTmp);
-            }
-        });
-
-        Object.keys(oldProxyOsNotUse).forEach(function (notUseOs) {
-            // 析构不用的代理
-            oldProxyNamespace[notUseOs] && oldProxyNamespace[notUseOs].dispose();
-        });
+      Object.keys(oldProxyOsNotUse).forEach(function (notUseOs) {
+        // 析构不用的代理
+        oldProxyNamespace[notUseOs] && oldProxyNamespace[notUseOs].dispose();
+      });
     }
 
     /**
@@ -1104,29 +1105,29 @@ function defineapiMixin(hybrid) {
      * @param {Array} apis 对应的api数组
      */
     function extendModule(moduleName, apis) {
-        if (!apis || !Array.isArray(apis)) {
-            return;
-        }
-        if (!hybridJs[moduleName]) {
-            // 如果没有定义模块，监听整个模块，用代理取值，防止重定义
-            // 这样，模块只允许初次定义以及之后的赋值，其它操作都会被内部拒绝
-            observeModule(moduleName);
-        }
-        for (var i = 0, len = apis.length; i < len; i += 1) {
-            extendApi(moduleName, apis[i]);
-        }
+      if (!apis || !Array.isArray(apis)) {
+        return;
+      }
+      if (!hybridJs[moduleName]) {
+        // 如果没有定义模块，监听整个模块，用代理取值，防止重定义
+        // 这样，模块只允许初次定义以及之后的赋值，其它操作都会被内部拒绝
+        observeModule(moduleName);
+      }
+      for (var i = 0, len = apis.length; i < len; i += 1) {
+        extendApi(moduleName, apis[i]);
+      }
     }
 
     hybridJs.extendModule = extendModule;
     hybridJs.extendApi = extendApi;
-}
+  }
 
-/**
- * 定义如何调用一个API
- * 一般指调用原生环境下的API
- * 依赖于Promise,calljsbridgeMixin
- */
-function callnativeapiMixin(hybrid) {
+  /**
+   * 定义如何调用一个API
+   * 一般指调用原生环境下的API
+   * 依赖于Promise,calljsbridgeMixin
+   */
+  function callnativeapiMixin(hybrid) {
     var hybridJs = hybrid;
     var JSBridge = hybridJs.JSBridge;
     var callJsBridge = generateJSBridgeTrigger(JSBridge);
@@ -1137,33 +1138,33 @@ function callnativeapiMixin(hybrid) {
      * @return {Object} 返回一个Promise对象，如果没有Promise环境，直接返回运行结果
      */
     function callApi(options) {
-        // 实时获取promise
-        var Promise = hybridJs.getPromise();
-        var finalOptions = options || {};
+      // 实时获取promise
+      var Promise = hybridJs.getPromise();
+      var finalOptions = options || {};
 
-        var callback = function callback(resolve, reject) {
-            callJsBridge({
-                handlerName: finalOptions.name,
-                proto: finalOptions.mudule,
-                data: finalOptions.data || {},
-                success: finalOptions.success,
-                error: finalOptions.error,
-                isLongCb: finalOptions.isLongCb,
-                isEvent: finalOptions.isEvent
-            }, resolve, reject);
-        };
+      var callback = function callback(resolve, reject) {
+        callJsBridge({
+          handlerName: finalOptions.name,
+          proto: finalOptions.mudule,
+          data: finalOptions.data || {},
+          success: finalOptions.success,
+          error: finalOptions.error,
+          isLongCb: finalOptions.isLongCb,
+          isEvent: finalOptions.isEvent
+        }, resolve, reject);
+      };
 
-        return Promise && new Promise(callback) || callback();
+      return Promise && new Promise(callback) || callback();
     }
 
     hybridJs.callApi = callApi;
     hybridJs.callNativeApi = callApi;
-}
+  }
 
-/**
- * 初始化给配置全局函数
- */
-function initMixin(hybrid) {
+  /**
+   * 初始化给配置全局函数
+   */
+  function initMixin(hybrid) {
     var hybridJs = hybrid;
     var globalError = hybridJs.globalError;
     var showError = hybridJs.showError;
@@ -1183,28 +1184,28 @@ function initMixin(hybrid) {
      * 是否版本号小于容器版本号，如果小于，给予升级提示
      */
     function checkEnvAndPrompt() {
-        if (!hybridJs.runtime || !hybridJs.runtime.getEjsVersion) {
-            showError(globalError.ERROR_TYPE_VERSIONNOTSUPPORT.code, globalError.ERROR_TYPE_VERSIONNOTSUPPORT.msg);
-        } else {
-            hybridJs.runtime.getEjsVersion({
-                success: function success(result) {
-                    /**
-                     * 版本可以有差异
-                    const version = `${result.version} `;
-                     if (compareVersion(hybridJs.version, version) < 0) {
-                        showError(
-                            globalError.ERROR_TYPE_VERSIONNEEDUPGRADE.code,
-                            globalError.ERROR_TYPE_VERSIONNEEDUPGRADE.msg);
-                    }
-                     */
-                    // 记录原生容器的版本号
-                    hybridJs.nativeVersion = result.version;
-                },
-                error: function error() {
-                    showError(globalError.ERROR_TYPE_INITVERSIONERROR.code, globalError.ERROR_TYPE_INITVERSIONERROR.msg);
-                }
-            });
-        }
+      if (!hybridJs.runtime || !hybridJs.runtime.getEjsVersion) {
+        showError(globalError.ERROR_TYPE_VERSIONNOTSUPPORT.code, globalError.ERROR_TYPE_VERSIONNOTSUPPORT.msg);
+      } else {
+        hybridJs.runtime.getEjsVersion({
+          success: function success(result) {
+            /**
+             * 版本可以有差异
+            const version = `${result.version} `;
+             if (compareVersion(hybridJs.version, version) < 0) {
+                showError(
+                    globalError.ERROR_TYPE_VERSIONNEEDUPGRADE.code,
+                    globalError.ERROR_TYPE_VERSIONNEEDUPGRADE.msg);
+            }
+             */
+            // 记录原生容器的版本号
+            hybridJs.nativeVersion = result.version;
+          },
+          error: function error() {
+            showError(globalError.ERROR_TYPE_INITVERSIONERROR.code, globalError.ERROR_TYPE_INITVERSIONERROR.msg);
+          }
+        });
+      }
     }
 
     /**
@@ -1215,41 +1216,41 @@ function initMixin(hybrid) {
      * 所以这个接口到时候需要向原生容器请求的
      */
     hybridJs.config = function config(params) {
-        if (hybridJs.os.dd && window.dd) {
-            dd.config(params);
-        } else if (isConfig) {
-            showError(globalError.ERROR_TYPE_CONFIGMODIFY.code, globalError.ERROR_TYPE_CONFIGMODIFY.msg);
-        } else {
-            isConfig = true;
+      if (hybridJs.os.dd && window.dd) {
+        dd.config(params);
+      } else if (isConfig) {
+        showError(globalError.ERROR_TYPE_CONFIGMODIFY.code, globalError.ERROR_TYPE_CONFIGMODIFY.msg);
+      } else {
+        isConfig = true;
 
-            var _success = function _success() {
-                // 如果这时候有ready回调
-                if (readyFunc) {
-                    log('ready!');
-                    readyFunc();
-                } else {
-                    // 允许ready直接执行
-                    isAllowReady = true;
-                }
-            };
+        var _success = function _success() {
+          // 如果这时候有ready回调
+          if (readyFunc) {
+            log('ready!');
+            readyFunc();
+          } else {
+            // 允许ready直接执行
+            isAllowReady = true;
+          }
+        };
 
-            if (hybridJs.os.ejs) {
-                // 暂时检查环境默认就进行，因为框架默认注册了基本api的，并且这样2.也可以给予相应提示
-                checkEnvAndPrompt();
-                hybridJs.event.config(extend({
-                    success: function success() {
-                        _success();
-                    },
-                    error: function error(_error) {
-                        var tips = JSON.stringify(_error);
+        if (hybridJs.os.ejs) {
+          // 暂时检查环境默认就进行，因为框架默认注册了基本api的，并且这样2.也可以给予相应提示
+          checkEnvAndPrompt();
+          hybridJs.event.config(extend({
+            success: function success() {
+              _success();
+            },
+            error: function error(_error) {
+              var tips = JSON.stringify(_error);
 
-                        showError(globalError.ERROR_TYPE_CONFIGERROR.code, tips);
-                    }
-                }, params));
-            } else {
-                _success();
+              showError(globalError.ERROR_TYPE_CONFIGERROR.code, tips);
             }
+          }, params));
+        } else {
+          _success();
         }
+      }
     };
 
     /**
@@ -1259,30 +1260,30 @@ function initMixin(hybrid) {
      * @param {Function} callback 回调函数
      */
     hybridJs.ready = function ready(callback) {
-        if (hybridJs.os.dd && window.dd) {
-            dd.ready(callback);
-        } else if (!readyFunc) {
-            readyFunc = callback;
-            // 如果config先进行，然后才进行ready,这时候恰好又isAllowReady，代表ready可以直接自动执行
-            if (isAllowReady) {
-                log('ready!');
-                isAllowReady = false;
-                readyFunc();
-            }
-        } else {
-            showError(globalError.ERROR_TYPE_READYMODIFY.code, globalError.ERROR_TYPE_READYMODIFY.msg);
+      if (hybridJs.os.dd && window.dd) {
+        dd.ready(callback);
+      } else if (!readyFunc) {
+        readyFunc = callback;
+        // 如果config先进行，然后才进行ready,这时候恰好又isAllowReady，代表ready可以直接自动执行
+        if (isAllowReady) {
+          log('ready!');
+          isAllowReady = false;
+          readyFunc();
         }
+      } else {
+        showError(globalError.ERROR_TYPE_READYMODIFY.code, globalError.ERROR_TYPE_READYMODIFY.msg);
+      }
     };
 
     /**
      * 注册接收原生的错误信息
      */
     JSBridge.registerHandler('handleError', function (data) {
-        showError(globalError.ERROR_TYPE_NATIVE.code, JSON.stringify(data));
+      showError(globalError.ERROR_TYPE_NATIVE.code, JSON.stringify(data));
     });
-}
+  }
 
-function innerUtilMixin(hybrid) {
+  function innerUtilMixin(hybrid) {
     var hybridJs = hybrid;
     var innerUtil = {};
 
@@ -1297,52 +1298,52 @@ function innerUtilMixin(hybrid) {
      * @return {Object} 返回标准的参数
      */
     function compatibleStringParamsToObject(args) {
-        var _this = this;
+      var _this = this;
 
-        var newArgs = args;
+      var newArgs = args;
 
-        if (!innerUtil.isObject(newArgs[0])) {
-            var options = {};
-            var isPromise = !!hybridJs.getPromise();
-            var len = newArgs.length;
-            var paramsLen = isPromise ? len - 2 : len;
+      if (!innerUtil.isObject(newArgs[0])) {
+        var options = {};
+        var isPromise = !!hybridJs.getPromise();
+        var len = newArgs.length;
+        var paramsLen = isPromise ? len - 2 : len;
 
-            // 填充字符串key，排除最后的resolve与reject
+        // 填充字符串key，排除最后的resolve与reject
 
-            for (var _len = arguments.length, rest = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-                rest[_key - 1] = arguments[_key];
-            }
-
-            for (var i = 0; i < paramsLen; i += 1) {
-                // 注意映射关系，rest[0]相当于以前的arguments[1]
-                if (rest[i] !== undefined) {
-                    options[rest[i]] = newArgs[i];
-                }
-            }
-
-            // 分别为options，resolve，reject
-            newArgs[0] = options;
-            if (isPromise) {
-                newArgs[1] = newArgs[len - 2];
-                newArgs[2] = newArgs[len - 1];
-            } else {
-                // 去除普通参数对resolve与reject的影响
-                newArgs[1] = undefined;
-                newArgs[2] = undefined;
-            }
+        for (var _len = arguments.length, rest = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+          rest[_key - 1] = arguments[_key];
         }
 
-        // 默认参数的处理，因为刚兼容字符串后是没有默认参数的
-        if (this.api && this.api.defaultParams && newArgs[0] instanceof Object) {
-            Object.keys(this.api.defaultParams).forEach(function (item) {
-                if (newArgs[0][item] === undefined) {
-                    newArgs[0][item] = _this.api.defaultParams[item];
-                }
-            });
+        for (var i = 0; i < paramsLen; i += 1) {
+          // 注意映射关系，rest[0]相当于以前的arguments[1]
+          if (rest[i] !== undefined) {
+            options[rest[i]] = newArgs[i];
+          }
         }
 
-        // 否则已经是标准的参数形式，直接返回
-        return newArgs;
+        // 分别为options，resolve，reject
+        newArgs[0] = options;
+        if (isPromise) {
+          newArgs[1] = newArgs[len - 2];
+          newArgs[2] = newArgs[len - 1];
+        } else {
+          // 去除普通参数对resolve与reject的影响
+          newArgs[1] = undefined;
+          newArgs[2] = undefined;
+        }
+      }
+
+      // 默认参数的处理，因为刚兼容字符串后是没有默认参数的
+      if (this.api && this.api.defaultParams && newArgs[0] instanceof Object) {
+        Object.keys(this.api.defaultParams).forEach(function (item) {
+          if (newArgs[0][item] === undefined) {
+            newArgs[0][item] = _this.api.defaultParams[item];
+          }
+        });
+      }
+
+      // 否则已经是标准的参数形式，直接返回
+      return newArgs;
     }
 
     /**
@@ -1352,19 +1353,19 @@ function innerUtilMixin(hybrid) {
      * @returns {Array} 返回正确的数组
      */
     function eclipseButtonsNumber(arr, maximum) {
-        var result = arr;
+      var result = arr;
 
-        if (result && Array.isArray(result)) {
-            var len = result.length;
+      if (result && Array.isArray(result)) {
+        var len = result.length;
 
-            if (len > maximum) {
-                var difference = len - (len - maximum);
+        if (len > maximum) {
+          var difference = len - (len - maximum);
 
-                result.length = difference;
-            }
+          result.length = difference;
         }
+      }
 
-        return result;
+      return result;
     }
 
     innerUtil.extend = extend;
@@ -1375,9 +1376,9 @@ function innerUtilMixin(hybrid) {
     innerUtil.compatibleStringParamsToObject = compatibleStringParamsToObject;
     innerUtil.eclipseButtonsNumber = eclipseButtonsNumber;
     innerUtil.getBase64NotUrl = getBase64NotUrl;
-}
+  }
 
-function mixin(hybrid) {
+  function mixin(hybrid) {
     var hybridJs = hybrid;
 
     osMixin(hybridJs);
@@ -1397,14 +1398,14 @@ function mixin(hybrid) {
     initMixin(hybridJs);
     // 给API快速使用的内部工具集
     innerUtilMixin(hybridJs);
-}
+  }
 
-var hybridJs = {};
+  var hybridJs = {};
 
-mixin(hybridJs);
+  mixin(hybridJs);
 
-hybridJs.version = '3.2.6';
+  hybridJs.version = '3.2.6d';
 
-return hybridJs;
+  return hybridJs;
 
 })));
