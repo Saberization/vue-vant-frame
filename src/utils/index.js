@@ -6,7 +6,7 @@ import base64 from './base64';
 import charset from './charset';
 import date from './date';
 import imagescale from './imagescale';
-import math from ',/math';
+import math from './math';
 import qrcode from './qrcode';
 import sha1 from './sha1';
 import sha256 from './sha256';

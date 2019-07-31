@@ -1038,7 +1038,7 @@
       _el.innerHTML = aHTML.join('')
       var elTable = _el.childNodes[0]
       var nLeftMarginTable = (_htOption.width - elTable.offsetWidth) / 2
-      var nTopMarginTable = (_htOption.height - elTable.offsetHeight) / 2
+      var nTopMarginTable = (_htOption.height - elTable.offsetHeight) / 2 
       if (nLeftMarginTable > 0 && nTopMarginTable > 0) {
         elTable.style.margin = nTopMarginTable + 'px ' + nLeftMarginTable + 'px'
       }

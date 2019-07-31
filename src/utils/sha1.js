@@ -6,16 +6,6 @@
  * @Description: 移值 M7 框架中的 util.sha1
  */
 
-/*
- * @link
- * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
- * in FIPS 180-1
- * Version 2.2 Copyright Paul Johnston 2000 - 2009.
- * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
- * Distributed under the BSD License
- * See http://pajhome.org.uk/crypt/md5 for details.
-*/
-
 const hexcase = 0;
 const chrsz = 8;
 
