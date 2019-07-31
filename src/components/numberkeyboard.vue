@@ -18,7 +18,7 @@
     @show="onShow"
     @hide="onHide"
   >
-    <slot name="title-left"></slot>
+    <slot name="title-left" slot="title-left"></slot>
   </van-number-keyboard>
 </template>
 

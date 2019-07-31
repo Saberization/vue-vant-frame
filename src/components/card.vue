@@ -13,42 +13,16 @@
     :lazy-load="lazyLoad"
     @click="onClick"
   >
-    <slot
-      name="title"
-      slot="title"
-    ></slot>
-    <slot
-      name="desc"
-      slot="desc"
-    ></slot>
-    <slot
-      name="num"
-      slot="num"
-    ></slot>
-    <slot
-      name="price"
-      slot="price"
-    ></slot>
-    <slot
-      name="origin-price"
-      slot="origin-price"
-    ></slot>
-    <slot
-      name="thumb"
-      slot="thumb"
-    ></slot>
-    <slot
-      name="tag"
-      slot="tag"
-    ></slot>
-    <slot
-      name="tags"
-      slot="tags"
-    ></slot>
-    <slot
-      name="footer"
-      slot="footer"
-    ></slot>
+    <slot name="title" slot="title"></slot>
+    <slot name="desc" slot="desc"></slot>
+    <slot name="num" slot="num"></slot>
+    <slot name="price" slot="price"></slot>
+    <slot name="origin-price" slot="origin-price"></slot>
+    <slot name="thumb" slot="thumb"></slot>
+    <slot name="tag" slot="tag"></slot>
+    <slot name="tags" slot="tags"></slot>
+    <slot name="footer" slot="footer"></slot>
+    <slot name="bottom" slot="bottom"></slot>
   </van-card>
 </template>
 

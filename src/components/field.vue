@@ -114,6 +114,10 @@ export default {
         return false;
       }
     },
+    labelWidth: {
+      type: [String, Number],
+      default: '90px'
+    },
     placeholder: String,
     leftIcon: String,
     rightIcon: String,
