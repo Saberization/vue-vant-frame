@@ -17,6 +17,7 @@
     :autosize="autosize"
     :left-icon="leftIcon"
     :right-icon="rightIcon"
+    :label-width="labelWidth"
     :placeholder="placeholder"
     :maxlength="maxlength"
     :autofocus="autofocus"

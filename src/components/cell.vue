@@ -17,6 +17,7 @@
     :title-class="titleClass"
     :value-class="valueClass"
     :label-class="labelClass"
+    :title-style="titleStyle"
     @click="onClick"
   >
     <slot
@@ -93,6 +94,9 @@ export default {
       default: null
     },
     labelClass: {
+      default: null
+    },
+    titleStyle: {
       default: null
     }
   },
