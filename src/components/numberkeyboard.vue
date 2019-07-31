@@ -17,7 +17,9 @@
     @blur="onBlur"
     @show="onShow"
     @hide="onHide"
-  ></van-number-keyboard>
+  >
+    <slot name="title-left"></slot>
+  </van-number-keyboard>
 </template>
 
 <script>
