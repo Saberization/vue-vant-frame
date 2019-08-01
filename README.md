@@ -1,28 +1,31 @@
 # vue-cli-multi-frame
 
-## Project setup
+## 项目依赖安装
 ```
 npm install
+// or
+yarn install
 ```
 
-### Compiles and hot-reloads for development
+### 开发模式
 ```
-npm run serve
+npm run dev
+// or
+yarn run dev
 ```
 
-### Compiles and minifies for production
+### 生产模式
 ```
 npm run build
+// or
+yarn run build
 ```
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
+### 校验代码规范
 ```
 npm run lint
+// or
+yarn run lint
 ```
 
 # 如果 npm 安装的太慢，建议安装 nrm 进行安装
