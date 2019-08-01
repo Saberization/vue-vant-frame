@@ -4,3 +4,4 @@ public/ejs/*
 src/shared/*
 tests/unit/*
 public/lib/*
+build/*

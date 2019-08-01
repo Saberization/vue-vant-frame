@@ -1,10 +1,8 @@
 'use strict';
-const path = require('path')
 const cssOptions = require('./css.env')
 const devServer = require('./dev-server')
 const utils = require('./utils')
 const pages = require('./base.conf')
-const chokidar = require('chokidar')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const resolve = utils.resolve
 const chainWebpack = config => {
