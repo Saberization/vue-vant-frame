@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <p class="component-title">轻量、可靠的移动端 Vue 组件库</p>
+    <van-cell title="内置样式" class="mb10" to="./inlinestyle"></van-cell>
     <van-collapse v-model="activeNames">
       <van-collapse-item v-for="(v, i) in menu" :title="v.title" :name="i + 1" :key="i">
         <van-cell v-for="(_v, _i) in v.children" :key="_i" :title="_v.title" :to="_v.to"></van-cell>
@@ -201,10 +202,6 @@ export default {
             {
               title: 'Amap 地图组件',
               to: '/amap'
-            },
-            {
-              title: '内置样式',
-              to: '/inlinestyle'
             }
           ]
         },
