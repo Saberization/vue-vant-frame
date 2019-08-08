@@ -1,8 +1,5 @@
 <template>
   <div class="container">
-    <h1>Module Page</h1>
-    <div class="van-content">
-    </div>
   </div>
 </template>
 
@@ -12,6 +9,5 @@ export default {
 };
 </script>
 
-<style lang="scss">
-  
+<style>
 </style>

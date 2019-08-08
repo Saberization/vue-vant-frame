@@ -37,7 +37,10 @@ export default {
     [SwipeItem.name]: SwipeItem
   },
   props: {
-    autoplay: Number,
+    autoplay: {
+      type: Number,
+      default: 2200
+    },
     lazyload: {
       type: Boolean,
       default: false
