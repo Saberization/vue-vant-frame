@@ -13,6 +13,80 @@ import sha256 from './sha256';
 import storage from './storage';
 import string from './string';
 
+const os = (() => {
+  const {
+    userAgent,
+    appVersion
+  } = window.navigator;
+
+  let version = null;
+  let isBadAndroid = false;
+  let ios = false;
+
+  let android = (() => {
+    const result = userAgent.match(/(Android);?[\s/]+([\d.]+)?/);
+
+    if (result) {
+      version = result[2];
+      isBadAndroid = !/Chrome\/\d/.test(appVersion);
+
+      return true;
+    }
+
+    return false;
+  })();
+
+  let iphone = (() => {
+    const result = userAgent.match(/(iPhone\sOS)\s([\d_]+)/);
+
+    if (result) {
+      ios = true;
+      version = result[2].replace(/_/g, '.');
+
+      return true;
+    }
+
+    return false;
+  })();
+
+  let ipad = (() => {
+    const result = userAgent.match(/(iPad).*OS\s([\d_]+)/);
+
+    if (result) {
+      ios = true;
+      version = result[2].replace(/_/g, '.');
+
+      return true;
+    }
+
+    return false;
+  })();
+
+  let ejs = (() => {
+    return userAgent.match(/EpointEJS/i) || false;
+  })();
+
+  let dd = (() => {
+    return userAgent.match(/DingTalk/i) || false;
+  })();
+
+  let h5 = (() => {
+    return (!ejs && !dd) || false;
+  })();
+
+  return {
+    android,
+    version,
+    isBadAndroid,
+    ios,
+    iphone,
+    ipad,
+    ejs,
+    dd,
+    h5
+  };
+})();
+
 /**
  * 打开页面
  * @param {String} url 要打开的地址
@@ -24,16 +98,26 @@ const openPage = (url) => {
   const {
     pathname
   } = location;
+  
+  let openUrl = null;
 
   if (typeof pathname === 'string') {
     if (url.indexOf('http') !== -1) {
-      location.href = url;
+      openUrl = url;
     } else {
       const pathArr = pathname.split('/');
 
       pathArr.length -= 1;
-      location.href = `${location.protocol}//${location.host}${pathArr.join('/')}/${url}`;
+      openUrl = `${location.protocol}//${location.host}${pathArr.join('/')}/${url}`;
     }
+  }
+
+  if (os.ejs) {
+    const ejsVer = ejs.version.split('.')[0];
+
+    ejsVer === '3' ? ejs.page.open(openUrl) : ejs.page.openPage(openUrl);
+  } else {
+    location.href = openUrl;
   }
 };
 
@@ -125,80 +209,6 @@ const getExtraDataByKey = (key) => {
 
   return (Array.isArray(result) && result[1]) || '';
 };
-
-const os = (() => {
-  const {
-    userAgent,
-    appVersion
-  } = window.navigator;
-
-  let version = null;
-  let isBadAndroid = false;
-  let ios = false;
-
-  let android = (() => {
-    const result = userAgent.match(/(Android);?[\s/]+([\d.]+)?/);
-
-    if (result) {
-      version = result[2];
-      isBadAndroid = !/Chrome\/\d/.test(appVersion);
-
-      return true;
-    }
-
-    return false;
-  })();
-
-  let iphone = (() => {
-    const result = userAgent.match(/(iPhone\sOS)\s([\d_]+)/);
-
-    if (result) {
-      ios = true;
-      version = result[2].replace(/_/g, '.');
-
-      return true;
-    }
-
-    return false;
-  })();
-
-  let ipad = (() => {
-    const result = userAgent.match(/(iPad).*OS\s([\d_]+)/);
-
-    if (result) {
-      ios = true;
-      version = result[2].replace(/_/g, '.');
-
-      return true;
-    }
-
-    return false;
-  })();
-
-  let ejs = (() => {
-    return userAgent.match(/EpointEJS/i) || false;
-  })();
-
-  let dd = (() => {
-    return userAgent.match(/DingTalk/i) || false;
-  })();
-
-  let h5 = (() => {
-    return (!ejs && !dd) || false;
-  })();
-
-  return {
-    android,
-    version,
-    isBadAndroid,
-    ios,
-    iphone,
-    ipad,
-    ejs,
-    dd,
-    h5
-  };
-})();
 
 /**
  * 数据处理

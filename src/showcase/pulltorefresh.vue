@@ -72,7 +72,7 @@ export default {
      */
     getList() {
       Util.ajax({
-        url: 'https://www.easy-mock.com/mock/5cb6ca44f6c8be4af31ae04d/mock/getlist',
+        url: 'https://www.easy-mock.com/mock/5d24037eb491124e37cee77d/mobileframemock/getlist',
         data: JSON.stringify({
           token: 'RXBvaW50X1dlYlNlcml2Y2VfKiojIzA2MDE=',
           params: {
