@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-29 11:12:17
+ * @LastEditTime: 2019-08-09 14:29:33
+ * @LastEditors: Please set LastEditors
+ */
 import {
   ajax,
   ajaxAll
@@ -266,6 +273,23 @@ const isNull = (value) => {
   return value === null || value === undefined;
 };
 
+/**
+ * 遍历对象或数组
+ * @param {Object} arr 对象和数组
+ * @param {Function} callback 回调函数
+ */
+const each = (arr, callback) => {
+  callback = typeof callback === 'function' ? callback : function () {};
+
+  if (typeof arr === 'object') {
+    for (let i = 0, len = arr.length; i < len; i++) {
+      const item = arr[i];
+
+      callback(i, item);
+    }
+  }
+};
+
 export default {
   openPage,
   ajax,
@@ -286,5 +310,6 @@ export default {
   sha1,
   sha256,
   storage,
-  string
+  string,
+  each
 };
