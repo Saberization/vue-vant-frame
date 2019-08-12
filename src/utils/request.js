@@ -12,6 +12,7 @@ const defaultSettings = {
   headers: {},
   contentType: 'application/x-www-form-urlencoded',
   withCredentials: false,
+  delay: 0,
   isAutoProxy: Config.ajax.isAutoProxy
 };
 
@@ -50,7 +51,10 @@ function ajax (options) {
     withCredentials: options.withCredentials
   };
 
-  const { contentType, headers, isAutoProxy, error, success, complete } = options;
+  const { delay, contentType, headers, isAutoProxy, error, success, complete } = options;
+
+  // 设置重试延迟
+  axios.defaults.retryDelay = delay;
 
   for (const key in headers) {
     setHeader(key, headers[key]);
