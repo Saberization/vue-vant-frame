@@ -12,10 +12,7 @@ const defaultSettings = {
   headers: {},
   contentType: 'application/x-www-form-urlencoded',
   withCredentials: false,
-  isAutoProxy: Config.ajax.isAutoProxy,
-  success: () => {},
-  error: () => {},
-  complete: () => {}
+  isAutoProxy: Config.ajax.isAutoProxy
 };
 
 let params = {};
@@ -68,23 +65,27 @@ function ajax (options) {
     createInterceptors();
   }
 
-  axios(params).then((response) => {
-    const { status, statusText, data } = response;
-
-    if ((status !== 200 && statusText !== 'OK') || typeof data.errcode === 'number') {
-      error(data);
-
-      if (Config.ajax.isAutoErrToast) {
-        Toast(data.errmsg);
+  if (typeof success !== 'function') {
+    return axios(params);
+  } else {
+    axios(params).then((response) => {
+      const { status, statusText, data } = response;
+  
+      if ((status !== 200 && statusText !== 'OK') || typeof data.errcode === 'number') {
+        error(data);
+  
+        if (Config.ajax.isAutoErrToast) {
+          Toast(data.errmsg);
+        }
+      } else {
+        success(data, response);
       }
-    } else {
-      success(data, response);
-    }
-  }).catch((err) => {
-    error(err);
-  }).then(() => {
-    complete();
-  });
+    }).catch((err) => {
+      error(err);
+    }).then(() => {
+      complete();
+    });
+  }
 }
 
 function ajaxAll (...args) {
