@@ -13,7 +13,9 @@ const defaultSettings = {
   contentType: 'application/x-www-form-urlencoded',
   withCredentials: false,
   delay: 0,
-  isAutoProxy: Config.ajax.isAutoProxy
+  isAutoProxy: Config.ajax.isAutoProxy,
+  error: () => {},
+  complete: () => {}
 };
 
 let params = {};
@@ -51,7 +53,7 @@ function ajax (options) {
     withCredentials: options.withCredentials
   };
 
-  const { delay, contentType, headers, isAutoProxy, error, success, complete } = options;
+  const { delay, contentType, headers, isAutoProxy, error, success, complete, beforeSend } = options;
 
   // 设置重试延迟
   axios.defaults.retryDelay = delay;
@@ -67,6 +69,10 @@ function ajax (options) {
   if (isAutoProxy) {
     // 创建拦截器
     createInterceptors();
+  }
+
+  if (typeof beforeSend === 'function') {
+    beforeSend(axios);
   }
 
   if (typeof success !== 'function') {

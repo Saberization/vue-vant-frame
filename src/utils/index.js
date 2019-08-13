@@ -9,6 +9,7 @@ import {
   ajax,
   ajaxAll
 } from './request';
+import upload from './upload';
 import base64 from './base64';
 import charset from './charset';
 import date from './date';
@@ -311,5 +312,6 @@ export default {
   sha256,
   storage,
   string,
-  each
+  each,
+  upload
 };
