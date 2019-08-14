@@ -5,4 +5,4 @@ new Vue({
   render: (h) => {
     return h(Module);
   }
-}).mount('#app');
+}).$mount('#app');

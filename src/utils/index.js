@@ -20,6 +20,9 @@ import sha1 from './sha1';
 import sha256 from './sha256';
 import storage from './storage';
 import string from './string';
+import Config from '@shared/config';
+
+const ejsVer = Config.ejsVer;
 
 const os = (() => {
   const {
@@ -121,9 +124,7 @@ const openPage = (url) => {
   }
 
   if (os.ejs) {
-    const ejsVer = ejs.version.split('.')[0];
-
-    ejsVer === '3' ? ejs.page.open(openUrl) : ejs.page.openPage(openUrl);
+    ejsVer === 3 ? ejs.page.open(openUrl) : ejs.page.openPage(openUrl);
   } else {
     location.href = openUrl;
   }

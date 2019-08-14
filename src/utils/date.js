@@ -42,6 +42,11 @@ class MyDate extends Date {
    * @return {MyDate} 返回一个MyDate对象
    */
   parseDate (dateString, pattern) {
+    if (!dateString || typeof dateString === 'number') {
+      // 普通的构造，时间戳、纯数字以及其它多参数构造情况（多参数情况，第一个参数也是数字）
+      return new Date();
+    }
+
     try {
       dateString = dateString || '';
       // 判断需要的匹配模式
