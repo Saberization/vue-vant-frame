@@ -14,6 +14,21 @@ const defaultSettings = {
   withCredentials: false,
   delay: 0,
   isAutoProxy: Config.ajax.isAutoProxy,
+  baseURL: '',
+  transformRequest: [],
+  transformResponse: [],
+  paramsSerializer: null,
+  adapter: null,
+  params: null,
+  paramsSerializer: null,
+  xsrfCookieName: '',
+  xsrfHeaderName: '',
+  onUploadProgress: function (progressEvent) {},
+  onDownloadProgress: function (progressEvent) {},
+  maxContentLength: 2000,
+  validateStatus: null,
+  auth: null,
+  proxy: null,
   error: () => {},
   complete: () => {}
 };
@@ -49,8 +64,21 @@ function ajax (options) {
     method: options.type,
     data: options.data,
     headers: options.headers,
+    baseURL: options.baseURL,
     responseType: options.dataType,
-    withCredentials: options.withCredentials
+    withCredentials: options.withCredentials,
+    transformRequest: options.transformRequest,
+    transformResponse: options.transformResponse,
+    params: options.params,
+    paramsSerializer: options.paramsSerializer,
+    timeout: options.timeout,
+    adapter: options.adapter,
+    auth: options.auth,
+    onUploadProgress: options.onUploadProgress,
+    onDownloadProgress: options.onDownloadProgress,
+    maxContentLength: options.maxContentLength,
+    validateStatus: options.validateStatus,
+    proxy: options.proxy
   };
 
   const { delay, contentType, headers, isAutoProxy, error, success, complete, beforeSend } = options;

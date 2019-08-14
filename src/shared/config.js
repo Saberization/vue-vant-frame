@@ -37,7 +37,7 @@ export default {
    * 是否开启 调试面板， 开启可以在移动端捕获log
    * 仅在debug模式下有效
    */
-  isDebugPanel: 1,
+  isDebugPanel: 0,
   /**
    * 是否开启性能检测
    */
