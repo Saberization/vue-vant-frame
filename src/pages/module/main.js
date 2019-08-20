@@ -1,8 +1,10 @@
 import { Vue } from '@boot';
 import Module from './module';
 
-new Vue({
-  render: (h) => {
-    return h(Module);
-  }
+const vm = new Vue({
+  render: h => h(Module)
 }).$mount('#app');
+
+Vue.use({
+  vm
+});

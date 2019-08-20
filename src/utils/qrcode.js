@@ -6,6 +6,8 @@
  * @Description: 解析生成二维码 (包含了 qrcode.js 部分代码 [https://github.com/davidshimjs/qrcodejs])
  */
 
+import '@public/lib/qrcode.js';
+
 let qrcode = null;
 const QRCode = window.QRCode;
 
@@ -50,4 +52,5 @@ if (QRCode && typeof QRCode === 'function') {
     return new QRCode(el, options);
   };
 }
+
 export default qrcode || {};

@@ -1169,7 +1169,7 @@
       return Math.floor(nNumber * 1000) / 1000
     }
     return Drawing
-  })()
+  }).bind(window)()
 
   function _getTypeNumber(sText, nCorrectLevel) {
     var nType = 1

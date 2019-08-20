@@ -15,7 +15,6 @@ import charset from './charset';
 import date from './date';
 import imagescale from './imagescale';
 import math from './math';
-import qrcode from './qrcode';
 import sha1 from './sha1';
 import sha256 from './sha256';
 import storage from './storage';
@@ -308,7 +307,6 @@ export default {
   date,
   imagescale,
   math,
-  qrcode,
   sha1,
   sha256,
   storage,
